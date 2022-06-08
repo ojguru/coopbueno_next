@@ -12,6 +12,8 @@ interface HomeServiciosProps {
 }
 const HomeServicios = ({ servicios }: HomeServiciosProps) => {
   const mainItems = Object.values(ENUM_SERVICIO_TIPO)
+    .filter((item) => item !== 'beneficios')
+    .reverse()
 
   return servicios.length ? (
     <Section id="services" fluid space>

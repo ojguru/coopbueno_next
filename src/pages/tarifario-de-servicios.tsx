@@ -12,7 +12,11 @@ import { PropsWithServerCache } from '@gqty/react'
 type PageProps = PropsWithServerCache<{}>
 const Page = ({ cacheSnapshot }: PageProps) => {
   const query = useQuery()
-  const servicios = query.servicios().data
+  const servicios = query.servicios({
+    pagination: {
+      pageSize: 100,
+    },
+  }).data
 
   useHydrateCache({
     cacheSnapshot,
@@ -56,7 +60,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
 
 export default Page
 
-export const getStaticProps: GetStaticProps<HomeProps> = async (_ctx) => {
+export const getStaticProps: GetStaticProps<PageProps> = async (_ctx) => {
   const { cacheSnapshot } = await prepareReactRender(<Page />)
 
   return {
@@ -66,7 +70,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async (_ctx) => {
 
 const Section = styled.section`
   ${container}
-  background-color: white;
 `
 
 const Services = styled.div`

@@ -204,6 +204,7 @@ export enum ENUM_SERVICIO_CATEGORIA {
 }
 
 export enum ENUM_SERVICIO_TIPO {
+  beneficios = "beneficios",
   empresas = "empresas",
   personas = "personas",
 }
@@ -329,6 +330,26 @@ export interface JSONFilterInput {
   startsWith?: InputMaybe<Scalars["JSON"]>;
 }
 
+export interface MemoriaAnualFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<MemoriaAnualFiltersInput>>>;
+  ano?: InputMaybe<IntFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IDFilterInput>;
+  nombre?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<MemoriaAnualFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<MemoriaAnualFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+}
+
+export interface MemoriaAnualInput {
+  ano?: InputMaybe<Scalars["Int"]>;
+  archivo?: InputMaybe<Scalars["ID"]>;
+  imagen?: InputMaybe<Scalars["ID"]>;
+  nombre?: InputMaybe<Scalars["String"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]>;
+}
+
 export interface PaginationArg {
   limit?: InputMaybe<Scalars["Int"]>;
   page?: InputMaybe<Scalars["Int"]>;
@@ -356,6 +377,7 @@ export interface ServicioFiltersInput {
   slug?: InputMaybe<StringFilterInput>;
   tipo?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  video?: InputMaybe<StringFilterInput>;
 }
 
 export interface ServicioInput {
@@ -373,6 +395,7 @@ export interface ServicioInput {
   tarifario?: InputMaybe<ComponentServiciosTarifarioInput>;
   tipo?: InputMaybe<ENUM_SERVICIO_TIPO>;
   ventajas?: InputMaybe<Array<InputMaybe<ComponentServiciosVentajasInput>>>;
+  video?: InputMaybe<Scalars["String"]>;
 }
 
 export interface SlideFiltersInput {
@@ -1008,6 +1031,48 @@ export const generatedSchema = {
     or: { __type: "[JSON]" },
     startsWith: { __type: "JSON" },
   },
+  MemoriaAnual: {
+    __typename: { __type: "String!" },
+    ano: { __type: "Int!" },
+    archivo: { __type: "UploadFileEntityResponse!" },
+    createdAt: { __type: "DateTime" },
+    imagen: { __type: "UploadFileEntityResponse!" },
+    nombre: { __type: "String!" },
+    publishedAt: { __type: "DateTime" },
+    updatedAt: { __type: "DateTime" },
+  },
+  MemoriaAnualEntity: {
+    __typename: { __type: "String!" },
+    attributes: { __type: "MemoriaAnual" },
+    id: { __type: "ID" },
+  },
+  MemoriaAnualEntityResponse: {
+    __typename: { __type: "String!" },
+    data: { __type: "MemoriaAnualEntity" },
+  },
+  MemoriaAnualEntityResponseCollection: {
+    __typename: { __type: "String!" },
+    data: { __type: "[MemoriaAnualEntity!]!" },
+    meta: { __type: "ResponseCollectionMeta!" },
+  },
+  MemoriaAnualFiltersInput: {
+    and: { __type: "[MemoriaAnualFiltersInput]" },
+    ano: { __type: "IntFilterInput" },
+    createdAt: { __type: "DateTimeFilterInput" },
+    id: { __type: "IDFilterInput" },
+    nombre: { __type: "StringFilterInput" },
+    not: { __type: "MemoriaAnualFiltersInput" },
+    or: { __type: "[MemoriaAnualFiltersInput]" },
+    publishedAt: { __type: "DateTimeFilterInput" },
+    updatedAt: { __type: "DateTimeFilterInput" },
+  },
+  MemoriaAnualInput: {
+    ano: { __type: "Int" },
+    archivo: { __type: "ID" },
+    imagen: { __type: "ID" },
+    nombre: { __type: "String" },
+    publishedAt: { __type: "DateTime" },
+  },
   Pagination: {
     __typename: { __type: "String!" },
     page: { __type: "Int!" },
@@ -1065,6 +1130,7 @@ export const generatedSchema = {
         sort: "[String]",
       },
     },
+    video: { __type: "String" },
   },
   ServicioEntity: {
     __typename: { __type: "String!" },
@@ -1095,6 +1161,7 @@ export const generatedSchema = {
     slug: { __type: "StringFilterInput" },
     tipo: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
+    video: { __type: "StringFilterInput" },
   },
   ServicioInput: {
     beneficios: { __type: "[ID]" },
@@ -1111,6 +1178,7 @@ export const generatedSchema = {
     tarifario: { __type: "ComponentServiciosTarifarioInput" },
     tipo: { __type: "ENUM_SERVICIO_TIPO" },
     ventajas: { __type: "[ComponentServiciosVentajasInput]" },
+    video: { __type: "String" },
   },
   ServicioRelationResponseCollection: {
     __typename: { __type: "String!" },
@@ -1498,6 +1566,10 @@ export const generatedSchema = {
       __type: "CategoryEntityResponse",
       __args: { data: "CategoryInput!" },
     },
+    createMemoriaAnual: {
+      __type: "MemoriaAnualEntityResponse",
+      __args: { data: "MemoriaAnualInput!" },
+    },
     createServicio: {
       __type: "ServicioEntityResponse",
       __args: { data: "ServicioInput!" },
@@ -1526,6 +1598,10 @@ export const generatedSchema = {
     deleteCategory: { __type: "CategoryEntityResponse", __args: { id: "ID!" } },
     deleteGlobal: { __type: "GlobalEntityResponse" },
     deleteHomepage: { __type: "HomepageEntityResponse" },
+    deleteMemoriaAnual: {
+      __type: "MemoriaAnualEntityResponse",
+      __args: { id: "ID!" },
+    },
     deleteServicio: { __type: "ServicioEntityResponse", __args: { id: "ID!" } },
     deleteSlide: { __type: "SlideEntityResponse", __args: { id: "ID!" } },
     deleteUploadFile: {
@@ -1595,6 +1671,10 @@ export const generatedSchema = {
       __type: "HomepageEntityResponse",
       __args: { data: "HomepageInput!" },
     },
+    updateMemoriaAnual: {
+      __type: "MemoriaAnualEntityResponse",
+      __args: { data: "MemoriaAnualInput!", id: "ID!" },
+    },
     updateServicio: {
       __type: "ServicioEntityResponse",
       __args: { data: "ServicioInput!", id: "ID!" },
@@ -1663,6 +1743,19 @@ export const generatedSchema = {
       },
     },
     me: { __type: "UsersPermissionsMe" },
+    memoriaAnual: {
+      __type: "MemoriaAnualEntityResponse",
+      __args: { id: "ID" },
+    },
+    memoriasAnuales: {
+      __type: "MemoriaAnualEntityResponseCollection",
+      __args: {
+        filters: "MemoriaAnualFiltersInput",
+        pagination: "PaginationArg",
+        publicationState: "PublicationState",
+        sort: "[String]",
+      },
+    },
     servicio: { __type: "ServicioEntityResponse", __args: { id: "ID" } },
     servicios: {
       __type: "ServicioEntityResponseCollection",
@@ -1742,6 +1835,7 @@ export const generatedSchema = {
       "Global",
       "Homepage",
       "I18NLocale",
+      "MemoriaAnual",
       "Servicio",
       "Slide",
       "UploadFile",
@@ -1915,6 +2009,7 @@ export interface GenericMorph {
     | "Global"
     | "Homepage"
     | "I18NLocale"
+    | "MemoriaAnual"
     | "Servicio"
     | "Slide"
     | "UploadFile"
@@ -1990,6 +2085,34 @@ export interface I18NLocaleEntityResponseCollection {
   meta: ResponseCollectionMeta;
 }
 
+export interface MemoriaAnual {
+  __typename?: "MemoriaAnual";
+  ano: ScalarsEnums["Int"];
+  archivo: UploadFileEntityResponse;
+  createdAt?: Maybe<ScalarsEnums["DateTime"]>;
+  imagen: UploadFileEntityResponse;
+  nombre: ScalarsEnums["String"];
+  publishedAt?: Maybe<ScalarsEnums["DateTime"]>;
+  updatedAt?: Maybe<ScalarsEnums["DateTime"]>;
+}
+
+export interface MemoriaAnualEntity {
+  __typename?: "MemoriaAnualEntity";
+  attributes?: Maybe<MemoriaAnual>;
+  id?: Maybe<ScalarsEnums["ID"]>;
+}
+
+export interface MemoriaAnualEntityResponse {
+  __typename?: "MemoriaAnualEntityResponse";
+  data?: Maybe<MemoriaAnualEntity>;
+}
+
+export interface MemoriaAnualEntityResponseCollection {
+  __typename?: "MemoriaAnualEntityResponseCollection";
+  data: Array<MemoriaAnualEntity>;
+  meta: ResponseCollectionMeta;
+}
+
 export interface Pagination {
   __typename?: "Pagination";
   page: ScalarsEnums["Int"];
@@ -2055,6 +2178,7 @@ export interface Servicio {
      */
     sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
   }) => Maybe<Array<Maybe<ComponentServiciosVentajas>>>;
+  video?: Maybe<ScalarsEnums["String"]>;
 }
 
 export interface ServicioEntity {
@@ -2337,6 +2461,9 @@ export interface Mutation {
   createCategory: (args: {
     data: CategoryInput;
   }) => Maybe<CategoryEntityResponse>;
+  createMemoriaAnual: (args: {
+    data: MemoriaAnualInput;
+  }) => Maybe<MemoriaAnualEntityResponse>;
   createServicio: (args: {
     data: ServicioInput;
   }) => Maybe<ServicioEntityResponse>;
@@ -2363,6 +2490,9 @@ export interface Mutation {
   }) => Maybe<CategoryEntityResponse>;
   deleteGlobal?: Maybe<GlobalEntityResponse>;
   deleteHomepage?: Maybe<HomepageEntityResponse>;
+  deleteMemoriaAnual: (args: {
+    id: Scalars["ID"];
+  }) => Maybe<MemoriaAnualEntityResponse>;
   deleteServicio: (args: {
     id: Scalars["ID"];
   }) => Maybe<ServicioEntityResponse>;
@@ -2435,6 +2565,10 @@ export interface Mutation {
   updateHomepage: (args: {
     data: HomepageInput;
   }) => Maybe<HomepageEntityResponse>;
+  updateMemoriaAnual: (args: {
+    data: MemoriaAnualInput;
+    id: Scalars["ID"];
+  }) => Maybe<MemoriaAnualEntityResponse>;
   updateServicio: (args: {
     data: ServicioInput;
     id: Scalars["ID"];
@@ -2525,6 +2659,24 @@ export interface Query {
     sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
   }) => Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  memoriaAnual: (args?: {
+    id?: Maybe<Scalars["ID"]>;
+  }) => Maybe<MemoriaAnualEntityResponse>;
+  memoriasAnuales: (args?: {
+    filters?: Maybe<MemoriaAnualFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `"LIVE"`
+     */
+    publicationState?: Maybe<PublicationState>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<MemoriaAnualEntityResponseCollection>;
   servicio: (args?: {
     id?: Maybe<Scalars["ID"]>;
   }) => Maybe<ServicioEntityResponse>;
@@ -2647,6 +2799,10 @@ export interface SchemaObjectTypes {
   I18NLocaleEntity: I18NLocaleEntity;
   I18NLocaleEntityResponse: I18NLocaleEntityResponse;
   I18NLocaleEntityResponseCollection: I18NLocaleEntityResponseCollection;
+  MemoriaAnual: MemoriaAnual;
+  MemoriaAnualEntity: MemoriaAnualEntity;
+  MemoriaAnualEntityResponse: MemoriaAnualEntityResponse;
+  MemoriaAnualEntityResponseCollection: MemoriaAnualEntityResponseCollection;
   Mutation: Mutation;
   Pagination: Pagination;
   Query: Query;
@@ -2717,6 +2873,10 @@ export type SchemaObjectTypesNames =
   | "I18NLocaleEntity"
   | "I18NLocaleEntityResponse"
   | "I18NLocaleEntityResponseCollection"
+  | "MemoriaAnual"
+  | "MemoriaAnualEntity"
+  | "MemoriaAnualEntityResponse"
+  | "MemoriaAnualEntityResponseCollection"
   | "Mutation"
   | "Pagination"
   | "Query"
@@ -2773,6 +2933,7 @@ export interface $GenericMorph {
   Global?: Global;
   Homepage?: Homepage;
   I18NLocale?: I18NLocale;
+  MemoriaAnual?: MemoriaAnual;
   Servicio?: Servicio;
   Slide?: Slide;
   UploadFile?: UploadFile;

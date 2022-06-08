@@ -27,6 +27,9 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
   }).data
   const slides = query.slides().data
   const servicios = query.servicios({
+    pagination: {
+      pageSize: 100,
+    },
     filters: {
       categoria: {
         in: [

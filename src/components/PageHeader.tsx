@@ -31,6 +31,7 @@ const Deco = styled.div`
   border-radius: 5%;
   background-color: ${colors.primary.light}33;
   transform: translate(80%, -30%) rotate(-35deg);
+  z-index: -1;
   &:before {
     content: '';
     position: absolute;
@@ -41,6 +42,7 @@ const Deco = styled.div`
     border-radius: 50%;
     background-color: ${colors.secondary.base};
     transform: translate(0, -50%);
+    z-index: -1;
   }
   &:after {
     content: '';
@@ -52,5 +54,6 @@ const Deco = styled.div`
     border-radius: inherit;
     background-color: ${colors.primary.light};
     box-shadow: -0.5rem 0.5rem 2.5rem ${colors.primary.light};
+    z-index: -1;
   }
 `
