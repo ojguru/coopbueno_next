@@ -21,6 +21,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     pagination: {
       pageSize: 100,
     },
+    sort: ['orden:asc'],
   })?.data
 
   useHydrateCache({
