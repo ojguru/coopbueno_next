@@ -173,6 +173,18 @@ export interface ComponentSharedSeoInput {
   shareImage?: InputMaybe<Scalars["ID"]>;
 }
 
+export interface ComponentSucursalTelefonosFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<ComponentSucursalTelefonosFiltersInput>>>;
+  not?: InputMaybe<ComponentSucursalTelefonosFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSucursalTelefonosFiltersInput>>>;
+  telefono?: InputMaybe<StringFilterInput>;
+}
+
+export interface ComponentSucursalTelefonosInput {
+  id?: InputMaybe<Scalars["ID"]>;
+  telefono?: InputMaybe<Scalars["String"]>;
+}
+
 export interface DateTimeFilterInput {
   and?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]>>>;
@@ -439,6 +451,36 @@ export interface StringFilterInput {
   null?: InputMaybe<Scalars["Boolean"]>;
   or?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
   startsWith?: InputMaybe<Scalars["String"]>;
+}
+
+export interface SucursalFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<SucursalFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  direccion?: InputMaybe<StringFilterInput>;
+  form?: InputMaybe<StringFilterInput>;
+  horario?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IDFilterInput>;
+  nombre?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<SucursalFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SucursalFiltersInput>>>;
+  orden?: InputMaybe<IntFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  ubicacion?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+}
+
+export interface SucursalInput {
+  direccion?: InputMaybe<Scalars["String"]>;
+  form?: InputMaybe<Scalars["String"]>;
+  horario?: InputMaybe<Scalars["String"]>;
+  imagen?: InputMaybe<Scalars["ID"]>;
+  nombre?: InputMaybe<Scalars["String"]>;
+  orden?: InputMaybe<Scalars["Int"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]>;
+  slug?: InputMaybe<Scalars["String"]>;
+  telefonos?: InputMaybe<Array<InputMaybe<ComponentSucursalTelefonosInput>>>;
+  ubicacion?: InputMaybe<Scalars["String"]>;
 }
 
 export interface UploadFileFiltersInput {
@@ -836,6 +878,21 @@ export const generatedSchema = {
     metaDescription: { __type: "String" },
     metaTitle: { __type: "String" },
     shareImage: { __type: "ID" },
+  },
+  ComponentSucursalTelefonos: {
+    __typename: { __type: "String!" },
+    id: { __type: "ID!" },
+    telefono: { __type: "String" },
+  },
+  ComponentSucursalTelefonosFiltersInput: {
+    and: { __type: "[ComponentSucursalTelefonosFiltersInput]" },
+    not: { __type: "ComponentSucursalTelefonosFiltersInput" },
+    or: { __type: "[ComponentSucursalTelefonosFiltersInput]" },
+    telefono: { __type: "StringFilterInput" },
+  },
+  ComponentSucursalTelefonosInput: {
+    id: { __type: "ID" },
+    telefono: { __type: "String" },
   },
   DateTimeFilterInput: {
     and: { __type: "[DateTime]" },
@@ -1248,6 +1305,70 @@ export const generatedSchema = {
     or: { __type: "[String]" },
     startsWith: { __type: "String" },
   },
+  Sucursal: {
+    __typename: { __type: "String!" },
+    createdAt: { __type: "DateTime" },
+    direccion: { __type: "String!" },
+    form: { __type: "String!" },
+    horario: { __type: "String!" },
+    imagen: { __type: "UploadFileEntityResponse!" },
+    nombre: { __type: "String!" },
+    orden: { __type: "Int" },
+    publishedAt: { __type: "DateTime" },
+    slug: { __type: "String!" },
+    telefonos: {
+      __type: "[ComponentSucursalTelefonos]!",
+      __args: {
+        filters: "ComponentSucursalTelefonosFiltersInput",
+        pagination: "PaginationArg",
+        sort: "[String]",
+      },
+    },
+    ubicacion: { __type: "String!" },
+    updatedAt: { __type: "DateTime" },
+  },
+  SucursalEntity: {
+    __typename: { __type: "String!" },
+    attributes: { __type: "Sucursal" },
+    id: { __type: "ID" },
+  },
+  SucursalEntityResponse: {
+    __typename: { __type: "String!" },
+    data: { __type: "SucursalEntity" },
+  },
+  SucursalEntityResponseCollection: {
+    __typename: { __type: "String!" },
+    data: { __type: "[SucursalEntity!]!" },
+    meta: { __type: "ResponseCollectionMeta!" },
+  },
+  SucursalFiltersInput: {
+    and: { __type: "[SucursalFiltersInput]" },
+    createdAt: { __type: "DateTimeFilterInput" },
+    direccion: { __type: "StringFilterInput" },
+    form: { __type: "StringFilterInput" },
+    horario: { __type: "StringFilterInput" },
+    id: { __type: "IDFilterInput" },
+    nombre: { __type: "StringFilterInput" },
+    not: { __type: "SucursalFiltersInput" },
+    or: { __type: "[SucursalFiltersInput]" },
+    orden: { __type: "IntFilterInput" },
+    publishedAt: { __type: "DateTimeFilterInput" },
+    slug: { __type: "StringFilterInput" },
+    ubicacion: { __type: "StringFilterInput" },
+    updatedAt: { __type: "DateTimeFilterInput" },
+  },
+  SucursalInput: {
+    direccion: { __type: "String" },
+    form: { __type: "String" },
+    horario: { __type: "String" },
+    imagen: { __type: "ID" },
+    nombre: { __type: "String" },
+    orden: { __type: "Int" },
+    publishedAt: { __type: "DateTime" },
+    slug: { __type: "String" },
+    telefonos: { __type: "[ComponentSucursalTelefonosInput]" },
+    ubicacion: { __type: "String" },
+  },
   UploadFile: {
     __typename: { __type: "String!" },
     alternativeText: { __type: "String" },
@@ -1578,6 +1699,10 @@ export const generatedSchema = {
       __type: "SlideEntityResponse",
       __args: { data: "SlideInput!" },
     },
+    createSucursal: {
+      __type: "SucursalEntityResponse",
+      __args: { data: "SucursalInput!" },
+    },
     createUploadFile: {
       __type: "UploadFileEntityResponse",
       __args: { data: "UploadFileInput!" },
@@ -1604,6 +1729,7 @@ export const generatedSchema = {
     },
     deleteServicio: { __type: "ServicioEntityResponse", __args: { id: "ID!" } },
     deleteSlide: { __type: "SlideEntityResponse", __args: { id: "ID!" } },
+    deleteSucursal: { __type: "SucursalEntityResponse", __args: { id: "ID!" } },
     deleteUploadFile: {
       __type: "UploadFileEntityResponse",
       __args: { id: "ID!" },
@@ -1682,6 +1808,10 @@ export const generatedSchema = {
     updateSlide: {
       __type: "SlideEntityResponse",
       __args: { data: "SlideInput!", id: "ID!" },
+    },
+    updateSucursal: {
+      __type: "SucursalEntityResponse",
+      __args: { data: "SucursalInput!", id: "ID!" },
     },
     updateUploadFile: {
       __type: "UploadFileEntityResponse",
@@ -1776,6 +1906,16 @@ export const generatedSchema = {
         sort: "[String]",
       },
     },
+    sucursal: { __type: "SucursalEntityResponse", __args: { id: "ID" } },
+    sucursals: {
+      __type: "SucursalEntityResponseCollection",
+      __args: {
+        filters: "SucursalFiltersInput",
+        pagination: "PaginationArg",
+        publicationState: "PublicationState",
+        sort: "[String]",
+      },
+    },
     uploadFile: { __type: "UploadFileEntityResponse", __args: { id: "ID" } },
     uploadFiles: {
       __type: "UploadFileEntityResponseCollection",
@@ -1832,12 +1972,14 @@ export const generatedSchema = {
       "ComponentSharedCta",
       "ComponentSharedPortada",
       "ComponentSharedSeo",
+      "ComponentSucursalTelefonos",
       "Global",
       "Homepage",
       "I18NLocale",
       "MemoriaAnual",
       "Servicio",
       "Slide",
+      "Sucursal",
       "UploadFile",
       "UsersPermissionsPermission",
       "UsersPermissionsRole",
@@ -1994,6 +2136,12 @@ export interface ComponentSharedSeo {
   shareImage?: Maybe<UploadFileEntityResponse>;
 }
 
+export interface ComponentSucursalTelefonos {
+  __typename?: "ComponentSucursalTelefonos";
+  id: ScalarsEnums["ID"];
+  telefono?: Maybe<ScalarsEnums["String"]>;
+}
+
 export interface GenericMorph {
   __typename?:
     | "Article"
@@ -2006,12 +2154,14 @@ export interface GenericMorph {
     | "ComponentSharedCta"
     | "ComponentSharedPortada"
     | "ComponentSharedSeo"
+    | "ComponentSucursalTelefonos"
     | "Global"
     | "Homepage"
     | "I18NLocale"
     | "MemoriaAnual"
     | "Servicio"
     | "Slide"
+    | "Sucursal"
     | "UploadFile"
     | "UsersPermissionsPermission"
     | "UsersPermissionsRole"
@@ -2228,6 +2378,49 @@ export interface SlideEntityResponse {
 export interface SlideEntityResponseCollection {
   __typename?: "SlideEntityResponseCollection";
   data: Array<SlideEntity>;
+  meta: ResponseCollectionMeta;
+}
+
+export interface Sucursal {
+  __typename?: "Sucursal";
+  createdAt?: Maybe<ScalarsEnums["DateTime"]>;
+  direccion: ScalarsEnums["String"];
+  form: ScalarsEnums["String"];
+  horario: ScalarsEnums["String"];
+  imagen: UploadFileEntityResponse;
+  nombre: ScalarsEnums["String"];
+  orden?: Maybe<ScalarsEnums["Int"]>;
+  publishedAt?: Maybe<ScalarsEnums["DateTime"]>;
+  slug: ScalarsEnums["String"];
+  telefonos: (args?: {
+    filters?: Maybe<ComponentSucursalTelefonosFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Array<Maybe<ComponentSucursalTelefonos>>;
+  ubicacion: ScalarsEnums["String"];
+  updatedAt?: Maybe<ScalarsEnums["DateTime"]>;
+}
+
+export interface SucursalEntity {
+  __typename?: "SucursalEntity";
+  attributes?: Maybe<Sucursal>;
+  id?: Maybe<ScalarsEnums["ID"]>;
+}
+
+export interface SucursalEntityResponse {
+  __typename?: "SucursalEntityResponse";
+  data?: Maybe<SucursalEntity>;
+}
+
+export interface SucursalEntityResponseCollection {
+  __typename?: "SucursalEntityResponseCollection";
+  data: Array<SucursalEntity>;
   meta: ResponseCollectionMeta;
 }
 
@@ -2468,6 +2661,9 @@ export interface Mutation {
     data: ServicioInput;
   }) => Maybe<ServicioEntityResponse>;
   createSlide: (args: { data: SlideInput }) => Maybe<SlideEntityResponse>;
+  createSucursal: (args: {
+    data: SucursalInput;
+  }) => Maybe<SucursalEntityResponse>;
   createUploadFile: (args: {
     data: UploadFileInput;
   }) => Maybe<UploadFileEntityResponse>;
@@ -2497,6 +2693,9 @@ export interface Mutation {
     id: Scalars["ID"];
   }) => Maybe<ServicioEntityResponse>;
   deleteSlide: (args: { id: Scalars["ID"] }) => Maybe<SlideEntityResponse>;
+  deleteSucursal: (args: {
+    id: Scalars["ID"];
+  }) => Maybe<SucursalEntityResponse>;
   deleteUploadFile: (args: {
     id: Scalars["ID"];
   }) => Maybe<UploadFileEntityResponse>;
@@ -2577,6 +2776,10 @@ export interface Mutation {
     data: SlideInput;
     id: Scalars["ID"];
   }) => Maybe<SlideEntityResponse>;
+  updateSucursal: (args: {
+    data: SucursalInput;
+    id: Scalars["ID"];
+  }) => Maybe<SucursalEntityResponse>;
   updateUploadFile: (args: {
     data: UploadFileInput;
     id: Scalars["ID"];
@@ -2711,6 +2914,24 @@ export interface Query {
      */
     sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
   }) => Maybe<SlideEntityResponseCollection>;
+  sucursal: (args?: {
+    id?: Maybe<Scalars["ID"]>;
+  }) => Maybe<SucursalEntityResponse>;
+  sucursals: (args?: {
+    filters?: Maybe<SucursalFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `"LIVE"`
+     */
+    publicationState?: Maybe<PublicationState>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<SucursalEntityResponseCollection>;
   uploadFile: (args?: {
     id?: Maybe<Scalars["ID"]>;
   }) => Maybe<UploadFileEntityResponse>;
@@ -2789,6 +3010,7 @@ export interface SchemaObjectTypes {
   ComponentSharedCta: ComponentSharedCta;
   ComponentSharedPortada: ComponentSharedPortada;
   ComponentSharedSeo: ComponentSharedSeo;
+  ComponentSucursalTelefonos: ComponentSucursalTelefonos;
   Global: Global;
   GlobalEntity: GlobalEntity;
   GlobalEntityResponse: GlobalEntityResponse;
@@ -2817,6 +3039,10 @@ export interface SchemaObjectTypes {
   SlideEntityResponse: SlideEntityResponse;
   SlideEntityResponseCollection: SlideEntityResponseCollection;
   Subscription: Subscription;
+  Sucursal: Sucursal;
+  SucursalEntity: SucursalEntity;
+  SucursalEntityResponse: SucursalEntityResponse;
+  SucursalEntityResponseCollection: SucursalEntityResponseCollection;
   UploadFile: UploadFile;
   UploadFileEntity: UploadFileEntity;
   UploadFileEntityResponse: UploadFileEntityResponse;
@@ -2863,6 +3089,7 @@ export type SchemaObjectTypesNames =
   | "ComponentSharedCta"
   | "ComponentSharedPortada"
   | "ComponentSharedSeo"
+  | "ComponentSucursalTelefonos"
   | "Global"
   | "GlobalEntity"
   | "GlobalEntityResponse"
@@ -2891,6 +3118,10 @@ export type SchemaObjectTypesNames =
   | "SlideEntityResponse"
   | "SlideEntityResponseCollection"
   | "Subscription"
+  | "Sucursal"
+  | "SucursalEntity"
+  | "SucursalEntityResponse"
+  | "SucursalEntityResponseCollection"
   | "UploadFile"
   | "UploadFileEntity"
   | "UploadFileEntityResponse"
@@ -2930,12 +3161,14 @@ export interface $GenericMorph {
   ComponentSharedCta?: ComponentSharedCta;
   ComponentSharedPortada?: ComponentSharedPortada;
   ComponentSharedSeo?: ComponentSharedSeo;
+  ComponentSucursalTelefonos?: ComponentSucursalTelefonos;
   Global?: Global;
   Homepage?: Homepage;
   I18NLocale?: I18NLocale;
   MemoriaAnual?: MemoriaAnual;
   Servicio?: Servicio;
   Slide?: Slide;
+  Sucursal?: Sucursal;
   UploadFile?: UploadFile;
   UsersPermissionsPermission?: UsersPermissionsPermission;
   UsersPermissionsRole?: UsersPermissionsRole;
