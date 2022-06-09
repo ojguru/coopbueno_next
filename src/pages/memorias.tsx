@@ -101,6 +101,7 @@ const CardImage = styled.div`
   width: 250px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   border: 0.5px solid ${colors.gray.base};
+  font-size: 0;
 `
 
 const MemoryName = styled.h2`
