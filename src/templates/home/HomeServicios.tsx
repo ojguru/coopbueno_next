@@ -1,5 +1,4 @@
 import React from 'react'
-import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { CarouselProvider, Slider, Dot } from 'pure-react-carousel'
 import ServicesCards from './HomeServicioCard'
@@ -28,17 +27,7 @@ const HomeServicios = ({ servicios }: HomeServiciosProps) => {
         <Tabs>
           {mainItems.map((item, index) => {
             return (
-              <Tab
-                key={index}
-                slide={index}
-                css={tabStyles({
-                  bgColor: colors.gray.lighter,
-                  bgActiveColor: '#FFFFFF',
-                  textColor: colors.text.base,
-                  textActiveColor:
-                    index > 0 ? colors.primary.base : colors.primary.dark,
-                })}
-              >
+              <Tab key={index} slide={index}>
                 {item}
               </Tab>
             )
@@ -74,27 +63,20 @@ const Tabs = styled.div`
   margin-bottom: 4rem;
 `
 
-const Tab = styled(Dot)``
-
-const tabStyles = ({
-  bgColor = 'lightgray',
-  bgActiveColor = 'white',
-  textColor = 'black',
-  textActiveColor = 'green',
-}) => css`
+const Tab = styled(Dot)`
   all: initial;
   font-family: inherit;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
   color: #555555;
-  background-color: ${bgColor};
+  background-color: ${colors.gray.lighter};
   padding: 1.5rem 2.5rem;
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
   &[disabled] {
     text-shadow: none;
-    color: ${textActiveColor};
-    background-color: ${bgActiveColor};
+    color: ${colors.primary.dark};
+    background-color: #ffffff;
     cursor: initial;
   }
 `

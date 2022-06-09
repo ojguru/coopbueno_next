@@ -48,7 +48,7 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
   return (
     <InView threshold={0.3}>
       {({ ref, inView }) => (
-        <SlideX tag="li">
+        <SlideX index={0} tag="li">
           <div ref={ref}>
             <Container>
               {categorias.map((item: categoria, index: number) => {
@@ -64,7 +64,6 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                       <ServiceCard {...{ isActive }}>
                         <div
                           onClick={(e) => {
-                            console.log('card', active)
                             setActive(index)
                           }}
                         >

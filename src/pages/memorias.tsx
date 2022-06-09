@@ -44,7 +44,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                   <CardImage>
                     <Image
                       src={getStrapiURL(memoria.imagen.data.attributes.url)}
-                      alt={memoria.Nombre}
+                      alt={memoria.nombre}
                       width={1080}
                       height={1404}
                       objectFit="cover"

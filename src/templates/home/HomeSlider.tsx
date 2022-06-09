@@ -3,7 +3,6 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { mq, container, bp } from 'components/grid'
 import Carousel from 'react-slick'
-import { LeftArrowIcon, RightArrowIcon } from 'components/icons'
 import colors from 'styles/colors'
 
 import { h1 } from 'styles/tipography'
@@ -14,64 +13,6 @@ import { animated, config, Spring } from '@react-spring/web'
 import { InView } from 'react-intersection-observer'
 import { getStrapiURL } from 'lib/api'
 import { SlideEntity } from 'client'
-
-interface ArrowProps {
-  left?: boolean
-  color?: string
-  colorActive?: string
-  bgColor?: string
-  bgActiveColor?: string
-}
-const Arrows = (props) => {
-  const Arrow = styled.div`
-    ${({
-      left,
-      color = 'white',
-      colorActive = 'yellow',
-      bgColor = 'gray',
-      bgActiveColor = 'green',
-    }: ArrowProps) => css`
-      padding: 1rem;
-      border-radius: 50%;
-      background-color: ${bgColor};
-      color: ${color};
-      color: white;
-      width: 5rem;
-      height: 5rem;
-      position: absolute;
-      opacity: 0.5;
-      transition: all 0.3s ease-in-out;
-      z-index: 2;
-      ${left
-        ? css`
-            left: 1.5rem;
-          `
-        : css`
-            right: 1.5rem;
-          `}
-      &:focus {
-        outline: 0.1rem solid rgba(0, 0, 0, 0.15);
-        background-color: ${bgColor};
-      }
-      &:hover {
-        opacity: 0.8;
-        color: ${colorActive};
-        background-color: ${bgActiveColor};
-      }
-      &[disabled] {
-        opacity: 0.3;
-        &:hover {
-          opacity: 0.3;
-        }
-      }
-      &:before {
-        content: initial;
-      }
-    `}
-  `
-
-  return <Arrow {...props} />
-}
 
 interface HomeSliderProps {
   slides?: SlideEntity[]
@@ -99,34 +40,8 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
                   pauseOnHover
                   pauseOnFocus
                   adaptiveHeight
-                  prevArrow={
-                    <Arrows
-                      left
-                      color={'white'}
-                      colorActive={colors.secondary.base}
-                      bgColor={colors.gray.base}
-                      bgActiveColor={colors.green.base}
-                    >
-                      <LeftArrowIcon />
-                    </Arrows>
-                  }
-                  nextArrow={
-                    <Arrows
-                      color={'white'}
-                      colorActive={colors.secondary.base}
-                      bgColor={colors.gray.base}
-                      bgActiveColor={colors.green.base}
-                    >
-                      <RightArrowIcon />
-                    </Arrows>
-                  }
+                  dots
                   responsive={[
-                    // {
-                    //   breakpoint:bp.lg,
-                    //   settings:{
-                    //     slidesToShow: 2
-                    //   }
-                    // },
                     {
                       breakpoint: bp.md,
                       settings: {
@@ -134,13 +49,6 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
                         dots: true,
                       },
                     },
-                    // {
-                    //   breakpoint:bp.sm,
-                    //   settings:{
-                    //     slidesToShow: 1,
-                    //     arrows: false,
-                    //   }
-                    // }
                   ]}
                 >
                   {slides.map((item, index) => {
@@ -213,13 +121,6 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
                               </Spring>
                             )}
                           </InView>
-
-                          {/* <Row alignCenter>
-                                <Col size={12} sizeMD={5} mrAuto order={2} orderMD={1}>
-                                </Col>
-                                <Col size={12} sizeMD={6} order={1} orderMD={2}>
-                                </Col>
-                              </Row> */}
                         </Wrapper>
                       </Slide>
                     )
@@ -243,13 +144,15 @@ const Section = styled.section`
     font-size: 0;
     button {
       background-color: ${colors.primary.base};
+      opacity: 0.5;
       &:before {
         content: '';
       }
     }
     .slick-active {
       button {
-        background-color: ${colors.primary.light};
+        background-color: ${colors.primary.base};
+        opacity: 1;
       }
     }
   }
