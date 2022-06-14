@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { container } from 'components/grid'
-
+import Layout from 'components/Layout'
 import Portada from 'templates/servicios/portada'
 import Producto from 'templates/servicios/producto'
 import Ventajas from 'templates/servicios/ventajas'
@@ -33,15 +33,17 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   })
 
   return servicio ? (
-    <Section space>
-      <Portada servicio={servicio.attributes} />
-      <Producto servicio={servicio.attributes} />
-      <Video servicio={servicio.attributes} />
-      <Ventajas servicio={servicio.attributes} />
-      <Beneficios servicio={servicio.attributes} />
-      <Requisitos servicio={servicio.attributes} />
-      <Conversion servicio={servicio.attributes} />
-    </Section>
+    <Layout>
+      <Section space>
+        <Portada servicio={servicio.attributes} />
+        <Producto servicio={servicio.attributes} />
+        <Video servicio={servicio.attributes} />
+        <Ventajas servicio={servicio.attributes} />
+        <Beneficios servicio={servicio.attributes} />
+        <Requisitos servicio={servicio.attributes} />
+        <Conversion servicio={servicio.attributes} />
+      </Section>
+    </Layout>
   ) : null
 }
 

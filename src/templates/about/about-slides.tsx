@@ -16,7 +16,7 @@ const Slides = ({}) => {
   return (
     <Section space>
       <DecoLeft color={colors.primary.base} />
-      <DecoRight color={colors.primary.light} />
+      {/* <DecoRight color={colors.primary.light} /> */}
       <CarouselProvider
         naturalSlideWidth={16}
         naturalSlideHeight={9}

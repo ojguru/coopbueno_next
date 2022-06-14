@@ -26,6 +26,7 @@ export interface Scalars {
   DateTime: string;
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any;
+  LandingContenidoDynamicZoneInput: any;
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 }
@@ -85,6 +86,7 @@ export interface CategoryFiltersInput {
   and?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
   articles?: InputMaybe<ArticleFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IDFilterInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<CategoryFiltersInput>;
@@ -95,8 +97,23 @@ export interface CategoryFiltersInput {
 
 export interface CategoryInput {
   articles?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  description?: InputMaybe<Scalars["String"]>;
+  icon?: InputMaybe<Scalars["ID"]>;
   name?: InputMaybe<Scalars["String"]>;
   slug?: InputMaybe<Scalars["String"]>;
+}
+
+export interface ComponentGeneralFormularioInput {
+  formId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["ID"]>;
+  titulo?: InputMaybe<Scalars["String"]>;
+}
+
+export interface ComponentGeneralItemsFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<ComponentGeneralItemsFiltersInput>>>;
+  not?: InputMaybe<ComponentGeneralItemsFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentGeneralItemsFiltersInput>>>;
+  texto?: InputMaybe<StringFilterInput>;
 }
 
 export interface ComponentSectionsHeroInput {
@@ -206,6 +223,13 @@ export interface DateTimeFilterInput {
   null?: InputMaybe<Scalars["Boolean"]>;
   or?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]>>>;
   startsWith?: InputMaybe<Scalars["DateTime"]>;
+}
+
+export enum ENUM_MENUSMENUITEM_TARGET {
+  blank = "blank",
+  parent = "parent",
+  self = "self",
+  top = "top",
 }
 
 export enum ENUM_SERVICIO_CATEGORIA {
@@ -342,6 +366,31 @@ export interface JSONFilterInput {
   startsWith?: InputMaybe<Scalars["JSON"]>;
 }
 
+export interface LandingFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<LandingFiltersInput>>>;
+  copy?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IDFilterInput>;
+  nombre?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<LandingFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<LandingFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  titular?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+}
+
+export interface LandingInput {
+  contenido?: InputMaybe<Array<Scalars["LandingContenidoDynamicZoneInput"]>>;
+  copy?: InputMaybe<Scalars["String"]>;
+  formulario?: InputMaybe<ComponentGeneralFormularioInput>;
+  imagen?: InputMaybe<Scalars["ID"]>;
+  nombre?: InputMaybe<Scalars["String"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]>;
+  slug?: InputMaybe<Scalars["String"]>;
+  titular?: InputMaybe<Scalars["String"]>;
+}
+
 export interface MemoriaAnualFiltersInput {
   and?: InputMaybe<Array<InputMaybe<MemoriaAnualFiltersInput>>>;
   ano?: InputMaybe<IntFilterInput>;
@@ -360,6 +409,72 @@ export interface MemoriaAnualInput {
   imagen?: InputMaybe<Scalars["ID"]>;
   nombre?: InputMaybe<Scalars["String"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
+}
+
+export interface MenusMenuFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<MenusMenuFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IDFilterInput>;
+  items?: InputMaybe<MenusMenuItemFiltersInput>;
+  not?: InputMaybe<MenusMenuFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<MenusMenuFiltersInput>>>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+}
+
+export interface MenusMenuInput {
+  items?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  slug?: InputMaybe<Scalars["String"]>;
+  title?: InputMaybe<Scalars["String"]>;
+}
+
+export interface MenusMenuItemFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<MenusMenuItemFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IDFilterInput>;
+  not?: InputMaybe<MenusMenuItemFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<MenusMenuItemFiltersInput>>>;
+  order?: InputMaybe<IntFilterInput>;
+  parent?: InputMaybe<MenusMenuItemFiltersInput>;
+  root_menu?: InputMaybe<MenusMenuFiltersInput>;
+  target?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+}
+
+export interface MenusMenuItemInput {
+  order?: InputMaybe<Scalars["Int"]>;
+  parent?: InputMaybe<Scalars["ID"]>;
+  root_menu?: InputMaybe<Scalars["ID"]>;
+  target?: InputMaybe<ENUM_MENUSMENUITEM_TARGET>;
+  title?: InputMaybe<Scalars["String"]>;
+  url?: InputMaybe<Scalars["String"]>;
+}
+
+export interface NoticiaFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<NoticiaFiltersInput>>>;
+  contenido?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  descripcion?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IDFilterInput>;
+  not?: InputMaybe<NoticiaFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<NoticiaFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  titulo?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+}
+
+export interface NoticiaInput {
+  contenido?: InputMaybe<Scalars["String"]>;
+  descripcion?: InputMaybe<Scalars["String"]>;
+  imagen?: InputMaybe<Scalars["ID"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+  slug?: InputMaybe<Scalars["String"]>;
+  titulo?: InputMaybe<Scalars["String"]>;
 }
 
 export interface PaginationArg {
@@ -481,6 +596,29 @@ export interface SucursalInput {
   slug?: InputMaybe<Scalars["String"]>;
   telefonos?: InputMaybe<Array<InputMaybe<ComponentSucursalTelefonosInput>>>;
   ubicacion?: InputMaybe<Scalars["String"]>;
+}
+
+export interface TpageFiltersInput {
+  agradecimiento?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<TpageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IDFilterInput>;
+  nombre?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<TpageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<TpageFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  titular?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+}
+
+export interface TpageInput {
+  agradecimiento?: InputMaybe<Scalars["String"]>;
+  cta?: InputMaybe<ComponentSharedCtaInput>;
+  nombre?: InputMaybe<Scalars["String"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]>;
+  slug?: InputMaybe<Scalars["String"]>;
+  titular?: InputMaybe<Scalars["String"]>;
 }
 
 export interface UploadFileFiltersInput {
@@ -620,12 +758,14 @@ export interface WriterInput {
 export const scalarsEnumsHash: import("gqty").ScalarsEnumsHash = {
   Boolean: true,
   DateTime: true,
+  ENUM_MENUSMENUITEM_TARGET: true,
   ENUM_SERVICIO_CATEGORIA: true,
   ENUM_SERVICIO_TIPO: true,
   Float: true,
   ID: true,
   Int: true,
   JSON: true,
+  LandingContenidoDynamicZoneInput: true,
   PublicationState: true,
   String: true,
   Upload: true,
@@ -723,6 +863,8 @@ export const generatedSchema = {
       },
     },
     createdAt: { __type: "DateTime" },
+    description: { __type: "String!" },
+    icon: { __type: "UploadFileEntityResponse!" },
     name: { __type: "String!" },
     slug: { __type: "String!" },
     updatedAt: { __type: "DateTime" },
@@ -745,6 +887,7 @@ export const generatedSchema = {
     and: { __type: "[CategoryFiltersInput]" },
     articles: { __type: "ArticleFiltersInput" },
     createdAt: { __type: "DateTimeFilterInput" },
+    description: { __type: "StringFilterInput" },
     id: { __type: "IDFilterInput" },
     name: { __type: "StringFilterInput" },
     not: { __type: "CategoryFiltersInput" },
@@ -754,8 +897,45 @@ export const generatedSchema = {
   },
   CategoryInput: {
     articles: { __type: "[ID]" },
+    description: { __type: "String" },
+    icon: { __type: "ID" },
     name: { __type: "String" },
     slug: { __type: "String" },
+  },
+  ComponentGeneralFormulario: {
+    __typename: { __type: "String!" },
+    formId: { __type: "String!" },
+    id: { __type: "ID!" },
+    titulo: { __type: "String" },
+  },
+  ComponentGeneralFormularioInput: {
+    formId: { __type: "String" },
+    id: { __type: "ID" },
+    titulo: { __type: "String" },
+  },
+  ComponentGeneralItems: {
+    __typename: { __type: "String!" },
+    id: { __type: "ID!" },
+    texto: { __type: "String!" },
+  },
+  ComponentGeneralItemsFiltersInput: {
+    and: { __type: "[ComponentGeneralItemsFiltersInput]" },
+    not: { __type: "ComponentGeneralItemsFiltersInput" },
+    or: { __type: "[ComponentGeneralItemsFiltersInput]" },
+    texto: { __type: "StringFilterInput" },
+  },
+  ComponentGeneralLista: {
+    __typename: { __type: "String!" },
+    id: { __type: "ID!" },
+    items: {
+      __type: "[ComponentGeneralItems]!",
+      __args: {
+        filters: "ComponentGeneralItemsFiltersInput",
+        pagination: "PaginationArg",
+        sort: "[String]",
+      },
+    },
+    titulo: { __type: "String!" },
   },
   ComponentSectionsHero: {
     __typename: { __type: "String!" },
@@ -915,6 +1095,11 @@ export const generatedSchema = {
     null: { __type: "Boolean" },
     or: { __type: "[DateTime]" },
     startsWith: { __type: "DateTime" },
+  },
+  Error: {
+    __typename: { __type: "String!" },
+    code: { __type: "String!" },
+    message: { __type: "String" },
   },
   FileInfoInput: {
     alternativeText: { __type: "String" },
@@ -1088,6 +1273,60 @@ export const generatedSchema = {
     or: { __type: "[JSON]" },
     startsWith: { __type: "JSON" },
   },
+  Landing: {
+    __typename: { __type: "String!" },
+    contenido: { __type: "[LandingContenidoDynamicZone]" },
+    copy: { __type: "String" },
+    createdAt: { __type: "DateTime" },
+    formulario: { __type: "ComponentGeneralFormulario!" },
+    imagen: { __type: "UploadFileEntityResponse!" },
+    nombre: { __type: "String!" },
+    publishedAt: { __type: "DateTime" },
+    slug: { __type: "String!" },
+    titular: { __type: "String!" },
+    updatedAt: { __type: "DateTime" },
+  },
+  LandingContenidoDynamicZone: {
+    __typename: { __type: "String!" },
+    $on: { __type: "$LandingContenidoDynamicZone!" },
+  },
+  LandingEntity: {
+    __typename: { __type: "String!" },
+    attributes: { __type: "Landing" },
+    id: { __type: "ID" },
+  },
+  LandingEntityResponse: {
+    __typename: { __type: "String!" },
+    data: { __type: "LandingEntity" },
+  },
+  LandingEntityResponseCollection: {
+    __typename: { __type: "String!" },
+    data: { __type: "[LandingEntity!]!" },
+    meta: { __type: "ResponseCollectionMeta!" },
+  },
+  LandingFiltersInput: {
+    and: { __type: "[LandingFiltersInput]" },
+    copy: { __type: "StringFilterInput" },
+    createdAt: { __type: "DateTimeFilterInput" },
+    id: { __type: "IDFilterInput" },
+    nombre: { __type: "StringFilterInput" },
+    not: { __type: "LandingFiltersInput" },
+    or: { __type: "[LandingFiltersInput]" },
+    publishedAt: { __type: "DateTimeFilterInput" },
+    slug: { __type: "StringFilterInput" },
+    titular: { __type: "StringFilterInput" },
+    updatedAt: { __type: "DateTimeFilterInput" },
+  },
+  LandingInput: {
+    contenido: { __type: "[LandingContenidoDynamicZoneInput!]" },
+    copy: { __type: "String" },
+    formulario: { __type: "ComponentGeneralFormularioInput" },
+    imagen: { __type: "ID" },
+    nombre: { __type: "String" },
+    publishedAt: { __type: "DateTime" },
+    slug: { __type: "String" },
+    titular: { __type: "String" },
+  },
   MemoriaAnual: {
     __typename: { __type: "String!" },
     ano: { __type: "Int!" },
@@ -1129,6 +1368,150 @@ export const generatedSchema = {
     imagen: { __type: "ID" },
     nombre: { __type: "String" },
     publishedAt: { __type: "DateTime" },
+  },
+  MenusMenu: {
+    __typename: { __type: "String!" },
+    createdAt: { __type: "DateTime" },
+    items: {
+      __type: "MenusMenuItemRelationResponseCollection",
+      __args: {
+        filters: "MenusMenuItemFiltersInput",
+        pagination: "PaginationArg",
+        sort: "[String]",
+      },
+    },
+    slug: { __type: "String!" },
+    title: { __type: "String!" },
+    updatedAt: { __type: "DateTime" },
+  },
+  MenusMenuEntity: {
+    __typename: { __type: "String!" },
+    attributes: { __type: "MenusMenu" },
+    id: { __type: "ID" },
+  },
+  MenusMenuEntityResponse: {
+    __typename: { __type: "String!" },
+    data: { __type: "MenusMenuEntity" },
+  },
+  MenusMenuEntityResponseCollection: {
+    __typename: { __type: "String!" },
+    data: { __type: "[MenusMenuEntity!]!" },
+    meta: { __type: "ResponseCollectionMeta!" },
+  },
+  MenusMenuFiltersInput: {
+    and: { __type: "[MenusMenuFiltersInput]" },
+    createdAt: { __type: "DateTimeFilterInput" },
+    id: { __type: "IDFilterInput" },
+    items: { __type: "MenusMenuItemFiltersInput" },
+    not: { __type: "MenusMenuFiltersInput" },
+    or: { __type: "[MenusMenuFiltersInput]" },
+    slug: { __type: "StringFilterInput" },
+    title: { __type: "StringFilterInput" },
+    updatedAt: { __type: "DateTimeFilterInput" },
+  },
+  MenusMenuInput: {
+    items: { __type: "[ID]" },
+    slug: { __type: "String" },
+    title: { __type: "String" },
+  },
+  MenusMenuItem: {
+    __typename: { __type: "String!" },
+    createdAt: { __type: "DateTime" },
+    order: { __type: "Int" },
+    parent: { __type: "MenusMenuItemEntityResponse" },
+    root_menu: { __type: "MenusMenuEntityResponse!" },
+    target: { __type: "ENUM_MENUSMENUITEM_TARGET" },
+    title: { __type: "String!" },
+    updatedAt: { __type: "DateTime" },
+    url: { __type: "String" },
+  },
+  MenusMenuItemEntity: {
+    __typename: { __type: "String!" },
+    attributes: { __type: "MenusMenuItem" },
+    id: { __type: "ID" },
+  },
+  MenusMenuItemEntityResponse: {
+    __typename: { __type: "String!" },
+    data: { __type: "MenusMenuItemEntity" },
+  },
+  MenusMenuItemEntityResponseCollection: {
+    __typename: { __type: "String!" },
+    data: { __type: "[MenusMenuItemEntity!]!" },
+    meta: { __type: "ResponseCollectionMeta!" },
+  },
+  MenusMenuItemFiltersInput: {
+    and: { __type: "[MenusMenuItemFiltersInput]" },
+    createdAt: { __type: "DateTimeFilterInput" },
+    id: { __type: "IDFilterInput" },
+    not: { __type: "MenusMenuItemFiltersInput" },
+    or: { __type: "[MenusMenuItemFiltersInput]" },
+    order: { __type: "IntFilterInput" },
+    parent: { __type: "MenusMenuItemFiltersInput" },
+    root_menu: { __type: "MenusMenuFiltersInput" },
+    target: { __type: "StringFilterInput" },
+    title: { __type: "StringFilterInput" },
+    updatedAt: { __type: "DateTimeFilterInput" },
+    url: { __type: "StringFilterInput" },
+  },
+  MenusMenuItemInput: {
+    order: { __type: "Int" },
+    parent: { __type: "ID" },
+    root_menu: { __type: "ID" },
+    target: { __type: "ENUM_MENUSMENUITEM_TARGET" },
+    title: { __type: "String" },
+    url: { __type: "String" },
+  },
+  MenusMenuItemRelationResponseCollection: {
+    __typename: { __type: "String!" },
+    data: { __type: "[MenusMenuItemEntity!]!" },
+  },
+  Noticia: {
+    __typename: { __type: "String!" },
+    contenido: { __type: "String" },
+    createdAt: { __type: "DateTime" },
+    descripcion: { __type: "String!" },
+    imagen: { __type: "UploadFileEntityResponse!" },
+    publishedAt: { __type: "DateTime" },
+    seo: { __type: "ComponentSharedSeo" },
+    slug: { __type: "String!" },
+    titulo: { __type: "String!" },
+    updatedAt: { __type: "DateTime" },
+  },
+  NoticiaEntity: {
+    __typename: { __type: "String!" },
+    attributes: { __type: "Noticia" },
+    id: { __type: "ID" },
+  },
+  NoticiaEntityResponse: {
+    __typename: { __type: "String!" },
+    data: { __type: "NoticiaEntity" },
+  },
+  NoticiaEntityResponseCollection: {
+    __typename: { __type: "String!" },
+    data: { __type: "[NoticiaEntity!]!" },
+    meta: { __type: "ResponseCollectionMeta!" },
+  },
+  NoticiaFiltersInput: {
+    and: { __type: "[NoticiaFiltersInput]" },
+    contenido: { __type: "StringFilterInput" },
+    createdAt: { __type: "DateTimeFilterInput" },
+    descripcion: { __type: "StringFilterInput" },
+    id: { __type: "IDFilterInput" },
+    not: { __type: "NoticiaFiltersInput" },
+    or: { __type: "[NoticiaFiltersInput]" },
+    publishedAt: { __type: "DateTimeFilterInput" },
+    slug: { __type: "StringFilterInput" },
+    titulo: { __type: "StringFilterInput" },
+    updatedAt: { __type: "DateTimeFilterInput" },
+  },
+  NoticiaInput: {
+    contenido: { __type: "String" },
+    descripcion: { __type: "String" },
+    imagen: { __type: "ID" },
+    publishedAt: { __type: "DateTime" },
+    seo: { __type: "ComponentSharedSeoInput" },
+    slug: { __type: "String" },
+    titulo: { __type: "String" },
   },
   Pagination: {
     __typename: { __type: "String!" },
@@ -1368,6 +1751,52 @@ export const generatedSchema = {
     slug: { __type: "String" },
     telefonos: { __type: "[ComponentSucursalTelefonosInput]" },
     ubicacion: { __type: "String" },
+  },
+  Tpage: {
+    __typename: { __type: "String!" },
+    agradecimiento: { __type: "String!" },
+    createdAt: { __type: "DateTime" },
+    cta: { __type: "ComponentSharedCta" },
+    nombre: { __type: "String!" },
+    publishedAt: { __type: "DateTime" },
+    slug: { __type: "String!" },
+    titular: { __type: "String!" },
+    updatedAt: { __type: "DateTime" },
+  },
+  TpageEntity: {
+    __typename: { __type: "String!" },
+    attributes: { __type: "Tpage" },
+    id: { __type: "ID" },
+  },
+  TpageEntityResponse: {
+    __typename: { __type: "String!" },
+    data: { __type: "TpageEntity" },
+  },
+  TpageEntityResponseCollection: {
+    __typename: { __type: "String!" },
+    data: { __type: "[TpageEntity!]!" },
+    meta: { __type: "ResponseCollectionMeta!" },
+  },
+  TpageFiltersInput: {
+    agradecimiento: { __type: "StringFilterInput" },
+    and: { __type: "[TpageFiltersInput]" },
+    createdAt: { __type: "DateTimeFilterInput" },
+    id: { __type: "IDFilterInput" },
+    nombre: { __type: "StringFilterInput" },
+    not: { __type: "TpageFiltersInput" },
+    or: { __type: "[TpageFiltersInput]" },
+    publishedAt: { __type: "DateTimeFilterInput" },
+    slug: { __type: "StringFilterInput" },
+    titular: { __type: "StringFilterInput" },
+    updatedAt: { __type: "DateTimeFilterInput" },
+  },
+  TpageInput: {
+    agradecimiento: { __type: "String" },
+    cta: { __type: "ComponentSharedCtaInput" },
+    nombre: { __type: "String" },
+    publishedAt: { __type: "DateTime" },
+    slug: { __type: "String" },
+    titular: { __type: "String" },
   },
   UploadFile: {
     __typename: { __type: "String!" },
@@ -1687,9 +2116,25 @@ export const generatedSchema = {
       __type: "CategoryEntityResponse",
       __args: { data: "CategoryInput!" },
     },
+    createLanding: {
+      __type: "LandingEntityResponse",
+      __args: { data: "LandingInput!" },
+    },
     createMemoriaAnual: {
       __type: "MemoriaAnualEntityResponse",
       __args: { data: "MemoriaAnualInput!" },
+    },
+    createMenusMenu: {
+      __type: "MenusMenuEntityResponse",
+      __args: { data: "MenusMenuInput!" },
+    },
+    createMenusMenuItem: {
+      __type: "MenusMenuItemEntityResponse",
+      __args: { data: "MenusMenuItemInput!" },
+    },
+    createNoticia: {
+      __type: "NoticiaEntityResponse",
+      __args: { data: "NoticiaInput!" },
     },
     createServicio: {
       __type: "ServicioEntityResponse",
@@ -1702,6 +2147,10 @@ export const generatedSchema = {
     createSucursal: {
       __type: "SucursalEntityResponse",
       __args: { data: "SucursalInput!" },
+    },
+    createTpage: {
+      __type: "TpageEntityResponse",
+      __args: { data: "TpageInput!" },
     },
     createUploadFile: {
       __type: "UploadFileEntityResponse",
@@ -1723,13 +2172,24 @@ export const generatedSchema = {
     deleteCategory: { __type: "CategoryEntityResponse", __args: { id: "ID!" } },
     deleteGlobal: { __type: "GlobalEntityResponse" },
     deleteHomepage: { __type: "HomepageEntityResponse" },
+    deleteLanding: { __type: "LandingEntityResponse", __args: { id: "ID!" } },
     deleteMemoriaAnual: {
       __type: "MemoriaAnualEntityResponse",
       __args: { id: "ID!" },
     },
+    deleteMenusMenu: {
+      __type: "MenusMenuEntityResponse",
+      __args: { id: "ID!" },
+    },
+    deleteMenusMenuItem: {
+      __type: "MenusMenuItemEntityResponse",
+      __args: { id: "ID!" },
+    },
+    deleteNoticia: { __type: "NoticiaEntityResponse", __args: { id: "ID!" } },
     deleteServicio: { __type: "ServicioEntityResponse", __args: { id: "ID!" } },
     deleteSlide: { __type: "SlideEntityResponse", __args: { id: "ID!" } },
     deleteSucursal: { __type: "SucursalEntityResponse", __args: { id: "ID!" } },
+    deleteTpage: { __type: "TpageEntityResponse", __args: { id: "ID!" } },
     deleteUploadFile: {
       __type: "UploadFileEntityResponse",
       __args: { id: "ID!" },
@@ -1797,9 +2257,25 @@ export const generatedSchema = {
       __type: "HomepageEntityResponse",
       __args: { data: "HomepageInput!" },
     },
+    updateLanding: {
+      __type: "LandingEntityResponse",
+      __args: { data: "LandingInput!", id: "ID!" },
+    },
     updateMemoriaAnual: {
       __type: "MemoriaAnualEntityResponse",
       __args: { data: "MemoriaAnualInput!", id: "ID!" },
+    },
+    updateMenusMenu: {
+      __type: "MenusMenuEntityResponse",
+      __args: { data: "MenusMenuInput!", id: "ID!" },
+    },
+    updateMenusMenuItem: {
+      __type: "MenusMenuItemEntityResponse",
+      __args: { data: "MenusMenuItemInput!", id: "ID!" },
+    },
+    updateNoticia: {
+      __type: "NoticiaEntityResponse",
+      __args: { data: "NoticiaInput!", id: "ID!" },
     },
     updateServicio: {
       __type: "ServicioEntityResponse",
@@ -1812,6 +2288,10 @@ export const generatedSchema = {
     updateSucursal: {
       __type: "SucursalEntityResponse",
       __args: { data: "SucursalInput!", id: "ID!" },
+    },
+    updateTpage: {
+      __type: "TpageEntityResponse",
+      __args: { data: "TpageInput!", id: "ID!" },
     },
     updateUploadFile: {
       __type: "UploadFileEntityResponse",
@@ -1872,6 +2352,16 @@ export const generatedSchema = {
         sort: "[String]",
       },
     },
+    landing: { __type: "LandingEntityResponse", __args: { id: "ID" } },
+    landings: {
+      __type: "LandingEntityResponseCollection",
+      __args: {
+        filters: "LandingFiltersInput",
+        pagination: "PaginationArg",
+        publicationState: "PublicationState",
+        sort: "[String]",
+      },
+    },
     me: { __type: "UsersPermissionsMe" },
     memoriaAnual: {
       __type: "MemoriaAnualEntityResponse",
@@ -1881,6 +2371,37 @@ export const generatedSchema = {
       __type: "MemoriaAnualEntityResponseCollection",
       __args: {
         filters: "MemoriaAnualFiltersInput",
+        pagination: "PaginationArg",
+        publicationState: "PublicationState",
+        sort: "[String]",
+      },
+    },
+    menusMenu: { __type: "MenusMenuEntityResponse", __args: { id: "ID" } },
+    menusMenuItem: {
+      __type: "MenusMenuItemEntityResponse",
+      __args: { id: "ID" },
+    },
+    menusMenuItems: {
+      __type: "MenusMenuItemEntityResponseCollection",
+      __args: {
+        filters: "MenusMenuItemFiltersInput",
+        pagination: "PaginationArg",
+        sort: "[String]",
+      },
+    },
+    menusMenus: {
+      __type: "MenusMenuEntityResponseCollection",
+      __args: {
+        filters: "MenusMenuFiltersInput",
+        pagination: "PaginationArg",
+        sort: "[String]",
+      },
+    },
+    noticia: { __type: "NoticiaEntityResponse", __args: { id: "ID" } },
+    noticias: {
+      __type: "NoticiaEntityResponseCollection",
+      __args: {
+        filters: "NoticiaFiltersInput",
         pagination: "PaginationArg",
         publicationState: "PublicationState",
         sort: "[String]",
@@ -1911,6 +2432,16 @@ export const generatedSchema = {
       __type: "SucursalEntityResponseCollection",
       __args: {
         filters: "SucursalFiltersInput",
+        pagination: "PaginationArg",
+        publicationState: "PublicationState",
+        sort: "[String]",
+      },
+    },
+    tpage: { __type: "TpageEntityResponse", __args: { id: "ID" } },
+    tpages: {
+      __type: "TpageEntityResponseCollection",
+      __args: {
+        filters: "TpageFiltersInput",
         pagination: "PaginationArg",
         publicationState: "PublicationState",
         sort: "[String]",
@@ -1964,6 +2495,9 @@ export const generatedSchema = {
     GenericMorph: [
       "Article",
       "Category",
+      "ComponentGeneralFormulario",
+      "ComponentGeneralItems",
+      "ComponentGeneralLista",
       "ComponentSectionsHero",
       "ComponentServiciosRequisitos",
       "ComponentServiciosTarifario",
@@ -1976,16 +2510,22 @@ export const generatedSchema = {
       "Global",
       "Homepage",
       "I18NLocale",
+      "Landing",
       "MemoriaAnual",
+      "MenusMenu",
+      "MenusMenuItem",
+      "Noticia",
       "Servicio",
       "Slide",
       "Sucursal",
+      "Tpage",
       "UploadFile",
       "UsersPermissionsPermission",
       "UsersPermissionsRole",
       "UsersPermissionsUser",
       "Writer",
     ],
+    LandingContenidoDynamicZone: ["ComponentGeneralLista", "Error"],
   },
 } as const;
 
@@ -2044,6 +2584,8 @@ export interface Category {
     sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
   }) => Maybe<ArticleRelationResponseCollection>;
   createdAt?: Maybe<ScalarsEnums["DateTime"]>;
+  description: ScalarsEnums["String"];
+  icon: UploadFileEntityResponse;
   name: ScalarsEnums["String"];
   slug: ScalarsEnums["String"];
   updatedAt?: Maybe<ScalarsEnums["DateTime"]>;
@@ -2064,6 +2606,36 @@ export interface CategoryEntityResponseCollection {
   __typename?: "CategoryEntityResponseCollection";
   data: Array<CategoryEntity>;
   meta: ResponseCollectionMeta;
+}
+
+export interface ComponentGeneralFormulario {
+  __typename?: "ComponentGeneralFormulario";
+  formId: ScalarsEnums["String"];
+  id: ScalarsEnums["ID"];
+  titulo?: Maybe<ScalarsEnums["String"]>;
+}
+
+export interface ComponentGeneralItems {
+  __typename?: "ComponentGeneralItems";
+  id: ScalarsEnums["ID"];
+  texto: ScalarsEnums["String"];
+}
+
+export interface ComponentGeneralLista {
+  __typename?: "ComponentGeneralLista";
+  id: ScalarsEnums["ID"];
+  items: (args?: {
+    filters?: Maybe<ComponentGeneralItemsFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Array<Maybe<ComponentGeneralItems>>;
+  titulo: ScalarsEnums["String"];
 }
 
 export interface ComponentSectionsHero {
@@ -2142,10 +2714,19 @@ export interface ComponentSucursalTelefonos {
   telefono?: Maybe<ScalarsEnums["String"]>;
 }
 
+export interface Error {
+  __typename?: "Error";
+  code: ScalarsEnums["String"];
+  message?: Maybe<ScalarsEnums["String"]>;
+}
+
 export interface GenericMorph {
   __typename?:
     | "Article"
     | "Category"
+    | "ComponentGeneralFormulario"
+    | "ComponentGeneralItems"
+    | "ComponentGeneralLista"
     | "ComponentSectionsHero"
     | "ComponentServiciosRequisitos"
     | "ComponentServiciosTarifario"
@@ -2158,10 +2739,15 @@ export interface GenericMorph {
     | "Global"
     | "Homepage"
     | "I18NLocale"
+    | "Landing"
     | "MemoriaAnual"
+    | "MenusMenu"
+    | "MenusMenuItem"
+    | "Noticia"
     | "Servicio"
     | "Slide"
     | "Sucursal"
+    | "Tpage"
     | "UploadFile"
     | "UsersPermissionsPermission"
     | "UsersPermissionsRole"
@@ -2235,6 +2821,42 @@ export interface I18NLocaleEntityResponseCollection {
   meta: ResponseCollectionMeta;
 }
 
+export interface Landing {
+  __typename?: "Landing";
+  contenido?: Maybe<Array<Maybe<LandingContenidoDynamicZone>>>;
+  copy?: Maybe<ScalarsEnums["String"]>;
+  createdAt?: Maybe<ScalarsEnums["DateTime"]>;
+  formulario: ComponentGeneralFormulario;
+  imagen: UploadFileEntityResponse;
+  nombre: ScalarsEnums["String"];
+  publishedAt?: Maybe<ScalarsEnums["DateTime"]>;
+  slug: ScalarsEnums["String"];
+  titular: ScalarsEnums["String"];
+  updatedAt?: Maybe<ScalarsEnums["DateTime"]>;
+}
+
+export interface LandingContenidoDynamicZone {
+  __typename?: "ComponentGeneralLista" | "Error";
+  $on: $LandingContenidoDynamicZone;
+}
+
+export interface LandingEntity {
+  __typename?: "LandingEntity";
+  attributes?: Maybe<Landing>;
+  id?: Maybe<ScalarsEnums["ID"]>;
+}
+
+export interface LandingEntityResponse {
+  __typename?: "LandingEntityResponse";
+  data?: Maybe<LandingEntity>;
+}
+
+export interface LandingEntityResponseCollection {
+  __typename?: "LandingEntityResponseCollection";
+  data: Array<LandingEntity>;
+  meta: ResponseCollectionMeta;
+}
+
 export interface MemoriaAnual {
   __typename?: "MemoriaAnual";
   ano: ScalarsEnums["Int"];
@@ -2260,6 +2882,106 @@ export interface MemoriaAnualEntityResponse {
 export interface MemoriaAnualEntityResponseCollection {
   __typename?: "MemoriaAnualEntityResponseCollection";
   data: Array<MemoriaAnualEntity>;
+  meta: ResponseCollectionMeta;
+}
+
+export interface MenusMenu {
+  __typename?: "MenusMenu";
+  createdAt?: Maybe<ScalarsEnums["DateTime"]>;
+  items: (args?: {
+    filters?: Maybe<MenusMenuItemFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<MenusMenuItemRelationResponseCollection>;
+  slug: ScalarsEnums["String"];
+  title: ScalarsEnums["String"];
+  updatedAt?: Maybe<ScalarsEnums["DateTime"]>;
+}
+
+export interface MenusMenuEntity {
+  __typename?: "MenusMenuEntity";
+  attributes?: Maybe<MenusMenu>;
+  id?: Maybe<ScalarsEnums["ID"]>;
+}
+
+export interface MenusMenuEntityResponse {
+  __typename?: "MenusMenuEntityResponse";
+  data?: Maybe<MenusMenuEntity>;
+}
+
+export interface MenusMenuEntityResponseCollection {
+  __typename?: "MenusMenuEntityResponseCollection";
+  data: Array<MenusMenuEntity>;
+  meta: ResponseCollectionMeta;
+}
+
+export interface MenusMenuItem {
+  __typename?: "MenusMenuItem";
+  createdAt?: Maybe<ScalarsEnums["DateTime"]>;
+  order?: Maybe<ScalarsEnums["Int"]>;
+  parent?: Maybe<MenusMenuItemEntityResponse>;
+  root_menu: MenusMenuEntityResponse;
+  target?: Maybe<ScalarsEnums["ENUM_MENUSMENUITEM_TARGET"]>;
+  title: ScalarsEnums["String"];
+  updatedAt?: Maybe<ScalarsEnums["DateTime"]>;
+  url?: Maybe<ScalarsEnums["String"]>;
+}
+
+export interface MenusMenuItemEntity {
+  __typename?: "MenusMenuItemEntity";
+  attributes?: Maybe<MenusMenuItem>;
+  id?: Maybe<ScalarsEnums["ID"]>;
+}
+
+export interface MenusMenuItemEntityResponse {
+  __typename?: "MenusMenuItemEntityResponse";
+  data?: Maybe<MenusMenuItemEntity>;
+}
+
+export interface MenusMenuItemEntityResponseCollection {
+  __typename?: "MenusMenuItemEntityResponseCollection";
+  data: Array<MenusMenuItemEntity>;
+  meta: ResponseCollectionMeta;
+}
+
+export interface MenusMenuItemRelationResponseCollection {
+  __typename?: "MenusMenuItemRelationResponseCollection";
+  data: Array<MenusMenuItemEntity>;
+}
+
+export interface Noticia {
+  __typename?: "Noticia";
+  contenido?: Maybe<ScalarsEnums["String"]>;
+  createdAt?: Maybe<ScalarsEnums["DateTime"]>;
+  descripcion: ScalarsEnums["String"];
+  imagen: UploadFileEntityResponse;
+  publishedAt?: Maybe<ScalarsEnums["DateTime"]>;
+  seo?: Maybe<ComponentSharedSeo>;
+  slug: ScalarsEnums["String"];
+  titulo: ScalarsEnums["String"];
+  updatedAt?: Maybe<ScalarsEnums["DateTime"]>;
+}
+
+export interface NoticiaEntity {
+  __typename?: "NoticiaEntity";
+  attributes?: Maybe<Noticia>;
+  id?: Maybe<ScalarsEnums["ID"]>;
+}
+
+export interface NoticiaEntityResponse {
+  __typename?: "NoticiaEntityResponse";
+  data?: Maybe<NoticiaEntity>;
+}
+
+export interface NoticiaEntityResponseCollection {
+  __typename?: "NoticiaEntityResponseCollection";
+  data: Array<NoticiaEntity>;
   meta: ResponseCollectionMeta;
 }
 
@@ -2421,6 +3143,35 @@ export interface SucursalEntityResponse {
 export interface SucursalEntityResponseCollection {
   __typename?: "SucursalEntityResponseCollection";
   data: Array<SucursalEntity>;
+  meta: ResponseCollectionMeta;
+}
+
+export interface Tpage {
+  __typename?: "Tpage";
+  agradecimiento: ScalarsEnums["String"];
+  createdAt?: Maybe<ScalarsEnums["DateTime"]>;
+  cta?: Maybe<ComponentSharedCta>;
+  nombre: ScalarsEnums["String"];
+  publishedAt?: Maybe<ScalarsEnums["DateTime"]>;
+  slug: ScalarsEnums["String"];
+  titular: ScalarsEnums["String"];
+  updatedAt?: Maybe<ScalarsEnums["DateTime"]>;
+}
+
+export interface TpageEntity {
+  __typename?: "TpageEntity";
+  attributes?: Maybe<Tpage>;
+  id?: Maybe<ScalarsEnums["ID"]>;
+}
+
+export interface TpageEntityResponse {
+  __typename?: "TpageEntityResponse";
+  data?: Maybe<TpageEntity>;
+}
+
+export interface TpageEntityResponseCollection {
+  __typename?: "TpageEntityResponseCollection";
+  data: Array<TpageEntity>;
   meta: ResponseCollectionMeta;
 }
 
@@ -2654,9 +3405,17 @@ export interface Mutation {
   createCategory: (args: {
     data: CategoryInput;
   }) => Maybe<CategoryEntityResponse>;
+  createLanding: (args: { data: LandingInput }) => Maybe<LandingEntityResponse>;
   createMemoriaAnual: (args: {
     data: MemoriaAnualInput;
   }) => Maybe<MemoriaAnualEntityResponse>;
+  createMenusMenu: (args: {
+    data: MenusMenuInput;
+  }) => Maybe<MenusMenuEntityResponse>;
+  createMenusMenuItem: (args: {
+    data: MenusMenuItemInput;
+  }) => Maybe<MenusMenuItemEntityResponse>;
+  createNoticia: (args: { data: NoticiaInput }) => Maybe<NoticiaEntityResponse>;
   createServicio: (args: {
     data: ServicioInput;
   }) => Maybe<ServicioEntityResponse>;
@@ -2664,6 +3423,7 @@ export interface Mutation {
   createSucursal: (args: {
     data: SucursalInput;
   }) => Maybe<SucursalEntityResponse>;
+  createTpage: (args: { data: TpageInput }) => Maybe<TpageEntityResponse>;
   createUploadFile: (args: {
     data: UploadFileInput;
   }) => Maybe<UploadFileEntityResponse>;
@@ -2686,9 +3446,17 @@ export interface Mutation {
   }) => Maybe<CategoryEntityResponse>;
   deleteGlobal?: Maybe<GlobalEntityResponse>;
   deleteHomepage?: Maybe<HomepageEntityResponse>;
+  deleteLanding: (args: { id: Scalars["ID"] }) => Maybe<LandingEntityResponse>;
   deleteMemoriaAnual: (args: {
     id: Scalars["ID"];
   }) => Maybe<MemoriaAnualEntityResponse>;
+  deleteMenusMenu: (args: {
+    id: Scalars["ID"];
+  }) => Maybe<MenusMenuEntityResponse>;
+  deleteMenusMenuItem: (args: {
+    id: Scalars["ID"];
+  }) => Maybe<MenusMenuItemEntityResponse>;
+  deleteNoticia: (args: { id: Scalars["ID"] }) => Maybe<NoticiaEntityResponse>;
   deleteServicio: (args: {
     id: Scalars["ID"];
   }) => Maybe<ServicioEntityResponse>;
@@ -2696,6 +3464,7 @@ export interface Mutation {
   deleteSucursal: (args: {
     id: Scalars["ID"];
   }) => Maybe<SucursalEntityResponse>;
+  deleteTpage: (args: { id: Scalars["ID"] }) => Maybe<TpageEntityResponse>;
   deleteUploadFile: (args: {
     id: Scalars["ID"];
   }) => Maybe<UploadFileEntityResponse>;
@@ -2764,10 +3533,26 @@ export interface Mutation {
   updateHomepage: (args: {
     data: HomepageInput;
   }) => Maybe<HomepageEntityResponse>;
+  updateLanding: (args: {
+    data: LandingInput;
+    id: Scalars["ID"];
+  }) => Maybe<LandingEntityResponse>;
   updateMemoriaAnual: (args: {
     data: MemoriaAnualInput;
     id: Scalars["ID"];
   }) => Maybe<MemoriaAnualEntityResponse>;
+  updateMenusMenu: (args: {
+    data: MenusMenuInput;
+    id: Scalars["ID"];
+  }) => Maybe<MenusMenuEntityResponse>;
+  updateMenusMenuItem: (args: {
+    data: MenusMenuItemInput;
+    id: Scalars["ID"];
+  }) => Maybe<MenusMenuItemEntityResponse>;
+  updateNoticia: (args: {
+    data: NoticiaInput;
+    id: Scalars["ID"];
+  }) => Maybe<NoticiaEntityResponse>;
   updateServicio: (args: {
     data: ServicioInput;
     id: Scalars["ID"];
@@ -2780,6 +3565,10 @@ export interface Mutation {
     data: SucursalInput;
     id: Scalars["ID"];
   }) => Maybe<SucursalEntityResponse>;
+  updateTpage: (args: {
+    data: TpageInput;
+    id: Scalars["ID"];
+  }) => Maybe<TpageEntityResponse>;
   updateUploadFile: (args: {
     data: UploadFileInput;
     id: Scalars["ID"];
@@ -2861,6 +3650,24 @@ export interface Query {
      */
     sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
   }) => Maybe<I18NLocaleEntityResponseCollection>;
+  landing: (args?: {
+    id?: Maybe<Scalars["ID"]>;
+  }) => Maybe<LandingEntityResponse>;
+  landings: (args?: {
+    filters?: Maybe<LandingFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `"LIVE"`
+     */
+    publicationState?: Maybe<PublicationState>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<LandingEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
   memoriaAnual: (args?: {
     id?: Maybe<Scalars["ID"]>;
@@ -2880,6 +3687,52 @@ export interface Query {
      */
     sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
   }) => Maybe<MemoriaAnualEntityResponseCollection>;
+  menusMenu: (args?: {
+    id?: Maybe<Scalars["ID"]>;
+  }) => Maybe<MenusMenuEntityResponse>;
+  menusMenuItem: (args?: {
+    id?: Maybe<Scalars["ID"]>;
+  }) => Maybe<MenusMenuItemEntityResponse>;
+  menusMenuItems: (args?: {
+    filters?: Maybe<MenusMenuItemFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<MenusMenuItemEntityResponseCollection>;
+  menusMenus: (args?: {
+    filters?: Maybe<MenusMenuFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<MenusMenuEntityResponseCollection>;
+  noticia: (args?: {
+    id?: Maybe<Scalars["ID"]>;
+  }) => Maybe<NoticiaEntityResponse>;
+  noticias: (args?: {
+    filters?: Maybe<NoticiaFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `"LIVE"`
+     */
+    publicationState?: Maybe<PublicationState>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<NoticiaEntityResponseCollection>;
   servicio: (args?: {
     id?: Maybe<Scalars["ID"]>;
   }) => Maybe<ServicioEntityResponse>;
@@ -2932,6 +3785,22 @@ export interface Query {
      */
     sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
   }) => Maybe<SucursalEntityResponseCollection>;
+  tpage: (args?: { id?: Maybe<Scalars["ID"]> }) => Maybe<TpageEntityResponse>;
+  tpages: (args?: {
+    filters?: Maybe<TpageFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `"LIVE"`
+     */
+    publicationState?: Maybe<PublicationState>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<TpageEntityResponseCollection>;
   uploadFile: (args?: {
     id?: Maybe<Scalars["ID"]>;
   }) => Maybe<UploadFileEntityResponse>;
@@ -3002,6 +3871,9 @@ export interface SchemaObjectTypes {
   CategoryEntity: CategoryEntity;
   CategoryEntityResponse: CategoryEntityResponse;
   CategoryEntityResponseCollection: CategoryEntityResponseCollection;
+  ComponentGeneralFormulario: ComponentGeneralFormulario;
+  ComponentGeneralItems: ComponentGeneralItems;
+  ComponentGeneralLista: ComponentGeneralLista;
   ComponentSectionsHero: ComponentSectionsHero;
   ComponentServiciosRequisitos: ComponentServiciosRequisitos;
   ComponentServiciosTarifario: ComponentServiciosTarifario;
@@ -3011,6 +3883,7 @@ export interface SchemaObjectTypes {
   ComponentSharedPortada: ComponentSharedPortada;
   ComponentSharedSeo: ComponentSharedSeo;
   ComponentSucursalTelefonos: ComponentSucursalTelefonos;
+  Error: Error;
   Global: Global;
   GlobalEntity: GlobalEntity;
   GlobalEntityResponse: GlobalEntityResponse;
@@ -3021,11 +3894,28 @@ export interface SchemaObjectTypes {
   I18NLocaleEntity: I18NLocaleEntity;
   I18NLocaleEntityResponse: I18NLocaleEntityResponse;
   I18NLocaleEntityResponseCollection: I18NLocaleEntityResponseCollection;
+  Landing: Landing;
+  LandingEntity: LandingEntity;
+  LandingEntityResponse: LandingEntityResponse;
+  LandingEntityResponseCollection: LandingEntityResponseCollection;
   MemoriaAnual: MemoriaAnual;
   MemoriaAnualEntity: MemoriaAnualEntity;
   MemoriaAnualEntityResponse: MemoriaAnualEntityResponse;
   MemoriaAnualEntityResponseCollection: MemoriaAnualEntityResponseCollection;
+  MenusMenu: MenusMenu;
+  MenusMenuEntity: MenusMenuEntity;
+  MenusMenuEntityResponse: MenusMenuEntityResponse;
+  MenusMenuEntityResponseCollection: MenusMenuEntityResponseCollection;
+  MenusMenuItem: MenusMenuItem;
+  MenusMenuItemEntity: MenusMenuItemEntity;
+  MenusMenuItemEntityResponse: MenusMenuItemEntityResponse;
+  MenusMenuItemEntityResponseCollection: MenusMenuItemEntityResponseCollection;
+  MenusMenuItemRelationResponseCollection: MenusMenuItemRelationResponseCollection;
   Mutation: Mutation;
+  Noticia: Noticia;
+  NoticiaEntity: NoticiaEntity;
+  NoticiaEntityResponse: NoticiaEntityResponse;
+  NoticiaEntityResponseCollection: NoticiaEntityResponseCollection;
   Pagination: Pagination;
   Query: Query;
   ResponseCollectionMeta: ResponseCollectionMeta;
@@ -3043,6 +3933,10 @@ export interface SchemaObjectTypes {
   SucursalEntity: SucursalEntity;
   SucursalEntityResponse: SucursalEntityResponse;
   SucursalEntityResponseCollection: SucursalEntityResponseCollection;
+  Tpage: Tpage;
+  TpageEntity: TpageEntity;
+  TpageEntityResponse: TpageEntityResponse;
+  TpageEntityResponseCollection: TpageEntityResponseCollection;
   UploadFile: UploadFile;
   UploadFileEntity: UploadFileEntity;
   UploadFileEntityResponse: UploadFileEntityResponse;
@@ -3081,6 +3975,9 @@ export type SchemaObjectTypesNames =
   | "CategoryEntity"
   | "CategoryEntityResponse"
   | "CategoryEntityResponseCollection"
+  | "ComponentGeneralFormulario"
+  | "ComponentGeneralItems"
+  | "ComponentGeneralLista"
   | "ComponentSectionsHero"
   | "ComponentServiciosRequisitos"
   | "ComponentServiciosTarifario"
@@ -3090,6 +3987,7 @@ export type SchemaObjectTypesNames =
   | "ComponentSharedPortada"
   | "ComponentSharedSeo"
   | "ComponentSucursalTelefonos"
+  | "Error"
   | "Global"
   | "GlobalEntity"
   | "GlobalEntityResponse"
@@ -3100,11 +3998,28 @@ export type SchemaObjectTypesNames =
   | "I18NLocaleEntity"
   | "I18NLocaleEntityResponse"
   | "I18NLocaleEntityResponseCollection"
+  | "Landing"
+  | "LandingEntity"
+  | "LandingEntityResponse"
+  | "LandingEntityResponseCollection"
   | "MemoriaAnual"
   | "MemoriaAnualEntity"
   | "MemoriaAnualEntityResponse"
   | "MemoriaAnualEntityResponseCollection"
+  | "MenusMenu"
+  | "MenusMenuEntity"
+  | "MenusMenuEntityResponse"
+  | "MenusMenuEntityResponseCollection"
+  | "MenusMenuItem"
+  | "MenusMenuItemEntity"
+  | "MenusMenuItemEntityResponse"
+  | "MenusMenuItemEntityResponseCollection"
+  | "MenusMenuItemRelationResponseCollection"
   | "Mutation"
+  | "Noticia"
+  | "NoticiaEntity"
+  | "NoticiaEntityResponse"
+  | "NoticiaEntityResponseCollection"
   | "Pagination"
   | "Query"
   | "ResponseCollectionMeta"
@@ -3122,6 +4037,10 @@ export type SchemaObjectTypesNames =
   | "SucursalEntity"
   | "SucursalEntityResponse"
   | "SucursalEntityResponseCollection"
+  | "Tpage"
+  | "TpageEntity"
+  | "TpageEntityResponse"
+  | "TpageEntityResponseCollection"
   | "UploadFile"
   | "UploadFileEntity"
   | "UploadFileEntityResponse"
@@ -3153,6 +4072,9 @@ export type SchemaObjectTypesNames =
 export interface $GenericMorph {
   Article?: Article;
   Category?: Category;
+  ComponentGeneralFormulario?: ComponentGeneralFormulario;
+  ComponentGeneralItems?: ComponentGeneralItems;
+  ComponentGeneralLista?: ComponentGeneralLista;
   ComponentSectionsHero?: ComponentSectionsHero;
   ComponentServiciosRequisitos?: ComponentServiciosRequisitos;
   ComponentServiciosTarifario?: ComponentServiciosTarifario;
@@ -3165,15 +4087,25 @@ export interface $GenericMorph {
   Global?: Global;
   Homepage?: Homepage;
   I18NLocale?: I18NLocale;
+  Landing?: Landing;
   MemoriaAnual?: MemoriaAnual;
+  MenusMenu?: MenusMenu;
+  MenusMenuItem?: MenusMenuItem;
+  Noticia?: Noticia;
   Servicio?: Servicio;
   Slide?: Slide;
   Sucursal?: Sucursal;
+  Tpage?: Tpage;
   UploadFile?: UploadFile;
   UsersPermissionsPermission?: UsersPermissionsPermission;
   UsersPermissionsRole?: UsersPermissionsRole;
   UsersPermissionsUser?: UsersPermissionsUser;
   Writer?: Writer;
+}
+
+export interface $LandingContenidoDynamicZone {
+  ComponentGeneralLista?: ComponentGeneralLista;
+  Error?: Error;
 }
 
 export interface GeneratedSchema {
@@ -3187,6 +4119,7 @@ export type MakeNullable<T> = {
 };
 
 export interface ScalarsEnums extends MakeNullable<Scalars> {
+  ENUM_MENUSMENUITEM_TARGET: ENUM_MENUSMENUITEM_TARGET | undefined;
   ENUM_SERVICIO_CATEGORIA: ENUM_SERVICIO_CATEGORIA | undefined;
   ENUM_SERVICIO_TIPO: ENUM_SERVICIO_TIPO | undefined;
   PublicationState: PublicationState | undefined;

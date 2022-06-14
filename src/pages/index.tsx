@@ -7,6 +7,7 @@ import HomePromo from 'templates/home/HomePromo'
 import HomeSlider from 'templates/home/HomeSlider'
 import HomeServicios from 'templates/home/HomeServicios'
 import { GetStaticProps } from 'next'
+import Layout from 'components/Layout'
 
 import {
   useQuery,
@@ -21,6 +22,11 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
   const query = useQuery()
   const home = query.homepage.data.attributes
   const posts = query.articles({
+    pagination: {
+      pageSize: 3,
+    },
+  }).data
+  const noticias = query.noticias({
     pagination: {
       pageSize: 3,
     },
@@ -53,15 +59,15 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <Layout>
         <HomeCover portada={home?.portada} />
         <HomeSlider slides={slides} />
         <HomeServicios {...{ servicios }} />
         <HomeSocio {...{ home }} />
         <HomeAcademy posts={posts} />
-        <HomeNews noticias={posts} />
+        <HomeNews noticias={noticias} />
         <HomePromo {...{ home }} />
-      </main>
+      </Layout>
     </div>
   )
 }

@@ -12,6 +12,7 @@ import { GetStaticProps } from 'next'
 import { useQuery, prepareReactRender, useHydrateCache } from 'client'
 import { PropsWithServerCache } from '@gqty/react'
 import { getStrapiURL } from 'lib/api'
+import Layout from 'components/Layout'
 
 type PageProps = PropsWithServerCache<{}>
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -27,37 +28,39 @@ const Page = ({ cacheSnapshot }: PageProps) => {
   })
 
   return memorias.length ? (
-    <Section space>
-      <PageHeader title="Memorias Anuales" />
-      <List>
-        {memorias.map((item, index) => {
-          const memoria = item.attributes
+    <Layout>
+      <Section space>
+        <PageHeader title="Memorias Anuales" />
+        <List>
+          {memorias.map((item, index) => {
+            const memoria = item.attributes
 
-          return (
-            <MemoryCard key={index}>
-              <Link
-                href={getStrapiURL(memoria.archivo.data.attributes.url)}
-                download
-                passHref
-              >
-                <SLink>
-                  <CardImage>
-                    <Image
-                      src={getStrapiURL(memoria.imagen.data.attributes.url)}
-                      alt={memoria.nombre}
-                      width={1080}
-                      height={1404}
-                      objectFit="cover"
-                    />
-                  </CardImage>
-                  <MemoryName>{memoria.ano}</MemoryName>
-                </SLink>
-              </Link>
-            </MemoryCard>
-          )
-        })}
-      </List>
-    </Section>
+            return (
+              <MemoryCard key={index}>
+                <Link
+                  href={getStrapiURL(memoria.archivo.data.attributes.url)}
+                  download
+                  passHref
+                >
+                  <SLink>
+                    <CardImage>
+                      <Image
+                        src={getStrapiURL(memoria.imagen.data.attributes.url)}
+                        alt={memoria.nombre}
+                        width={1080}
+                        height={1404}
+                        objectFit="cover"
+                      />
+                    </CardImage>
+                    <MemoryName>{memoria.ano}</MemoryName>
+                  </SLink>
+                </Link>
+              </MemoryCard>
+            )
+          })}
+        </List>
+      </Section>
+    </Layout>
   ) : null
 }
 

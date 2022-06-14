@@ -8,6 +8,7 @@ import { GetStaticProps } from 'next'
 
 import { useQuery, prepareReactRender, useHydrateCache, Servicio } from 'client'
 import { PropsWithServerCache } from '@gqty/react'
+import Layout from 'components/Layout'
 
 type PageProps = PropsWithServerCache<{}>
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -23,38 +24,40 @@ const Page = ({ cacheSnapshot }: PageProps) => {
   })
 
   return servicios.length ? (
-    <Section space>
-      <PageHeader title={'Tarifario de servicios'} />
-      <Services>
-        {servicios.map((item, index) => {
-          const service: Servicio = item.attributes
-          const rates = service.tarifario?.tarifas()
-          const nota = service.tarifario?.nota
+    <Layout>
+      <Section space>
+        <PageHeader title={'Tarifario de servicios'} />
+        <Services>
+          {servicios.map((item, index) => {
+            const service: Servicio = item.attributes
+            const rates = service.tarifario?.tarifas()
+            const nota = service.tarifario?.nota
 
-          return rates?.length ? (
-            <Service
-              key={index}
-              //   order={parseInt(service.meta_box['rate-order'])}
-            >
-              <ServiceName>{service.nombre}</ServiceName>
-              <Table>
-                <TBody>
-                  {rates.map((item, index) => {
-                    return (
-                      <Tr key={index}>
-                        <Td>{item.nombre}</Td>
-                        <Td>{item.valor}</Td>
-                      </Tr>
-                    )
-                  })}
-                </TBody>
-              </Table>
-              {nota && <Note>{nota}</Note>}
-            </Service>
-          ) : null
-        })}
-      </Services>
-    </Section>
+            return rates?.length ? (
+              <Service
+                key={index}
+                //   order={parseInt(service.meta_box['rate-order'])}
+              >
+                <ServiceName>{service.nombre}</ServiceName>
+                <Table>
+                  <TBody>
+                    {rates.map((item, index) => {
+                      return (
+                        <Tr key={index}>
+                          <Td>{item.nombre}</Td>
+                          <Td>{item.valor}</Td>
+                        </Tr>
+                      )
+                    })}
+                  </TBody>
+                </Table>
+                {nota && <Note>{nota}</Note>}
+              </Service>
+            ) : null
+          })}
+        </Services>
+      </Section>
+    </Layout>
   ) : null
 }
 

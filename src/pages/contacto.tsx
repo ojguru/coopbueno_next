@@ -6,6 +6,7 @@ import { GetStaticProps } from 'next'
 
 import { useQuery, prepareReactRender, useHydrateCache } from 'client'
 import { PropsWithServerCache } from '@gqty/react'
+import Layout from 'components/Layout'
 
 type PageProps = PropsWithServerCache<{}>
 
@@ -23,10 +24,10 @@ const Page = ({ cacheSnapshot }: PageProps) => {
   })
 
   return (
-    <>
+    <Layout>
       <Portada />
       <ContactOffices sucursales={sucursales} />
-    </>
+    </Layout>
   )
 }
 

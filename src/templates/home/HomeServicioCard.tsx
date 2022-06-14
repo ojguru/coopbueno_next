@@ -113,7 +113,6 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                         <CardCloseBtn
                           {...{ isActive }}
                           onClick={(e) => {
-                            console.log('close', active)
                             setActive(-1)
                           }}
                         >

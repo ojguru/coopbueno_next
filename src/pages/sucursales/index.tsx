@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { LocationIcon, ClockIcon, PhoneIcon } from 'components/icons'
 import { h3 } from 'styles/tipography'
 import colors from 'styles/colors'
+import Layout from 'components/Layout'
 
 import { GetStaticProps } from 'next'
 
@@ -29,69 +30,71 @@ const Page = ({ cacheSnapshot }: PageProps) => {
   })
 
   return (
-    <StyledSection>
-      <Deco />
-      <Container space>
-        <Title>Sucursales</Title>
-        {sucursales?.map((item, index, items) => {
-          const sucursal = item.attributes
-          const featuredMedia = sucursal.imagen.data.attributes
-          const location = sucursal.ubicacion
-          const isPrincipal = index == 0
+    <Layout>
+      <StyledSection>
+        <Deco />
+        <Container space>
+          <Title>Sucursales</Title>
+          {sucursales?.map((item, index, items) => {
+            const sucursal = item.attributes
+            const featuredMedia = sucursal.imagen.data.attributes
+            const location = sucursal.ubicacion
+            const isPrincipal = index == 0
 
-          return (
-            <SucursalCard key={item.id} {...{ isPrincipal }}>
-              <CardImage {...{ isPrincipal }}>
-                <SucursalImage
-                  src={getStrapiURL(featuredMedia.url)}
-                  alt={sucursal.nombre}
-                  width={1920}
-                  height={1080}
-                  objectFit="cover"
-                  priority={index <= 3 ? true : false}
-                />
-              </CardImage>
-              <Content {...{ index, items }}>
-                <CardHeader>
-                  <SucursalName {...{ isPrincipal }}>
-                    {sucursal.nombre}
-                  </SucursalName>
-                </CardHeader>
-                <CardBody>
-                  <SucursalAddress>
-                    <LocationIcon />
-                    <InfoWrapper>{sucursal.direccion}</InfoWrapper>
-                  </SucursalAddress>
-                  <SucursalSchedule>
-                    <ClockIcon />
-                    <InfoWrapper>{sucursal.horario}</InfoWrapper>
-                  </SucursalSchedule>
-                  <SucursalPhoneBox>
-                    <PhoneIcon />
-                    <InfoWrapper>
-                      {sucursal.telefonos().map((item, index) => {
-                        const phone = item.telefono
+            return (
+              <SucursalCard key={item.id} {...{ isPrincipal }}>
+                <CardImage {...{ isPrincipal }}>
+                  <SucursalImage
+                    src={getStrapiURL(featuredMedia.url)}
+                    alt={sucursal.nombre}
+                    width={1920}
+                    height={1080}
+                    objectFit="cover"
+                    priority={index <= 3 ? true : false}
+                  />
+                </CardImage>
+                <Content {...{ index, items }}>
+                  <CardHeader>
+                    <SucursalName {...{ isPrincipal }}>
+                      {sucursal.nombre}
+                    </SucursalName>
+                  </CardHeader>
+                  <CardBody>
+                    <SucursalAddress>
+                      <LocationIcon />
+                      <InfoWrapper>{sucursal.direccion}</InfoWrapper>
+                    </SucursalAddress>
+                    <SucursalSchedule>
+                      <ClockIcon />
+                      <InfoWrapper>{sucursal.horario}</InfoWrapper>
+                    </SucursalSchedule>
+                    <SucursalPhoneBox>
+                      <PhoneIcon />
+                      <InfoWrapper>
+                        {sucursal.telefonos().map((item, index) => {
+                          const phone = item.telefono
 
-                        return phone ? (
-                          <Link href={`tel:+${phone}`} key={index} passHref>
-                            <SucursalPhone>{phone}</SucursalPhone>
-                          </Link>
-                        ) : null
-                      })}
-                    </InfoWrapper>
-                  </SucursalPhoneBox>
-                </CardBody>
-              </Content>
-              <LinkBox>
-                <Link href={location ?? ''} passHref>
-                  <ReadMore target="_blank">Ubicación</ReadMore>
-                </Link>
-              </LinkBox>
-            </SucursalCard>
-          )
-        })}
-      </Container>
-    </StyledSection>
+                          return phone ? (
+                            <Link href={`tel:+${phone}`} key={index} passHref>
+                              <SucursalPhone>{phone}</SucursalPhone>
+                            </Link>
+                          ) : null
+                        })}
+                      </InfoWrapper>
+                    </SucursalPhoneBox>
+                  </CardBody>
+                </Content>
+                <LinkBox>
+                  <Link href={location ?? ''} passHref>
+                    <ReadMore target="_blank">Ubicación</ReadMore>
+                  </Link>
+                </LinkBox>
+              </SucursalCard>
+            )
+          })}
+        </Container>
+      </StyledSection>
+    </Layout>
   )
 }
 

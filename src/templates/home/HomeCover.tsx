@@ -61,6 +61,7 @@ const ImageContainer = styled.div`
   position: relative;
   right: 0;
   margin: 0 -${gap};
+  z-index: -1;
   ${mq.lg} {
     order: 2;
     min-width: 100rem;

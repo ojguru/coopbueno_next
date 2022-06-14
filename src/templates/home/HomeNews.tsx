@@ -63,17 +63,17 @@ const HomeNews = ({ noticias }: HomeNewsProps) => {
                       <MediaWrapper>
                         <ImageContainer>
                           <Image
-                            src={getStrapiURL(post.image.data.attributes.url)}
+                            src={getStrapiURL(post.imagen.data.attributes.url)}
                             width={1920}
                             height={1080}
                             objectFit="cover"
                           />
                         </ImageContainer>
                       </MediaWrapper>
-                      <Title>{post.title}</Title>
+                      <Title>{post.titulo}</Title>
                       <Excerpt
                         dangerouslySetInnerHTML={{
-                          __html: post.description,
+                          __html: post.descripcion,
                         }}
                       />
                     </PostLink>
