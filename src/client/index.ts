@@ -1,41 +1,43 @@
+const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
+
 /**
  * GQTY: You can safely modify this file and Query Fetcher based on your needs
  */
 
-import { createReactClient } from '@gqty/react'
+import { createReactClient } from "@gqty/react";
 
-import type { QueryFetcher } from 'gqty'
-import { createClient } from 'gqty'
+import type { QueryFetcher } from "gqty";
+import { createClient } from "gqty";
 import type {
   GeneratedSchema,
   SchemaObjectTypes,
   SchemaObjectTypesNames,
-} from './schema.generated'
-import { generatedSchema, scalarsEnumsHash } from './schema.generated'
+} from "./schema.generated";
+import { generatedSchema, scalarsEnumsHash } from "./schema.generated";
 
 const queryFetcher: QueryFetcher = async function (
   query,
   variables,
-  fetchOptions,
+  fetchOptions
 ) {
   // Modify "/api/graphql" if needed
-  const response = await fetch('http://localhost:1337/graphql', {
-    method: 'POST',
+  const response = await fetch(`${API_URL}/graphql`, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       query,
       variables,
     }),
-    mode: 'cors',
+    mode: "cors",
     ...fetchOptions,
-  })
+  });
 
-  const json = await response.json()
+  const json = await response.json();
 
-  return json
-}
+  return json;
+};
 
 export const client = createClient<
   GeneratedSchema,
@@ -45,19 +47,12 @@ export const client = createClient<
   schema: generatedSchema,
   scalarsEnumsHash,
   queryFetcher,
-})
+});
 
-const {
-  query,
-  mutation,
-  mutate,
-  subscription,
-  resolved,
-  refetch,
-  track,
-} = client
+const { query, mutation, mutate, subscription, resolved, refetch, track } =
+  client;
 
-export { query, mutation, mutate, subscription, resolved, refetch, track }
+export { query, mutation, mutate, subscription, resolved, refetch, track };
 
 const {
   graphql,
@@ -80,7 +75,7 @@ const {
     // Set this flag based on your needs
     staleWhileRevalidate: false,
   },
-})
+});
 
 export {
   graphql,
@@ -94,6 +89,6 @@ export {
   prepareReactRender,
   useHydrateCache,
   prepareQuery,
-}
+};
 
-export * from './schema.generated'
+export * from "./schema.generated";
