@@ -143,13 +143,16 @@ const Footer = ({}) => {
           </Link>
         </Certifications>
         <Link href="/">
-          <Logo
+          <Logo>
+
+          <Image
             src={logo}
             width="300"
             height="67.41"
             alt="Coopbueno Logo Footer"
             objectFit="contain"
           />
+          </Logo>
         </Link>
       </Container>
     </SiteFooter>
@@ -255,7 +258,7 @@ const Deco = styled.div`
   }
 `
 
-const Logo = styled(Image)`
+const Logo = styled.div`
   margin: 2rem 0;
   width: 100%;
   max-width: 20rem;

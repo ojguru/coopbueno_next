@@ -1,28 +1,28 @@
-import React from 'react'
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
+import React from "react";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
 // import { mwLG } from "./layout/container";
-import Link from 'next/link'
+import Link from "next/link";
 // import SearchModal from "./search/search-modal";
 // import SearchButton from 'components/search/search-button'
-import Image from 'next/image'
-import { useInView } from 'react-intersection-observer'
-import colors from 'styles/colors'
-import logo from '../../public/coopbueno_logo.svg'
-import { useQuery } from 'client'
-import useMenu from 'hooks/useMenu'
-import Navigation from './navigation/navigation'
-import { getHierarchicalItems } from 'lib/auxiliar'
+import Image from "next/image";
+import { useInView } from "react-intersection-observer";
+import colors from "styles/colors";
+import logo from "../../public/coopbueno_logo.svg";
+import { useQuery } from "client";
+import useMenu from "hooks/useMenu";
+import Navigation from "./navigation/navigation";
+import { getHierarchicalItems } from "lib/auxiliar";
 
-import { InstagramIcon, FacebookIcon, TwitterIcon } from './icons'
-import { FACEBOOK, INSTAGRAM, TWITTER } from 'lib/constants'
-import ctas from 'styles/cta'
+import { InstagramIcon, FacebookIcon, TwitterIcon } from "./icons";
+import { FACEBOOK, INSTAGRAM, TWITTER } from "lib/constants";
+import ctas from "styles/cta";
 
 const Header = ({}) => {
-  const [ref, inView, entry] = useInView({ initialInView: true })
+  const [ref, inView, entry] = useInView({ initialInView: true });
 
-  const { MenuModalUI, MenuButtonUI } = useMenu()
+  const { MenuModalUI, MenuButtonUI } = useMenu();
 
   const menuItems = useQuery().menusMenuItems({
     pagination: {
@@ -31,13 +31,13 @@ const Header = ({}) => {
     filters: {
       root_menu: {
         slug: {
-          eq: 'header',
+          eq: "header",
         },
       },
     },
-  })?.data
+  })?.data;
 
-  const items = getHierarchicalItems(menuItems)
+  const items = getHierarchicalItems(menuItems);
 
   return (
     <HeaderElement ref={ref}>
@@ -77,7 +77,7 @@ const Header = ({}) => {
             <Link href={FACEBOOK}>
               <a target="_blank">
                 <SocialIcon color={colors.primary.base}>
-                  <div style={{ display: 'none' }}>Redes Sociales</div>
+                  <div style={{ display: "none" }}>Redes Sociales</div>
                   <FacebookIcon />
                 </SocialIcon>
               </a>
@@ -85,7 +85,7 @@ const Header = ({}) => {
             <Link href={INSTAGRAM}>
               <a target="_blank">
                 <SocialIcon color={colors.primary.base}>
-                  <div style={{ display: 'none' }}>Redes Sociales</div>
+                  <div style={{ display: "none" }}>Redes Sociales</div>
                   <InstagramIcon />
                 </SocialIcon>
               </a>
@@ -93,7 +93,7 @@ const Header = ({}) => {
             <Link href={TWITTER}>
               <a target="_blank">
                 <SocialIcon color={colors.primary.base}>
-                  <div style={{ display: 'none' }}>Redes Sociales</div>
+                  <div style={{ display: "none" }}>Redes Sociales</div>
                   <TwitterIcon />
                 </SocialIcon>
               </a>
@@ -103,10 +103,10 @@ const Header = ({}) => {
         {/* <SearchModal /> */}
       </HeaderWrapper>
     </HeaderElement>
-  )
-}
+  );
+};
 // Connect the Header component to get access to the `state` in it's `props`
-export default Header
+export default Header;
 
 const Container = styled.div`
   ${container}
@@ -118,16 +118,16 @@ const Container = styled.div`
   ${mq.xl} {
     max-width: 160rem;
   }
-`
+`;
 
 const NavContainer = styled.div`
   display: grid;
   align-items: center;
   grid-auto-flow: column;
   gap: 1.5rem;
-`
+`;
 
-const HeaderElement = styled.header``
+const HeaderElement = styled.header``;
 
 const HeaderWrapper = styled.div`
   ${(props: { inView?: boolean }) => css`
@@ -152,7 +152,7 @@ const HeaderWrapper = styled.div`
           background-color: ${colors.header.sticky};
         `}
   `}
-`
+`;
 
 const LogoContainer = styled.div`
   padding: 1rem;
@@ -160,16 +160,16 @@ const LogoContainer = styled.div`
   ${mq.md} {
     width: 20rem;
   }
-`
+`;
 
 const StyledLink = styled.a`
   text-decoration: none;
-`
+`;
 
 const Gadgets = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 const Coopvirtual = styled.a`
   ${ctas}
@@ -183,13 +183,13 @@ const Coopvirtual = styled.a`
   ${mq.md} {
     display: initial;
   }
-`
+`;
 
 const SocialBox = styled.span`
   display: grid;
   gap: 1.5rem;
   grid-template-columns: auto auto auto 1fr;
-`
+`;
 
 const SocialIcon = styled.span`
   background-color: ${colors.primary.base};
@@ -201,9 +201,9 @@ const SocialIcon = styled.span`
   color: white;
   margin-bottom: 1rem;
   display: block;
-`
+`;
 
 const CtaCoopVirtual = styled.a`
   ${ctas}
   margin-bottom: 1rem;
-`
+`;

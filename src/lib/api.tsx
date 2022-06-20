@@ -30,6 +30,13 @@ export async function fetchAPI(
 }
 
 export function getStrapiURL(path = '') {
+
+  const isExternal = path.includes('http')
+
+  if(isExternal){
+    return path
+  }
+
   return `${
     process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
   }${path}`

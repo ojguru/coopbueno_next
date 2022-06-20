@@ -1,31 +1,32 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import PageHeader from 'components/PageHeader'
-import Image from 'next/image'
-import Link from 'next/link'
-import colors from 'styles/colors'
-import { h3 } from 'styles/tipography'
+import React from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import PageHeader from "components/PageHeader";
+import Image from "next/image";
+import Link from "next/link";
+import colors from "styles/colors";
+import { h3 } from "styles/tipography";
 
-import { GetStaticProps } from 'next'
+import { GetStaticProps } from "next";
 
-import { useQuery, prepareReactRender, useHydrateCache } from 'client'
-import { PropsWithServerCache } from '@gqty/react'
-import { getStrapiURL } from 'lib/api'
-import Layout from 'components/Layout'
+import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import { PropsWithServerCache } from "@gqty/react";
+import Layout from "components/Layout";
+import { getStrapiURL } from "lib/api";
 
-type PageProps = PropsWithServerCache<{}>
+type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
-  const query = useQuery()
+  const query = useQuery();
   const memorias = query.memoriasAnuales({
     pagination: {
       pageSize: 100,
     },
-  }).data
+    sort: ["ano:desc"],
+  })?.data;
 
   useHydrateCache({
     cacheSnapshot,
-  })
+  });
 
   return memorias.length ? (
     <Layout>
@@ -33,7 +34,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
         <PageHeader title="Memorias Anuales" />
         <List>
           {memorias.map((item, index) => {
-            const memoria = item.attributes
+            const memoria = item.attributes;
 
             return (
               <MemoryCard key={index}>
@@ -56,27 +57,27 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                   </SLink>
                 </Link>
               </MemoryCard>
-            )
+            );
           })}
         </List>
       </Section>
     </Layout>
-  ) : null
-}
+  ) : null;
+};
 
-export default Page
+export default Page;
 
 export const getStaticProps: GetStaticProps<PageProps> = async (_ctx) => {
-  const { cacheSnapshot } = await prepareReactRender(<Page />)
+  const { cacheSnapshot } = await prepareReactRender(<Page />);
 
   return {
     props: { cacheSnapshot },
-  }
-}
+  };
+};
 
 const Section = styled.section`
   ${container}
-`
+`;
 
 const List = styled.div`
   display: grid;
@@ -88,24 +89,24 @@ const List = styled.div`
   ${mq.lg} {
     grid-template-columns: 1fr 1fr 1fr;
   }
-`
+`;
 
 const MemoryCard = styled.div`
   max-width: 250px;
   margin: 0 auto;
   margin-bottom: 40px;
-`
+`;
 
 const SLink = styled.a`
   text-decoration: none;
-`
+`;
 
 const CardImage = styled.div`
   width: 250px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   border: 0.5px solid ${colors.gray.base};
   font-size: 0;
-`
+`;
 
 const MemoryName = styled.h2`
   ${h3}
@@ -113,4 +114,4 @@ const MemoryName = styled.h2`
   font-size: 5rem;
   text-align: center;
   color: ${colors.green.base};
-`
+`;

@@ -14,7 +14,7 @@ interface HomeCoverProps {
   portada: any
 }
 const HomeCover = ({ portada }: HomeCoverProps) => {
-  const imagen = portada.imagen.data.attributes.url
+  const imagen = portada.imagen?.data?.attributes.url
 
   return (
     <Cover as="section" fluid spaceBottom>

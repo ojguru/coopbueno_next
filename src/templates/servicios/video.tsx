@@ -1,37 +1,39 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import YouTube from 'react-youtube'
-import colors from 'styles/colors'
-import { Servicio } from 'client'
+import React from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import YouTube from "react-youtube";
+import colors from "styles/colors";
+import { Servicio } from "client";
 
 interface ProductProps {
-  servicio: Servicio
+  servicio: Servicio;
 }
 const Video = ({ servicio }: ProductProps) => {
-  const video = servicio.video
+  const video = servicio.video;
+  const parseURL = video?.includes("http") ? new URL(video) : null;
+  const videoId = parseURL?.searchParams.get("v");
 
   return video ? (
     <Section space>
       <Container>
         <Media>
-          <YouTube videoId={video} />
+          <YouTube videoId={videoId} />
         </Media>
       </Container>
     </Section>
-  ) : null
-}
+  ) : null;
+};
 
-export default Video
+export default Video;
 
 const Section = styled.section`
   ${container}
   padding: 0;
-`
+`;
 
 const Container = styled.div`
   ${container}
-`
+`;
 
 const Media = styled.div`
   border-radius: 2rem;
@@ -51,7 +53,7 @@ const Media = styled.div`
     border: 4rem solid transparent;
   }
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -64,7 +66,7 @@ const Media = styled.div`
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: 0;
@@ -76,4 +78,4 @@ const Media = styled.div`
     z-index: 2;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
-`
+`;

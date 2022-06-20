@@ -1,11 +1,11 @@
-import React from 'react'
-import styled from '@emotion/styled'
+import React from "react";
+import styled from "@emotion/styled";
 
-import Header from 'components/Header'
-import Footer from 'components/Footer'
+import Header from "components/Header";
+import Footer from "components/Footer";
 
 interface LayoutProps {
-  children?: any
+  children?: any;
 }
 
 const Layout = ({ children }: LayoutProps) => {
@@ -19,19 +19,19 @@ const Layout = ({ children }: LayoutProps) => {
           if (React.isValidElement(child)) {
             return React.cloneElement(child, {
               // ...{ resultsSearch, setResultsSearch },
-            })
+            });
           }
-          return child
+          return child;
         })}
       </Main>
 
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
 
 const Main = styled.main`
   overflow: hidden;
-`
+`;

@@ -1,20 +1,20 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import Image from 'next/image'
-import { h1 } from 'styles/tipography'
-import { InView } from 'react-intersection-observer'
-import { Spring, animated, config } from '@react-spring/web'
-import { sectionAnimation } from 'styles/animations'
-import colors from 'styles/colors'
-import { getStrapiURL } from 'lib/api'
-import Cta from 'components/Cta'
+import React from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import Image from "next/image";
+import { h1 } from "styles/tipography";
+import { InView } from "react-intersection-observer";
+import { Spring, animated, config } from "@react-spring/web";
+import { sectionAnimation } from "styles/animations";
+import colors from "styles/colors";
+import { getStrapiURL } from "lib/api";
+import Cta from "components/Cta";
 
 interface HomeSocioProps {
-  home: any
+  home: any;
 }
 const HomeSocio = ({ home }: HomeSocioProps) => {
-  const razones = home.razones
+  const razones = home.razones;
 
   return home.razones ? (
     <InView threshold={0.3}>
@@ -24,17 +24,15 @@ const HomeSocio = ({ home }: HomeSocioProps) => {
             <Section ref={ref}>
               <animated.div style={styles}>
                 <Container space>
-                  <Media
-                    src={getStrapiURL(razones.imagen.data.attributes.url)}
-                    alt={razones.imagen.data.attributes.alternativeText}
-                    width={1080}
-                    height={1080}
-                    objectFit="contain"
-                    // size="115%"
-                    // sizeMD="90%"
-                    // sizeLG="110%"
-                    // height="auto"
-                  />
+                  <Media>
+                    <Image
+                      src={getStrapiURL(razones.imagen.data.attributes.url)}
+                      alt={razones.imagen.data.attributes.alternativeText}
+                      width={1080}
+                      height={1080}
+                      objectFit="contain"
+                    />
+                  </Media>
                   <Content>
                     <Title>{razones.titulo}</Title>
                     <Description
@@ -49,15 +47,15 @@ const HomeSocio = ({ home }: HomeSocioProps) => {
         </Spring>
       )}
     </InView>
-  ) : null
-}
+  ) : null;
+};
 
-export default HomeSocio
+export default HomeSocio;
 
 const Section = styled.section`
   position: relative;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -74,7 +72,7 @@ const Section = styled.section`
     }
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: 0;
@@ -90,26 +88,26 @@ const Section = styled.section`
       padding-bottom: 10%;
     }
   }
-`
+`;
 
 const Container = styled.div`
   ${container}
   ${mq.lg} {
     display: grid;
-    gap: 5rem;
+    gap: 3rem;
     grid-template-columns: 2fr 3fr;
   }
-`
+`;
 
-const Media = styled(Image)`
+const Media = styled.div`
   max-width: 50rem;
   margin: 0 auto;
   ${mq.lg} {
     margin: 0;
   }
-`
+`;
 
-const Content = styled.div``
+const Content = styled.div``;
 
 const Title = styled.h2`
   text-transform: uppercase;
@@ -120,13 +118,13 @@ const Title = styled.h2`
   ${mq.md} {
     text-align: left;
   }
-`
+`;
 
-const Description = styled.div``
+const Description = styled.div``;
 
 const LinkBox = styled.div`
   text-align: center;
   ${mq.md} {
     text-align: left;
   }
-`
+`;

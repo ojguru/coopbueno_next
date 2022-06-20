@@ -4,8 +4,10 @@ const nextConfig = {
   images: {
     domains: [
       // "[yourapp].wpengine.com" (Update this to be your Wordpress application name in order to load images connected to your posts)
-      'localhost',
-      'certificaciones.uaf.gob.do',
+      "localhost",
+      "certificaciones.uaf.gob.do",
+      "coopbueno.herokuapp.com",
+      "res.cloudinary.com",
     ],
   },
   experimental: {
@@ -15,7 +17,7 @@ const nextConfig = {
         // default is true. It will be disabled when build type is production.
         sourceMap: true,
         // default is 'dev-only'.
-        autoLabel: 'always',
+        autoLabel: "always",
         // default is '[local]'.
         // Allowed values: `[local]` `[filename]` and `[dirname]`
         // This option only works when autoLabel is set to 'dev-only' or 'always'.
@@ -25,6 +27,6 @@ const nextConfig = {
         // labelFormat: string,
       },
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -942,7 +942,7 @@ export const generatedSchema = {
     cta: { __type: "ComponentSharedCta" },
     descripcion: { __type: "String!" },
     id: { __type: "ID!" },
-    imagen: { __type: "UploadFileEntityResponse" },
+    imagen: { __type: "UploadFileEntityResponse!" },
     titulo: { __type: "String!" },
   },
   ComponentSectionsHeroInput: {
@@ -2643,7 +2643,7 @@ export interface ComponentSectionsHero {
   cta?: Maybe<ComponentSharedCta>;
   descripcion: ScalarsEnums["String"];
   id: ScalarsEnums["ID"];
-  imagen?: Maybe<UploadFileEntityResponse>;
+  imagen: UploadFileEntityResponse;
   titulo: ScalarsEnums["String"];
 }
 

@@ -20,18 +20,18 @@ import { PropsWithServerCache } from '@gqty/react'
 type HomeProps = PropsWithServerCache<{}>
 const Home = ({ cacheSnapshot }: HomeProps) => {
   const query = useQuery()
-  const home = query.homepage.data.attributes
+  const home = query.homepage?.data.attributes
   const posts = query.articles({
     pagination: {
       pageSize: 3,
     },
-  }).data
+  })?.data
   const noticias = query.noticias({
     pagination: {
       pageSize: 3,
     },
-  }).data
-  const slides = query.slides().data
+  })?.data
+  const slides = query.slides()?.data
   const servicios = query.servicios({
     pagination: {
       pageSize: 100,
@@ -45,7 +45,7 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
         ],
       },
     },
-  }).data
+  })?.data
 
   useHydrateCache({
     cacheSnapshot,

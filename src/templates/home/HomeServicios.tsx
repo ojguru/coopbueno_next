@@ -9,7 +9,7 @@ import colors from 'styles/colors'
 interface HomeServiciosProps {
   servicios: ServicioEntity[]
 }
-const HomeServicios = ({ servicios }: HomeServiciosProps) => {
+const HomeServicios = ({ servicios=[] }: HomeServiciosProps) => {
   const mainItems = Object.values(ENUM_SERVICIO_TIPO)
     .filter((item) => item !== 'beneficios')
     .reverse()

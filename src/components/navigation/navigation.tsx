@@ -28,7 +28,7 @@ const Navigation = ({
   borderColor,
   ...props
 }: NavigationProps) => {
-  return (
+  return items.length?(
     <Menu {...props}>
       <Container split={split}>
         {!split ? (
@@ -65,7 +65,7 @@ const Navigation = ({
         )}
       </Container>
     </Menu>
-  )
+  ):null
 }
 
 export default Navigation

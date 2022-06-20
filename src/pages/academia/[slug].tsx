@@ -22,13 +22,13 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     },
   })?.data
 
-  const categoria = articuloEntidad.attributes.category.data.attributes
+  const categoria = articuloEntidad.attributes.category.data?.attributes
 
   const relacionados = query.articles({
     filters: {
       category: {
         slug: {
-          eq: categoria.slug,
+          eq: categoria?.slug,
         },
       },
       slug: {
