@@ -1,21 +1,21 @@
-import React from 'react'
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
-import Categorias from './ArticuloCategorias'
-import Meta from './ArticuloMeta'
-import { container, mq } from 'components/grid'
-import Image from 'next/image'
-import { ArticleEntity } from 'client'
-import { getStrapiURL } from 'lib/api'
+import React from "react";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import Categorias from "./ArticuloCategorias";
+import Meta from "./ArticuloMeta";
+import { container, mq } from "components/grid";
+import Image from "next/image";
+import { ArticleEntity } from "client";
+import { getStrapiURL } from "lib/api";
 
 interface ArticuloBodyProps {
-  articulo: ArticleEntity
+  articulo: ArticleEntity;
 }
 const ArticuloBody = ({ articulo }: ArticuloBodyProps) => {
-  const post = articulo.attributes
-  const imagen = post.image.data.attributes
+  const post = articulo.attributes;
+  const imagen = post.image.data.attributes;
 
-  const categorias = [post.category?.data]
+  const categorias = [post.category?.data];
 
   return articulo ? (
     <Article>
@@ -47,10 +47,10 @@ const ArticuloBody = ({ articulo }: ArticuloBodyProps) => {
         <Content dangerouslySetInnerHTML={{ __html: post.content }} />
       </InfoContainer>
     </Article>
-  ) : null
-}
+  ) : null;
+};
 
-export default ArticuloBody
+export default ArticuloBody;
 
 const Article = styled.article`
   display: grid;
@@ -58,9 +58,9 @@ const Article = styled.article`
   ${mq.lg} {
     grid-template-columns: 1fr 1fr;
   }
-`
+`;
 
-const MediaContainer = styled.div``
+const MediaContainer = styled.div``;
 
 const Media = styled.div`
   display: grid;
@@ -73,11 +73,11 @@ const Media = styled.div`
     height: 100%;
     z-index: -1;
   }
-`
+`;
 
 const InfoContainer = styled.div`
   ${container}
-  ${({ maxWidth = '70rem' }) => css`
+  ${({ maxWidth = "70rem" }) => css`
     margin-left: auto;
     margin-right: auto;
     ${mq.lg} {
@@ -88,7 +88,7 @@ const InfoContainer = styled.div`
       padding: 0 4rem;
     }
   `}
-`
+`;
 
 const Header = styled.div`
   background-color: #fff;
@@ -98,7 +98,7 @@ const Header = styled.div`
     padding-top: 2rem;
     padding-bottom: 6rem;
   }
-`
+`;
 
 const PostTitle = styled.h1`
   text-align: center;
@@ -106,6 +106,6 @@ const PostTitle = styled.h1`
   ${mq.lg} {
     text-align: left;
   }
-`
+`;
 
-const Content = styled.div``
+const Content = styled.div``;
