@@ -1,43 +1,41 @@
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL
+const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
 
 export async function fetchAPI(
   query: string,
-  { variables }: any,
+  { variables }: any
 ): Promise<any> {
-  const headers = { 'Content-Type': 'application/json' }
+  const headers = { "Content-Type": "application/json" };
 
   // if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
   //   headers[
   //     'Authorization'
   //   ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
   // }
-  console.log(API_URL)
-  const res = await fetch(API_URL + '/graphql', {
-    method: 'POST',
+  const res = await fetch(API_URL + "/graphql", {
+    method: "POST",
     headers,
     body: JSON.stringify({
       query,
       variables,
     }),
-  })
+  });
 
-  const json = await res.json()
+  const json = await res.json();
   if (json.errors) {
-    console.error(json.errors)
-    throw new Error('Failed to fetch API')
+    console.error(json.errors);
+    throw new Error("Failed to fetch API");
   }
-  return json.data
+  return json.data;
 }
 
-export function getStrapiURL(path = '') {
+export function getStrapiURL(path = "") {
+  const isExternal = path.includes("http");
 
-  const isExternal = path.includes('http')
-
-  if(isExternal){
-    return path
+  if (isExternal) {
+    return path;
   }
 
   return `${
-    process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
-  }${path}`
+    process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"
+  }${path}`;
 }

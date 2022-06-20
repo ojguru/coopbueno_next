@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import styled from '@emotion/styled'
-import HubspotForm from 'react-hubspot-form'
-import Loading from 'components/loading'
-import { HUBSPOT_ID } from 'lib/constants'
-import { ComponentGeneralFormulario } from 'client'
+import React, { useEffect, useState } from "react";
+import styled from "@emotion/styled";
+import HubspotForm from "react-hubspot-form";
+import Loading from "components/loading";
+import { HUBSPOT_ID } from "lib/constants";
+import { ComponentGeneralFormulario } from "client";
 
 interface FormularioProps {
-  formulario: ComponentGeneralFormulario
+  formulario: ComponentGeneralFormulario;
 }
 const Formulario = ({ formulario }: FormularioProps) => {
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setLoaded(true)
-  }, [])
-
-  console.log(formulario.formId)
+    setLoaded(true);
+  }, []);
 
   return loaded ? (
     <Form>
@@ -30,21 +28,21 @@ const Formulario = ({ formulario }: FormularioProps) => {
     </Form>
   ) : (
     <Loading />
-  )
-}
+  );
+};
 
-export default Formulario
+export default Formulario;
 
-const Form = styled.section``
+const Form = styled.section``;
 
 const FormHeader = styled.h4`
   margin: 0;
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
-`
+`;
 
 const FormBody = styled.div`
   background-color: white;
   padding: 15px;
-`
+`;
