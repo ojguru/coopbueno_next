@@ -1,26 +1,26 @@
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import { mq } from 'components/grid'
-import container, { mwLG, mwXL, gap } from 'components/grid/container'
-import Link from 'next/link'
-import Image from 'next/image'
-import colors from 'styles/colors'
-import { h6 } from 'styles/tipography'
-import cta from 'styles/cta'
-import Cta from 'components/Cta'
-import { getStrapiURL } from 'lib/api'
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { mq } from "components/grid";
+import container, { mwLG, mwXL, gap } from "components/grid/container";
+import Link from "next/link";
+import Image from "next/image";
+import colors from "styles/colors";
+import { h6 } from "styles/tipography";
+import cta from "styles/cta";
+import Cta from "components/Cta";
+import { getImageURL } from "lib/api";
 
 interface HomeCoverProps {
-  portada: any
+  portada: any;
 }
 const HomeCover = ({ portada }: HomeCoverProps) => {
-  const imagen = portada.imagen?.data?.attributes.url
+  const imagen = portada.imagen?.data?.attributes.url;
 
   return (
     <Cover as="section" fluid spaceBottom>
       <ImageContainer>
         <Image
-          src={getStrapiURL(imagen)}
+          src={getImageURL(imagen)}
           width={1920}
           height={1080}
           priority
@@ -38,10 +38,10 @@ const HomeCover = ({ portada }: HomeCoverProps) => {
         </LinkBox>
       </Content>
     </Cover>
-  )
-}
+  );
+};
 
-export default HomeCover
+export default HomeCover;
 
 const Cover = styled.section`
   ${container}
@@ -55,7 +55,7 @@ const Cover = styled.section`
   ${mq.xl} {
     max-width: ${mwXL};
   }
-`
+`;
 
 const ImageContainer = styled.div`
   position: relative;
@@ -69,7 +69,7 @@ const ImageContainer = styled.div`
   ${mq.xl} {
     min-width: 130rem;
   }
-`
+`;
 
 const Content = styled.div`
   padding-top: 2rem;
@@ -82,7 +82,7 @@ const Content = styled.div`
     padding-bottom: 15rem;
     text-align: left;
   }
-`
+`;
 
 const Title = styled.h2`
   text-shadow: 1px 1px 2px ${colors.shadow.dark};
@@ -106,18 +106,18 @@ const Title = styled.h2`
   ${mq.xl} {
     font-size: 5rem;
   }
-`
+`;
 
 const Copy = styled.p`
   margin-bottom: 40px;
   text-align: inherit;
   ${h6}
-`
+`;
 
 const LinkBox = styled.div`
   text-align: inherit;
-`
+`;
 
 const Button = styled.button`
   ${cta}
-`
+`;

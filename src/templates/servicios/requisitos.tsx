@@ -1,21 +1,21 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import { h1 } from '../../styles/tipography'
-import { Servicio } from 'client'
-import colors from 'styles/colors'
+import React from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import { h1 } from "../../styles/tipography";
+import { Servicio } from "client";
+import colors from "styles/colors";
 
 interface RequisitosProps {
-  servicio: Servicio
+  servicio: Servicio;
 }
 const Requirements = ({ servicio }: RequisitosProps) => {
   const requisitos = servicio?.requisitos({
     pagination: {
       pageSize: 100,
     },
-  })
+  });
 
-  return requisitos.length ? (
+  return requisitos?.length ? (
     <Section space itemScope itemType="https://schema.org/ItemList">
       <Title itemProp="name">REQUISITOS</Title>
       <RequirementsBox>
@@ -23,27 +23,27 @@ const Requirements = ({ servicio }: RequisitosProps) => {
           {requisitos.map((item, index) => {
             return (
               <Requirement key={index} itemProp="itemListElement">
-                {item.requisito}
+                {item?.requisito}
               </Requirement>
-            )
+            );
           })}
         </RequirementsList>
       </RequirementsBox>
     </Section>
-  ) : null
-}
+  ) : null;
+};
 
-export default Requirements
+export default Requirements;
 
 const Section = styled.section`
   ${container}
-`
+`;
 
 const Title = styled.h2`
   text-align: left;
   text-transform: uppercase;
   ${h1}
-`
+`;
 
 const RequirementsList = styled.ul`
   padding: 0;
@@ -56,7 +56,7 @@ const RequirementsList = styled.ul`
   ${mq.lg} {
     grid-template-columns: 1fr 1fr 1fr;
   }
-`
+`;
 
 const Requirement = styled.li`
   margin-bottom: 1rem;
@@ -64,7 +64,7 @@ const Requirement = styled.li`
   ${mq.md} {
     text-align: left;
   }
-`
+`;
 
 const RequirementsBox = styled.div`
   padding: 2.5rem 1.5rem;
@@ -75,7 +75,7 @@ const RequirementsBox = styled.div`
     border-radius: 2.5rem;
   }
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -85,4 +85,4 @@ const RequirementsBox = styled.div`
     opacity: 0.15;
     border-radius: 2.5rem;
   }
-`
+`;

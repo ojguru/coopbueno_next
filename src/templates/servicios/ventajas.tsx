@@ -1,43 +1,43 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import { h1 } from 'styles/tipography'
-import { Servicio } from 'client'
+import React from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import { h1 } from "styles/tipography";
+import { Servicio } from "client";
 
 interface VentajasProps {
-  servicio: Servicio
+  servicio: Servicio;
 }
 const Ventajas = ({ servicio }: VentajasProps) => {
-  const ventajas = servicio.ventajas()
+  const ventajas = servicio.ventajas();
 
-  return ventajas.length ? (
+  return ventajas?.length ? (
     <Section>
       <Container itemScope itemType="https://schema.org/ItemList">
         <Title itemProp="name">VENTAJAS</Title>
         <RequirementsList>
           {ventajas.map((item, index) => {
-            const ventaja = item.ventaja
+            const ventaja = item?.ventaja;
             return (
               <Requirement key={index} itemProp="itemListElement">
                 {ventaja}
               </Requirement>
-            )
+            );
           })}
         </RequirementsList>
       </Container>
     </Section>
-  ) : null
-}
+  ) : null;
+};
 
-export default Ventajas
+export default Ventajas;
 
-const Section = styled.section``
+const Section = styled.section``;
 
 const Container = styled.div`
   ${container}
   display: grid;
   gap: 1.5rem 3rem;
-`
+`;
 
 const Title = styled.h2`
   text-align: center;
@@ -46,7 +46,7 @@ const Title = styled.h2`
   ${mq.md} {
     grid-column: 1 / span 2;
   }
-`
+`;
 
 const RequirementsList = styled.ul`
   padding: 0;
@@ -57,6 +57,6 @@ const RequirementsList = styled.ul`
   ${mq.md} {
     grid-template-columns: 1fr 1fr;
   }
-`
+`;
 
-const Requirement = styled.li``
+const Requirement = styled.li``;

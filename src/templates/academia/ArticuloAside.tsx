@@ -1,15 +1,15 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { FacebookProvider, Comments } from "react-facebook";
+// import { FacebookProvider, Comments } from "react-facebook";
 import React, { useEffect, useState } from "react";
 import PostItem from "./post-item";
 import { container, mq } from "components/grid";
-import HubspotForm from "react-hubspot-form";
+// import HubspotForm from "react-hubspot-form";
 import Loading from "components/loading";
 import { ArticleEntity } from "client";
 
 interface ArticuloAsideProps {
-  articulo: ArticleEntity;
+  articulo: ArticleEntity | undefined;
   relacionados?: ArticleEntity[];
 }
 const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
@@ -27,11 +27,11 @@ const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
                 que actualicemos sobre vida financiera.
               </p>
               <Form>
-                <HubspotForm
+                {/* <HubspotForm
                   portalId={5494710}
                   formId="bf21c6d7-45e0-48e4-8c07-37e1c9efa554"
                   loading={<Loading />}
-                />
+                /> */}
               </Form>
             </BlockBody>
           </Block>
@@ -49,11 +49,11 @@ const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
         <AsideSection as="div">
           <Block>
             <SectionTitle>Comentarios</SectionTitle>
-            <FacebookProvider appId="709986282911816">
+            {/* <FacebookProvider appId="709986282911816">
               <Comments
                 href={`https://coopbueno.com.do/academia/${articulo.attributes.slug}`}
               />
-            </FacebookProvider>
+            </FacebookProvider> */}
           </Block>
         </AsideSection>
         {relacionados.length ? (

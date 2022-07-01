@@ -1,12 +1,12 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import ScreenReaderText from 'styles/screen-reader'
-import Link from 'next/link'
-import { mq } from 'components/grid'
-import { CategoryEntity } from 'client'
+import React from "react";
+import styled from "@emotion/styled";
+import ScreenReaderText from "styles/screen-reader";
+import Link from "next/link";
+import { mq } from "components/grid";
+import { CategoryEntity } from "client";
 
 interface ArticuloCategoriasProps {
-  categorias: CategoryEntity[]
+  categorias: CategoryEntity[];
 }
 
 const ArticuloCategorias = ({ categorias }: ArticuloCategoriasProps) => {
@@ -16,23 +16,23 @@ const ArticuloCategorias = ({ categorias }: ArticuloCategoriasProps) => {
 
       <EntryCategoriesInner>
         {categorias.map((item, index) => {
-          const categoria = item.attributes
+          const categoria = item.attributes;
 
-          return (
+          return categoria ? (
             <CategoryTag
               key={index}
               href={`/academia/categoria/${categoria.slug}`}
             >
               {categoria.name}
             </CategoryTag>
-          )
+          ) : null;
         })}
       </EntryCategoriesInner>
     </EntryCategories>
-  )
-}
+  );
+};
 
-export default ArticuloCategorias
+export default ArticuloCategorias;
 
 const EntryCategories = styled.div`
   line-height: 1.25;
@@ -41,7 +41,7 @@ const EntryCategories = styled.div`
   ${mq.md} {
     margin-bottom: 3rem;
   }
-`
+`;
 
 const EntryCategoriesInner = styled.div`
   justify-content: center;
@@ -52,7 +52,7 @@ const EntryCategoriesInner = styled.div`
   ${mq.md} {
     margin: -1rem 0 0 -2rem;
   }
-`
+`;
 
 const CategoryTag = styled(Link)`
   border-bottom: 0.15rem solid currentColor;
@@ -72,4 +72,4 @@ const CategoryTag = styled(Link)`
   :hover {
     border-bottom-color: transparent;
   }
-`
+`;

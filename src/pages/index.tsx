@@ -1,37 +1,41 @@
-import Head from 'next/head'
-import HomeCover from 'templates/home/HomeCover'
-import HomeAcademy from 'templates/home/HomeAcademy'
-import HomeNews from 'templates/home/HomeNews'
-import HomeSocio from 'templates/home/HomeSocio'
-import HomePromo from 'templates/home/HomePromo'
-import HomeSlider from 'templates/home/HomeSlider'
-import HomeServicios from 'templates/home/HomeServicios'
-import { GetStaticProps } from 'next'
-import Layout from 'components/Layout'
+import Head from "next/head";
+import HomeCover from "templates/home/HomeCover";
+import HomeAcademy from "templates/home/HomeAcademy";
+import HomeNews from "templates/home/HomeNews";
+import HomeSocio from "templates/home/HomeSocio";
+import HomePromo from "templates/home/HomePromo";
+import HomeSlider from "templates/home/HomeSlider";
+import HomeServicios from "templates/home/HomeServicios";
+import { GetStaticProps } from "next";
+import Layout from "components/Layout";
 
 import {
   useQuery,
   prepareReactRender,
   useHydrateCache,
   ENUM_SERVICIO_CATEGORIA,
-} from 'client'
-import { PropsWithServerCache } from '@gqty/react'
+} from "client";
+import { PropsWithServerCache } from "@gqty/react";
 
-type HomeProps = PropsWithServerCache<{}>
+type HomeProps = PropsWithServerCache<{}>;
 const Home = ({ cacheSnapshot }: HomeProps) => {
-  const query = useQuery()
-  const home = query.homepage?.data.attributes
+  useHydrateCache({
+    cacheSnapshot,
+  });
+
+  const query = useQuery();
+  const home = query?.homepage?.data?.attributes;
   const posts = query.articles({
     pagination: {
       pageSize: 3,
     },
-  })?.data
+  })?.data;
   const noticias = query.noticias({
     pagination: {
       pageSize: 3,
     },
-  })?.data
-  const slides = query.slides()?.data
+  })?.data;
+  const slides = query.slides()?.data;
   const servicios = query.servicios({
     pagination: {
       pageSize: 100,
@@ -45,11 +49,7 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
         ],
       },
     },
-  })?.data
-
-  useHydrateCache({
-    cacheSnapshot,
-  })
+  })?.data;
 
   return (
     <div>
@@ -69,15 +69,15 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
         <HomePromo {...{ home }} />
       </Layout>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
-export const getStaticProps: GetStaticProps<HomeProps> = async (_ctx) => {
-  const { cacheSnapshot } = await prepareReactRender(<Home />)
+export const getStaticProps: GetStaticProps<HomeProps> = async (_ctx: any) => {
+  const { cacheSnapshot } = await prepareReactRender(<Home />);
 
   return {
     props: { cacheSnapshot },
-  }
-}
+  };
+};

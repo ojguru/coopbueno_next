@@ -6,24 +6,24 @@ import Meta from "./ArticuloMeta";
 import { container, mq } from "components/grid";
 import Image from "next/image";
 import { ArticleEntity } from "client";
-import { getStrapiURL } from "lib/api";
+import { getImageURL } from "lib/api";
 
 interface ArticuloBodyProps {
-  articulo: ArticleEntity;
+  articulo: ArticleEntity | undefined;
 }
 const ArticuloBody = ({ articulo }: ArticuloBodyProps) => {
-  const post = articulo.attributes;
-  const imagen = post.image.data.attributes;
+  const post = articulo?.attributes;
+  const imagen = post?.image?.data?.attributes;
 
-  const categorias = [post.category?.data];
+  const categorias = [post?.category?.data];
 
-  return articulo ? (
+  return post ? (
     <Article>
       <MediaContainer>
         <Media>
           <Image
-            src={getStrapiURL(imagen.url)}
-            alt={post.title}
+            src={getImageURL(imagen?.url)}
+            alt={post?.title}
             width={1920}
             height={1080}
             objectFit="cover"
@@ -38,13 +38,13 @@ const ArticuloBody = ({ articulo }: ArticuloBodyProps) => {
           <PostTitle
             as="h1"
             className="heading-size-1"
-            dangerouslySetInnerHTML={{ __html: post.title }}
+            dangerouslySetInnerHTML={{ __html: post?.title || "" }}
           />
 
           {/* The post's metadata like author, publish date, and comments */}
           <Meta articulo={post} />
         </Header>
-        <Content dangerouslySetInnerHTML={{ __html: post.content }} />
+        <Content dangerouslySetInnerHTML={{ __html: post?.content || "" }} />
       </InfoContainer>
     </Article>
   ) : null;

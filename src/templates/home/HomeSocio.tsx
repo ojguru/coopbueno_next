@@ -7,7 +7,7 @@ import { InView } from "react-intersection-observer";
 import { Spring, animated, config } from "@react-spring/web";
 import { sectionAnimation } from "styles/animations";
 import colors from "styles/colors";
-import { getStrapiURL } from "lib/api";
+import { getImageURL } from "lib/api";
 import Cta from "components/Cta";
 
 interface HomeSocioProps {
@@ -26,7 +26,7 @@ const HomeSocio = ({ home }: HomeSocioProps) => {
                 <Container space>
                   <Media>
                     <Image
-                      src={getStrapiURL(razones.imagen.data.attributes.url)}
+                      src={getImageURL(razones.imagen.data.attributes.url)}
                       alt={razones.imagen.data.attributes.alternativeText}
                       width={1080}
                       height={1080}

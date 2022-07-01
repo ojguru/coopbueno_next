@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import HubspotForm from 'react-hubspot-form'
-import Loading from 'components/loading'
-import FeaturedMedia from 'next/image'
-import colors from 'styles/colors'
-import imagen from '../../../public/contacto.png'
+import React, { useState, useEffect } from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+// import HubspotForm from "react-hubspot-form";
+import Loading from "components/loading";
+import FeaturedMedia from "next/image";
+import colors from "styles/colors";
+import imagen from "../../../public/contacto.png";
 
 const Portada = () => {
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setLoaded(true)
-  }, [])
+    setLoaded(true);
+  }, []);
   return (
     <>
       <StyledSection space>
@@ -25,7 +25,7 @@ const Portada = () => {
             <FeaturedMedia src={imagen} alt="Contacto Coopbueno" priority />
           </ContactImage>
           <ContactForm>
-            {loaded ? (
+            {/* {loaded ? (
               <HubspotForm
                 portalId="5494710"
                 formId="862702b9-c601-459d-82ac-f51aa43ebbe6"
@@ -33,20 +33,20 @@ const Portada = () => {
               />
             ) : (
               <Loading />
-            )}
+            )} */}
           </ContactForm>
         </Container>
       </StyledSection>
     </>
-  )
-}
+  );
+};
 
-export default Portada
+export default Portada;
 
 const StyledSection = styled.section`
   ${container}
   padding: 0;
-`
+`;
 
 const Container = styled.div`
   ${container}
@@ -56,16 +56,16 @@ const Container = styled.div`
   ${mq.lg} {
     grid-template-columns: 1fr 1fr;
   }
-`
+`;
 
 const Header = styled.div`
   ${container}
-`
+`;
 
 const ContactImage = styled.div`
   margin-bottom: 4rem;
   min-height: 100%;
-`
+`;
 
 const ContactForm = styled.div`
   box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.15);
@@ -80,7 +80,7 @@ const ContactForm = styled.div`
     padding: 2rem 2rem;
   }
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     right: 0;
@@ -93,7 +93,7 @@ const ContactForm = styled.div`
     z-index: -1;
     opacity: 0.4;
   }
-`
+`;
 
 const Deco = styled.div`
   position: absolute;
@@ -109,7 +109,7 @@ const Deco = styled.div`
   opacity: 0.7;
   transform: translate(-50%, 0) rotate(30deg);
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: 20%;
@@ -119,7 +119,7 @@ const Deco = styled.div`
     border-radius: 50%;
     transform: translate(0, -50%);
   }
-`
+`;
 
 const Title = styled.h1`
   text-transform: uppercase;
@@ -129,4 +129,4 @@ const Title = styled.h1`
   ${mq.md} {
     margin-bottom: 5rem;
   }
-`
+`;

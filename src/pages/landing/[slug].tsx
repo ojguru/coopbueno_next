@@ -1,38 +1,40 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import Image from 'next/image'
-import colors from 'styles/colors'
+import React from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import Image from "next/image";
+import colors from "styles/colors";
 
-import Lista from 'components/Lista'
-import Formulario from 'components/Formulario'
+import Lista from "components/Lista";
+import Formulario from "components/Formulario";
 
-import { GetStaticProps } from 'next'
-import { useQuery, prepareReactRender, useHydrateCache } from 'client'
-import { PropsWithServerCache } from '@gqty/react'
-import { getStrapiURL } from 'lib/api'
-import Layout from 'components/Layout'
+import { GetStaticProps } from "next";
+import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import { PropsWithServerCache } from "@gqty/react";
+import { getImageURL } from "lib/api";
+import Layout from "components/Layout";
 
 type PageProps = PropsWithServerCache<{
-  slug: string
-}>
+  slug: string;
+}>;
 const Page = ({ cacheSnapshot, slug }: PageProps) => {
-  const query = useQuery()
-  const [landing] = query.landings({
+  useHydrateCache({
+    cacheSnapshot,
+  });
+
+  const query = useQuery();
+  const landing = query.landings({
     filters: {
       slug: {
         eq: slug,
       },
     },
-  })?.data
+  })?.data[0];
 
-  const page = landing.attributes
-  const formulario = page.formulario
-  const contenido = page.contenido.map((item) => item.$on.ComponentGeneralLista)
-
-  useHydrateCache({
-    cacheSnapshot,
-  })
+  const page = landing?.attributes;
+  const formulario = page?.formulario;
+  const contenido = page?.contenido?.map(
+    (item) => item?.$on.ComponentGeneralLista
+  );
 
   return page ? (
     <Layout>
@@ -42,7 +44,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
             <PageTitle>{page?.titular}</PageTitle>
             <p>{page.copy}</p>
             <Image
-              src={getStrapiURL(page.imagen.data.attributes.url)}
+              src={getImageURL(page?.imagen?.data?.attributes?.url)}
               alt={page.titular}
               width={1080}
               height={1080}
@@ -54,46 +56,46 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
               <Formulario formulario={formulario} />
             </LandingForm>
           </FormWrapper>
-          {contenido.length
+          {contenido?.length
             ? contenido.map((component, index) => {
-                if (component.__typename === 'ComponentGeneralLista') {
-                  return <Lista lista={component} key={index} />
+                if (component?.__typename === "ComponentGeneralLista") {
+                  return <Lista lista={component} key={index} />;
                 }
-                return null
+                return null;
               })
             : null}
         </Container>
         <Deco />
       </Article>
     </Layout>
-  ) : null
-}
+  ) : null;
+};
 
-export default Page
+export default Page;
 
-export const getStaticProps: GetStaticProps<PageProps> = async (_ctx) => {
-  const slug = _ctx.params.slug.toString()
-  const { cacheSnapshot } = await prepareReactRender(<Page slug={slug} />)
+export const getStaticProps: GetStaticProps<PageProps> = async (_ctx: any) => {
+  const slug = _ctx.params.slug.toString();
+  const { cacheSnapshot } = await prepareReactRender(<Page slug={slug} />);
 
   return {
     props: {
       cacheSnapshot,
       slug,
     },
-  }
-}
+  };
+};
 
 export function getStaticPaths() {
   return {
     paths: [],
-    fallback: 'blocking',
-  }
+    fallback: "blocking",
+  };
 }
 
 const Article = styled.article`
   ${container}
   padding: 0;
-`
+`;
 
 const Container = styled.div`
   ${container}
@@ -102,13 +104,13 @@ const Container = styled.div`
   ${mq.lg} {
     grid-template-columns: 1fr 1fr;
   }
-`
+`;
 
-const Header = styled.header``
+const Header = styled.header``;
 
 const PageTitle = styled.h1`
   text-transform: uppercase;
-`
+`;
 
 const FormWrapper = styled.section`
   position: relative;
@@ -116,7 +118,7 @@ const FormWrapper = styled.section`
   ${mq.lg} {
     order: initial;
   }
-`
+`;
 
 const LandingForm = styled.div`
   box-shadow: 0 1.5rem 2.5rem #75c15133;
@@ -127,7 +129,7 @@ const LandingForm = styled.div`
   padding: 10%;
   position: relative;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 20%;
     top: 0;
@@ -140,7 +142,7 @@ const LandingForm = styled.div`
     border-radius: 10%;
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     right: 0;
     bottom: 0;
@@ -152,7 +154,7 @@ const LandingForm = styled.div`
     z-index: -1;
     border-radius: 10%;
   }
-`
+`;
 
 const Deco = styled.div`
   position: absolute;
@@ -165,7 +167,7 @@ const Deco = styled.div`
   transform: translate(80%, -30%) rotate(-35deg);
   z-index: -1;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 8%;
     top: 0;
@@ -176,7 +178,7 @@ const Deco = styled.div`
     transform: translate(0, -50%);
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     left: 15%;
     top: 22%;
@@ -186,4 +188,4 @@ const Deco = styled.div`
     background-color: ${colors.primary.light};
     box-shadow: -0.5rem 0.5rem 2.5rem ${colors.primary.light};
   }
-`
+`;

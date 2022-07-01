@@ -1,10 +1,10 @@
-import * as React from 'react'
-import styled from '@emotion/styled'
-import { mq } from 'components/grid'
-import { ComponentGeneralLista } from 'client'
+import * as React from "react";
+import styled from "@emotion/styled";
+import { mq } from "components/grid";
+import { ComponentGeneralLista } from "client";
 
 interface ListaProps {
-  lista: ComponentGeneralLista
+  lista: ComponentGeneralLista;
 }
 const Lista = ({ lista }: ListaProps) => {
   return (
@@ -12,25 +12,25 @@ const Lista = ({ lista }: ListaProps) => {
       <Title>{lista.titulo}</Title>
       <List>
         {lista.items().map((benefit, index) => {
-          return <Item key={index}>{benefit.texto}</Item>
+          return <Item key={index}>{benefit?.texto}</Item>;
         })}
       </List>
     </Section>
-  )
-}
+  );
+};
 
-export default Lista
+export default Lista;
 
 const Title = styled.h2`
   text-transform: uppercase;
   text-align: center;
-`
+`;
 
 const Section = styled.section`
   ${mq.lg} {
     grid-column: 1 / span 2;
   }
-`
+`;
 
 const List = styled.ul`
   display: grid;
@@ -40,6 +40,6 @@ const List = styled.ul`
   ${mq.lg} {
     grid-template-columns: 1fr 1fr;
   }
-`
+`;
 
-const Item = styled.li``
+const Item = styled.li``;

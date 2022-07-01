@@ -1,22 +1,22 @@
-import styled from '@emotion/styled'
-import React from 'react'
-import Post from 'templates/noticias/post-item'
-import { container, mq } from 'components/grid'
-import ArchiveHeader from 'templates/noticias/archive-header'
+import styled from "@emotion/styled";
+import React from "react";
+import Post from "templates/noticias/post-item";
+import { container, mq } from "components/grid";
+import ArchiveHeader from "templates/noticias/archive-header";
 // import Pagination from '../archive-pagination'
 // import Navigation from 'templates/noticias/archive-navigation'
-import Link from 'next/link'
+import Link from "next/link";
 
 // import { CardActions } from "@material-ui/core";
-import colors from 'styles/colors'
+import colors from "styles/colors";
 
-import { CategoryEntity, NoticiaEntity } from 'client'
+import { CategoryEntity, NoticiaEntity } from "client";
 
 interface ArchivoProps {
-  titulo: string
-  descripcion?: string
+  titulo: string;
+  descripcion?: string;
   // categorias: CategoryEntity[]
-  articulos: NoticiaEntity[]
+  articulos?: NoticiaEntity[];
 }
 const Archivo = ({
   titulo,
@@ -39,51 +39,51 @@ const Archivo = ({
           <MPost>
             {/* Iterate over the items of the list. */}
             {articulos.map((props, index) => {
-              const articuloEntidad = articulos[index]
-              const articulo = articuloEntidad.attributes
-              const isFirstItem = index === 0
-              const isMainItem = index <= 3
+              const articuloEntidad = articulos[index];
+              const articulo = articuloEntidad.attributes;
+              const isFirstItem = index === 0;
+              const isMainItem = index <= 3;
               // Render one Item component for each one.
-              return isFirstItem ? (
+              return isFirstItem && articulo ? (
                 <APost key={index}>
                   <Post articulo={articulo} {...{ isMainItem, isFirstItem }} />
                 </APost>
-              ) : null
+              ) : null;
             })}
           </MPost>
           <SPost>
             {/* Iterate over the items of the list. */}
             {articulos.map((props, index) => {
-              const articuloEntidad = articulos[index]
-              const articulo = articuloEntidad.attributes
-              const isFirstItem = index === 0
-              const isMainItem = index <= 3
+              const articuloEntidad = articulos[index];
+              const articulo = articuloEntidad.attributes;
+              const isFirstItem = index === 0;
+              const isMainItem = index <= 3;
               // Render one Item component for each one.
-              return isMainItem && !isFirstItem ? (
+              return articulo && isMainItem && !isFirstItem ? (
                 <APost key={index}>
                   <Post articulo={articulo} {...{ isMainItem, isFirstItem }} />
                 </APost>
-              ) : null
+              ) : null;
             })}
           </SPost>
           <Secondary>
             {/* Iterate over the items of the list. */}
             {articulos.map((props, index) => {
-              const articuloEntidad = articulos[index]
-              const articulo = articuloEntidad.attributes
-              const isMainItem = index <= 3
-              const isWideItem = false
-              const rightDeco = (index + 1) % 24 == 0
-              const leftDeco = (index + 2) % 12 == 0
+              const articuloEntidad = articulos[index];
+              const articulo = articuloEntidad.attributes;
+              const isMainItem = index <= 3;
+              const isWideItem = false;
+              const rightDeco = (index + 1) % 24 == 0;
+              const leftDeco = (index + 2) % 12 == 0;
               // Render one Item component for each one.
-              return !isMainItem ? (
+              return !isMainItem && articulo ? (
                 <APost key={index}>
                   <Post
                     articulo={articulo}
                     {...{ isWideItem, leftDeco, rightDeco }}
                   />
                 </APost>
-              ) : null
+              ) : null;
             })}
           </Secondary>
         </Main>
@@ -91,14 +91,14 @@ const Archivo = ({
 
       {/* {data.totalPages > 1 && <Pagination size="thin" />} */}
     </>
-  )
-}
+  );
+};
 
-export default Archivo
+export default Archivo;
 
 const Header = styled.section`
   ${container}
-`
+`;
 
 const Main = styled.div`
   ${container}
@@ -107,7 +107,7 @@ const Main = styled.div`
   ${mq.lg} {
     grid-template-columns: 1fr 1fr;
   }
-`
+`;
 
 const Secondary = styled.div`
   display: grid;
@@ -122,13 +122,13 @@ const Secondary = styled.div`
     grid-column: 1 / span 2;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-`
+`;
 
-const MPost = styled.div``
+const MPost = styled.div``;
 
-const SPost = styled.div``
+const SPost = styled.div``;
 
-const APost = styled.div``
+const APost = styled.div``;
 
 const SectionImage = styled.div`
   max-width: 20rem;
@@ -142,4 +142,4 @@ const SectionImage = styled.div`
   ${mq.lg} {
     max-width: 35rem;
   }
-`
+`;

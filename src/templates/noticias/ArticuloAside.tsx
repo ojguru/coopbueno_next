@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { FacebookProvider, Comments } from "react-facebook";
+// import { FacebookProvider, Comments } from "react-facebook";
 import React from "react";
 import PostItem from "./post-item";
 import { container, mq } from "components/grid";
@@ -8,7 +8,7 @@ import { NoticiaEntity, ComponentGeneralFormulario } from "client";
 import Formulario from "components/Formulario";
 
 interface ArticuloAsideProps {
-  articulo: NoticiaEntity;
+  articulo?: NoticiaEntity;
   relacionados?: NoticiaEntity[];
 }
 const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
@@ -18,7 +18,7 @@ const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
     formId: "bf21c6d7-45e0-48e4-8c07-37e1c9efa554",
   };
 
-  return true ? (
+  return articulo ? (
     <Aside>
       <Container space small>
         {/* FORMULARIO DE SUBSCRIPCIÓN A NEWSLETTER */}
@@ -49,11 +49,11 @@ const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
         <AsideSection as="div">
           <Block>
             <SectionTitle>Comentarios</SectionTitle>
-            <FacebookProvider appId="709986282911816">
+            {/* <FacebookProvider appId="709986282911816">
               <Comments
                 href={`https://coopbueno.com.do/noticias/${articulo.attributes.slug}`}
               />
-            </FacebookProvider>
+            </FacebookProvider> */}
           </Block>
         </AsideSection>
         {relacionados.length ? (
@@ -62,7 +62,7 @@ const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
             {relacionados.map((item, index) => {
               const post = item.attributes;
 
-              return <PostItem key={index} articulo={post} />;
+              return post ? <PostItem key={index} articulo={post} /> : null;
             })}
           </Related>
         ) : null}

@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import { animated, Spring, config } from '@react-spring/web'
-import Link from 'next/link'
-import NavList from './nav-list'
-import { LeftArrowIcon } from '../icons'
-import colors from 'styles/colors'
-import { mq } from 'components/grid'
-import { MenuItem } from 'lib/auxiliar'
+import React, { useState } from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { animated, Spring, config } from "@react-spring/web";
+import Link from "next/link";
+import NavList from "./nav-list";
+import { LeftArrowIcon } from "../icons";
+import colors from "styles/colors";
+import { mq } from "components/grid";
+import { MenuItem } from "lib/auxiliar";
+import { getURL } from "lib/api";
 
 interface NavItemProps {
-  el?: MenuItem
-  isMain?: boolean
-  color?: string
-  bgColor?: string
-  borderColor?: string
+  el?: MenuItem;
+  isMain?: boolean;
+  color?: string;
+  bgColor?: string;
+  borderColor?: string;
 }
 const NavItem = ({
   el,
@@ -23,31 +24,32 @@ const NavItem = ({
   bgColor = colors.gray.lighter,
   borderColor = colors.primary.base,
 }: NavItemProps) => {
-  const { item, children } = el
+  const item = el?.item;
+  const children = el?.children || [];
 
-  const hasChildren = children?.length > 0
-  const isCurrentPage = false
-  const isLink = item.attributes.url !== '#'
+  const hasChildren = children?.length > 0;
+  const isCurrentPage = false;
+  const isLink = item?.attributes?.url !== "#";
 
-  const [isOpen, setOpen] = useState(false)
+  const [isOpen, setOpen] = useState(false);
 
   return (
     <Item
-      fontWeight={isMain ? '600' : '400'}
-      borderColor={isMain ? 'transparent' : borderColor}
+      fontWeight={isMain ? "600" : "400"}
+      borderColor={isMain ? "transparent" : borderColor}
       color={color}
       bgColor={bgColor}
       onClick={(e) => {
-        e.stopPropagation()
-        setOpen(hasChildren && !isLink ? !isOpen : false)
+        e.stopPropagation();
+        setOpen(hasChildren && !isLink ? !isOpen : false);
       }}
     >
       {hasChildren ? (
         <Expand
           {...{ isOpen }}
           onClick={(e) => {
-            e.stopPropagation()
-            setOpen(!isOpen)
+            e.stopPropagation();
+            setOpen(!isOpen);
           }}
         >
           <LeftArrowIcon />
@@ -55,24 +57,24 @@ const NavItem = ({
       ) : null}
       {/* If link uri is the current page, add `aria-current` for a11y */}
       {isLink && !hasChildren ? (
-        <Link href={item?.attributes.url ?? ''} passHref>
+        <Link href={getURL(item?.attributes?.url || "")} passHref>
           <ItemLink
-            aria-current={isCurrentPage ? 'page' : undefined}
+            aria-current={isCurrentPage ? "page" : undefined}
             aria-label="Item de la navegacion..."
-            target={item?.attributes.target}
+            target={item?.attributes?.target || ""}
           >
-            {item?.attributes.title}
+            {item?.attributes?.title}
           </ItemLink>
         </Link>
       ) : (
         <ItemLabel
-          aria-current={isCurrentPage ? 'page' : undefined}
+          aria-current={isCurrentPage ? "page" : undefined}
           onClick={(e) => {
-            e.stopPropagation()
-            setOpen(!isOpen)
+            e.stopPropagation();
+            setOpen(!isOpen);
           }}
         >
-          {item?.attributes.title}
+          {item?.attributes?.title}
         </ItemLabel>
       )}
       <Spring
@@ -109,17 +111,17 @@ const NavItem = ({
         )}
       </Spring>
     </Item>
-  )
-}
+  );
+};
 
-export default NavItem
+export default NavItem;
 
 const Item = styled.li`
   ${(props: {
-    fontWeight: string
-    borderColor?: string
-    color?: string
-    bgColor?: string
+    fontWeight: string;
+    borderColor?: string;
+    color?: string;
+    bgColor?: string;
   }) => css`
     list-style: none;
     margin: 0.2rem 0;
@@ -130,7 +132,7 @@ const Item = styled.li`
     background-color: ${props.bgColor};
     font-weight: ${props.fontWeight};
   `}
-`
+`;
 
 const Expand = styled.div`
   ${(props: { isOpen?: boolean }) => css`
@@ -152,7 +154,7 @@ const Expand = styled.div`
         `
       : ``}
   `}
-`
+`;
 
 const itemTextStyles = css`
   display: block !important;
@@ -164,18 +166,18 @@ const itemTextStyles = css`
   &:hover {
     text-decoration: underline;
   }
-`
+`;
 
 const ItemLink = styled.a`
   ${itemTextStyles}
-`
+`;
 
 const ItemLabel = styled.span`
   ${itemTextStyles}
-`
+`;
 
 const AListWrapper = styled(animated.div)`
   overflow: hidden;
-`
+`;
 
-const AList = styled(animated.div)``
+const AList = styled(animated.div)``;

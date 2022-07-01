@@ -1,18 +1,18 @@
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useInView } from 'react-intersection-observer'
-import { container, mq } from 'components/grid'
-import { CategoryEntity } from 'client'
-import { getStrapiURL } from 'lib/api'
-import colors from 'styles/colors'
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useInView } from "react-intersection-observer";
+import { container, mq } from "components/grid";
+import { CategoryEntity } from "client";
+import { getImageURL } from "lib/api";
+import colors from "styles/colors";
 
 interface NavigationProps {
-  categorias: CategoryEntity[]
-  fixed?: boolean
-  inView?: boolean
+  categorias: CategoryEntity[];
+  fixed?: boolean;
+  inView?: boolean;
 }
 const Navigation = ({ categorias, fixed, inView }: NavigationProps) => {
   return (
@@ -20,9 +20,9 @@ const Navigation = ({ categorias, fixed, inView }: NavigationProps) => {
       <Container>
         <CategoryList {...{ inView }}>
           {categorias.map((item, index) => {
-            const categoria = item.attributes
-            const icon = categoria.icon.data?.attributes
-            return (
+            const categoria = item.attributes;
+            const icon = categoria?.icon?.data?.attributes;
+            return categoria ? (
               <Link
                 href={`/academia/categoria/${categoria.slug}`}
                 key={index}
@@ -33,7 +33,7 @@ const Navigation = ({ categorias, fixed, inView }: NavigationProps) => {
                     <CategoryMedia {...{ inView }}>
                       <Media>
                         <Image
-                          src={getStrapiURL(icon?.url)}
+                          src={getImageURL(icon?.url)}
                           width={1080}
                           height={1080}
                           objectFit="contain"
@@ -46,20 +46,20 @@ const Navigation = ({ categorias, fixed, inView }: NavigationProps) => {
                   </Category>
                 </CategoryLink>
               </Link>
-            )
+            ) : null;
           })}
         </CategoryList>
       </Container>
     </CategoryNav>
-  )
-}
+  );
+};
 
 interface PostNavigationProps {
-  categorias: CategoryEntity[]
+  categorias: CategoryEntity[];
 }
 const PostsNavigation = ({ categorias }: PostNavigationProps) => {
   // const { ref, inView} = useInView({ triggerOnce: false});
-  const [ref, inView] = useInView({ initialInView: true })
+  const [ref, inView] = useInView({ initialInView: true });
 
   return categorias.length ? (
     <NavigationBar ref={ref} fluid space thin>
@@ -68,19 +68,19 @@ const PostsNavigation = ({ categorias }: PostNavigationProps) => {
       {/* Navegación fija cuando se hace scroll */}
       <Navigation fixed {...{ categorias, inView }} />
     </NavigationBar>
-  ) : null
-}
+  ) : null;
+};
 
-export default PostsNavigation
+export default PostsNavigation;
 
 const NavigationBar = styled.div`
   ${container}
   padding: initial;
-`
+`;
 
 const Container = styled.div`
   ${container}
-`
+`;
 
 const CategoryList = styled.div`
   ${(props: { inView?: boolean }) => css`
@@ -97,7 +97,7 @@ const CategoryList = styled.div`
           `}
     }
   `}
-`
+`;
 
 const CategoryNav = styled.div`
   ${(props: { inView?: boolean; fixed?: boolean }) => css`
@@ -120,7 +120,7 @@ const CategoryNav = styled.div`
       : `
     `}
   `}
-`
+`;
 
 const Category = styled.div`
   ${(props: { inView?: boolean }) => css`
@@ -149,11 +149,11 @@ const Category = styled.div`
       `}
     }
   `}
-`
+`;
 
 const CategoryLink = styled.a`
   text-decoration: none;
-`
+`;
 
 const CategoryInfo = styled.div`
   ${(props: { inView?: boolean }) => css`
@@ -165,7 +165,7 @@ const CategoryInfo = styled.div`
       padding: 0.5rem;
     }
   `}
-`
+`;
 
 const CategoryName = styled.span`
   font-weight: bold;
@@ -180,7 +180,7 @@ const CategoryName = styled.span`
   ${mq.xl} {
     font-size: 1.6rem;
   }
-`
+`;
 
 const CategoryMedia = styled.div`
   ${(props: { inView?: boolean }) => css`
@@ -213,9 +213,9 @@ const CategoryMedia = styled.div`
       `}
     }
   `}
-`
+`;
 
 const Media = styled.div`
   padding: 18%;
   font-size: 0;
-`
+`;

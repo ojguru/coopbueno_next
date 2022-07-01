@@ -12,17 +12,21 @@ type PageProps = PropsWithServerCache<{
   slug: string;
 }>;
 const Page = ({ cacheSnapshot, slug }: PageProps) => {
+  useHydrateCache({
+    cacheSnapshot,
+  });
+
   const query = useQuery();
 
-  const [articuloEntidad] = query.articles({
+  const articuloEntidad = query?.articles({
     filters: {
       slug: {
         eq: slug,
       },
     },
-  })?.data;
+  })?.data[0];
 
-  const categoria = articuloEntidad.attributes.category.data?.attributes;
+  const categoria = articuloEntidad?.attributes?.category?.data?.attributes;
 
   const relacionados = query.articles({
     filters: {
@@ -37,10 +41,6 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     },
   })?.data;
 
-  useHydrateCache({
-    cacheSnapshot,
-  });
-
   return (
     <Layout>
       <ArticuloBody articulo={articuloEntidad} />
@@ -51,8 +51,8 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
 
 export default Page;
 
-export const getStaticProps: GetStaticProps<PageProps> = async (_ctx) => {
-  const slug = _ctx.params.slug.toString();
+export const getStaticProps: GetStaticProps<PageProps> = async (_ctx: any) => {
+  const slug = _ctx.params.slug;
 
   const { cacheSnapshot } = await prepareReactRender(<Page slug={slug} />);
 

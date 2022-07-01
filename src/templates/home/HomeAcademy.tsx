@@ -1,34 +1,34 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import Link from 'next/link'
-import Image from 'next/image'
-import { h1, h5 } from 'styles/tipography'
-import { AcademiaIcon } from 'components/icons'
-import { Spring, animated } from '@react-spring/web'
-import { InView } from 'react-intersection-observer'
+import React from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import Link from "next/link";
+import Image from "next/image";
+import { h1, h5 } from "styles/tipography";
+import { AcademiaIcon } from "components/icons";
+import { Spring, animated } from "@react-spring/web";
+import { InView } from "react-intersection-observer";
 
-import { sectionAnimation } from 'styles/animations'
-import colors from 'styles/colors'
-import { getStrapiURL } from 'lib/api'
-import { ArticleEntity } from 'client'
+import { sectionAnimation } from "styles/animations";
+import colors from "styles/colors";
+import { getImageURL } from "lib/api";
+import { ArticleEntity } from "client";
 
 interface HomeAcademyProps {
-  posts: ArticleEntity[]
+  posts?: ArticleEntity[];
 }
 interface InViewProps {
-  ref: any
-  inView: boolean
+  ref: any;
+  inView: boolean;
 }
 const HomeAcademy = ({ posts }: HomeAcademyProps) => {
-  return posts.length ? (
+  return posts?.length ? (
     <InView threshold={0}>
       {({ ref, inView }) => (
         <Spring reset={inView} reverse={!inView} {...sectionAnimation}>
           {(styles) => (
             <Section fluid space ref={ref}>
               <animated.div style={styles}>
-                <Link href={'/academia'} passHref>
+                <Link href={"/academia"} passHref>
                   <a>
                     <SectionTitle>Academia de sueños</SectionTitle>
                     <SectionImage>
@@ -38,9 +38,9 @@ const HomeAcademy = ({ posts }: HomeAcademyProps) => {
                 </Link>
                 <Body>
                   {posts.map((item, index) => {
-                    const post = item.attributes
-                    const image = post.image.data.attributes
-                    return (
+                    const post = item.attributes;
+                    const image = post?.image?.data?.attributes;
+                    return post ? (
                       <Slide key={index}>
                         <animated.div style={styles}>
                           <Post>
@@ -49,8 +49,8 @@ const HomeAcademy = ({ posts }: HomeAcademyProps) => {
                                 <MediaWrapper>
                                   <ImageContainer>
                                     <Image
-                                      src={getStrapiURL(image.url)}
-                                      alt={image.alternativeText}
+                                      src={getImageURL(image?.url)}
+                                      alt={image?.alternativeText || ""}
                                       width={1920}
                                       height={1080}
                                       objectFit="cover"
@@ -60,7 +60,7 @@ const HomeAcademy = ({ posts }: HomeAcademyProps) => {
                                 <Title>{post.title}</Title>
                                 <Excerpt
                                   dangerouslySetInnerHTML={{
-                                    __html: post.description,
+                                    __html: post.description || "",
                                   }}
                                 />
                               </PostLink>
@@ -68,7 +68,7 @@ const HomeAcademy = ({ posts }: HomeAcademyProps) => {
                           </Post>
                         </animated.div>
                       </Slide>
-                    )
+                    ) : null;
                   })}
                 </Body>
               </animated.div>
@@ -77,32 +77,32 @@ const HomeAcademy = ({ posts }: HomeAcademyProps) => {
         </Spring>
       )}
     </InView>
-  ) : null
-}
+  ) : null;
+};
 
-export default HomeAcademy
+export default HomeAcademy;
 
 const Body = styled.div`
   ${container}
   padding: 0;
   display: grid;
   grid-template-areas:
-    'principal principal'
-    'second third';
+    "principal principal"
+    "second third";
   gap: 1.5rem;
   ${mq.md} {
     gap: 3rem;
     grid-template-areas:
-      'principal principal second'
-      'principal principal third';
+      "principal principal second"
+      "principal principal third";
   }
-`
+`;
 
 const Section = styled.section`
   ${container}
   position: relative;
   &:before {
-    content: '';
+    content: "";
     width: 50%;
     padding-bottom: 10%;
     border-radius: 4rem;
@@ -115,7 +115,7 @@ const Section = styled.section`
     z-index: -1;
   }
   &:after {
-    content: '';
+    content: "";
     width: 50%;
     padding-bottom: 10%;
     border-radius: 4rem;
@@ -127,7 +127,7 @@ const Section = styled.section`
     opacity: 0.3;
     z-index: -1;
   }
-`
+`;
 
 const SectionTitle = styled.h2`
   text-align: center;
@@ -136,23 +136,23 @@ const SectionTitle = styled.h2`
   margin-top: 0;
   display: none;
   ${h1}
-`
+`;
 
 const SectionImage = styled.div`
   width: 60%;
   max-width: 40rem;
   margin: 0 auto;
   margin-bottom: 3rem;
-`
+`;
 
 const Post = styled.div`
   text-align: center;
-`
+`;
 
 const MediaWrapper = styled.div`
   position: relative;
   margin-bottom: 20px;
-`
+`;
 
 const ImageContainer = styled.div`
   background-color: white;
@@ -163,7 +163,7 @@ const ImageContainer = styled.div`
   overflow: hidden;
   position: relative;
   z-index: 2;
-`
+`;
 const Title = styled.h3`
   margin: 0 auto;
   margin-bottom: 2rem;
@@ -172,17 +172,17 @@ const Title = styled.h3`
   ${mq.md} {
     text-align: left;
   }
-`
+`;
 
 const Excerpt = styled.div`
   color: ${colors.text.base};
   display: none;
   text-align: left;
-`
+`;
 
 const PostLink = styled.a`
   text-decoration: none;
-`
+`;
 
 const Slide = styled.div`
   grid-area: second;
@@ -196,4 +196,4 @@ const Slide = styled.div`
   &:last-of-type {
     grid-area: third;
   }
-`
+`;

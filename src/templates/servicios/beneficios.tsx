@@ -1,20 +1,20 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import { h1, h5 } from '../../styles/tipography'
-import Image from 'next/image'
-import Link from 'next/link'
-import colors from 'styles/colors'
-import { Servicio } from 'client'
-import { getStrapiURL } from 'lib/api'
+import React from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import { h1, h5 } from "../../styles/tipography";
+import Image from "next/image";
+import Link from "next/link";
+import colors from "styles/colors";
+import { Servicio } from "client";
+import { getImageURL } from "lib/api";
 
 interface BeneficiosProps {
-  servicio: Servicio
+  servicio: Servicio;
 }
 const Benefits = ({ servicio }: BeneficiosProps) => {
-  const beneficios = servicio.beneficios().data
+  const beneficios = servicio?.beneficios()?.data;
 
-  return beneficios.length ? (
+  return beneficios?.length ? (
     <Section space>
       <Title>BENEFICIOS</Title>
       <BenefitsList
@@ -24,11 +24,11 @@ const Benefits = ({ servicio }: BeneficiosProps) => {
         itemType="https://schema.org/ItemList"
       >
         {beneficios.map((item, index) => {
-          const beneficio = item.attributes
-          const name = beneficio.nombre
-          const description = beneficio.portada.titular
-          const media = beneficio.icono.data.attributes
-          return (
+          const beneficio = item.attributes;
+          const name = beneficio?.nombre;
+          const description = beneficio?.portada?.titular;
+          const media = beneficio?.icono?.data?.attributes;
+          return beneficio ? (
             <li
               key={index}
               itemProp="itemListElement"
@@ -40,7 +40,7 @@ const Benefits = ({ servicio }: BeneficiosProps) => {
                   <Benefit>
                     <BenefitMedia>
                       <Image
-                        src={getStrapiURL(media.url)}
+                        src={getImageURL(media?.url)}
                         alt={name}
                         width={1080}
                         height={1080}
@@ -50,32 +50,32 @@ const Benefits = ({ servicio }: BeneficiosProps) => {
                     <BenefitBody>
                       <BenefitName itemProp="name">{name}</BenefitName>
                       <BenefitDescription
-                        dangerouslySetInnerHTML={{ __html: description }}
+                        dangerouslySetInnerHTML={{ __html: description || "" }}
                       />
                     </BenefitBody>
                   </Benefit>
                 </StyledLink>
               </Link>
             </li>
-          )
+          ) : null;
         })}
       </BenefitsList>
     </Section>
-  ) : null
-}
+  ) : null;
+};
 
-export default Benefits
+export default Benefits;
 
 const Section = styled.section`
   ${container}
-`
+`;
 
 const Title = styled.h2`
   text-align: center;
   margin-bottom: 4rem;
   text-transform: uppercase;
   ${h1}
-`
+`;
 
 const BenefitsList = styled.ul`
   padding: 0;
@@ -89,11 +89,11 @@ const BenefitsList = styled.ul`
   ${mq.lg} {
     grid-template-columns: 1fr 1fr 1fr;
   }
-`
+`;
 
 const StyledLink = styled.a`
   text-decoration: none;
-`
+`;
 
 const Benefit = styled.div`
   margin: 0;
@@ -102,9 +102,9 @@ const Benefit = styled.div`
   display: grid;
   gap: 1.5rem;
   grid-template-columns: auto 3fr;
-`
+`;
 
-const BenefitBody = styled.div``
+const BenefitBody = styled.div``;
 
 const BenefitName = styled.h3`
   ${h5}
@@ -112,9 +112,9 @@ const BenefitName = styled.h3`
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
-`
+`;
 
-const BenefitDescription = styled.div``
+const BenefitDescription = styled.div``;
 
 const BenefitMedia = styled.div`
   width: 8rem;
@@ -125,4 +125,4 @@ const BenefitMedia = styled.div`
   color: white;
   box-sizing: border-box;
   padding: 20%;
-`
+`;

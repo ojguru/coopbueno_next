@@ -1,18 +1,18 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { CarouselProvider, Slider, Dot } from 'pure-react-carousel'
-import ServicesCards from './HomeServicioCard'
-import { container } from 'components/grid'
-import { ENUM_SERVICIO_TIPO, ServicioEntity } from 'client'
-import colors from 'styles/colors'
+import React from "react";
+import styled from "@emotion/styled";
+import { CarouselProvider, Slider, Dot } from "pure-react-carousel";
+import ServicesCards from "./HomeServicioCard";
+import { container } from "components/grid";
+import { ENUM_SERVICIO_TIPO, ServicioEntity } from "client";
+import colors from "styles/colors";
 
 interface HomeServiciosProps {
-  servicios: ServicioEntity[]
+  servicios?: ServicioEntity[];
 }
-const HomeServicios = ({ servicios=[] }: HomeServiciosProps) => {
+const HomeServicios = ({ servicios = [] }: HomeServiciosProps) => {
   const mainItems = Object.values(ENUM_SERVICIO_TIPO)
-    .filter((item) => item !== 'beneficios')
-    .reverse()
+    .filter((item) => item !== "beneficios")
+    .reverse();
 
   return servicios.length ? (
     <Section id="services" fluid space>
@@ -30,24 +30,24 @@ const HomeServicios = ({ servicios=[] }: HomeServiciosProps) => {
               <Tab key={index} slide={index}>
                 {item}
               </Tab>
-            )
+            );
           })}
         </Tabs>
 
         <Slider>
           {mainItems.map((mainItem, index) => {
             const items = servicios.filter(
-              (servicio) => servicio.attributes.tipo === mainItem,
-            )
-            return <ServicesCards key={index} {...{ items }} />
+              (servicio) => servicio?.attributes?.tipo === mainItem
+            );
+            return <ServicesCards key={index} {...{ items }} />;
           })}
         </Slider>
       </CarouselProvider>
     </Section>
-  ) : null
-}
+  ) : null;
+};
 
-export default HomeServicios
+export default HomeServicios;
 
 const Section = styled.section`
   ${container}
@@ -56,12 +56,12 @@ const Section = styled.section`
   .carousel__slider {
     overflow: initial;
   }
-`
+`;
 
 const Tabs = styled.div`
   text-align: center;
   margin-bottom: 4rem;
-`
+`;
 
 const Tab = styled(Dot)`
   all: initial;
@@ -79,4 +79,4 @@ const Tab = styled(Dot)`
     background-color: #ffffff;
     cursor: initial;
   }
-`
+`;

@@ -12,10 +12,14 @@ import { GetStaticProps } from "next";
 import { useQuery, prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import Layout from "components/Layout";
-import { getStrapiURL } from "lib/api";
+import { getImageURL, getURL } from "lib/api";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
+  useHydrateCache({
+    cacheSnapshot,
+  });
+
   const query = useQuery();
   const memorias = query.memoriasAnuales({
     pagination: {
@@ -24,11 +28,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     sort: ["ano:desc"],
   })?.data;
 
-  useHydrateCache({
-    cacheSnapshot,
-  });
-
-  return memorias.length ? (
+  return memorias?.length ? (
     <Layout>
       <Section space>
         <PageHeader title="Memorias Anuales" />
@@ -39,21 +39,23 @@ const Page = ({ cacheSnapshot }: PageProps) => {
             return (
               <MemoryCard key={index}>
                 <Link
-                  href={getStrapiURL(memoria.archivo.data.attributes.url)}
+                  href={getURL(memoria?.archivo?.data?.attributes?.url)}
                   download
                   passHref
                 >
                   <SLink>
                     <CardImage>
                       <Image
-                        src={getStrapiURL(memoria.imagen.data.attributes.url)}
-                        alt={memoria.nombre}
+                        src={getImageURL(
+                          memoria?.imagen?.data?.attributes?.url
+                        )}
+                        alt={memoria?.nombre}
                         width={1080}
                         height={1404}
                         objectFit="cover"
                       />
                     </CardImage>
-                    <MemoryName>{memoria.ano}</MemoryName>
+                    <MemoryName>{memoria?.ano}</MemoryName>
                   </SLink>
                 </Link>
               </MemoryCard>
@@ -67,7 +69,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
 
 export default Page;
 
-export const getStaticProps: GetStaticProps<PageProps> = async (_ctx) => {
+export const getStaticProps: GetStaticProps<PageProps> = async (_ctx: any) => {
   const { cacheSnapshot } = await prepareReactRender(<Page />);
 
   return {

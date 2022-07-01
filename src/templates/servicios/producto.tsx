@@ -1,29 +1,31 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import Image from 'next/image'
-import { Servicio } from 'client'
-import { getStrapiURL } from 'lib/api'
+import React from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import Image from "next/image";
+import { Servicio } from "client";
+import { getImageURL } from "lib/api";
 
 interface ProductProps {
-  servicio: Servicio
+  servicio: Servicio;
 }
 const Producto = ({ servicio }: ProductProps) => {
-  const nombre = servicio.nombre
-  const descripcion = servicio.descripcion
-  const imagen = servicio.icono.data.attributes
+  const nombre = servicio?.nombre;
+  const descripcion = servicio?.descripcion;
+  const imagen = servicio?.icono?.data?.attributes;
 
   return (
     <Section id="descripcion" space>
       <Container>
         <InfoContainer>
           <Title>{nombre}</Title>
-          <Description dangerouslySetInnerHTML={{ __html: descripcion }} />
+          <Description
+            dangerouslySetInnerHTML={{ __html: descripcion || "" }}
+          />
         </InfoContainer>
         <MediaContainer>
           <Image
-            src={getStrapiURL(imagen.url)}
-            alt={imagen.alternativeText}
+            src={getImageURL(imagen?.url)}
+            alt={imagen?.alternativeText || ""}
             width={1080}
             height={1080}
             objectFit="contain"
@@ -31,15 +33,15 @@ const Producto = ({ servicio }: ProductProps) => {
         </MediaContainer>
       </Container>
     </Section>
-  )
-}
+  );
+};
 
-export default Producto
+export default Producto;
 
 const Section = styled.section`
   ${container}
   padding: 0;
-`
+`;
 
 const Container = styled.div`
   ${container}
@@ -48,17 +50,17 @@ const Container = styled.div`
   ${mq.md} {
     grid-template-columns: 1fr 1fr;
   }
-`
+`;
 
 const InfoContainer = styled.div`
   ${mq.md} {
     order: 2;
   }
-`
+`;
 
 const Title = styled.h1`
   text-transform: uppercase;
-`
+`;
 
 const MediaContainer = styled.div`
   max-width: 30rem;
@@ -66,12 +68,12 @@ const MediaContainer = styled.div`
   ${mq.md} {
     order: 1;
   }
-`
+`;
 
 const Description = styled.div`
   position: relative;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -83,4 +85,4 @@ const Description = styled.div`
     opacity: 0.25;
     transform: translate(-50%, -50%);
   }
-`
+`;

@@ -28,7 +28,7 @@ export async function fetchAPI(
   return json.data;
 }
 
-export function getStrapiURL(path = "") {
+export function getImageURL(path = "") {
   const isExternal = path.includes("http");
 
   if (isExternal) {
@@ -38,4 +38,14 @@ export function getStrapiURL(path = "") {
   return `${
     process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"
   }${path}`;
+}
+
+export function getURL(path = "") {
+  const isExternal = path.includes("http");
+
+  if (isExternal) {
+    return path;
+  }
+
+  return `${path || "/"}`;
 }

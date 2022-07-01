@@ -11,14 +11,18 @@ type PageProps = PropsWithServerCache<{
   slug: string;
 }>;
 const Page = ({ cacheSnapshot, slug }: PageProps) => {
+  useHydrateCache({
+    cacheSnapshot,
+  });
+
   const query = useQuery();
-  const [categoria] = query.categories({
+  const categoria = query.categories({
     filters: {
       slug: {
         eq: slug,
       },
     },
-  })?.data;
+  })?.data[0];
 
   const articulos = query.articles({
     filters: {
@@ -39,15 +43,11 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     },
   })?.data;
 
-  useHydrateCache({
-    cacheSnapshot,
-  });
-
   return (
     <Layout>
       <Archivo
-        titulo={categoria?.attributes.name}
-        descripcion={categoria?.attributes.description}
+        titulo={categoria?.attributes?.name}
+        descripcion={categoria?.attributes?.description}
         articulos={articulos}
         categorias={categorias}
       />
@@ -57,7 +57,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
 
 export default Page;
 
-export const getStaticProps: GetStaticProps<PageProps> = async (_ctx) => {
+export const getStaticProps: GetStaticProps<PageProps> = async (_ctx: any) => {
   const slug = _ctx.params.slug.toString();
 
   const { cacheSnapshot } = await prepareReactRender(<Page slug={slug} />);

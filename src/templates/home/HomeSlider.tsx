@@ -1,21 +1,21 @@
-import React from 'react'
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
-import { mq, container, bp } from 'components/grid'
-import Carousel from 'react-slick'
-import colors from 'styles/colors'
+import React from "react";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { mq, container, bp } from "components/grid";
+import Carousel from "react-slick";
+import colors from "styles/colors";
 
-import { h1 } from 'styles/tipography'
-import Cta from 'components/Cta'
-import Image from 'next/image'
+import { h1 } from "styles/tipography";
+import Cta from "components/Cta";
+import Image from "next/image";
 
-import { animated, config, Spring } from '@react-spring/web'
-import { InView } from 'react-intersection-observer'
-import { getStrapiURL } from 'lib/api'
-import { SlideEntity } from 'client'
+import { animated, config, Spring } from "@react-spring/web";
+import { InView } from "react-intersection-observer";
+import { getImageURL } from "lib/api";
+import { SlideEntity } from "client";
 
 interface HomeSliderProps {
-  slides?: SlideEntity[]
+  slides?: SlideEntity[];
 }
 const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
   return slides.length ? (
@@ -25,9 +25,9 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
           <Spring
             from={{
               opacity: 0,
-              transform: `translateY(${inView ? '20rem' : '0'})`,
+              transform: `translateY(${inView ? "20rem" : "0"})`,
             }}
-            to={{ opacity: 1, transform: 'translateY(0)' }}
+            to={{ opacity: 1, transform: "translateY(0)" }}
             reset={inView}
             reverse={!inView}
             config={config.wobbly}
@@ -52,7 +52,7 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
                   ]}
                 >
                   {slides.map((item, index) => {
-                    const slide = item.attributes
+                    const slide = item.attributes;
 
                     return (
                       <Slide key={index}>
@@ -66,22 +66,22 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
                                 from={{
                                   opacity: 0,
                                   transform: `translateX(${
-                                    inView ? '-100%' : '0%'
+                                    inView ? "-100%" : "0%"
                                   })`,
                                 }}
-                                to={{ opacity: 1, transform: 'translateX(0%)' }}
+                                to={{ opacity: 1, transform: "translateX(0%)" }}
                               >
                                 {(styles) => (
                                   <MediaWrapper ref={ref} {...{ colors }}>
                                     <animated.div style={styles}>
                                       <Media>
                                         <Image
-                                          src={getStrapiURL(
-                                            slide.imagen?.data.attributes.url,
+                                          src={getImageURL(
+                                            slide?.imagen?.data?.attributes?.url
                                           )}
                                           alt={
-                                            slide.imagen?.data.attributes
-                                              .alternativeText
+                                            slide?.imagen?.data?.attributes
+                                              ?.alternativeText || ""
                                           }
                                           width={1080}
                                           height={1080}
@@ -108,13 +108,13 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
                                 {(styles) => (
                                   <animated.div style={styles} ref={ref}>
                                     <SlideInfo>
-                                      <Title>{slide.titular}</Title>
+                                      <Title>{slide?.titular}</Title>
                                       <Copy
                                         dangerouslySetInnerHTML={{
-                                          __html: slide.copy,
+                                          __html: slide?.copy || "",
                                         }}
                                       />
-                                      <Cta cta={slide.cta} />
+                                      <Cta cta={slide?.cta} />
                                     </SlideInfo>
                                   </animated.div>
                                 )}
@@ -123,7 +123,7 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
                           </InView>
                         </Wrapper>
                       </Slide>
-                    )
+                    );
                   })}
                 </Carousel>
               </animated.div>
@@ -132,10 +132,10 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
         </Section>
       )}
     </InView>
-  ) : null
-}
+  ) : null;
+};
 
-export default HomeSlider
+export default HomeSlider;
 
 const Section = styled.section`
   ${container}
@@ -146,7 +146,7 @@ const Section = styled.section`
       background-color: ${colors.primary.base};
       opacity: 0.5;
       &:before {
-        content: '';
+        content: "";
       }
     }
     .slick-active {
@@ -156,11 +156,11 @@ const Section = styled.section`
       }
     }
   }
-`
+`;
 
 const Slide = styled.li`
   margin: 0;
-`
+`;
 
 const Wrapper = styled.div`
   ${container}
@@ -172,7 +172,7 @@ const Wrapper = styled.div`
     grid-template-rows: initial;
     align-items: center;
   }
-`
+`;
 
 const SlideInfo = styled.div`
   margin-bottom: 2rem;
@@ -180,21 +180,21 @@ const SlideInfo = styled.div`
   ${mq.md} {
     text-align: left;
   }
-`
+`;
 
 const Title = styled.h2`
   text-transform: uppercase;
   margin-top: 0;
   ${h1}
-`
+`;
 
-const Copy = styled.p``
+const Copy = styled.p``;
 
 const MediaWrapper = styled.div`
   position: relative;
   margin-bottom: 2rem;
   &:before {
-    content: '';
+    content: "";
     width: 15%;
     height: 15%;
     border-radius: 50%;
@@ -206,26 +206,11 @@ const MediaWrapper = styled.div`
     transform: translate(-50%, 50%);
     opacity: inherit;
   }
-`
+`;
 
 const Media = styled.div`
   position: relative;
   z-index: 1;
   clip-path: ellipse(50% 50% at 50% 50%);
   font-size: 0;
-`
-
-const DotGroupStyles = ({ colors }) => css`
-  text-align: center;
-
-  button {
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-    background-color: ${colors.green.base};
-    opacity: 0.3;
-    &[disabled] {
-      opacity: 1;
-    }
-  }
-`
+`;

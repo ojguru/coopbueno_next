@@ -1,34 +1,34 @@
-import React, { useState } from 'react'
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import Link from 'next/link'
-import Image from 'next/image'
-import { CloseIcon } from 'components/icons'
+import React, { useState } from "react";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import Link from "next/link";
+import Image from "next/image";
+import { CloseIcon } from "components/icons";
 
-import { Slide } from 'pure-react-carousel'
+import { Slide } from "pure-react-carousel";
 
-import { h3 } from 'styles/tipography'
+import { h3 } from "styles/tipography";
 
-import { animated } from '@react-spring/web'
-import { InView } from 'react-intersection-observer'
-import { ENUM_SERVICIO_CATEGORIA, ServicioEntity } from 'client'
-import colors from 'styles/colors'
+import { animated } from "@react-spring/web";
+import { InView } from "react-intersection-observer";
+import { ENUM_SERVICIO_CATEGORIA, ServicioEntity } from "client";
+import colors from "styles/colors";
 
-import ahorro from '../../../public/ahorro.svg'
-import prestamos from '../../../public/prestamos.svg'
-import facilidades from '../../../public/facilidades.svg'
+import ahorro from "../../../public/ahorro.svg";
+import prestamos from "../../../public/prestamos.svg";
+import facilidades from "../../../public/facilidades.svg";
 
 interface HomeServiciosCardProps {
-  items: ServicioEntity[]
+  items: ServicioEntity[];
 }
 
 type categoria = {
-  nombre: string
-  icono: any
-}
+  nombre: string;
+  icono: any;
+};
 const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
-  const [active, setActive] = useState(-1)
+  const [active, setActive] = useState(-1);
 
   const categorias = [
     {
@@ -43,7 +43,7 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
       nombre: ENUM_SERVICIO_CATEGORIA.facilidades,
       icono: facilidades,
     },
-  ]
+  ];
 
   return (
     <InView threshold={0.3}>
@@ -52,7 +52,7 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
           <div ref={ref}>
             <Container>
               {categorias.map((item: categoria, index: number) => {
-                const isActive = active === index
+                const isActive = active === index;
 
                 return (
                   <Card
@@ -64,7 +64,7 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                       <ServiceCard {...{ isActive }}>
                         <div
                           onClick={(e) => {
-                            setActive(index)
+                            setActive(index);
                           }}
                         >
                           <CardImage {...{ isActive }}>
@@ -87,13 +87,14 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                               {items
                                 .filter((service) => {
                                   return (
-                                    service.attributes.categoria === item.nombre
-                                  )
+                                    service?.attributes?.categoria ===
+                                    item.nombre
+                                  );
                                 })
                                 .map((service, index) => {
-                                  const servicio = service.attributes
+                                  const servicio = service.attributes;
 
-                                  return (
+                                  return servicio ? (
                                     <Link
                                       key={index}
                                       href={`/servicios/${servicio.slug}`}
@@ -105,7 +106,7 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                                         </Service>
                                       </StyledLink>
                                     </Link>
-                                  )
+                                  ) : null;
                                 })}
                             </CardServices>
                           </CardContent>
@@ -113,7 +114,7 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                         <CardCloseBtn
                           {...{ isActive }}
                           onClick={(e) => {
-                            setActive(-1)
+                            setActive(-1);
                           }}
                         >
                           <CloseIcon />
@@ -121,23 +122,23 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                       </ServiceCard>
                     </animated.div>
                   </Card>
-                )
+                );
               })}
             </Container>
           </div>
         </SlideX>
       )}
     </InView>
-  )
-}
+  );
+};
 
-export default HomeServiciosCard
+export default HomeServiciosCard;
 
 const SlideX = styled(Slide)`
   .carousel__slide-focus-ring {
     display: none;
   }
-`
+`;
 
 const Container = styled.div`
   ${container}
@@ -146,10 +147,10 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 0;
-`
+`;
 
 interface CardProps {
-  active?: boolean
+  active?: boolean;
 }
 const Card = styled.div`
   ${({ active }: CardProps) => css`
@@ -169,10 +170,10 @@ const Card = styled.div`
       padding: 1.5rem;
     }
   `}
-`
+`;
 
 interface ServiceCardProps {
-  isActive?: boolean
+  isActive?: boolean;
 }
 const ServiceCard = styled.div`
   ${({ isActive = false }: ServiceCardProps) => css`
@@ -200,7 +201,7 @@ const ServiceCard = styled.div`
       margin-top: 7rem;
     }
   `}
-`
+`;
 
 const CardImage = styled.div`
   position: relative;
@@ -209,7 +210,7 @@ const CardImage = styled.div`
   margin-bottom: 2rem;
   width: 50%;
   max-width: 12.5rem;
-`
+`;
 
 const Media = styled.div`
   width: 100%;
@@ -218,14 +219,14 @@ const Media = styled.div`
   overflow: hidden;
   background-color: ${colors.gray.lighter};
   position: relative;
-`
+`;
 
 const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   padding-bottom: 100%;
   height: 0;
-`
+`;
 
 // const SImage = styled()`
 //   position: absolute;
@@ -236,7 +237,7 @@ const ImageWrapper = styled.div`
 // `
 
 interface CardContentProps {
-  isActive?: boolean
+  isActive?: boolean;
 }
 const CardContent = styled.div`
   ${({ isActive = false }: CardContentProps) => css`
@@ -255,9 +256,9 @@ const CardContent = styled.div`
       margin-top: -6rem;
     }
   `}
-`
+`;
 interface CardTitleProps {
-  isActive?: boolean
+  isActive?: boolean;
 }
 const CardTitle = styled.h3`
   ${({ isActive = false }: CardTitleProps) => css`
@@ -277,10 +278,10 @@ const CardTitle = styled.h3`
           }
         `}
   `}
-`
+`;
 
 interface CardServicesProps {
-  isActive?: boolean
+  isActive?: boolean;
 }
 const CardServices = styled.div`
   ${({ isActive = false }: CardServicesProps) => css`
@@ -293,7 +294,7 @@ const CardServices = styled.div`
           display: none;
         `}
   `}
-`
+`;
 
 const Service = styled.div`
   list-style: none;
@@ -310,10 +311,10 @@ const Service = styled.div`
     background-color: ${colors.primary.light};
     color: white;
   }
-`
+`;
 
 interface CardCloseBtnProps {
-  isActive?: boolean
+  isActive?: boolean;
 }
 const CardCloseBtn = styled.div`
   ${({ isActive = false }: CardCloseBtnProps) => css`
@@ -340,8 +341,8 @@ const CardCloseBtn = styled.div`
           display: none;
         `}
   `}
-`
+`;
 
 const StyledLink = styled.a`
   text-decoration: none;
-`
+`;

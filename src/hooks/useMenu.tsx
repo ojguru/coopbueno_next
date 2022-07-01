@@ -1,116 +1,118 @@
-import React, { useState } from 'react'
-import { css, Global } from '@emotion/react'
-import styled from '@emotion/styled'
-import { CloseIcon, MenuIcon } from 'components/icons'
-import colors from 'styles/colors'
-import { container, mq } from 'components/grid'
-import { Spring, config, a } from '@react-spring/web'
+import React, { useEffect, useState } from "react";
+import { css, Global } from "@emotion/react";
+import styled from "@emotion/styled";
+import { CloseIcon, MenuIcon } from "components/icons";
+import colors from "styles/colors";
+import { container, mq } from "components/grid";
+import { useSpring, a, config } from "@react-spring/web";
+import { useAppContext } from "context/appContext";
 
 const useMenu = () => {
-  const [isModalOpen, setModalOpen] = useState(false)
+  const { isMenuOpen, setMenuOpen } = useAppContext();
 
-  const openModal = () => {
-    setModalOpen(true)
+  let [activador, setActivador] = useState(false);
+
+  const wrapperSpring = useSpring({
+    immediate: activador ? false : true,
+    from: {
+      right: activador ? (isMenuOpen ? "-100%" : "0") : "-100%",
+      opacity: activador ? (isMenuOpen ? 0 : 1) : 0,
+    },
+    to: {
+      right: activador ? (isMenuOpen ? "0" : "-100%") : "-100%",
+      opacity: activador ? (isMenuOpen ? 1 : 0) : 0,
+    },
+  });
+
+  useEffect(() => {
+    setActivador(true);
+  }, []);
+
+  interface MenuModalUIProps {
+    children?: any;
   }
-
-  const closeModal = () => {
-    setModalOpen(false)
-  }
-
-  const MenuModalUI = ({ children }) => {
+  const MenuModalUI = ({ children }: MenuModalUIProps) => {
     return (
-      <Spring
-        reset={isModalOpen}
-        reverse={!isModalOpen}
-        from={{
-          transform: `translate(100%,0)`,
-          opacity: 0,
+      <ModalWrapper
+        data-open={isMenuOpen}
+        onClick={(e) => {
+          setMenuOpen(false);
         }}
-        to={{
-          transform: `translate(0,0)`,
-          opacity: 1,
-        }}
+        style={wrapperSpring}
       >
-        {(styles) => (
-          <ModalWrapper
-            data-open={isModalOpen}
-            onClick={closeModal}
-            style={styles}
-          >
-            {isModalOpen && (
-              <Global
-                styles={css`
-                  html,
-                  body {
-                    overflow: hidden;
-                  }
-                `}
-              />
-            )}
-            <CardModal
-              fluid
-              maxWidth="60rem"
-              onClick={(e) => {
-                e.stopPropagation()
-              }}
-            >
-              <Column>
-                <ModalHeader>
-                  <span></span>
-                  <CloseButton onClick={closeModal}>
-                    Cerrar menú
-                    <CloseIcon />
-                  </CloseButton>
-                </ModalHeader>
-                <ModalBody>{children}</ModalBody>
-              </Column>
-            </CardModal>
-          </ModalWrapper>
+        {isMenuOpen && (
+          <Global
+            styles={css`
+              html,
+              body {
+                overflow: hidden;
+              }
+            `}
+          />
         )}
-      </Spring>
-    )
-  }
+        <CardModal
+          fluid
+          maxWidth="60rem"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          style={wrapperSpring}
+        >
+          <Column>
+            <ModalHeader>
+              <span></span>
+              <CloseButton
+                onClick={(e) => {
+                  setMenuOpen(false);
+                }}
+              >
+                Cerrar menú
+                <CloseIcon />
+              </CloseButton>
+            </ModalHeader>
+            <ModalBody>{children}</ModalBody>
+          </Column>
+        </CardModal>
+      </ModalWrapper>
+    );
+  };
 
   const MenuButtonUI = () => {
     return (
       <MenuButton
         onClick={(e) => {
-          setModalOpen(true)
+          setMenuOpen(true);
         }}
       >
         <MenuIcon />
       </MenuButton>
-    )
-  }
+    );
+  };
 
   return {
-    isModalOpen,
-    openModal,
-    closeModal,
     MenuModalUI,
     MenuButtonUI,
-  }
-}
+  };
+};
 
-export default useMenu
+export default useMenu;
 
 const ModalWrapper = styled(a.div)`
   background: transparent;
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
+  opacity: 0;
   z-index: 20000;
 
   display: flex;
-  left: 0;
-  right: 0;
   top: 0;
   bottom: 0;
   align-items: baseline;
   justify-content: flex-end;
-`
+`;
 
-const CardModal = styled.div`
+const CardModal = styled(a.div)`
   ${container}
   min-height: 100%;
   margin: initial;
@@ -127,12 +129,12 @@ const CardModal = styled.div`
   ${mq.xl} {
     padding: 0 4.5rem 4.5rem 4.5rem;
   }
-`
+`;
 
 const Column = styled.div`
   padding: 0 1.5rem;
   display: contents;
-`
+`;
 
 const ModalHeader = styled.div`
   align-self: baseline;
@@ -145,13 +147,13 @@ const ModalHeader = styled.div`
   column-gap: 3rem;
   padding: 1.5rem 0;
   position: relative;
-`
+`;
 
 const CloseButton = styled.button`
   background: none;
   border: none;
   box-shadow: none;
-  color: ${colors ? colors.gray.dark : '#555552'};
+  color: ${colors ? colors.gray.dark : "#555552"};
   z-index: 6;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -172,13 +174,14 @@ const CloseButton = styled.button`
     height: 2.5rem;
     width: 2rem;
   }
-`
+`;
 
-const ModalBody = styled.div``
+const ModalBody = styled.div``;
 
 const MenuButton = styled.div`
   width: 4rem;
   height: 4rem;
   display: grid;
   padding: 1rem;
-`
+  cursor: pointer;
+`;

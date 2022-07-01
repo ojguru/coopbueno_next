@@ -13,7 +13,7 @@ const Video = ({ servicio }: ProductProps) => {
   const parseURL = video?.includes("http") ? new URL(video) : null;
   const videoId = parseURL?.searchParams.get("v");
 
-  return video ? (
+  return videoId ? (
     <Section space>
       <Container>
         <Media>

@@ -1,33 +1,33 @@
-import React from 'react'
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import Image from 'next/image'
-import Link from 'next/link'
-import { LocationIcon, ClockIcon, PhoneIcon } from 'components/icons'
-import { h3 } from 'styles/tipography'
-import colors from 'styles/colors'
-import Layout from 'components/Layout'
+import React from "react";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import Image from "next/image";
+import Link from "next/link";
+import { LocationIcon, ClockIcon, PhoneIcon } from "components/icons";
+import { h3 } from "styles/tipography";
+import colors from "styles/colors";
+import Layout from "components/Layout";
 
-import { GetStaticProps } from 'next'
+import { GetStaticProps } from "next";
 
-import { useQuery, prepareReactRender, useHydrateCache } from 'client'
-import { PropsWithServerCache } from '@gqty/react'
-import { getStrapiURL } from 'lib/api'
+import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import { PropsWithServerCache } from "@gqty/react";
+import { getImageURL } from "lib/api";
 
-type PageProps = PropsWithServerCache<{}>
+type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
-  const query = useQuery()
+  useHydrateCache({
+    cacheSnapshot,
+  });
+
+  const query = useQuery();
   const sucursales = query.sucursals({
     pagination: {
       pageSize: 100,
     },
-    sort: ['orden:asc'],
-  })?.data
-
-  useHydrateCache({
-    cacheSnapshot,
-  })
+    sort: ["orden:asc"],
+  })?.data;
 
   return (
     <Layout>
@@ -36,17 +36,17 @@ const Page = ({ cacheSnapshot }: PageProps) => {
         <Container space>
           <Title>Sucursales</Title>
           {sucursales?.map((item, index, items) => {
-            const sucursal = item.attributes
-            const featuredMedia = sucursal.imagen.data.attributes
-            const location = sucursal.ubicacion
-            const isPrincipal = index == 0
+            const sucursal = item.attributes;
+            const featuredMedia = sucursal?.imagen?.data?.attributes;
+            const location = sucursal?.ubicacion;
+            const isPrincipal = index == 0;
 
             return (
               <SucursalCard key={item.id} {...{ isPrincipal }}>
                 <CardImage {...{ isPrincipal }}>
                   <SucursalImage
-                    src={getStrapiURL(featuredMedia.url)}
-                    alt={sucursal.nombre}
+                    src={getImageURL(featuredMedia?.url)}
+                    alt={sucursal?.nombre}
                     width={1920}
                     height={1080}
                     objectFit="cover"
@@ -56,61 +56,61 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                 <Content {...{ index, items }}>
                   <CardHeader>
                     <SucursalName {...{ isPrincipal }}>
-                      {sucursal.nombre}
+                      {sucursal?.nombre}
                     </SucursalName>
                   </CardHeader>
                   <CardBody>
                     <SucursalAddress>
                       <LocationIcon />
-                      <InfoWrapper>{sucursal.direccion}</InfoWrapper>
+                      <InfoWrapper>{sucursal?.direccion}</InfoWrapper>
                     </SucursalAddress>
                     <SucursalSchedule>
                       <ClockIcon />
-                      <InfoWrapper>{sucursal.horario}</InfoWrapper>
+                      <InfoWrapper>{sucursal?.horario}</InfoWrapper>
                     </SucursalSchedule>
                     <SucursalPhoneBox>
                       <PhoneIcon />
                       <InfoWrapper>
-                        {sucursal.telefonos().map((item, index) => {
-                          const phone = item.telefono
+                        {sucursal?.telefonos().map((item, index) => {
+                          const phone = item?.telefono;
 
                           return phone ? (
                             <Link href={`tel:+${phone}`} key={index} passHref>
                               <SucursalPhone>{phone}</SucursalPhone>
                             </Link>
-                          ) : null
+                          ) : null;
                         })}
                       </InfoWrapper>
                     </SucursalPhoneBox>
                   </CardBody>
                 </Content>
                 <LinkBox>
-                  <Link href={location ?? ''} passHref>
+                  <Link href={location ?? ""} passHref>
                     <ReadMore target="_blank">Ubicación</ReadMore>
                   </Link>
                 </LinkBox>
               </SucursalCard>
-            )
+            );
           })}
         </Container>
       </StyledSection>
     </Layout>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
 
-export const getStaticProps: GetStaticProps<PageProps> = async (_ctx) => {
-  const { cacheSnapshot } = await prepareReactRender(<Page />)
+export const getStaticProps: GetStaticProps<PageProps> = async (_ctx: any) => {
+  const { cacheSnapshot } = await prepareReactRender(<Page />);
 
   return {
     props: { cacheSnapshot },
-  }
-}
+  };
+};
 
 const StyledSection = styled.section`
   position: relative;
-`
+`;
 
 const Deco = styled.div`
   position: absolute;
@@ -122,7 +122,7 @@ const Deco = styled.div`
   background-color: ${colors.primary.light}33;
   transform: translate(80%, -30%) rotate(-35deg);
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 8%;
     top: 0;
@@ -133,7 +133,7 @@ const Deco = styled.div`
     transform: translate(0, -50%);
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     left: 15%;
     top: 22%;
@@ -143,7 +143,7 @@ const Deco = styled.div`
     background-color: ${colors.primary.light};
     box-shadow: -0.5rem 0.5rem 2.5rem ${colors.primary.light};
   }
-`
+`;
 
 const Container = styled.div`
   ${container}
@@ -156,7 +156,7 @@ const Container = styled.div`
   ${mq.lg} {
     grid-template-columns: 1fr 1fr 1fr;
   }
-`
+`;
 
 const Title = styled.h1`
   text-transform: uppercase;
@@ -166,7 +166,7 @@ const Title = styled.h1`
   ${mq.lg} {
     grid-column: 1 / span 3;
   }
-`
+`;
 
 const SucursalCard = styled.div`
   ${(props: { isPrincipal: boolean }) => css`
@@ -191,7 +191,7 @@ const SucursalCard = styled.div`
           align-self: baseline;
         `}
   `}
-`
+`;
 
 const Content = styled.div`
   ${(props: { index: number; items: any[] }) => css`
@@ -202,7 +202,7 @@ const Content = styled.div`
       ${props.index % 2 != 0 && props.index != props.items.length - 1
         ? css`
             &:after {
-              content: '';
+              content: "";
               position: absolute;
               top: 50%;
               right: 0;
@@ -222,7 +222,7 @@ const Content = styled.div`
       ${(props.index + 1) % 3 === 0
         ? css`
             &:before {
-              content: '';
+              content: "";
               position: absolute;
               top: 50%;
               left: 0;
@@ -233,7 +233,7 @@ const Content = styled.div`
               opacity: 0.3;
             }
             &:after {
-              content: '' !important;
+              content: "" !important;
               position: absolute;
               top: 50%;
               right: 0;
@@ -247,7 +247,7 @@ const Content = styled.div`
         : css``}
     }
   `}
-`
+`;
 
 const CardImage = styled.div`
   ${(props: { isPrincipal?: boolean }) => css`
@@ -255,7 +255,7 @@ const CardImage = styled.div`
     ${props.isPrincipal
       ? css`
           &:before {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             right: 0;
@@ -269,7 +269,7 @@ const CardImage = styled.div`
             z-index: 2;
           }
           &:after {
-            content: '';
+            content: "";
             position: absolute;
             bottom: 0;
             left: 0;
@@ -286,11 +286,11 @@ const CardImage = styled.div`
           align-self: flex-end;
         `}
   `}
-`
+`;
 
-const SucursalImage = styled(Image)``
+const SucursalImage = styled(Image)``;
 
-const CardHeader = styled.div``
+const CardHeader = styled.div``;
 
 const SucursalName = styled.h2`
   ${(props: { isPrincipal: boolean }) => css`
@@ -298,13 +298,13 @@ const SucursalName = styled.h2`
     text-transform: uppercase;
     ${props.isPrincipal ? `` : h3}
   `}
-`
+`;
 
 const CardBody = styled.div`
   /* div :first-child {
     margin-top: 0.6rem;
   } */
-`
+`;
 
 const iconStyle = css`
   display: flex;
@@ -316,30 +316,30 @@ const iconStyle = css`
     width: 2.5rem;
     margin-right: 1rem;
   }
-`
+`;
 const SucursalAddress = styled.p`
   ${iconStyle}
-`
+`;
 
 const SucursalSchedule = styled.p`
   ${iconStyle}
-`
+`;
 
 const SucursalPhoneBox = styled.div`
   ${iconStyle}
-`
+`;
 
 const InfoWrapper = styled.span`
   display: inline-block;
   vertical-align: top;
   flex: 1;
-`
+`;
 
 const SucursalPhone = styled.a`
   text-decoration: none;
   display: block;
   margin: 11px 0;
-`
+`;
 
 const LinkBox = styled.div`
   position: absolute;
@@ -349,13 +349,13 @@ const LinkBox = styled.div`
   height: 60px;
   text-align: right;
   padding: 15px 30px;
-`
+`;
 
 const ReadMore = styled.a`
   cursor: pointer;
   color: ${colors.primary.base};
   text-decoration: none;
   &:after {
-    content: ' ▶';
+    content: " ▶";
   }
-`
+`;

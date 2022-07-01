@@ -1,23 +1,23 @@
-import styled from '@emotion/styled'
-import React from 'react'
-import Post from 'templates/academia/post-item'
-import { container, mq } from 'components/grid'
-import ArchiveHeader from 'templates/academia/archive-header'
+import styled from "@emotion/styled";
+import React from "react";
+import Post from "templates/academia/post-item";
+import { container, mq } from "components/grid";
+import ArchiveHeader from "templates/academia/archive-header";
 // import Pagination from '../archive-pagination'
-import Navigation from 'templates/academia/archive-navigation'
-import Link from 'next/link'
+import Navigation from "templates/academia/archive-navigation";
+import Link from "next/link";
 
-import { AcademiaIcon } from 'components/icons'
+import { AcademiaIcon } from "components/icons";
 // import { CardActions } from "@material-ui/core";
-import colors from 'styles/colors'
+import colors from "styles/colors";
 
-import { CategoryEntity, ArticleEntity } from 'client'
+import { CategoryEntity, ArticleEntity } from "client";
 
 interface ArchivoProps {
-  titulo: string
-  descripcion?: string
-  categorias: CategoryEntity[]
-  articulos: ArticleEntity[]
+  titulo?: string;
+  descripcion?: string;
+  categorias?: CategoryEntity[];
+  articulos?: ArticleEntity[];
 }
 const Archivo = ({
   titulo,
@@ -31,7 +31,7 @@ const Archivo = ({
         <Link href="/academia" passHref>
           <a>
             <SectionImage>
-              <div style={{ display: 'table-column' }}>{titulo}</div>
+              <div style={{ display: "table-column" }}>{titulo}</div>
               <AcademiaIcon />
             </SectionImage>
           </a>
@@ -41,49 +41,49 @@ const Archivo = ({
         </ArchiveHeader>
       </Header>
 
-      <Navigation categorias={categorias} />
+      {categorias ? <Navigation categorias={categorias} /> : null}
 
       {articulos?.length ? (
         <Main space thin>
           <MPost>
             {/* Iterate over the items of the list. */}
             {articulos.map((props, index) => {
-              const articuloEntidad = articulos[index]
-              const articulo = articuloEntidad.attributes
-              const isFirstItem = index === 0
-              const isMainItem = index <= 3
+              const articuloEntidad = articulos[index];
+              const articulo = articuloEntidad?.attributes;
+              const isFirstItem = index === 0;
+              const isMainItem = index <= 3;
               // Render one Item component for each one.
-              return isFirstItem ? (
+              return isFirstItem && articulo ? (
                 <APost key={index}>
                   <Post articulo={articulo} {...{ isMainItem, isFirstItem }} />
                 </APost>
-              ) : null
+              ) : null;
             })}
           </MPost>
           <SPost>
             {/* Iterate over the items of the list. */}
             {articulos.map((props, index) => {
-              const articuloEntidad = articulos[index]
-              const articulo = articuloEntidad.attributes
-              const isFirstItem = index === 0
-              const isMainItem = index <= 3
+              const articuloEntidad = articulos[index];
+              const articulo = articuloEntidad.attributes;
+              const isFirstItem = index === 0;
+              const isMainItem = index <= 3;
               // Render one Item component for each one.
               return isMainItem && !isFirstItem ? (
                 <APost key={index}>
                   <Post articulo={articulo} {...{ isMainItem, isFirstItem }} />
                 </APost>
-              ) : null
+              ) : null;
             })}
           </SPost>
           <Secondary>
             {/* Iterate over the items of the list. */}
             {articulos.map((props, index) => {
-              const articuloEntidad = articulos[index]
-              const articulo = articuloEntidad.attributes
-              const isMainItem = index <= 3
-              const isWideItem = false
-              const rightDeco = (index + 1) % 24 == 0
-              const leftDeco = (index + 2) % 12 == 0
+              const articuloEntidad = articulos[index];
+              const articulo = articuloEntidad.attributes;
+              const isMainItem = index <= 3;
+              const isWideItem = false;
+              const rightDeco = (index + 1) % 24 == 0;
+              const leftDeco = (index + 2) % 12 == 0;
               // Render one Item component for each one.
               return !isMainItem ? (
                 <APost key={index}>
@@ -92,7 +92,7 @@ const Archivo = ({
                     {...{ isWideItem, leftDeco, rightDeco }}
                   />
                 </APost>
-              ) : null
+              ) : null;
             })}
           </Secondary>
         </Main>
@@ -100,14 +100,14 @@ const Archivo = ({
 
       {/* {data.totalPages > 1 && <Pagination size="thin" />} */}
     </>
-  )
-}
+  );
+};
 
-export default Archivo
+export default Archivo;
 
 const Header = styled.section`
   ${container}
-`
+`;
 
 const Main = styled.div`
   ${container}
@@ -116,7 +116,7 @@ const Main = styled.div`
   ${mq.lg} {
     grid-template-columns: 1fr 1fr;
   }
-`
+`;
 
 const Secondary = styled.div`
   display: grid;
@@ -131,13 +131,13 @@ const Secondary = styled.div`
     grid-column: 1 / span 2;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-`
+`;
 
-const MPost = styled.div``
+const MPost = styled.div``;
 
-const SPost = styled.div``
+const SPost = styled.div``;
 
-const APost = styled.div``
+const APost = styled.div``;
 
 const SectionImage = styled.div`
   max-width: 20rem;
@@ -151,4 +151,4 @@ const SectionImage = styled.div`
   ${mq.lg} {
     max-width: 35rem;
   }
-`
+`;

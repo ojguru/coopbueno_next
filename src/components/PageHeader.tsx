@@ -1,28 +1,31 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import colors from 'styles/colors'
+import React from "react";
+import styled from "@emotion/styled";
+import colors from "styles/colors";
 
-const PageHeader = ({ title }) => {
+interface PageHeaderProps {
+  title: string;
+}
+const PageHeader = ({ title }: PageHeaderProps) => {
   return (
     <Header>
       <Deco />
       <Title>{title}</Title>
     </Header>
-  )
-}
+  );
+};
 
-export default PageHeader
+export default PageHeader;
 
 const Header = styled.header`
   margin-bottom: 4rem;
-`
+`;
 
 const Title = styled.h1`
   text-transform: uppercase;
-`
+`;
 
 const Deco = styled.div`
-  content: '';
+  content: "";
   position: absolute;
   right: 0;
   top: 0;
@@ -33,7 +36,7 @@ const Deco = styled.div`
   transform: translate(80%, -30%) rotate(-35deg);
   z-index: -1;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 8%;
     top: 0;
@@ -45,7 +48,7 @@ const Deco = styled.div`
     z-index: -1;
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     left: 15%;
     top: 22%;
@@ -56,4 +59,4 @@ const Deco = styled.div`
     box-shadow: -0.5rem 0.5rem 2.5rem ${colors.primary.light};
     z-index: -1;
   }
-`
+`;

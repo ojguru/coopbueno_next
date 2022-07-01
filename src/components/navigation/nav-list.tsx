@@ -1,14 +1,16 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import NavItem from './nav-item'
+import React from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import NavItem from "./nav-item";
+import { MenuItem } from "lib/auxiliar";
+import { MenusMenuItemEntity } from "client";
 
 interface NavListProps {
-  items?: any[]
-  isMain?: boolean
-  color?: string
-  bgColor?: string
-  borderColor?: string
+  items?: MenuItem[] | MenusMenuItemEntity[];
+  isMain?: boolean;
+  color?: string;
+  bgColor?: string;
+  borderColor?: string;
 }
 
 const NavList = ({
@@ -21,7 +23,7 @@ const NavList = ({
 }: NavListProps) => {
   return (
     <List {...{ isMain, ...props }}>
-      {items.map((item?: any, index?: number) => {
+      {items?.map((item?: any, index?: number) => {
         return (
           <NavItem
             key={index}
@@ -31,13 +33,13 @@ const NavList = ({
             bgColor={bgColor}
             borderColor={borderColor}
           />
-        )
+        );
       })}
     </List>
-  )
-}
+  );
+};
 
-export default NavList
+export default NavList;
 
 const List = styled.ul`
   ${(props: { isMain?: boolean }) => css`
@@ -51,4 +53,4 @@ const List = styled.ul`
           margin-left: 1.5rem;
         `}
   `}
-`
+`;

@@ -1,23 +1,28 @@
-import React, { useState } from 'react'
-import { css, Global } from '@emotion/react'
-import styled from '@emotion/styled'
-import { CloseIcon } from 'components/icons'
-import colors from 'styles/colors'
-import { fadeIn, slideDown } from 'styles/animations'
-import { container, mq } from 'components/grid'
+import React, { useState } from "react";
+import { css, Global } from "@emotion/react";
+import styled from "@emotion/styled";
+import { CloseIcon } from "components/icons";
+import colors from "styles/colors";
+import { fadeIn, slideDown } from "styles/animations";
+import { container, mq } from "components/grid";
 
 const useModal = () => {
-  const [isModalOpen, setModalOpen] = useState(false)
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
-    setModalOpen(true)
-  }
+    setModalOpen(true);
+  };
 
   const closeModal = () => {
-    setModalOpen(false)
-  }
+    setModalOpen(false);
+  };
 
-  const ModalUI = ({ title, children, size = '80rem' }) => {
+  interface ModalUIProps {
+    title?: string;
+    children?: any;
+    size?: string;
+  }
+  const ModalUI = ({ title, children, size = "80rem" }: ModalUIProps) => {
     return (
       <ModalWrapper data-open={isModalOpen} onClick={closeModal}>
         {isModalOpen && (
@@ -33,7 +38,7 @@ const useModal = () => {
         <CardModal
           maxWidth={size}
           onClick={(e) => {
-            e.stopPropagation()
+            e.stopPropagation();
           }}
         >
           <Column>
@@ -47,18 +52,18 @@ const useModal = () => {
           </Column>
         </CardModal>
       </ModalWrapper>
-    )
-  }
+    );
+  };
 
   return {
     isModalOpen,
     openModal,
     closeModal,
     ModalUI,
-  }
-}
+  };
+};
 
-export default useModal
+export default useModal;
 
 const ModalWrapper = styled.div`
   background: rgba(0, 0, 0, 0.5);
@@ -72,7 +77,7 @@ const ModalWrapper = styled.div`
   z-index: 20000;
   animation: ${fadeIn} 0.2s ease-out;
 
-  &[data-open='true'] {
+  &[data-open="true"] {
     display: flex;
     left: 0;
     opacity: 1;
@@ -81,7 +86,7 @@ const ModalWrapper = styled.div`
     align-items: baseline;
     justify-content: center;
   }
-`
+`;
 
 const CardModal = styled.div`
   ${container}
@@ -103,12 +108,12 @@ const CardModal = styled.div`
   ${mq.xl} {
     padding: 0 4.5rem 4.5rem 4.5rem;
   }
-`
+`;
 
 const Column = styled.div`
   padding: 0 1.5rem;
   display: contents;
-`
+`;
 
 const ModalHeader = styled.div`
   align-self: baseline;
@@ -122,7 +127,7 @@ const ModalHeader = styled.div`
   padding: 1.5rem 0;
   position: relative;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 50%;
     width: 200%;
@@ -131,20 +136,20 @@ const ModalHeader = styled.div`
     z-index: 0;
     transform: translate(-50%, 0);
   }
-`
+`;
 
 const ModalTitle = styled.h4`
   margin: 0;
   font-weight: 600;
   position: relative;
   text-transform: uppercase;
-`
+`;
 
 const CloseButton = styled.button`
   background: none;
   border: none;
   box-shadow: none;
-  color: ${colors ? colors.gray.dark : '#555552'};
+  color: ${colors ? colors.gray.dark : "#555552"};
   z-index: 6;
   &:hover {
     cursor: pointer;
@@ -160,6 +165,6 @@ const CloseButton = styled.button`
     height: 2.5rem;
     width: 2rem;
   }
-`
+`;
 
-const ModalBody = styled.div``
+const ModalBody = styled.div``;

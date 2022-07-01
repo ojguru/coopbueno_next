@@ -1,36 +1,36 @@
-import React from 'react'
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
+import React from "react";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
 // import Image from "@frontity/components/image";
-import Cta from 'components/Cta'
-import { Check } from 'components/icons'
-import colors from 'styles/colors'
+import Cta from "components/Cta";
+import { Check } from "components/icons";
+import colors from "styles/colors";
 
-import { GetStaticProps } from 'next'
-import { useQuery, prepareReactRender, useHydrateCache } from 'client'
-import { PropsWithServerCache } from '@gqty/react'
-import { getStrapiURL } from 'lib/api'
-import Layout from 'components/Layout'
+import { GetStaticProps } from "next";
+import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import { PropsWithServerCache } from "@gqty/react";
+import { getImageURL } from "lib/api";
+import Layout from "components/Layout";
 
 type PageProps = PropsWithServerCache<{
-  slug: string
-}>
+  slug: string;
+}>;
 const Page = ({ cacheSnapshot, slug }: PageProps) => {
-  const query = useQuery()
-  const [thankyou] = query.tpages({
+  useHydrateCache({
+    cacheSnapshot,
+  });
+
+  const query = useQuery();
+  const thankyou = query.tpages({
     filters: {
       slug: {
         eq: slug,
       },
     },
-  })?.data
+  })?.data[0];
 
-  const page = thankyou.attributes
-
-  useHydrateCache({
-    cacheSnapshot,
-  })
+  const page = thankyou?.attributes;
 
   return page ? (
     <Layout>
@@ -47,42 +47,42 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           <div>
             <Title>{page.titular}</Title>
             <Content
-              dangerouslySetInnerHTML={{ __html: page.agradecimiento }}
+              dangerouslySetInnerHTML={{ __html: page.agradecimiento || "" }}
             />
             <Cta cta={page.cta} />
           </div>
         </Container>
       </Section>
     </Layout>
-  ) : null
-}
+  ) : null;
+};
 
-export default Page
+export default Page;
 
-export const getStaticProps: GetStaticProps<PageProps> = async (_ctx) => {
-  const slug = _ctx.params.slug.toString()
-  const { cacheSnapshot } = await prepareReactRender(<Page slug={slug} />)
+export const getStaticProps: GetStaticProps<PageProps> = async (_ctx: any) => {
+  const slug = _ctx.params.slug.toString();
+  const { cacheSnapshot } = await prepareReactRender(<Page slug={slug} />);
 
   return {
     props: {
       cacheSnapshot,
       slug,
     },
-  }
-}
+  };
+};
 
 export function getStaticPaths() {
   return {
     paths: [],
-    fallback: 'blocking',
-  }
+    fallback: "blocking",
+  };
 }
 
 const Section = styled.article`
   ${container}
   min-height: 50vh;
   position: relative;
-`
+`;
 
 const Container = styled.div`
   ${container}
@@ -90,13 +90,13 @@ const Container = styled.div`
   ${mq.md} {
     grid-template-columns: 2fr 1fr;
   }
-`
+`;
 
-const Title = styled.h2``
+const Title = styled.h2``;
 
 const Content = styled.p`
   margin-bottom: 50px;
-`
+`;
 
 const DecoContainer = styled.div`
   width: 100%;
@@ -113,7 +113,7 @@ const DecoContainer = styled.div`
     opacity: 1;
   }
   &:before {
-    content: '';
+    content: "";
     border-radius: 50%;
     width: 40%;
     padding-bottom: 40%;
@@ -130,7 +130,7 @@ const DecoContainer = styled.div`
     }
   }
   &:after {
-    content: '';
+    content: "";
     border-radius: 50%;
     width: 30%;
     padding-bottom: 30%;
@@ -146,7 +146,7 @@ const DecoContainer = styled.div`
       top: 70%;
     }
   }
-`
+`;
 
 const DecoSquare = styled.div`
   width: 100%;
@@ -160,7 +160,7 @@ const DecoSquare = styled.div`
     box-shadow: 0 0 4rem ${colors.primary.dark};
     background-color: ${colors.primary.dark};
     &:before {
-      content: '';
+      content: "";
       border-radius: 50%;
       width: 40%;
       padding-bottom: 40%;
@@ -173,7 +173,7 @@ const DecoSquare = styled.div`
       opacity: 0.15;
     }
   }
-`
+`;
 
 const DecoRounded = styled.div`
   border-radius: 50%;
@@ -189,7 +189,7 @@ const DecoRounded = styled.div`
     left: 0;
     top: 70%;
   }
-`
+`;
 
 const CheckContainer = styled.div`
   position: absolute;
@@ -202,4 +202,4 @@ const CheckContainer = styled.div`
   svg {
     width: 100%;
   }
-`
+`;
