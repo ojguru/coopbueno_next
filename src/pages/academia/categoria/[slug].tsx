@@ -6,6 +6,7 @@ import { GetStaticProps } from "next";
 import { useQuery, prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import Layout from "components/Layout";
+import Loading from "components/loading";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -42,6 +43,10 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
       pageSize: 100,
     },
   })?.data;
+
+  if (query.$state.isLoading) {
+    return <Loading full />;
+  }
 
   return (
     <Layout>

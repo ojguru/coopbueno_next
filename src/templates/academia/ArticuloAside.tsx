@@ -7,13 +7,34 @@ import { container, mq } from "components/grid";
 // import HubspotForm from "react-hubspot-form";
 import Loading from "components/loading";
 import { ArticleEntity } from "client";
+import { useQuery, useRefetch } from "client";
 
 interface ArticuloAsideProps {
   articulo: ArticleEntity | undefined;
-  relacionados?: ArticleEntity[];
 }
-const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
-  // Load the post, but only if the data is ready.
+const ArticuloAside = ({ articulo }: ArticuloAsideProps) => {
+  const categoria = articulo?.attributes?.category?.data?.attributes;
+  const slug = articulo?.attributes?.slug;
+
+  const query = useQuery();
+
+  const relacionados =
+    query.articles({
+      pagination: {
+        pageSize: 4,
+      },
+      filters: {
+        category: {
+          slug: {
+            eq: categoria?.slug,
+          },
+        },
+        slug: {
+          notContains: slug,
+        },
+      },
+    })?.data || [];
+
   return true ? (
     <Aside>
       <Container space small>

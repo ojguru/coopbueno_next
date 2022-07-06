@@ -14,6 +14,7 @@ import { GetStaticProps } from "next";
 import { useQuery, prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import { getImageURL } from "lib/api";
+import Loading from "components/loading";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -29,6 +30,10 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     sort: ["orden:asc"],
   })?.data;
 
+  if (query.$state.isLoading) {
+    return <Loading full />;
+  }
+
   return (
     <Layout>
       <StyledSection>
@@ -42,7 +47,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
             const isPrincipal = index == 0;
 
             return (
-              <SucursalCard key={item.id} {...{ isPrincipal }}>
+              <SucursalCard key={index} {...{ isPrincipal }}>
                 <CardImage {...{ isPrincipal }}>
                   <SucursalImage
                     src={getImageURL(featuredMedia?.url)}

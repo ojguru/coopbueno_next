@@ -28,7 +28,9 @@ const Archivo = ({
     <>
       <Header spaceTop>
         <Link href="/noticias" passHref>
-          <ArchiveHeader color={colors.primary.base} title={titulo} />
+          <SLink>
+            <ArchiveHeader color={colors.primary.base} title={titulo} />
+          </SLink>
         </Link>
       </Header>
 
@@ -142,4 +144,8 @@ const SectionImage = styled.div`
   ${mq.lg} {
     max-width: 35rem;
   }
+`;
+
+const SLink = styled.a`
+  text-decoration: none;
 `;

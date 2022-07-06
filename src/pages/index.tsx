@@ -16,6 +16,7 @@ import {
   ENUM_SERVICIO_CATEGORIA,
 } from "client";
 import { PropsWithServerCache } from "@gqty/react";
+import Loading from "components/loading";
 
 type HomeProps = PropsWithServerCache<{}>;
 const Home = ({ cacheSnapshot }: HomeProps) => {
@@ -50,6 +51,10 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
       },
     },
   })?.data;
+
+  if (query.$state.isLoading) {
+    return <Loading full />;
+  }
 
   return (
     <div>

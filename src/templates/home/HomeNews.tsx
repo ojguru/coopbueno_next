@@ -16,7 +16,11 @@ interface HomeNewsProps {
 const HomeNews = ({ noticias = [] }: HomeNewsProps) => {
   return noticias.length ? (
     <Section fluid space>
-      <SectionTitle>Noticias</SectionTitle>
+      <Link href="/noticias" passHref>
+        <SLink>
+          <SectionTitle>Noticias</SectionTitle>
+        </SLink>
+      </Link>
       <Body>
         <Carousel
           autoplay={false}
@@ -141,3 +145,7 @@ const PostLink = styled.a`
 `;
 
 const Slide = styled.div``;
+
+const SLink = styled.a`
+  text-decoration: none;
+`;

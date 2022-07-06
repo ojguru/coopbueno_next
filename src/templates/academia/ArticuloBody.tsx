@@ -15,7 +15,12 @@ const ArticuloBody = ({ articulo }: ArticuloBodyProps) => {
   const post = articulo?.attributes;
   const imagen = post?.image?.data?.attributes;
 
-  const categorias = [post?.category?.data];
+  const categoria = post?.category?.data;
+  const categorias = [];
+
+  if (categoria) {
+    categorias.push(categoria);
+  }
 
   return post ? (
     <Article>
@@ -33,7 +38,7 @@ const ArticuloBody = ({ articulo }: ArticuloBodyProps) => {
       </MediaContainer>
       <InfoContainer maxWidth="75rem" space thin>
         <Header>
-          {/* <Categorias categorias={categorias} /> */}
+          <Categorias categorias={categorias} />
 
           <PostTitle
             as="h1"

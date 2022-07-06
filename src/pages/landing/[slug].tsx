@@ -12,6 +12,7 @@ import { useQuery, prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import { getImageURL } from "lib/api";
 import Layout from "components/Layout";
+import Loading from "components/loading";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -35,6 +36,10 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   const contenido = page?.contenido?.map(
     (item) => item?.$on.ComponentGeneralLista
   );
+
+  if (query.$state.isLoading) {
+    return <Loading full />;
+  }
 
   return page ? (
     <Layout>

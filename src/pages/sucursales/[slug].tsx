@@ -17,6 +17,7 @@ import { PropsWithServerCache } from "@gqty/react";
 import { getImageURL } from "lib/api";
 import colors from "styles/colors";
 import Layout from "components/Layout";
+import Loading from "components/loading";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -36,6 +37,10 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   })?.data[0];
 
   const sucursal = sucursalEntidad?.attributes;
+
+  if (query.$state.isLoading) {
+    return <Loading full />;
+  }
 
   return sucursal ? (
     <Layout>

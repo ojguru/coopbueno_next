@@ -99,6 +99,7 @@ const CardModal = styled.div`
   flex: 1;
   overflow: hidden;
   padding: 0 1.5rem 1.5rem 1.5rem;
+  max-width: ${(props) => props.maxWidth};
   ${mq.sm} {
     padding: 0 3rem 3rem 1.5rem;
   }

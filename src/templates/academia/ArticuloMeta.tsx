@@ -4,6 +4,7 @@ import { CalendarIcon } from "components/icons";
 import { mq } from "components/grid";
 import ScreenReaderText from "styles/screen-reader";
 import { Article } from "client";
+import moment from "moment";
 
 export const PostMetaWrapper = styled.div`
   margin-top: 2rem;
@@ -47,7 +48,7 @@ const ArticuloMeta = ({ articulo }: ArticuloMetaProps) => {
               <CalendarIcon />
             </MetaIcon>
 
-            <MetaText>{date.toLocaleString("es-Do")}</MetaText>
+            <MetaText>{moment(date).format("DD-MM-YYYY")}</MetaText>
           </PostMetaItem>
         ) : null}
       </PostMetaList>

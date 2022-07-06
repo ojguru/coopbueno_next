@@ -9,6 +9,7 @@ import Requisitos from "templates/servicios/requisitos";
 import Beneficios from "templates/servicios/beneficios";
 import Conversion from "templates/servicios/conversion";
 import Video from "templates/servicios/video";
+import Loading from "components/loading";
 
 import { GetStaticProps } from "next";
 
@@ -24,6 +25,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   });
 
   const query = useQuery();
+
   const servicioEntidad = query.servicios({
     filters: {
       slug: {
@@ -33,6 +35,10 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   })?.data[0];
 
   const servicio = servicioEntidad?.attributes;
+
+  if (query.$state.isLoading) {
+    return <Loading full />;
+  }
 
   return servicio ? (
     <Layout>

@@ -14,6 +14,7 @@ import {
 } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import Layout from "components/Layout";
+import Loading from "components/loading";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -27,6 +28,10 @@ const Page = ({ cacheSnapshot }: PageProps) => {
       pageSize: 100,
     },
   })?.data;
+
+  if (query.$state.isLoading) {
+    return <Loading full />;
+  }
 
   return servicios?.length ? (
     <Layout>

@@ -4,6 +4,7 @@ import ScreenReaderText from "styles/screen-reader";
 import Link from "next/link";
 import { mq } from "components/grid";
 import { CategoryEntity } from "client";
+import { getURL } from "lib/api";
 
 interface ArticuloCategoriasProps {
   categorias: CategoryEntity[];
@@ -16,16 +17,17 @@ const ArticuloCategorias = ({ categorias }: ArticuloCategoriasProps) => {
 
       <EntryCategoriesInner>
         {categorias.map((item, index) => {
-          const categoria = item.attributes;
+          const categoria = item?.attributes;
 
-          return (
+          return categoria ? (
             <CategoryTag
               key={index}
-              href={`/academia/categoria/${categoria?.slug}`}
+              href={getURL(`/academia/categoria/${categoria?.slug}`)}
+              passHref
             >
-              {categoria?.name}
+              <a>{categoria?.name}</a>
             </CategoryTag>
-          );
+          ) : null;
         })}
       </EntryCategoriesInner>
     </EntryCategories>

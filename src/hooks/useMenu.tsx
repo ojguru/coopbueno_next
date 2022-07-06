@@ -5,10 +5,10 @@ import { CloseIcon, MenuIcon } from "components/icons";
 import colors from "styles/colors";
 import { container, mq } from "components/grid";
 import { useSpring, a, config } from "@react-spring/web";
-import { useAppContext } from "context/appContext";
+// import { useAppContext } from "context/appContext";
 
 const useMenu = () => {
-  const { isMenuOpen, setMenuOpen } = useAppContext();
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
   let [activador, setActivador] = useState(false);
 
@@ -56,22 +56,23 @@ const useMenu = () => {
           onClick={(e) => {
             e.stopPropagation();
           }}
-          style={wrapperSpring}
         >
-          <Column>
-            <ModalHeader>
-              <span></span>
-              <CloseButton
-                onClick={(e) => {
-                  setMenuOpen(false);
-                }}
-              >
-                Cerrar menú
-                <CloseIcon />
-              </CloseButton>
-            </ModalHeader>
-            <ModalBody>{children}</ModalBody>
-          </Column>
+          <AModal style={wrapperSpring}>
+            <Column>
+              <ModalHeader>
+                <span></span>
+                <CloseButton
+                  onClick={(e) => {
+                    setMenuOpen(false);
+                  }}
+                >
+                  Cerrar menú
+                  <CloseIcon />
+                </CloseButton>
+              </ModalHeader>
+              <ModalBody>{children}</ModalBody>
+            </Column>
+          </AModal>
         </CardModal>
       </ModalWrapper>
     );
@@ -112,7 +113,7 @@ const ModalWrapper = styled(a.div)`
   justify-content: flex-end;
 `;
 
-const CardModal = styled(a.div)`
+const CardModal = styled.div`
   ${container}
   min-height: 100%;
   margin: initial;
@@ -130,6 +131,8 @@ const CardModal = styled(a.div)`
     padding: 0 4.5rem 4.5rem 4.5rem;
   }
 `;
+
+const AModal = styled(a.div)``;
 
 const Column = styled.div`
   padding: 0 1.5rem;

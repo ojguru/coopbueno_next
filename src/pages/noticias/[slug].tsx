@@ -7,6 +7,7 @@ import { PropsWithServerCache } from "@gqty/react";
 import ArticuloBody from "templates/noticias/ArticuloBody";
 import ArticuloAside from "templates/noticias/ArticuloAside";
 import Layout from "components/Layout";
+import Loading from "components/loading";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -33,6 +34,10 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
       },
     },
   })?.data;
+
+  if (query.$state.isLoading) {
+    return <Loading full />;
+  }
 
   return (
     <Layout>
