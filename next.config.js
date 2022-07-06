@@ -7,6 +7,7 @@ const nextConfig = {
       "localhost",
       "certificaciones.uaf.gob.do",
       "coopbueno.herokuapp.com",
+      "coopbueno.netlify.app",
       "res.cloudinary.com",
     ],
   },
