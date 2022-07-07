@@ -5,36 +5,13 @@ import React, { useEffect, useState } from "react";
 import PostItem from "./post-item";
 import { container, mq } from "components/grid";
 // import HubspotForm from "react-hubspot-form";
-import Loading from "components/loading";
 import { ArticleEntity } from "client";
-import { useQuery, useRefetch } from "client";
 
 interface ArticuloAsideProps {
-  articulo: ArticleEntity | undefined;
+  articulo?: ArticleEntity;
+  relacionados?: ArticleEntity[];
 }
-const ArticuloAside = ({ articulo }: ArticuloAsideProps) => {
-  const categoria = articulo?.attributes?.category?.data?.attributes;
-  const slug = articulo?.attributes?.slug;
-
-  const query = useQuery();
-
-  const relacionados =
-    query.articles({
-      pagination: {
-        pageSize: 4,
-      },
-      filters: {
-        category: {
-          slug: {
-            eq: categoria?.slug,
-          },
-        },
-        slug: {
-          notContains: slug,
-        },
-      },
-    })?.data || [];
-
+const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
   return true ? (
     <Aside>
       <Container space small>

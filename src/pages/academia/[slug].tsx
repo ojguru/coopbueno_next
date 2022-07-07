@@ -29,6 +29,23 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
 
   const categoria = articuloEntidad?.attributes?.category?.data?.attributes;
 
+  const relacionados =
+    query.articles({
+      pagination: {
+        pageSize: 4,
+      },
+      filters: {
+        category: {
+          slug: {
+            eq: categoria?.slug,
+          },
+        },
+        slug: {
+          notContains: slug,
+        },
+      },
+    })?.data || [];
+
   if (query.$state.isLoading) {
     return <Loading full />;
   }
@@ -36,7 +53,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   return (
     <Layout>
       <ArticuloBody articulo={articuloEntidad} />
-      <ArticuloAside articulo={articuloEntidad} />
+      <ArticuloAside articulo={articuloEntidad} relacionados={relacionados} />
     </Layout>
   );
 };
