@@ -1,35 +1,27 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { container } from "components/grid";
-// import HubspotForm from "react-hubspot-form";
-import Loading from "components/loading";
 import { h1 } from "styles/tipography";
 import { Servicio } from "client";
-import { HUBSPOT_ID } from "lib/constants";
+import Formulario from "components/Formulario";
 
 interface ConversionProps {
   servicio: Servicio;
 }
 
 const Conversion = ({ servicio }: ConversionProps) => {
-  const formId = servicio.form;
+  const formulario = servicio?.formulario;
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     setLoaded(true);
   }, []);
 
-  return formId ? (
+  return formulario ? (
     <Section space>
       <Container>
         <Title>Solicitar información</Title>
         <FormBox>
-          {/* {loaded ? (
-            <HubspotForm
-              portalId={HUBSPOT_ID}
-              formId={formId}
-              loading={<Loading />}
-            />
-          ) : null} */}
+          <Formulario formulario={formulario} />
         </FormBox>
       </Container>
     </Section>

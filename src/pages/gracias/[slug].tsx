@@ -52,7 +52,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           <div>
             <Title>{page.titular}</Title>
             <Content
-              dangerouslySetInnerHTML={{ __html: page.agradecimiento || "" }}
+              dangerouslySetInnerHTML={{ __html: page.contenido || "" }}
             />
             <Cta cta={page.cta} />
           </div>
@@ -99,7 +99,7 @@ const Container = styled.div`
 
 const Title = styled.h2``;
 
-const Content = styled.p`
+const Content = styled.div`
   margin-bottom: 50px;
 `;
 

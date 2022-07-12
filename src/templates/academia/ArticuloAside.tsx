@@ -1,17 +1,21 @@
+import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-// import { FacebookProvider, Comments } from "react-facebook";
-import React, { useEffect, useState } from "react";
+import { FacebookProvider, Comments } from "react-facebook";
 import PostItem from "./post-item";
 import { container, mq } from "components/grid";
-// import HubspotForm from "react-hubspot-form";
-import { ArticleEntity } from "client";
+import Formulario from "components/Formulario";
+import { ArticleEntity, ComponentGeneralFormulario } from "client";
 
 interface ArticuloAsideProps {
   articulo?: ArticleEntity;
   relacionados?: ArticleEntity[];
 }
 const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
+  const formulario: ComponentGeneralFormulario = {
+    id: "formulario-bf21c6d7-45e0-48e4-8c07-37e1c9efa554",
+    formId: "bf21c6d7-45e0-48e4-8c07-37e1c9efa554",
+  };
   return true ? (
     <Aside>
       <Container space small>
@@ -25,11 +29,7 @@ const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
                 que actualicemos sobre vida financiera.
               </p>
               <Form>
-                {/* <HubspotForm
-                  portalId={5494710}
-                  formId="bf21c6d7-45e0-48e4-8c07-37e1c9efa554"
-                  loading={<Loading />}
-                /> */}
+                <Formulario formulario={formulario} />
               </Form>
             </BlockBody>
           </Block>
@@ -47,11 +47,11 @@ const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
         <AsideSection as="div">
           <Block>
             <SectionTitle>Comentarios</SectionTitle>
-            {/* <FacebookProvider appId="709986282911816">
+            <FacebookProvider appId="709986282911816">
               <Comments
-                href={`https://coopbueno.com.do/academia/${articulo.attributes.slug}`}
+                href={`https://coopbueno.com.do/academia/${articulo?.attributes?.slug}`}
               />
-            </FacebookProvider> */}
+            </FacebookProvider>
           </Block>
         </AsideSection>
         {relacionados.length ? (

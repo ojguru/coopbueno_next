@@ -45,10 +45,9 @@ const Page = ({ cacheSnapshot }: PageProps) => {
               <MemoryCard key={index}>
                 <Link
                   href={getURL(memoria?.archivo?.data?.attributes?.url)}
-                  download
                   passHref
                 >
-                  <SLink>
+                  <SLink target="_blank" download>
                     <CardImage>
                       <Image
                         src={getImageURL(

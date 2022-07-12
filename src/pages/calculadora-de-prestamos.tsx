@@ -7,16 +7,18 @@ import Layout from "components/Layout";
 
 import ctas from "styles/cta";
 import { mq, container } from "components/grid";
-import Loading from "components/loading";
-
-// import HubspotForm from 'react-hubspot-form'
 
 import { useForm } from "react-hook-form";
 import { h4 } from "styles/tipography";
 import colors from "styles/colors";
 import PageHeader from "components/PageHeader";
+import { ComponentGeneralFormulario } from "client";
 
 const Page = ({}) => {
+  const formulario: ComponentGeneralFormulario = {
+    id: "formulario-b845c8ab-9eea-48c1-90ca-278bef416e72",
+    formId: "b845fc8ab-9eea-48c1-90ca-278bef416e72",
+  };
   // const formatNumber = new Intl.NumberFormat("en-US");
 
   // const {
@@ -425,11 +427,8 @@ const Page = ({}) => {
           </Section>
 
           <ModalUI title="Contáctanos">
-            <HubspotForm
-              portalId={5494710}
-              formId="b845c8ab-9eea-48c1-90ca-278bef416e72"
-              loading={<Loading />}
-            />
+            <Formulario formulario={formulario} />
+            
           </ModalUI>
         </Calculator> */}
       </Container>

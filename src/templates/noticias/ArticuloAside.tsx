@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-// import { FacebookProvider, Comments } from "react-facebook";
+import { FacebookProvider, Comments } from "react-facebook";
 import React from "react";
 import PostItem from "./post-item";
 import { container, mq } from "components/grid";
@@ -49,11 +49,11 @@ const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
         <AsideSection as="div">
           <Block>
             <SectionTitle>Comentarios</SectionTitle>
-            {/* <FacebookProvider appId="709986282911816">
+            <FacebookProvider appId="709986282911816">
               <Comments
-                href={`https://coopbueno.com.do/noticias/${articulo.attributes.slug}`}
+                href={`https://coopbueno.com.do/noticias/${articulo?.attributes?.slug}`}
               />
-            </FacebookProvider> */}
+            </FacebookProvider>
           </Block>
         </AsideSection>
         {relacionados.length ? (

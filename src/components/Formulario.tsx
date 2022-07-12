@@ -1,48 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo, useCallback } from "react";
 import styled from "@emotion/styled";
-// import HubspotForm from "react-hubspot-form";
 import Loading from "components/loading";
 import { HUBSPOT_ID } from "lib/constants";
 import { ComponentGeneralFormulario } from "client";
+import Script from "next/script";
+import HubspotForm from "react-hubspot-form";
 
 interface FormularioProps {
   formulario?: ComponentGeneralFormulario;
 }
+
 const Formulario = ({ formulario }: FormularioProps) => {
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
-
-  return loaded && formulario ? (
-    <Form>
-      {formulario.titulo ? <FormHeader>{formulario.titulo}</FormHeader> : null}
-
-      <FormBody
-        dangerouslySetInnerHTML={{
-          __html: `
-        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
-        <script>
-          hbspt.forms.create({
-            region: "na1",
-            portalId: "5494710",
-            formId: "a6493626-177e-4b1b-8eb0-d45ccff8da42"
-          });
-        </script>
-      `,
-        }}
-      >
-        {/* <HubspotForm
-          portalId={HUBSPOT_ID}
-          formId={formulario.formId}
-          loading={<Loading />}
-        /> */}
-      </FormBody>
-    </Form>
-  ) : (
-    <Loading />
-  );
+  return formulario ? (
+    <>
+      <Script src="https://code.jquery.com/jquery-3.6.0.min.js" />
+      <Form>
+        {formulario.titulo ? (
+          <FormHeader>{formulario.titulo}</FormHeader>
+        ) : null}
+        <FormBody>
+          <HubspotForm
+            portalId={HUBSPOT_ID}
+            formId={formulario.formId}
+            loading={<Loading />}
+          />
+        </FormBody>
+      </Form>
+    </>
+  ) : null;
 };
 
 export default Formulario;

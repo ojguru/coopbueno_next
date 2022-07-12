@@ -28,6 +28,9 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   })?.data[0];
 
   const relacionados = query.noticias({
+    pagination: {
+      pageSize: 4,
+    },
     filters: {
       slug: {
         notContains: slug,

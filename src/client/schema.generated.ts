@@ -42,6 +42,7 @@ export interface ArticleFiltersInput {
   not?: InputMaybe<ArticleFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>;
   slug?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -103,6 +104,14 @@ export interface CategoryInput {
   slug?: InputMaybe<Scalars["String"]>;
 }
 
+export interface ComponentGeneralFormularioFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<ComponentGeneralFormularioFiltersInput>>>;
+  formId?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentGeneralFormularioFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentGeneralFormularioFiltersInput>>>;
+  titulo?: InputMaybe<StringFilterInput>;
+}
+
 export interface ComponentGeneralFormularioInput {
   formId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["ID"]>;
@@ -134,6 +143,14 @@ export interface ComponentServiciosRequisitosFiltersInput {
 export interface ComponentServiciosRequisitosInput {
   id?: InputMaybe<Scalars["ID"]>;
   requisito?: InputMaybe<Scalars["String"]>;
+}
+
+export interface ComponentServiciosTarifarioFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<ComponentServiciosTarifarioFiltersInput>>>;
+  not?: InputMaybe<ComponentServiciosTarifarioFiltersInput>;
+  nota?: InputMaybe<StringFilterInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentServiciosTarifarioFiltersInput>>>;
+  tarifas?: InputMaybe<ComponentServiciosTarifasFiltersInput>;
 }
 
 export interface ComponentServiciosTarifarioInput {
@@ -168,11 +185,29 @@ export interface ComponentServiciosVentajasInput {
   ventaja?: InputMaybe<Scalars["String"]>;
 }
 
+export interface ComponentSharedCtaFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedCtaFiltersInput>>>;
+  not?: InputMaybe<ComponentSharedCtaFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedCtaFiltersInput>>>;
+  target?: InputMaybe<BooleanFilterInput>;
+  texto?: InputMaybe<StringFilterInput>;
+  uri?: InputMaybe<StringFilterInput>;
+}
+
 export interface ComponentSharedCtaInput {
   id?: InputMaybe<Scalars["ID"]>;
   target?: InputMaybe<Scalars["Boolean"]>;
   texto?: InputMaybe<Scalars["String"]>;
   uri?: InputMaybe<Scalars["String"]>;
+}
+
+export interface ComponentSharedPortadaFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedPortadaFiltersInput>>>;
+  copy?: InputMaybe<StringFilterInput>;
+  cta?: InputMaybe<ComponentSharedCtaFiltersInput>;
+  not?: InputMaybe<ComponentSharedPortadaFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedPortadaFiltersInput>>>;
+  titular?: InputMaybe<StringFilterInput>;
 }
 
 export interface ComponentSharedPortadaInput {
@@ -181,6 +216,14 @@ export interface ComponentSharedPortadaInput {
   id?: InputMaybe<Scalars["ID"]>;
   imagen?: InputMaybe<Scalars["ID"]>;
   titular?: InputMaybe<Scalars["String"]>;
+}
+
+export interface ComponentSharedSeoFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>;
+  metaDescription?: InputMaybe<StringFilterInput>;
+  metaTitle?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSharedSeoFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>;
 }
 
 export interface ComponentSharedSeoInput {
@@ -370,6 +413,7 @@ export interface LandingFiltersInput {
   and?: InputMaybe<Array<InputMaybe<LandingFiltersInput>>>;
   copy?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  formulario?: InputMaybe<ComponentGeneralFormularioFiltersInput>;
   id?: InputMaybe<IDFilterInput>;
   nombre?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<LandingFiltersInput>;
@@ -462,6 +506,7 @@ export interface NoticiaFiltersInput {
   not?: InputMaybe<NoticiaFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<NoticiaFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>;
   slug?: InputMaybe<StringFilterInput>;
   titulo?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -495,15 +540,20 @@ export interface ServicioFiltersInput {
   categoria?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   descripcion?: InputMaybe<StringFilterInput>;
-  form?: InputMaybe<StringFilterInput>;
+  formulario?: InputMaybe<ComponentGeneralFormularioFiltersInput>;
   id?: InputMaybe<IDFilterInput>;
   nombre?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ServicioFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ServicioFiltersInput>>>;
+  portada?: InputMaybe<ComponentSharedPortadaFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  requisitos?: InputMaybe<ComponentServiciosRequisitosFiltersInput>;
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>;
   slug?: InputMaybe<StringFilterInput>;
+  tarifario?: InputMaybe<ComponentServiciosTarifarioFiltersInput>;
   tipo?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+  ventajas?: InputMaybe<ComponentServiciosVentajasFiltersInput>;
   video?: InputMaybe<StringFilterInput>;
 }
 
@@ -511,7 +561,7 @@ export interface ServicioInput {
   beneficios?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
   categoria?: InputMaybe<ENUM_SERVICIO_CATEGORIA>;
   descripcion?: InputMaybe<Scalars["String"]>;
-  form?: InputMaybe<Scalars["String"]>;
+  formulario?: InputMaybe<ComponentGeneralFormularioInput>;
   icono?: InputMaybe<Scalars["ID"]>;
   nombre?: InputMaybe<Scalars["String"]>;
   portada?: InputMaybe<ComponentSharedPortadaInput>;
@@ -529,6 +579,7 @@ export interface SlideFiltersInput {
   and?: InputMaybe<Array<InputMaybe<SlideFiltersInput>>>;
   copy?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  cta?: InputMaybe<ComponentSharedCtaFiltersInput>;
   id?: InputMaybe<IDFilterInput>;
   not?: InputMaybe<SlideFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<SlideFiltersInput>>>;
@@ -581,6 +632,7 @@ export interface SucursalFiltersInput {
   orden?: InputMaybe<IntFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
+  telefonos?: InputMaybe<ComponentSucursalTelefonosFiltersInput>;
   ubicacion?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 }
@@ -601,7 +653,9 @@ export interface SucursalInput {
 export interface TpageFiltersInput {
   agradecimiento?: InputMaybe<StringFilterInput>;
   and?: InputMaybe<Array<InputMaybe<TpageFiltersInput>>>;
+  contenido?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  cta?: InputMaybe<ComponentSharedCtaFiltersInput>;
   id?: InputMaybe<IDFilterInput>;
   nombre?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<TpageFiltersInput>;
@@ -614,6 +668,7 @@ export interface TpageFiltersInput {
 
 export interface TpageInput {
   agradecimiento?: InputMaybe<Scalars["String"]>;
+  contenido?: InputMaybe<Scalars["String"]>;
   cta?: InputMaybe<ComponentSharedCtaInput>;
   nombre?: InputMaybe<Scalars["String"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
@@ -810,6 +865,7 @@ export const generatedSchema = {
     not: { __type: "ArticleFiltersInput" },
     or: { __type: "[ArticleFiltersInput]" },
     publishedAt: { __type: "DateTimeFilterInput" },
+    seo: { __type: "ComponentSharedSeoFiltersInput" },
     slug: { __type: "StringFilterInput" },
     title: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
@@ -908,6 +964,13 @@ export const generatedSchema = {
     id: { __type: "ID!" },
     titulo: { __type: "String" },
   },
+  ComponentGeneralFormularioFiltersInput: {
+    and: { __type: "[ComponentGeneralFormularioFiltersInput]" },
+    formId: { __type: "StringFilterInput" },
+    not: { __type: "ComponentGeneralFormularioFiltersInput" },
+    or: { __type: "[ComponentGeneralFormularioFiltersInput]" },
+    titulo: { __type: "StringFilterInput" },
+  },
   ComponentGeneralFormularioInput: {
     formId: { __type: "String" },
     id: { __type: "ID" },
@@ -980,6 +1043,13 @@ export const generatedSchema = {
       },
     },
   },
+  ComponentServiciosTarifarioFiltersInput: {
+    and: { __type: "[ComponentServiciosTarifarioFiltersInput]" },
+    not: { __type: "ComponentServiciosTarifarioFiltersInput" },
+    nota: { __type: "StringFilterInput" },
+    or: { __type: "[ComponentServiciosTarifarioFiltersInput]" },
+    tarifas: { __type: "ComponentServiciosTarifasFiltersInput" },
+  },
   ComponentServiciosTarifarioInput: {
     id: { __type: "ID" },
     nota: { __type: "String" },
@@ -1025,6 +1095,14 @@ export const generatedSchema = {
     texto: { __type: "String!" },
     uri: { __type: "String!" },
   },
+  ComponentSharedCtaFiltersInput: {
+    and: { __type: "[ComponentSharedCtaFiltersInput]" },
+    not: { __type: "ComponentSharedCtaFiltersInput" },
+    or: { __type: "[ComponentSharedCtaFiltersInput]" },
+    target: { __type: "BooleanFilterInput" },
+    texto: { __type: "StringFilterInput" },
+    uri: { __type: "StringFilterInput" },
+  },
   ComponentSharedCtaInput: {
     id: { __type: "ID" },
     target: { __type: "Boolean" },
@@ -1039,6 +1117,14 @@ export const generatedSchema = {
     imagen: { __type: "UploadFileEntityResponse!" },
     titular: { __type: "String!" },
   },
+  ComponentSharedPortadaFiltersInput: {
+    and: { __type: "[ComponentSharedPortadaFiltersInput]" },
+    copy: { __type: "StringFilterInput" },
+    cta: { __type: "ComponentSharedCtaFiltersInput" },
+    not: { __type: "ComponentSharedPortadaFiltersInput" },
+    or: { __type: "[ComponentSharedPortadaFiltersInput]" },
+    titular: { __type: "StringFilterInput" },
+  },
   ComponentSharedPortadaInput: {
     copy: { __type: "String" },
     cta: { __type: "ComponentSharedCtaInput" },
@@ -1052,6 +1138,13 @@ export const generatedSchema = {
     metaDescription: { __type: "String!" },
     metaTitle: { __type: "String!" },
     shareImage: { __type: "UploadFileEntityResponse" },
+  },
+  ComponentSharedSeoFiltersInput: {
+    and: { __type: "[ComponentSharedSeoFiltersInput]" },
+    metaDescription: { __type: "StringFilterInput" },
+    metaTitle: { __type: "StringFilterInput" },
+    not: { __type: "ComponentSharedSeoFiltersInput" },
+    or: { __type: "[ComponentSharedSeoFiltersInput]" },
   },
   ComponentSharedSeoInput: {
     id: { __type: "ID" },
@@ -1308,6 +1401,7 @@ export const generatedSchema = {
     and: { __type: "[LandingFiltersInput]" },
     copy: { __type: "StringFilterInput" },
     createdAt: { __type: "DateTimeFilterInput" },
+    formulario: { __type: "ComponentGeneralFormularioFiltersInput" },
     id: { __type: "IDFilterInput" },
     nombre: { __type: "StringFilterInput" },
     not: { __type: "LandingFiltersInput" },
@@ -1500,6 +1594,7 @@ export const generatedSchema = {
     not: { __type: "NoticiaFiltersInput" },
     or: { __type: "[NoticiaFiltersInput]" },
     publishedAt: { __type: "DateTimeFilterInput" },
+    seo: { __type: "ComponentSharedSeoFiltersInput" },
     slug: { __type: "StringFilterInput" },
     titulo: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
@@ -1544,7 +1639,7 @@ export const generatedSchema = {
     categoria: { __type: "ENUM_SERVICIO_CATEGORIA!" },
     createdAt: { __type: "DateTime" },
     descripcion: { __type: "String!" },
-    form: { __type: "String" },
+    formulario: { __type: "ComponentGeneralFormulario" },
     icono: { __type: "UploadFileEntityResponse!" },
     nombre: { __type: "String!" },
     portada: { __type: "ComponentSharedPortada!" },
@@ -1592,22 +1687,27 @@ export const generatedSchema = {
     categoria: { __type: "StringFilterInput" },
     createdAt: { __type: "DateTimeFilterInput" },
     descripcion: { __type: "StringFilterInput" },
-    form: { __type: "StringFilterInput" },
+    formulario: { __type: "ComponentGeneralFormularioFiltersInput" },
     id: { __type: "IDFilterInput" },
     nombre: { __type: "StringFilterInput" },
     not: { __type: "ServicioFiltersInput" },
     or: { __type: "[ServicioFiltersInput]" },
+    portada: { __type: "ComponentSharedPortadaFiltersInput" },
     publishedAt: { __type: "DateTimeFilterInput" },
+    requisitos: { __type: "ComponentServiciosRequisitosFiltersInput" },
+    seo: { __type: "ComponentSharedSeoFiltersInput" },
     slug: { __type: "StringFilterInput" },
+    tarifario: { __type: "ComponentServiciosTarifarioFiltersInput" },
     tipo: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
+    ventajas: { __type: "ComponentServiciosVentajasFiltersInput" },
     video: { __type: "StringFilterInput" },
   },
   ServicioInput: {
     beneficios: { __type: "[ID]" },
     categoria: { __type: "ENUM_SERVICIO_CATEGORIA" },
     descripcion: { __type: "String" },
-    form: { __type: "String" },
+    formulario: { __type: "ComponentGeneralFormularioInput" },
     icono: { __type: "ID" },
     nombre: { __type: "String" },
     portada: { __type: "ComponentSharedPortadaInput" },
@@ -1652,6 +1752,7 @@ export const generatedSchema = {
     and: { __type: "[SlideFiltersInput]" },
     copy: { __type: "StringFilterInput" },
     createdAt: { __type: "DateTimeFilterInput" },
+    cta: { __type: "ComponentSharedCtaFiltersInput" },
     id: { __type: "IDFilterInput" },
     not: { __type: "SlideFiltersInput" },
     or: { __type: "[SlideFiltersInput]" },
@@ -1737,6 +1838,7 @@ export const generatedSchema = {
     orden: { __type: "IntFilterInput" },
     publishedAt: { __type: "DateTimeFilterInput" },
     slug: { __type: "StringFilterInput" },
+    telefonos: { __type: "ComponentSucursalTelefonosFiltersInput" },
     ubicacion: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
   },
@@ -1755,6 +1857,7 @@ export const generatedSchema = {
   Tpage: {
     __typename: { __type: "String!" },
     agradecimiento: { __type: "String!" },
+    contenido: { __type: "String!" },
     createdAt: { __type: "DateTime" },
     cta: { __type: "ComponentSharedCta" },
     nombre: { __type: "String!" },
@@ -1780,7 +1883,9 @@ export const generatedSchema = {
   TpageFiltersInput: {
     agradecimiento: { __type: "StringFilterInput" },
     and: { __type: "[TpageFiltersInput]" },
+    contenido: { __type: "StringFilterInput" },
     createdAt: { __type: "DateTimeFilterInput" },
+    cta: { __type: "ComponentSharedCtaFiltersInput" },
     id: { __type: "IDFilterInput" },
     nombre: { __type: "StringFilterInput" },
     not: { __type: "TpageFiltersInput" },
@@ -1792,6 +1897,7 @@ export const generatedSchema = {
   },
   TpageInput: {
     agradecimiento: { __type: "String" },
+    contenido: { __type: "String" },
     cta: { __type: "ComponentSharedCtaInput" },
     nombre: { __type: "String" },
     publishedAt: { __type: "DateTime" },
@@ -3018,7 +3124,7 @@ export interface Servicio {
   categoria: ScalarsEnums["ENUM_SERVICIO_CATEGORIA"];
   createdAt?: Maybe<ScalarsEnums["DateTime"]>;
   descripcion: ScalarsEnums["String"];
-  form?: Maybe<ScalarsEnums["String"]>;
+  formulario?: Maybe<ComponentGeneralFormulario>;
   icono: UploadFileEntityResponse;
   nombre: ScalarsEnums["String"];
   portada: ComponentSharedPortada;
@@ -3149,6 +3255,7 @@ export interface SucursalEntityResponseCollection {
 export interface Tpage {
   __typename?: "Tpage";
   agradecimiento: ScalarsEnums["String"];
+  contenido: ScalarsEnums["String"];
   createdAt?: Maybe<ScalarsEnums["DateTime"]>;
   cta?: Maybe<ComponentSharedCta>;
   nombre: ScalarsEnums["String"];

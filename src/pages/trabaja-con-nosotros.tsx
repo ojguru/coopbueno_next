@@ -1,28 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
-// import HubspotForm from 'react-hubspot-form'
 import { container } from "components/grid";
-import Loading from "components/loading";
 import Layout from "components/Layout";
-import { HUBSPOT_ID } from "lib/constants";
+import Formulario from "components/Formulario";
+import { ComponentGeneralFormulario } from "client";
 
 const TrabajaConNosotros = () => {
-  const [state, setState] = useState(false);
-  useEffect(() => {
-    setState(true);
-  }, []);
+  const formulario: ComponentGeneralFormulario = {
+    id: "formulario-2f4be6c7-cf07-4ca6-be13-ea67ff4ad4b0",
+    formId: "2f4be6c7-cf07-4ca6-be13-ea67ff4ad4b0",
+  };
   return (
     <Layout>
       <Section space>
         <Title>Trabaja con nosotros</Title>
-        {/* {state ? (
-          <HubspotForm
-            id="solicitud-empleo"
-            portalId={HUBSPOT_ID}
-            formId="2f4be6c7-cf07-4ca6-be13-ea67ff4ad4b0"
-            loading={<Loading full />}
-          />
-        ) : null} */}
+        <Formulario formulario={formulario} />
       </Section>
     </Layout>
   );

@@ -116,6 +116,7 @@ const CategoryNav = styled.div`
           display: block;
           position: fixed;
           left: 0;
+          top: 0;
         `
       : `
     `}

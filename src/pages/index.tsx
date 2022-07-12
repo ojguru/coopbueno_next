@@ -1,3 +1,7 @@
+const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
+const SITE_URL = process.env.SITE_URL;
+console.log(API_URL, SITE_URL);
+
 import Head from "next/head";
 import HomeCover from "templates/home/HomeCover";
 import HomeAcademy from "templates/home/HomeAcademy";
@@ -50,6 +54,7 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
         ],
       },
     },
+    sort: ["nombre:asc"],
   })?.data;
 
   if (query.$state.isLoading) {
