@@ -14,6 +14,8 @@ import { PropsWithServerCache } from "@gqty/react";
 import Layout from "components/Layout";
 import { getImageURL, getURL } from "lib/api";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
+import { SITE_NAME, SITE_URL } from "lib/constants";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -34,40 +36,53 @@ const Page = ({ cacheSnapshot }: PageProps) => {
   }
 
   return memorias?.length ? (
-    <Layout>
-      <Section space>
-        <PageHeader title="Memorias Anuales" />
-        <List>
-          {memorias.map((item, index) => {
-            const memoria = item.attributes;
+    <>
+      <NextSeo
+        title="Memorias Anuales Coopbueno"
+        description="Se parte de nuestro crecimiento."
+        canonical={`${SITE_URL}`}
+        openGraph={{
+          url: `${SITE_URL}`,
+          title: "Memorias Anuales Coopbueno",
+          description: "Se parte de nuestro crecimiento.",
+          site_name: SITE_NAME,
+        }}
+      />
+      <Layout>
+        <Section space>
+          <PageHeader title="Memorias Anuales" />
+          <List>
+            {memorias.map((item, index) => {
+              const memoria = item.attributes;
 
-            return (
-              <MemoryCard key={index}>
-                <Link
-                  href={getURL(memoria?.archivo?.data?.attributes?.url)}
-                  passHref
-                >
-                  <SLink target="_blank" download>
-                    <CardImage>
-                      <Image
-                        src={getImageURL(
-                          memoria?.imagen?.data?.attributes?.url
-                        )}
-                        alt={memoria?.nombre}
-                        width={1080}
-                        height={1404}
-                        objectFit="cover"
-                      />
-                    </CardImage>
-                    <MemoryName>{memoria?.ano}</MemoryName>
-                  </SLink>
-                </Link>
-              </MemoryCard>
-            );
-          })}
-        </List>
-      </Section>
-    </Layout>
+              return (
+                <MemoryCard key={index}>
+                  <Link
+                    href={getURL(memoria?.archivo?.data?.attributes?.url)}
+                    passHref
+                  >
+                    <SLink target="_blank" download>
+                      <CardImage>
+                        <Image
+                          src={getImageURL(
+                            memoria?.imagen?.data?.attributes?.url
+                          )}
+                          alt={memoria?.nombre}
+                          width={1080}
+                          height={1404}
+                          objectFit="cover"
+                        />
+                      </CardImage>
+                      <MemoryName>{memoria?.ano}</MemoryName>
+                    </SLink>
+                  </Link>
+                </MemoryCard>
+              );
+            })}
+          </List>
+        </Section>
+      </Layout>
+    </>
   ) : null;
 };
 

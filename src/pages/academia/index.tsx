@@ -7,6 +7,9 @@ import { useQuery, prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import Layout from "components/Layout";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
+import { SITE_NAME, SITE_URL } from "lib/constants";
+import { getImageURL } from "lib/api";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -32,14 +35,27 @@ const Page = ({ cacheSnapshot }: PageProps) => {
   }
 
   return (
-    <Layout>
-      <Archivo
-        titulo="Academia de sueños"
-        descripcion="Conocimiento que te acerca a tus sueños"
-        articulos={articulos}
-        categorias={categorias}
+    <>
+      <NextSeo
+        title="Academia de sueños"
+        description="Conocimiento que te acerca a tus sueños."
+        canonical={`${SITE_URL}`}
+        openGraph={{
+          url: `${SITE_URL}`,
+          title: "Academia de sueños",
+          description: "Conocimiento que te acerca a tus sueños.",
+          site_name: SITE_NAME,
+        }}
       />
-    </Layout>
+      <Layout>
+        <Archivo
+          titulo="Academia de sueños"
+          descripcion="Conocimiento que te acerca a tus sueños"
+          articulos={articulos}
+          categorias={categorias}
+        />
+      </Layout>
+    </>
   );
 };
 

@@ -15,6 +15,9 @@ import {
 import { PropsWithServerCache } from "@gqty/react";
 import Layout from "components/Layout";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
+import { SITE_NAME, SITE_URL } from "lib/constants";
+import { getImageURL } from "lib/api";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -34,40 +37,53 @@ const Page = ({ cacheSnapshot }: PageProps) => {
   }
 
   return servicios?.length ? (
-    <Layout>
-      <Section space>
-        <PageHeader title={"Tarifario de servicios"} />
-        <Services>
-          {servicios.map((item, index) => {
-            const service = item.attributes;
-            const rates = service?.tarifario?.tarifas();
-            const nota = service?.tarifario?.nota;
+    <>
+      <NextSeo
+        title="Tarifario de servicios"
+        description="Conoce las tarifas de nuestros servicios"
+        canonical={`${SITE_URL}`}
+        openGraph={{
+          url: `${SITE_URL}`,
+          title: "Tarifario de servicios",
+          description: "Conoce las tarifas de nuestros servicios",
+          site_name: SITE_NAME,
+        }}
+      />
+      <Layout>
+        <Section space>
+          <PageHeader title={"Tarifario de servicios"} />
+          <Services>
+            {servicios.map((item, index) => {
+              const service = item.attributes;
+              const rates = service?.tarifario?.tarifas();
+              const nota = service?.tarifario?.nota;
 
-            return rates?.length ? (
-              <Service
-                key={index}
-                //   order={parseInt(service.meta_box['rate-order'])}
-              >
-                <ServiceName>{service?.nombre}</ServiceName>
-                <Table>
-                  <TBody>
-                    {rates.map((item, index) => {
-                      return (
-                        <Tr key={index}>
-                          <Td>{item?.nombre}</Td>
-                          <Td>{item?.valor}</Td>
-                        </Tr>
-                      );
-                    })}
-                  </TBody>
-                </Table>
-                {nota && <Note>{nota}</Note>}
-              </Service>
-            ) : null;
-          })}
-        </Services>
-      </Section>
-    </Layout>
+              return rates?.length ? (
+                <Service
+                  key={index}
+                  //   order={parseInt(service.meta_box['rate-order'])}
+                >
+                  <ServiceName>{service?.nombre}</ServiceName>
+                  <Table>
+                    <TBody>
+                      {rates.map((item, index) => {
+                        return (
+                          <Tr key={index}>
+                            <Td>{item?.nombre}</Td>
+                            <Td>{item?.valor}</Td>
+                          </Tr>
+                        );
+                      })}
+                    </TBody>
+                  </Table>
+                  {nota && <Note>{nota}</Note>}
+                </Service>
+              ) : null;
+            })}
+          </Services>
+        </Section>
+      </Layout>
+    </>
   ) : null;
 };
 

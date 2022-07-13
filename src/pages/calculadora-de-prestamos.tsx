@@ -13,6 +13,9 @@ import { h4 } from "styles/tipography";
 import colors from "styles/colors";
 import PageHeader from "components/PageHeader";
 import { ComponentGeneralFormulario } from "client";
+import { NextSeo } from "next-seo";
+import { SITE_NAME, SITE_URL } from "lib/constants";
+import { getImageURL } from "lib/api";
 
 const Page = ({}) => {
   const formulario: ComponentGeneralFormulario = {
@@ -233,179 +236,151 @@ const Page = ({}) => {
 
   // const { ModalUI, openModal } = useModal();
   return true ? (
-    <Layout>
-      <Container space>
-        {/* <PageHeader title="Calculadora de préstamos" />
-        <Calculator>
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <Inputs>
-              <FormControlLabel
-                control={<SSwitch {...register("method")} />}
-                label="Cuota fija / Capital fijo"
-              />
-              <InputWrapper>
-                <Input
-                  type="number"
-                  min="1"
-                  step="0.01"
-                  placeholder="Monto"
-                  disabled={isFormSubmiting}
-                  {...register("amount", {
-                    required: "Este campo es requerido",
-                  })}
+    <>
+      <NextSeo
+        title="Calculadora de préstamos"
+        description="Calcula tus préstamos y solicítalos con facilidad."
+        canonical={`${SITE_URL}`}
+        openGraph={{
+          url: `${SITE_URL}`,
+          title: "Calculadora de préstamos",
+          description: "Calcula tus préstamos y solicítalos con facilidad.",
+          site_name: SITE_NAME,
+        }}
+      />
+      <Layout>
+        <Container space>
+          {/* <PageHeader title="Calculadora de préstamos" />
+          <Calculator>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <Inputs>
+                <FormControlLabel
+                  control={<SSwitch {...register("method")} />}
+                  label="Cuota fija / Capital fijo"
                 />
-                {errors["amount"] ? (
-                  <InputError>{errors["amount"].message}</InputError>
-                ) : null}
-              </InputWrapper>
-              <FormControlLabel
-                control={
-                  <SSwitch
-                    name="period_type"
-                    inputRef={register("period_type").ref}
-                    onChange={(e) => changePeriodAmount()}
+                <InputWrapper>
+                  <Input
+                    type="number"
+                    min="1"
+                    step="0.01"
+                    placeholder="Monto"
+                    disabled={isFormSubmiting}
+                    {...register("amount", {
+                      required: "Este campo es requerido",
+                    })}
                   />
-                }
-                label="Periodo: Años / Meses"
-              />
-              <InputWrapper>
-                <Input
-                  type="number"
-                  min="1"
-                  step="1"
-                  placeholder="Tiempo"
-                  disabled={isFormSubmiting}
-                  {...register("period", {
-                    required: "Este campo es requerido",
-                  })}
+                  {errors["amount"] ? (
+                    <InputError>{errors["amount"].message}</InputError>
+                  ) : null}
+                </InputWrapper>
+                <FormControlLabel
+                  control={
+                    <SSwitch
+                      name="period_type"
+                      inputRef={register("period_type").ref}
+                      onChange={(e) => changePeriodAmount()}
+                    />
+                  }
+                  label="Periodo: Años / Meses"
                 />
-                {errors["period"] ? (
-                  <InputError>{errors["period"].message}</InputError>
-                ) : null}
-              </InputWrapper>
-              <FormControlLabel
-                control={
-                  <SSwitch
-                    name="rate_type"
-                    inputRef={register("rate_type").ref}
-                    onChange={(e) => changeRateAmount()}
+                <InputWrapper>
+                  <Input
+                    type="number"
+                    min="1"
+                    step="1"
+                    placeholder="Tiempo"
+                    disabled={isFormSubmiting}
+                    {...register("period", {
+                      required: "Este campo es requerido",
+                    })}
                   />
-                }
-                label="Tasa: Anual / Mensual"
-              />
-
-              <InputWrapper>
-                <Input
-                  type="number"
-                  min="0.01"
-                  step="0.01"
-                  placeholder="Tasa"
-                  disabled={isFormSubmiting}
-                  {...register("rate", {
-                    required: "Este campo es requerido",
-                  })}
+                  {errors["period"] ? (
+                    <InputError>{errors["period"].message}</InputError>
+                  ) : null}
+                </InputWrapper>
+                <FormControlLabel
+                  control={
+                    <SSwitch
+                      name="rate_type"
+                      inputRef={register("rate_type").ref}
+                      onChange={(e) => changeRateAmount()}
+                    />
+                  }
+                  label="Tasa: Anual / Mensual"
                 />
-                {errors["rate"] ? (
-                  <InputError>{errors["rate"].message}</InputError>
-                ) : null}
-              </InputWrapper>
-              {errorMessages.length > 0 && (
-                <ErrorMessages>
-                  {errorMessages.map((item, index) => {
-                    return (
-                      <ErrorMessage key={index}>{item.message}</ErrorMessage>
-                    );
-                  })}
-                </ErrorMessages>
-              )}
 
-              <ButtonBox>
-                <Submit type="submit" value="Calcular" />
-              </ButtonBox>
-            </Inputs>
-
-            <Results>
-              <Result>
-                <ResultTitle>Cuota mensual</ResultTitle>
-                <ResultValue>
-                  {formatNumber.format(results.monthlyPayment)}
-                </ResultValue>
-              </Result>
-              <Result>
-                <ResultTitle>Monto Total</ResultTitle>
-                <ResultValue>
-                  {formatNumber.format(
-                    method
-                      ? Number(
-                          (results.totalPayment + valueTotalInterest).toFixed(2)
-                        )
-                      : results.totalPayment
-                  )}
-                </ResultValue>
-              </Result>
-              <Result>
-                <ResultTitle>Total Intereses</ResultTitle>
-                <ResultValue>
-                  {formatNumber.format(
-                    method
-                      ? Number(valueTotalInterest.toFixed(2))
-                      : results.totalInterest
-                  )}
-                </ResultValue>
-              </Result>
-            </Results>
-
-            <ButtonBox>
-              <Button
-                bgColor="#F0F7F2"
-                color={colors.primary.light}
-                disabled={!amortizationReady}
-                onClick={(e) => {
-                  setShowAmortization(true);
-                }}
-              >
-                Amortizar
-              </Button>
-              <Button
-                bgColor="#F0F7F2"
-                color={colors.primary.light}
-                disabled={!amortizationReady}
-                onClick={openModal}
-              >
-                Solicitar
-              </Button>
-            </ButtonBox>
-          </Form>
-
-          {showAmortization ? (
-            <AmortizationBox>
-              <Amortization>
-                <Table>
-                  <THead>
-                    <Tr>
-                      {results.amortization.head.map((item, index) => {
-                        return <Th key={index}>{item}</Th>;
-                      })}
-                    </Tr>
-                  </THead>
-                  <TBody>
-                    {results.amortization.body.map((item, index) => {
-                      const fees = item;
-
+                <InputWrapper>
+                  <Input
+                    type="number"
+                    min="0.01"
+                    step="0.01"
+                    placeholder="Tasa"
+                    disabled={isFormSubmiting}
+                    {...register("rate", {
+                      required: "Este campo es requerido",
+                    })}
+                  />
+                  {errors["rate"] ? (
+                    <InputError>{errors["rate"].message}</InputError>
+                  ) : null}
+                </InputWrapper>
+                {errorMessages.length > 0 && (
+                  <ErrorMessages>
+                    {errorMessages.map((item, index) => {
                       return (
-                        <Tr key={index}>
-                          {fees.map((item, index) => {
-                            return (
-                              <Td key={index}>{formatNumber.format(item)}</Td>
-                            );
-                          })}
-                        </Tr>
+                        <ErrorMessage key={index}>{item.message}</ErrorMessage>
                       );
                     })}
-                  </TBody>
-                </Table>
-              </Amortization>
+                  </ErrorMessages>
+                )}
+
+                <ButtonBox>
+                  <Submit type="submit" value="Calcular" />
+                </ButtonBox>
+              </Inputs>
+
+              <Results>
+                <Result>
+                  <ResultTitle>Cuota mensual</ResultTitle>
+                  <ResultValue>
+                    {formatNumber.format(results.monthlyPayment)}
+                  </ResultValue>
+                </Result>
+                <Result>
+                  <ResultTitle>Monto Total</ResultTitle>
+                  <ResultValue>
+                    {formatNumber.format(
+                      method
+                        ? Number(
+                            (results.totalPayment + valueTotalInterest).toFixed(2)
+                          )
+                        : results.totalPayment
+                    )}
+                  </ResultValue>
+                </Result>
+                <Result>
+                  <ResultTitle>Total Intereses</ResultTitle>
+                  <ResultValue>
+                    {formatNumber.format(
+                      method
+                        ? Number(valueTotalInterest.toFixed(2))
+                        : results.totalInterest
+                    )}
+                  </ResultValue>
+                </Result>
+              </Results>
+
               <ButtonBox>
+                <Button
+                  bgColor="#F0F7F2"
+                  color={colors.primary.light}
+                  disabled={!amortizationReady}
+                  onClick={(e) => {
+                    setShowAmortization(true);
+                  }}
+                >
+                  Amortizar
+                </Button>
                 <Button
                   bgColor="#F0F7F2"
                   color={colors.primary.light}
@@ -415,24 +390,65 @@ const Page = ({}) => {
                   Solicitar
                 </Button>
               </ButtonBox>
-            </AmortizationBox>
-          ) : null}
+            </Form>
 
-          <Section>
-            <Note>
-              Estos montos son una estimación y pueden variar dependiendo de
-              diversos factores, como: pagos a capital, atrasos, pagos
-              incompletos, entre otros.
-            </Note>
-          </Section>
+            {showAmortization ? (
+              <AmortizationBox>
+                <Amortization>
+                  <Table>
+                    <THead>
+                      <Tr>
+                        {results.amortization.head.map((item, index) => {
+                          return <Th key={index}>{item}</Th>;
+                        })}
+                      </Tr>
+                    </THead>
+                    <TBody>
+                      {results.amortization.body.map((item, index) => {
+                        const fees = item;
 
-          <ModalUI title="Contáctanos">
-            <Formulario formulario={formulario} />
-            
-          </ModalUI>
-        </Calculator> */}
-      </Container>
-    </Layout>
+                        return (
+                          <Tr key={index}>
+                            {fees.map((item, index) => {
+                              return (
+                                <Td key={index}>{formatNumber.format(item)}</Td>
+                              );
+                            })}
+                          </Tr>
+                        );
+                      })}
+                    </TBody>
+                  </Table>
+                </Amortization>
+                <ButtonBox>
+                  <Button
+                    bgColor="#F0F7F2"
+                    color={colors.primary.light}
+                    disabled={!amortizationReady}
+                    onClick={openModal}
+                  >
+                    Solicitar
+                  </Button>
+                </ButtonBox>
+              </AmortizationBox>
+            ) : null}
+
+            <Section>
+              <Note>
+                Estos montos son una estimación y pueden variar dependiendo de
+                diversos factores, como: pagos a capital, atrasos, pagos
+                incompletos, entre otros.
+              </Note>
+            </Section>
+
+            <ModalUI title="Contáctanos">
+              <Formulario formulario={formulario} />
+              
+            </ModalUI>
+          </Calculator> */}
+        </Container>
+      </Layout>
+    </>
   ) : (
     <Layout>
       <MessageBox>

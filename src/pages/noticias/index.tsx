@@ -7,6 +7,9 @@ import { useQuery, prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import Layout from "components/Layout";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
+import { SITE_NAME, SITE_URL } from "lib/constants";
+import { getImageURL } from "lib/api";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -26,9 +29,26 @@ const Page = ({ cacheSnapshot }: PageProps) => {
   }
 
   return (
-    <Layout>
-      <Archivo titulo="Noticias" descripcion="Noticias" articulos={articulos} />
-    </Layout>
+    <>
+      <NextSeo
+        title="Noticias"
+        description="Listado de nocitias de Coopbueno."
+        canonical={`${SITE_URL}`}
+        openGraph={{
+          url: `${SITE_URL}`,
+          title: "Noticias",
+          description: "Listado de nocitias de Coopbueno.",
+          site_name: SITE_NAME,
+        }}
+      />
+      <Layout>
+        <Archivo
+          titulo="Noticias"
+          descripcion="Noticias"
+          articulos={articulos}
+        />
+      </Layout>
+    </>
   );
 };
 

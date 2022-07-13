@@ -15,6 +15,8 @@ import { useQuery, prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import { getImageURL } from "lib/api";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
+import { SITE_NAME, SITE_URL } from "lib/constants";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -23,83 +25,109 @@ const Page = ({ cacheSnapshot }: PageProps) => {
   });
 
   const query = useQuery();
-  const sucursales = query.sucursals({
-    pagination: {
-      pageSize: 100,
-    },
-    sort: ["orden:asc"],
-  })?.data;
+  const sucursales =
+    query.sucursals({
+      pagination: {
+        pageSize: 100,
+      },
+      sort: ["orden:asc"],
+    })?.data || [];
 
   if (query.$state.isLoading) {
     return <Loading full />;
   }
 
+  //SEO
+  const image = sucursales[0].attributes?.imagen.data?.attributes;
+
   return (
-    <Layout>
-      <StyledSection>
-        <Deco />
-        <Container space>
-          <Title>Sucursales</Title>
-          {sucursales?.map((item, index, items) => {
-            const sucursal = item.attributes;
-            const featuredMedia = sucursal?.imagen?.data?.attributes;
-            const location = sucursal?.ubicacion;
-            const isPrincipal = index == 0;
+    <>
+      <NextSeo
+        title="Sucursales"
+        description="Conoce nuestras sucursales."
+        canonical={`${SITE_URL}`}
+        openGraph={{
+          url: `${SITE_URL}`,
+          title: "Sucursales",
+          description: "Conoce nuestras sucursales.",
+          images: [
+            {
+              url: getImageURL(image?.url),
+              width: image?.width || 900,
+              height: image?.height || 800,
+              alt: "Sucursales Coopbueno",
+              type: image?.mime,
+            },
+          ],
+          site_name: SITE_NAME,
+        }}
+      />
+      <Layout>
+        <StyledSection>
+          <Deco />
+          <Container space>
+            <Title>Sucursales</Title>
+            {sucursales?.map((item, index, items) => {
+              const sucursal = item.attributes;
+              const featuredMedia = sucursal?.imagen?.data?.attributes;
+              const location = sucursal?.ubicacion;
+              const isPrincipal = index == 0;
 
-            return (
-              <SucursalCard key={index} {...{ isPrincipal }}>
-                <CardImage {...{ isPrincipal }}>
-                  <SucursalImage
-                    src={getImageURL(featuredMedia?.url)}
-                    alt={sucursal?.nombre}
-                    width={1920}
-                    height={1080}
-                    objectFit="cover"
-                    priority={index <= 3 ? true : false}
-                  />
-                </CardImage>
-                <Content {...{ index, items }}>
-                  <CardHeader>
-                    <SucursalName {...{ isPrincipal }}>
-                      {sucursal?.nombre}
-                    </SucursalName>
-                  </CardHeader>
-                  <CardBody>
-                    <SucursalAddress>
-                      <LocationIcon />
-                      <InfoWrapper>{sucursal?.direccion}</InfoWrapper>
-                    </SucursalAddress>
-                    <SucursalSchedule>
-                      <ClockIcon />
-                      <InfoWrapper>{sucursal?.horario}</InfoWrapper>
-                    </SucursalSchedule>
-                    <SucursalPhoneBox>
-                      <PhoneIcon />
-                      <InfoWrapper>
-                        {sucursal?.telefonos().map((item, index) => {
-                          const phone = item?.telefono;
+              return (
+                <SucursalCard key={index} {...{ isPrincipal }}>
+                  <CardImage {...{ isPrincipal }}>
+                    <SucursalImage
+                      src={getImageURL(featuredMedia?.url)}
+                      alt={sucursal?.nombre}
+                      width={1920}
+                      height={1080}
+                      objectFit="cover"
+                      priority={index <= 3 ? true : false}
+                    />
+                  </CardImage>
+                  <Content {...{ index, items }}>
+                    <CardHeader>
+                      <SucursalName {...{ isPrincipal }}>
+                        {sucursal?.nombre}
+                      </SucursalName>
+                    </CardHeader>
+                    <CardBody>
+                      <SucursalAddress>
+                        <LocationIcon />
+                        <InfoWrapper>{sucursal?.direccion}</InfoWrapper>
+                      </SucursalAddress>
+                      <SucursalSchedule>
+                        <ClockIcon />
+                        <InfoWrapper>{sucursal?.horario}</InfoWrapper>
+                      </SucursalSchedule>
+                      <SucursalPhoneBox>
+                        <PhoneIcon />
+                        <InfoWrapper>
+                          {sucursal?.telefonos().map((item, index) => {
+                            const phone = item?.telefono;
 
-                          return phone ? (
-                            <Link href={`tel:+${phone}`} key={index} passHref>
-                              <SucursalPhone>{phone}</SucursalPhone>
-                            </Link>
-                          ) : null;
-                        })}
-                      </InfoWrapper>
-                    </SucursalPhoneBox>
-                  </CardBody>
-                </Content>
-                <LinkBox>
-                  <Link href={location ?? ""} passHref>
-                    <ReadMore target="_blank">Ubicación</ReadMore>
-                  </Link>
-                </LinkBox>
-              </SucursalCard>
-            );
-          })}
-        </Container>
-      </StyledSection>
-    </Layout>
+                            return phone ? (
+                              <Link href={`tel:+${phone}`} key={index} passHref>
+                                <SucursalPhone>{phone}</SucursalPhone>
+                              </Link>
+                            ) : null;
+                          })}
+                        </InfoWrapper>
+                      </SucursalPhoneBox>
+                    </CardBody>
+                  </Content>
+                  <LinkBox>
+                    <Link href={location ?? ""} passHref>
+                      <ReadMore target="_blank">Ubicación</ReadMore>
+                    </Link>
+                  </LinkBox>
+                </SucursalCard>
+              );
+            })}
+          </Container>
+        </StyledSection>
+      </Layout>
+    </>
   );
 };
 
