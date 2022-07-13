@@ -1,12 +1,9 @@
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import { mq } from "components/grid";
 import container, { mwLG, mwXL, gap } from "components/grid/container";
-import Link from "next/link";
 import Image from "next/image";
 import colors from "styles/colors";
 import { h6 } from "styles/tipography";
-import cta from "styles/cta";
 import Cta from "components/Cta";
 import { getImageURL } from "lib/api";
 
@@ -116,8 +113,4 @@ const Copy = styled.p`
 
 const LinkBox = styled.div`
   text-align: inherit;
-`;
-
-const Button = styled.button`
-  ${cta}
 `;

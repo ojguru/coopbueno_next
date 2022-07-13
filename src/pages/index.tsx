@@ -1,8 +1,3 @@
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
-const SITE_URL = process.env.SITE_URL;
-console.log(API_URL, SITE_URL);
-
-import Head from "next/head";
 import HomeCover from "templates/home/HomeCover";
 import HomeAcademy from "templates/home/HomeAcademy";
 import HomeNews from "templates/home/HomeNews";
@@ -21,6 +16,9 @@ import {
 } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
+import { SITE_NAME, SITE_URL } from "lib/constants";
+import { getImageURL } from "lib/api";
 
 type HomeProps = PropsWithServerCache<{}>;
 const Home = ({ cacheSnapshot }: HomeProps) => {
@@ -61,16 +59,44 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
     return <Loading full />;
   }
 
+  //SEO
+  const image = home?.portada?.imagen.data?.attributes;
+
   return (
-    <Layout>
-      <HomeCover portada={home?.portada} />
-      <HomeSlider slides={slides} />
-      <HomeServicios {...{ servicios }} />
-      <HomeSocio {...{ home }} />
-      <HomeAcademy posts={posts} />
-      <HomeNews noticias={noticias} />
-      <HomePromo {...{ home }} />
-    </Layout>
+    <>
+      <NextSeo
+        title="Apoyando tus sueños"
+        description="Sabemos el valor de tus sueños y queremos ayudarte a alcanzarlos. En Coopbueno contamos con todas las herramientas financieras para alcanzar todo lo que te propongas."
+        canonical={`${SITE_URL}`}
+        openGraph={{
+          url: `${SITE_URL}`,
+          title: "Apoyando tus sueños",
+          description:
+            "Sabemos el valor de tus sueños y queremos ayudarte a alcanzarlos. En Coopbueno contamos con todas las herramientas financieras para alcanzar todo lo que te propongas.",
+          images: [
+            {
+              url: getImageURL(image?.url),
+              width: image?.width || 900,
+              height: image?.height || 800,
+              alt:
+                image?.alternativeText ||
+                "Coopbueno apoyando tus sueños",
+              type: image?.mime,
+            },
+          ],
+          site_name: SITE_NAME,
+        }}
+      />
+      <Layout>
+        <HomeCover portada={home?.portada} />
+        <HomeSlider slides={slides} />
+        <HomeServicios {...{ servicios }} />
+        <HomeSocio {...{ home }} />
+        <HomeAcademy posts={posts} />
+        <HomeNews noticias={noticias} />
+        <HomePromo {...{ home }} />
+      </Layout>
+    </>
   );
 };
 
