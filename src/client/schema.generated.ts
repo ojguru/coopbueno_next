@@ -43,6 +43,7 @@ export interface ArticleFiltersInput {
   or?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   seo?: InputMaybe<ComponentSharedSeoFiltersInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -56,6 +57,7 @@ export interface ArticleInput {
   image?: InputMaybe<Scalars["ID"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   slug?: InputMaybe<Scalars["String"]>;
   title?: InputMaybe<Scalars["String"]>;
 }
@@ -92,6 +94,7 @@ export interface CategoryFiltersInput {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<CategoryFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 }
@@ -101,6 +104,7 @@ export interface CategoryInput {
   description?: InputMaybe<Scalars["String"]>;
   icon?: InputMaybe<Scalars["ID"]>;
   name?: InputMaybe<Scalars["String"]>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   slug?: InputMaybe<Scalars["String"]>;
 }
 
@@ -201,6 +205,23 @@ export interface ComponentSharedCtaInput {
   uri?: InputMaybe<Scalars["String"]>;
 }
 
+export interface ComponentSharedMetaSocialFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSharedMetaSocialFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialFiltersInput>>>;
+  socialNetwork?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+}
+
+export interface ComponentSharedMetaSocialInput {
+  description?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["ID"]>;
+  image?: InputMaybe<Scalars["ID"]>;
+  socialNetwork?: InputMaybe<ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK>;
+  title?: InputMaybe<Scalars["String"]>;
+}
+
 export interface ComponentSharedPortadaFiltersInput {
   and?: InputMaybe<Array<InputMaybe<ComponentSharedPortadaFiltersInput>>>;
   copy?: InputMaybe<StringFilterInput>;
@@ -220,17 +241,29 @@ export interface ComponentSharedPortadaInput {
 
 export interface ComponentSharedSeoFiltersInput {
   and?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>;
+  canonicalURL?: InputMaybe<StringFilterInput>;
+  keywords?: InputMaybe<StringFilterInput>;
   metaDescription?: InputMaybe<StringFilterInput>;
+  metaRobots?: InputMaybe<StringFilterInput>;
+  metaSocial?: InputMaybe<ComponentSharedMetaSocialFiltersInput>;
   metaTitle?: InputMaybe<StringFilterInput>;
+  metaViewport?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentSharedSeoFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>;
+  structuredData?: InputMaybe<JSONFilterInput>;
 }
 
 export interface ComponentSharedSeoInput {
+  canonicalURL?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["ID"]>;
+  keywords?: InputMaybe<Scalars["String"]>;
   metaDescription?: InputMaybe<Scalars["String"]>;
+  metaImage?: InputMaybe<Scalars["ID"]>;
+  metaRobots?: InputMaybe<Scalars["String"]>;
+  metaSocial?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialInput>>>;
   metaTitle?: InputMaybe<Scalars["String"]>;
-  shareImage?: InputMaybe<Scalars["ID"]>;
+  metaViewport?: InputMaybe<Scalars["String"]>;
+  structuredData?: InputMaybe<Scalars["JSON"]>;
 }
 
 export interface ComponentSucursalTelefonosFiltersInput {
@@ -266,6 +299,11 @@ export interface DateTimeFilterInput {
   null?: InputMaybe<Scalars["Boolean"]>;
   or?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]>>>;
   startsWith?: InputMaybe<Scalars["DateTime"]>;
+}
+
+export enum ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK {
+  Facebook = "Facebook",
+  Twitter = "Twitter",
 }
 
 export enum ENUM_MENUSMENUITEM_TARGET {
@@ -318,15 +356,16 @@ export interface FloatFilterInput {
 }
 
 export interface GlobalInput {
-  defaultSeo?: InputMaybe<ComponentSharedSeoInput>;
   favicon?: InputMaybe<Scalars["ID"]>;
   siteName?: InputMaybe<Scalars["String"]>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
 }
 
 export interface HomepageInput {
   informacion?: InputMaybe<ComponentSectionsHeroInput>;
   portada?: InputMaybe<ComponentSharedPortadaInput>;
   razones?: InputMaybe<ComponentSectionsHeroInput>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
 }
 
 export interface I18NLocaleFiltersInput {
@@ -419,6 +458,8 @@ export interface LandingFiltersInput {
   not?: InputMaybe<LandingFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<LandingFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   titular?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -431,6 +472,8 @@ export interface LandingInput {
   imagen?: InputMaybe<Scalars["ID"]>;
   nombre?: InputMaybe<Scalars["String"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
+  seo?: InputMaybe<ComponentSharedSeoInput>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   slug?: InputMaybe<Scalars["String"]>;
   titular?: InputMaybe<Scalars["String"]>;
 }
@@ -444,6 +487,7 @@ export interface MemoriaAnualFiltersInput {
   not?: InputMaybe<MemoriaAnualFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<MemoriaAnualFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 }
 
@@ -453,6 +497,7 @@ export interface MemoriaAnualInput {
   imagen?: InputMaybe<Scalars["ID"]>;
   nombre?: InputMaybe<Scalars["String"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
 }
 
 export interface MenusMenuFiltersInput {
@@ -462,6 +507,7 @@ export interface MenusMenuFiltersInput {
   items?: InputMaybe<MenusMenuItemFiltersInput>;
   not?: InputMaybe<MenusMenuFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<MenusMenuFiltersInput>>>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -469,6 +515,7 @@ export interface MenusMenuFiltersInput {
 
 export interface MenusMenuInput {
   items?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   slug?: InputMaybe<Scalars["String"]>;
   title?: InputMaybe<Scalars["String"]>;
 }
@@ -482,6 +529,7 @@ export interface MenusMenuItemFiltersInput {
   order?: InputMaybe<IntFilterInput>;
   parent?: InputMaybe<MenusMenuItemFiltersInput>;
   root_menu?: InputMaybe<MenusMenuFiltersInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   target?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -492,6 +540,7 @@ export interface MenusMenuItemInput {
   order?: InputMaybe<Scalars["Int"]>;
   parent?: InputMaybe<Scalars["ID"]>;
   root_menu?: InputMaybe<Scalars["ID"]>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   target?: InputMaybe<ENUM_MENUSMENUITEM_TARGET>;
   title?: InputMaybe<Scalars["String"]>;
   url?: InputMaybe<Scalars["String"]>;
@@ -507,6 +556,7 @@ export interface NoticiaFiltersInput {
   or?: InputMaybe<Array<InputMaybe<NoticiaFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   seo?: InputMaybe<ComponentSharedSeoFiltersInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   titulo?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -518,6 +568,7 @@ export interface NoticiaInput {
   imagen?: InputMaybe<Scalars["ID"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   slug?: InputMaybe<Scalars["String"]>;
   titulo?: InputMaybe<Scalars["String"]>;
 }
@@ -549,6 +600,7 @@ export interface ServicioFiltersInput {
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   requisitos?: InputMaybe<ComponentServiciosRequisitosFiltersInput>;
   seo?: InputMaybe<ComponentSharedSeoFiltersInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   tarifario?: InputMaybe<ComponentServiciosTarifarioFiltersInput>;
   tipo?: InputMaybe<StringFilterInput>;
@@ -568,6 +620,7 @@ export interface ServicioInput {
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
   requisitos?: InputMaybe<Array<InputMaybe<ComponentServiciosRequisitosInput>>>;
   seo?: InputMaybe<ComponentSharedSeoInput>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   slug?: InputMaybe<Scalars["String"]>;
   tarifario?: InputMaybe<ComponentServiciosTarifarioInput>;
   tipo?: InputMaybe<ENUM_SERVICIO_TIPO>;
@@ -584,6 +637,7 @@ export interface SlideFiltersInput {
   not?: InputMaybe<SlideFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<SlideFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   titular?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 }
@@ -593,6 +647,7 @@ export interface SlideInput {
   cta?: InputMaybe<ComponentSharedCtaInput>;
   imagen?: InputMaybe<Scalars["ID"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   titular?: InputMaybe<Scalars["String"]>;
 }
 
@@ -631,6 +686,7 @@ export interface SucursalFiltersInput {
   or?: InputMaybe<Array<InputMaybe<SucursalFiltersInput>>>;
   orden?: InputMaybe<IntFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   telefonos?: InputMaybe<ComponentSucursalTelefonosFiltersInput>;
   ubicacion?: InputMaybe<StringFilterInput>;
@@ -645,13 +701,13 @@ export interface SucursalInput {
   nombre?: InputMaybe<Scalars["String"]>;
   orden?: InputMaybe<Scalars["Int"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   slug?: InputMaybe<Scalars["String"]>;
   telefonos?: InputMaybe<Array<InputMaybe<ComponentSucursalTelefonosInput>>>;
   ubicacion?: InputMaybe<Scalars["String"]>;
 }
 
 export interface TpageFiltersInput {
-  agradecimiento?: InputMaybe<StringFilterInput>;
   and?: InputMaybe<Array<InputMaybe<TpageFiltersInput>>>;
   contenido?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
@@ -661,17 +717,18 @@ export interface TpageFiltersInput {
   not?: InputMaybe<TpageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<TpageFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   titular?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 }
 
 export interface TpageInput {
-  agradecimiento?: InputMaybe<Scalars["String"]>;
   contenido?: InputMaybe<Scalars["String"]>;
   cta?: InputMaybe<ComponentSharedCtaInput>;
   nombre?: InputMaybe<Scalars["String"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   slug?: InputMaybe<Scalars["String"]>;
   titular?: InputMaybe<Scalars["String"]>;
 }
@@ -693,6 +750,7 @@ export interface UploadFileFiltersInput {
   previewUrl?: InputMaybe<StringFilterInput>;
   provider?: InputMaybe<StringFilterInput>;
   provider_metadata?: InputMaybe<JSONFilterInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   size?: InputMaybe<FloatFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   url?: InputMaybe<StringFilterInput>;
@@ -711,6 +769,7 @@ export interface UploadFileInput {
   previewUrl?: InputMaybe<Scalars["String"]>;
   provider?: InputMaybe<Scalars["String"]>;
   provider_metadata?: InputMaybe<Scalars["JSON"]>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   size?: InputMaybe<Scalars["Float"]>;
   url?: InputMaybe<Scalars["String"]>;
   width?: InputMaybe<Scalars["Int"]>;
@@ -775,6 +834,7 @@ export interface UsersPermissionsUserFiltersInput {
   provider?: InputMaybe<StringFilterInput>;
   resetPasswordToken?: InputMaybe<StringFilterInput>;
   role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   username?: InputMaybe<StringFilterInput>;
 }
@@ -788,6 +848,7 @@ export interface UsersPermissionsUserInput {
   provider?: InputMaybe<Scalars["String"]>;
   resetPasswordToken?: InputMaybe<Scalars["String"]>;
   role?: InputMaybe<Scalars["ID"]>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
   username?: InputMaybe<Scalars["String"]>;
 }
 
@@ -800,6 +861,7 @@ export interface WriterFiltersInput {
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<WriterFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<WriterFiltersInput>>>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 }
 
@@ -808,11 +870,13 @@ export interface WriterInput {
   email?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   picture?: InputMaybe<Scalars["ID"]>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
 }
 
 export const scalarsEnumsHash: import("gqty").ScalarsEnumsHash = {
   Boolean: true,
   DateTime: true,
+  ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK: true,
   ENUM_MENUSMENUITEM_TARGET: true,
   ENUM_SERVICIO_CATEGORIA: true,
   ENUM_SERVICIO_TIPO: true,
@@ -866,6 +930,7 @@ export const generatedSchema = {
     or: { __type: "[ArticleFiltersInput]" },
     publishedAt: { __type: "DateTimeFilterInput" },
     seo: { __type: "ComponentSharedSeoFiltersInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     slug: { __type: "StringFilterInput" },
     title: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
@@ -878,6 +943,7 @@ export const generatedSchema = {
     image: { __type: "ID" },
     publishedAt: { __type: "DateTime" },
     seo: { __type: "ComponentSharedSeoInput" },
+    sitemap_exclude: { __type: "Boolean" },
     slug: { __type: "String" },
     title: { __type: "String" },
   },
@@ -948,6 +1014,7 @@ export const generatedSchema = {
     name: { __type: "StringFilterInput" },
     not: { __type: "CategoryFiltersInput" },
     or: { __type: "[CategoryFiltersInput]" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     slug: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
   },
@@ -956,6 +1023,7 @@ export const generatedSchema = {
     description: { __type: "String" },
     icon: { __type: "ID" },
     name: { __type: "String" },
+    sitemap_exclude: { __type: "Boolean" },
     slug: { __type: "String" },
   },
   ComponentGeneralFormulario: {
@@ -1109,6 +1177,29 @@ export const generatedSchema = {
     texto: { __type: "String" },
     uri: { __type: "String" },
   },
+  ComponentSharedMetaSocial: {
+    __typename: { __type: "String!" },
+    description: { __type: "String!" },
+    id: { __type: "ID!" },
+    image: { __type: "UploadFileEntityResponse" },
+    socialNetwork: { __type: "ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK!" },
+    title: { __type: "String!" },
+  },
+  ComponentSharedMetaSocialFiltersInput: {
+    and: { __type: "[ComponentSharedMetaSocialFiltersInput]" },
+    description: { __type: "StringFilterInput" },
+    not: { __type: "ComponentSharedMetaSocialFiltersInput" },
+    or: { __type: "[ComponentSharedMetaSocialFiltersInput]" },
+    socialNetwork: { __type: "StringFilterInput" },
+    title: { __type: "StringFilterInput" },
+  },
+  ComponentSharedMetaSocialInput: {
+    description: { __type: "String" },
+    id: { __type: "ID" },
+    image: { __type: "ID" },
+    socialNetwork: { __type: "ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK" },
+    title: { __type: "String" },
+  },
   ComponentSharedPortada: {
     __typename: { __type: "String!" },
     copy: { __type: "String!" },
@@ -1134,23 +1225,48 @@ export const generatedSchema = {
   },
   ComponentSharedSeo: {
     __typename: { __type: "String!" },
+    canonicalURL: { __type: "String" },
     id: { __type: "ID!" },
+    keywords: { __type: "String" },
     metaDescription: { __type: "String!" },
+    metaImage: { __type: "UploadFileEntityResponse!" },
+    metaRobots: { __type: "String" },
+    metaSocial: {
+      __type: "[ComponentSharedMetaSocial]",
+      __args: {
+        filters: "ComponentSharedMetaSocialFiltersInput",
+        pagination: "PaginationArg",
+        sort: "[String]",
+      },
+    },
     metaTitle: { __type: "String!" },
-    shareImage: { __type: "UploadFileEntityResponse" },
+    metaViewport: { __type: "String" },
+    structuredData: { __type: "JSON" },
   },
   ComponentSharedSeoFiltersInput: {
     and: { __type: "[ComponentSharedSeoFiltersInput]" },
+    canonicalURL: { __type: "StringFilterInput" },
+    keywords: { __type: "StringFilterInput" },
     metaDescription: { __type: "StringFilterInput" },
+    metaRobots: { __type: "StringFilterInput" },
+    metaSocial: { __type: "ComponentSharedMetaSocialFiltersInput" },
     metaTitle: { __type: "StringFilterInput" },
+    metaViewport: { __type: "StringFilterInput" },
     not: { __type: "ComponentSharedSeoFiltersInput" },
     or: { __type: "[ComponentSharedSeoFiltersInput]" },
+    structuredData: { __type: "JSONFilterInput" },
   },
   ComponentSharedSeoInput: {
+    canonicalURL: { __type: "String" },
     id: { __type: "ID" },
+    keywords: { __type: "String" },
     metaDescription: { __type: "String" },
+    metaImage: { __type: "ID" },
+    metaRobots: { __type: "String" },
+    metaSocial: { __type: "[ComponentSharedMetaSocialInput]" },
     metaTitle: { __type: "String" },
-    shareImage: { __type: "ID" },
+    metaViewport: { __type: "String" },
+    structuredData: { __type: "JSON" },
   },
   ComponentSucursalTelefonos: {
     __typename: { __type: "String!" },
@@ -1228,7 +1344,6 @@ export const generatedSchema = {
   Global: {
     __typename: { __type: "String!" },
     createdAt: { __type: "DateTime" },
-    defaultSeo: { __type: "ComponentSharedSeo!" },
     favicon: { __type: "UploadFileEntityResponse" },
     siteName: { __type: "String!" },
     updatedAt: { __type: "DateTime" },
@@ -1243,9 +1358,9 @@ export const generatedSchema = {
     data: { __type: "GlobalEntity" },
   },
   GlobalInput: {
-    defaultSeo: { __type: "ComponentSharedSeoInput" },
     favicon: { __type: "ID" },
     siteName: { __type: "String" },
+    sitemap_exclude: { __type: "Boolean" },
   },
   Homepage: {
     __typename: { __type: "String!" },
@@ -1268,6 +1383,7 @@ export const generatedSchema = {
     informacion: { __type: "ComponentSectionsHeroInput" },
     portada: { __type: "ComponentSharedPortadaInput" },
     razones: { __type: "ComponentSectionsHeroInput" },
+    sitemap_exclude: { __type: "Boolean" },
   },
   I18NLocale: {
     __typename: { __type: "String!" },
@@ -1375,6 +1491,7 @@ export const generatedSchema = {
     imagen: { __type: "UploadFileEntityResponse!" },
     nombre: { __type: "String!" },
     publishedAt: { __type: "DateTime" },
+    seo: { __type: "ComponentSharedSeo" },
     slug: { __type: "String!" },
     titular: { __type: "String!" },
     updatedAt: { __type: "DateTime" },
@@ -1407,6 +1524,8 @@ export const generatedSchema = {
     not: { __type: "LandingFiltersInput" },
     or: { __type: "[LandingFiltersInput]" },
     publishedAt: { __type: "DateTimeFilterInput" },
+    seo: { __type: "ComponentSharedSeoFiltersInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     slug: { __type: "StringFilterInput" },
     titular: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
@@ -1418,6 +1537,8 @@ export const generatedSchema = {
     imagen: { __type: "ID" },
     nombre: { __type: "String" },
     publishedAt: { __type: "DateTime" },
+    seo: { __type: "ComponentSharedSeoInput" },
+    sitemap_exclude: { __type: "Boolean" },
     slug: { __type: "String" },
     titular: { __type: "String" },
   },
@@ -1454,6 +1575,7 @@ export const generatedSchema = {
     not: { __type: "MemoriaAnualFiltersInput" },
     or: { __type: "[MemoriaAnualFiltersInput]" },
     publishedAt: { __type: "DateTimeFilterInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
   },
   MemoriaAnualInput: {
@@ -1462,6 +1584,7 @@ export const generatedSchema = {
     imagen: { __type: "ID" },
     nombre: { __type: "String" },
     publishedAt: { __type: "DateTime" },
+    sitemap_exclude: { __type: "Boolean" },
   },
   MenusMenu: {
     __typename: { __type: "String!" },
@@ -1499,12 +1622,14 @@ export const generatedSchema = {
     items: { __type: "MenusMenuItemFiltersInput" },
     not: { __type: "MenusMenuFiltersInput" },
     or: { __type: "[MenusMenuFiltersInput]" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     slug: { __type: "StringFilterInput" },
     title: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
   },
   MenusMenuInput: {
     items: { __type: "[ID]" },
+    sitemap_exclude: { __type: "Boolean" },
     slug: { __type: "String" },
     title: { __type: "String" },
   },
@@ -1542,6 +1667,7 @@ export const generatedSchema = {
     order: { __type: "IntFilterInput" },
     parent: { __type: "MenusMenuItemFiltersInput" },
     root_menu: { __type: "MenusMenuFiltersInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     target: { __type: "StringFilterInput" },
     title: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
@@ -1551,6 +1677,7 @@ export const generatedSchema = {
     order: { __type: "Int" },
     parent: { __type: "ID" },
     root_menu: { __type: "ID" },
+    sitemap_exclude: { __type: "Boolean" },
     target: { __type: "ENUM_MENUSMENUITEM_TARGET" },
     title: { __type: "String" },
     url: { __type: "String" },
@@ -1595,6 +1722,7 @@ export const generatedSchema = {
     or: { __type: "[NoticiaFiltersInput]" },
     publishedAt: { __type: "DateTimeFilterInput" },
     seo: { __type: "ComponentSharedSeoFiltersInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     slug: { __type: "StringFilterInput" },
     titulo: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
@@ -1605,6 +1733,7 @@ export const generatedSchema = {
     imagen: { __type: "ID" },
     publishedAt: { __type: "DateTime" },
     seo: { __type: "ComponentSharedSeoInput" },
+    sitemap_exclude: { __type: "Boolean" },
     slug: { __type: "String" },
     titulo: { __type: "String" },
   },
@@ -1696,6 +1825,7 @@ export const generatedSchema = {
     publishedAt: { __type: "DateTimeFilterInput" },
     requisitos: { __type: "ComponentServiciosRequisitosFiltersInput" },
     seo: { __type: "ComponentSharedSeoFiltersInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     slug: { __type: "StringFilterInput" },
     tarifario: { __type: "ComponentServiciosTarifarioFiltersInput" },
     tipo: { __type: "StringFilterInput" },
@@ -1714,6 +1844,7 @@ export const generatedSchema = {
     publishedAt: { __type: "DateTime" },
     requisitos: { __type: "[ComponentServiciosRequisitosInput]" },
     seo: { __type: "ComponentSharedSeoInput" },
+    sitemap_exclude: { __type: "Boolean" },
     slug: { __type: "String" },
     tarifario: { __type: "ComponentServiciosTarifarioInput" },
     tipo: { __type: "ENUM_SERVICIO_TIPO" },
@@ -1757,6 +1888,7 @@ export const generatedSchema = {
     not: { __type: "SlideFiltersInput" },
     or: { __type: "[SlideFiltersInput]" },
     publishedAt: { __type: "DateTimeFilterInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     titular: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
   },
@@ -1765,6 +1897,7 @@ export const generatedSchema = {
     cta: { __type: "ComponentSharedCtaInput" },
     imagen: { __type: "ID" },
     publishedAt: { __type: "DateTime" },
+    sitemap_exclude: { __type: "Boolean" },
     titular: { __type: "String" },
   },
   StringFilterInput: {
@@ -1837,6 +1970,7 @@ export const generatedSchema = {
     or: { __type: "[SucursalFiltersInput]" },
     orden: { __type: "IntFilterInput" },
     publishedAt: { __type: "DateTimeFilterInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     slug: { __type: "StringFilterInput" },
     telefonos: { __type: "ComponentSucursalTelefonosFiltersInput" },
     ubicacion: { __type: "StringFilterInput" },
@@ -1850,13 +1984,13 @@ export const generatedSchema = {
     nombre: { __type: "String" },
     orden: { __type: "Int" },
     publishedAt: { __type: "DateTime" },
+    sitemap_exclude: { __type: "Boolean" },
     slug: { __type: "String" },
     telefonos: { __type: "[ComponentSucursalTelefonosInput]" },
     ubicacion: { __type: "String" },
   },
   Tpage: {
     __typename: { __type: "String!" },
-    agradecimiento: { __type: "String!" },
     contenido: { __type: "String!" },
     createdAt: { __type: "DateTime" },
     cta: { __type: "ComponentSharedCta" },
@@ -1881,7 +2015,6 @@ export const generatedSchema = {
     meta: { __type: "ResponseCollectionMeta!" },
   },
   TpageFiltersInput: {
-    agradecimiento: { __type: "StringFilterInput" },
     and: { __type: "[TpageFiltersInput]" },
     contenido: { __type: "StringFilterInput" },
     createdAt: { __type: "DateTimeFilterInput" },
@@ -1891,16 +2024,17 @@ export const generatedSchema = {
     not: { __type: "TpageFiltersInput" },
     or: { __type: "[TpageFiltersInput]" },
     publishedAt: { __type: "DateTimeFilterInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     slug: { __type: "StringFilterInput" },
     titular: { __type: "StringFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
   },
   TpageInput: {
-    agradecimiento: { __type: "String" },
     contenido: { __type: "String" },
     cta: { __type: "ComponentSharedCtaInput" },
     nombre: { __type: "String" },
     publishedAt: { __type: "DateTime" },
+    sitemap_exclude: { __type: "Boolean" },
     slug: { __type: "String" },
     titular: { __type: "String" },
   },
@@ -1955,6 +2089,7 @@ export const generatedSchema = {
     previewUrl: { __type: "StringFilterInput" },
     provider: { __type: "StringFilterInput" },
     provider_metadata: { __type: "JSONFilterInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     size: { __type: "FloatFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
     url: { __type: "StringFilterInput" },
@@ -1972,6 +2107,7 @@ export const generatedSchema = {
     previewUrl: { __type: "String" },
     provider: { __type: "String" },
     provider_metadata: { __type: "JSON" },
+    sitemap_exclude: { __type: "Boolean" },
     size: { __type: "Float" },
     url: { __type: "String" },
     width: { __type: "Int" },
@@ -2146,6 +2282,7 @@ export const generatedSchema = {
     provider: { __type: "StringFilterInput" },
     resetPasswordToken: { __type: "StringFilterInput" },
     role: { __type: "UsersPermissionsRoleFiltersInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
     username: { __type: "StringFilterInput" },
   },
@@ -2158,6 +2295,7 @@ export const generatedSchema = {
     provider: { __type: "String" },
     resetPasswordToken: { __type: "String" },
     role: { __type: "ID" },
+    sitemap_exclude: { __type: "Boolean" },
     username: { __type: "String" },
   },
   UsersPermissionsUserRelationResponseCollection: {
@@ -2204,6 +2342,7 @@ export const generatedSchema = {
     name: { __type: "StringFilterInput" },
     not: { __type: "WriterFiltersInput" },
     or: { __type: "[WriterFiltersInput]" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
     updatedAt: { __type: "DateTimeFilterInput" },
   },
   WriterInput: {
@@ -2211,6 +2350,7 @@ export const generatedSchema = {
     email: { __type: "String" },
     name: { __type: "String" },
     picture: { __type: "ID" },
+    sitemap_exclude: { __type: "Boolean" },
   },
   mutation: {
     __typename: { __type: "String!" },
@@ -2610,6 +2750,7 @@ export const generatedSchema = {
       "ComponentServiciosTarifas",
       "ComponentServiciosVentajas",
       "ComponentSharedCta",
+      "ComponentSharedMetaSocial",
       "ComponentSharedPortada",
       "ComponentSharedSeo",
       "ComponentSucursalTelefonos",
@@ -2797,6 +2938,15 @@ export interface ComponentSharedCta {
   uri: ScalarsEnums["String"];
 }
 
+export interface ComponentSharedMetaSocial {
+  __typename?: "ComponentSharedMetaSocial";
+  description: ScalarsEnums["String"];
+  id: ScalarsEnums["ID"];
+  image?: Maybe<UploadFileEntityResponse>;
+  socialNetwork: ScalarsEnums["ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK"];
+  title: ScalarsEnums["String"];
+}
+
 export interface ComponentSharedPortada {
   __typename?: "ComponentSharedPortada";
   copy: ScalarsEnums["String"];
@@ -2808,10 +2958,26 @@ export interface ComponentSharedPortada {
 
 export interface ComponentSharedSeo {
   __typename?: "ComponentSharedSeo";
+  canonicalURL?: Maybe<ScalarsEnums["String"]>;
   id: ScalarsEnums["ID"];
+  keywords?: Maybe<ScalarsEnums["String"]>;
   metaDescription: ScalarsEnums["String"];
+  metaImage: UploadFileEntityResponse;
+  metaRobots?: Maybe<ScalarsEnums["String"]>;
+  metaSocial: (args?: {
+    filters?: Maybe<ComponentSharedMetaSocialFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<Array<Maybe<ComponentSharedMetaSocial>>>;
   metaTitle: ScalarsEnums["String"];
-  shareImage?: Maybe<UploadFileEntityResponse>;
+  metaViewport?: Maybe<ScalarsEnums["String"]>;
+  structuredData?: Maybe<ScalarsEnums["JSON"]>;
 }
 
 export interface ComponentSucursalTelefonos {
@@ -2839,6 +3005,7 @@ export interface GenericMorph {
     | "ComponentServiciosTarifas"
     | "ComponentServiciosVentajas"
     | "ComponentSharedCta"
+    | "ComponentSharedMetaSocial"
     | "ComponentSharedPortada"
     | "ComponentSharedSeo"
     | "ComponentSucursalTelefonos"
@@ -2865,7 +3032,6 @@ export interface GenericMorph {
 export interface Global {
   __typename?: "Global";
   createdAt?: Maybe<ScalarsEnums["DateTime"]>;
-  defaultSeo: ComponentSharedSeo;
   favicon?: Maybe<UploadFileEntityResponse>;
   siteName: ScalarsEnums["String"];
   updatedAt?: Maybe<ScalarsEnums["DateTime"]>;
@@ -2936,6 +3102,7 @@ export interface Landing {
   imagen: UploadFileEntityResponse;
   nombre: ScalarsEnums["String"];
   publishedAt?: Maybe<ScalarsEnums["DateTime"]>;
+  seo?: Maybe<ComponentSharedSeo>;
   slug: ScalarsEnums["String"];
   titular: ScalarsEnums["String"];
   updatedAt?: Maybe<ScalarsEnums["DateTime"]>;
@@ -3254,7 +3421,6 @@ export interface SucursalEntityResponseCollection {
 
 export interface Tpage {
   __typename?: "Tpage";
-  agradecimiento: ScalarsEnums["String"];
   contenido: ScalarsEnums["String"];
   createdAt?: Maybe<ScalarsEnums["DateTime"]>;
   cta?: Maybe<ComponentSharedCta>;
@@ -3987,6 +4153,7 @@ export interface SchemaObjectTypes {
   ComponentServiciosTarifas: ComponentServiciosTarifas;
   ComponentServiciosVentajas: ComponentServiciosVentajas;
   ComponentSharedCta: ComponentSharedCta;
+  ComponentSharedMetaSocial: ComponentSharedMetaSocial;
   ComponentSharedPortada: ComponentSharedPortada;
   ComponentSharedSeo: ComponentSharedSeo;
   ComponentSucursalTelefonos: ComponentSucursalTelefonos;
@@ -4091,6 +4258,7 @@ export type SchemaObjectTypesNames =
   | "ComponentServiciosTarifas"
   | "ComponentServiciosVentajas"
   | "ComponentSharedCta"
+  | "ComponentSharedMetaSocial"
   | "ComponentSharedPortada"
   | "ComponentSharedSeo"
   | "ComponentSucursalTelefonos"
@@ -4188,6 +4356,7 @@ export interface $GenericMorph {
   ComponentServiciosTarifas?: ComponentServiciosTarifas;
   ComponentServiciosVentajas?: ComponentServiciosVentajas;
   ComponentSharedCta?: ComponentSharedCta;
+  ComponentSharedMetaSocial?: ComponentSharedMetaSocial;
   ComponentSharedPortada?: ComponentSharedPortada;
   ComponentSharedSeo?: ComponentSharedSeo;
   ComponentSucursalTelefonos?: ComponentSucursalTelefonos;
@@ -4226,6 +4395,9 @@ export type MakeNullable<T> = {
 };
 
 export interface ScalarsEnums extends MakeNullable<Scalars> {
+  ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK:
+    | ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK
+    | undefined;
   ENUM_MENUSMENUITEM_TARGET: ENUM_MENUSMENUITEM_TARGET | undefined;
   ENUM_SERVICIO_CATEGORIA: ENUM_SERVICIO_CATEGORIA | undefined;
   ENUM_SERVICIO_TIPO: ENUM_SERVICIO_TIPO | undefined;

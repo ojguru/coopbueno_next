@@ -7,6 +7,8 @@ import { useQuery, prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import Layout from "components/Layout";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
+import { SITE_NAME, SITE_URL } from "lib/constants";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -49,14 +51,27 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   }
 
   return (
-    <Layout>
-      <Archivo
-        titulo={categoria?.attributes?.name}
-        descripcion={categoria?.attributes?.description}
-        articulos={articulos}
-        categorias={categorias}
+    <>
+      <NextSeo
+        title={`Categoría ${categoria?.attributes?.name} - Academia de Sueños`}
+        description={categoria?.attributes?.description}
+        canonical={`${SITE_URL}/${categoria?.attributes?.slug}`}
+        openGraph={{
+          url: `${SITE_URL}/${categoria?.attributes?.slug}`,
+          title: `Categoría ${categoria?.attributes?.name} - Academia de Sueños`,
+          description: categoria?.attributes?.description,
+          site_name: SITE_NAME,
+        }}
       />
-    </Layout>
+      <Layout>
+        <Archivo
+          titulo={categoria?.attributes?.name}
+          descripcion={categoria?.attributes?.description}
+          articulos={articulos}
+          categorias={categorias}
+        />
+      </Layout>
+    </>
   );
 };
 

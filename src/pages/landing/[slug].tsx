@@ -8,11 +8,18 @@ import Lista from "components/Lista";
 import Formulario from "components/Formulario";
 
 import { GetStaticProps } from "next";
-import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import {
+  useQuery,
+  prepareReactRender,
+  useHydrateCache,
+  ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK,
+} from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import { getImageURL } from "lib/api";
 import Layout from "components/Layout";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
+import { SITE_NAME, SITE_URL } from "lib/constants";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -41,38 +48,80 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     return <Loading full />;
   }
 
+  // SEO
+  const image = page?.imagen?.data?.attributes;
+
+  const seo = page?.seo;
+
+  const facebookMeta = seo
+    ?.metaSocial()
+    ?.filter(
+      (item) =>
+        item?.socialNetwork ===
+        ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK.Facebook
+    )[0];
+
+  const facebookMetaImage = facebookMeta?.image?.data?.attributes;
+
   return page ? (
-    <Layout>
-      <Article space fluid>
-        <Container space>
-          <Header>
-            <PageTitle>{page?.titular}</PageTitle>
-            <p>{page.copy}</p>
-            <Image
-              src={getImageURL(page?.imagen?.data?.attributes?.url)}
-              alt={page.titular}
-              width={1080}
-              height={1080}
-              priority
-            />
-          </Header>
-          <FormWrapper>
-            <LandingForm>
-              <Formulario formulario={formulario} />
-            </LandingForm>
-          </FormWrapper>
-          {contenido?.length
-            ? contenido.map((component, index) => {
-                if (component?.__typename === "ComponentGeneralLista") {
-                  return <Lista lista={component} key={index} />;
-                }
-                return null;
-              })
-            : null}
-        </Container>
-        <Deco />
-      </Article>
-    </Layout>
+    <>
+      <NextSeo
+        title={seo?.metaTitle || page?.titular}
+        description={seo?.metaDescription || page?.copy || page?.titular}
+        canonical={seo?.canonicalURL || `${SITE_URL}/${page?.slug}`}
+        openGraph={{
+          url: `${SITE_URL}/${page?.slug}`,
+          title: facebookMeta?.title || page?.titular,
+          description: facebookMeta?.description || page?.copy || page?.titular,
+          images: [
+            {
+              url: getImageURL(facebookMetaImage?.url || image?.url),
+              width: facebookMetaImage?.width || image?.width || 900,
+              height: facebookMetaImage?.height || image?.height || 800,
+              alt:
+                facebookMetaImage?.alternativeText ||
+                image?.alternativeText ||
+                page?.titular,
+              type: facebookMetaImage?.mime || image?.mime,
+            },
+          ],
+          site_name: SITE_NAME,
+        }}
+        noindex={seo?.metaRobots?.includes("noindex")}
+        nofollow={seo?.metaRobots?.includes("nofollow")}
+      />
+      <Layout>
+        <Article space fluid>
+          <Container space>
+            <Header>
+              <PageTitle>{page?.titular}</PageTitle>
+              <p>{page.copy}</p>
+              <Image
+                src={getImageURL(page?.imagen?.data?.attributes?.url)}
+                alt={page.titular}
+                width={1080}
+                height={1080}
+                priority
+              />
+            </Header>
+            <FormWrapper>
+              <LandingForm>
+                <Formulario formulario={formulario} />
+              </LandingForm>
+            </FormWrapper>
+            {contenido?.length
+              ? contenido.map((component, index) => {
+                  if (component?.__typename === "ComponentGeneralLista") {
+                    return <Lista lista={component} key={index} />;
+                  }
+                  return null;
+                })
+              : null}
+          </Container>
+          <Deco />
+        </Article>
+      </Layout>
+    </>
   ) : null;
 };
 

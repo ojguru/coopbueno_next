@@ -10,11 +10,19 @@ import Beneficios from "templates/servicios/beneficios";
 import Conversion from "templates/servicios/conversion";
 import Video from "templates/servicios/video";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
 
 import { GetStaticProps } from "next";
 
-import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import {
+  useQuery,
+  prepareReactRender,
+  useHydrateCache,
+  ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK,
+} from "client";
 import { PropsWithServerCache } from "@gqty/react";
+import { getImageURL } from "lib/api";
+import { SITE_NAME, SITE_URL } from "lib/constants";
 
 type PageProps = PropsWithServerCache<{
   slug?: string;
@@ -40,18 +48,60 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     return <Loading full />;
   }
 
+  //SEO
+  const image = servicio?.portada?.imagen?.data?.attributes;
+
+  const seo = servicio?.seo;
+
+  const facebookMeta = seo
+    ?.metaSocial()
+    ?.filter(
+      (item) =>
+        item?.socialNetwork ===
+        ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK.Facebook
+    )[0];
+
+  const facebookMetaImage = facebookMeta?.image?.data?.attributes;
+
   return servicio ? (
-    <Layout>
-      <Section space>
-        <Portada servicio={servicio} />
-        <Producto servicio={servicio} />
-        <Video servicio={servicio} />
-        <Ventajas servicio={servicio} />
-        <Beneficios servicio={servicio} />
-        <Requisitos servicio={servicio} />
-        <Conversion servicio={servicio} />
-      </Section>
-    </Layout>
+    <>
+      <NextSeo
+        title={seo?.metaTitle || servicio?.nombre}
+        description={seo?.metaDescription || servicio?.portada?.copy}
+        canonical={seo?.canonicalURL || `${SITE_URL}/${servicio?.slug}`}
+        openGraph={{
+          url: `${SITE_URL}/${servicio?.slug}`,
+          title: facebookMeta?.title || servicio?.nombre,
+          description: facebookMeta?.description || servicio?.portada?.copy,
+          images: [
+            {
+              url: getImageURL(facebookMetaImage?.url || image?.url),
+              width: facebookMetaImage?.width || image?.width || 900,
+              height: facebookMetaImage?.height || image?.height || 800,
+              alt:
+                facebookMetaImage?.alternativeText ||
+                image?.alternativeText ||
+                servicio?.nombre,
+              type: facebookMetaImage?.mime || image?.mime,
+            },
+          ],
+          site_name: SITE_NAME,
+        }}
+        noindex={seo?.metaRobots?.includes("noindex")}
+        nofollow={seo?.metaRobots?.includes("nofollow")}
+      />
+      <Layout>
+        <Section space>
+          <Portada servicio={servicio} />
+          <Producto servicio={servicio} />
+          <Video servicio={servicio} />
+          <Ventajas servicio={servicio} />
+          <Beneficios servicio={servicio} />
+          <Requisitos servicio={servicio} />
+          <Conversion servicio={servicio} />
+        </Section>
+      </Layout>
+    </>
   ) : null;
 };
 

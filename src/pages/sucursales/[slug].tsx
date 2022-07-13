@@ -18,6 +18,8 @@ import { getImageURL } from "lib/api";
 import colors from "styles/colors";
 import Layout from "components/Layout";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
+import { SITE_NAME, SITE_URL } from "lib/constants";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -42,59 +44,84 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     return <Loading full />;
   }
 
-  return sucursal ? (
-    <Layout>
-      <Section fluid spaceBottom>
-        <CardImage>
-          <SucursalImage
-            src={getImageURL(sucursal?.imagen?.data?.attributes?.url)}
-            alt={sucursal.nombre}
-            width={1920}
-            height={1080}
-            objectFit="cover"
-            priority
-            //   sizeXL="40%"
-          />
-        </CardImage>
-        <Container>
-          <SucursalCard>
-            <Content>
-              <CardHeader>
-                <SucursalName>{sucursal.nombre}</SucursalName>
-              </CardHeader>
-              <CardBody>
-                <SucursalAddress>
-                  <LocationIcon />
-                  <InfoWrapper>{sucursal.direccion}</InfoWrapper>
-                </SucursalAddress>
-                <SucursalSchedule>
-                  <ClockIcon />
-                  <InfoWrapper>{sucursal.horario}</InfoWrapper>
-                </SucursalSchedule>
-                <SucursalPhoneBox>
-                  <PhoneIcon />
-                  <InfoWrapper>
-                    {sucursal.telefonos().map((item, index) => {
-                      const phone = item?.telefono;
+  //SEO
+  const image = sucursal?.imagen?.data?.attributes;
 
-                      return (
-                        <Link href={`tel:+${phone}`} key={index} passHref>
-                          <SucursalPhone>{phone}</SucursalPhone>
-                        </Link>
-                      );
-                    })}
-                  </InfoWrapper>
-                </SucursalPhoneBox>
-              </CardBody>
-              <LinkBox>
-                <ReadMore href={sucursal.ubicacion ?? ""}>Ubicación</ReadMore>
-              </LinkBox>
-            </Content>
-            <SucursalIMG />
-          </SucursalCard>
-        </Container>
-      </Section>
-    </Layout>
+  return sucursal ? (
+    <>
+      <NextSeo
+        title={`Sucursal ${sucursal?.nombre}`}
+        description={`Sucursal Coopbueno ${sucursal?.nombre}`}
+        canonical={`${SITE_URL}/${sucursal?.slug}`}
+        openGraph={{
+          url: `${SITE_URL}/${sucursal?.slug}`,
+          title: `Sucursal ${sucursal?.nombre}`,
+          description: `Sucursal Coopbueno ${sucursal?.nombre}`,
+          images: [
+            {
+              url: getImageURL(image?.url),
+              width: image?.width || 900,
+              height: image?.height || 800,
+              alt: image?.alternativeText || sucursal?.nombre,
+              type: image?.mime,
+            },
+          ],
+          site_name: SITE_NAME,
+        }}
+      />
+      <Layout>
+        <Section fluid spaceBottom>
+          <CardImage>
+            <SucursalImage
+              src={getImageURL(sucursal?.imagen?.data?.attributes?.url)}
+              alt={sucursal.nombre}
+              width={1920}
+              height={1080}
+              objectFit="cover"
+              priority
+              //   sizeXL="40%"
+            />
+          </CardImage>
+          <Container>
+            <SucursalCard>
+              <Content>
+                <CardHeader>
+                  <SucursalName>{sucursal.nombre}</SucursalName>
+                </CardHeader>
+                <CardBody>
+                  <SucursalAddress>
+                    <LocationIcon />
+                    <InfoWrapper>{sucursal.direccion}</InfoWrapper>
+                  </SucursalAddress>
+                  <SucursalSchedule>
+                    <ClockIcon />
+                    <InfoWrapper>{sucursal.horario}</InfoWrapper>
+                  </SucursalSchedule>
+                  <SucursalPhoneBox>
+                    <PhoneIcon />
+                    <InfoWrapper>
+                      {sucursal.telefonos().map((item, index) => {
+                        const phone = item?.telefono;
+
+                        return (
+                          <Link href={`tel:+${phone}`} key={index} passHref>
+                            <SucursalPhone>{phone}</SucursalPhone>
+                          </Link>
+                        );
+                      })}
+                    </InfoWrapper>
+                  </SucursalPhoneBox>
+                </CardBody>
+                <LinkBox>
+                  <ReadMore href={sucursal.ubicacion ?? ""}>Ubicación</ReadMore>
+                </LinkBox>
+              </Content>
+              <SucursalIMG />
+            </SucursalCard>
+          </Container>
+        </Section>
+      </Layout>
+    </>
   ) : null;
 };
 

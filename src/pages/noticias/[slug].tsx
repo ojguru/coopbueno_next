@@ -2,12 +2,20 @@ import React from "react";
 
 import { GetStaticProps } from "next";
 
-import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import {
+  useQuery,
+  prepareReactRender,
+  useHydrateCache,
+  ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK,
+} from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import ArticuloBody from "templates/noticias/ArticuloBody";
 import ArticuloAside from "templates/noticias/ArticuloAside";
 import Layout from "components/Layout";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
+import { SITE_NAME, SITE_URL } from "lib/constants";
+import { getImageURL } from "lib/api";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -42,11 +50,54 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     return <Loading full />;
   }
 
+  //SEO
+  const articulo = articuloEntidad?.attributes;
+  const image = articulo?.imagen?.data?.attributes;
+
+  const seo = articulo?.seo;
+
+  const facebookMeta = seo
+    ?.metaSocial()
+    ?.filter(
+      (item) =>
+        item?.socialNetwork ===
+        ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK.Facebook
+    )[0];
+
+  const facebookMetaImage = facebookMeta?.image?.data?.attributes;
+
   return (
-    <Layout>
-      <ArticuloBody articulo={articuloEntidad} />
-      <ArticuloAside relacionados={relacionados} articulo={articuloEntidad} />
-    </Layout>
+    <>
+      <NextSeo
+        title={seo?.metaTitle || articulo?.titulo}
+        description={seo?.metaDescription || articulo?.descripcion}
+        canonical={seo?.canonicalURL || `${SITE_URL}/${articulo?.slug}`}
+        openGraph={{
+          url: `${SITE_URL}/${articulo?.slug}`,
+          title: facebookMeta?.title || articulo?.titulo,
+          description: facebookMeta?.description || articulo?.descripcion,
+          images: [
+            {
+              url: getImageURL(facebookMetaImage?.url || image?.url),
+              width: facebookMetaImage?.width || image?.width || 900,
+              height: facebookMetaImage?.height || image?.height || 800,
+              alt:
+                facebookMetaImage?.alternativeText ||
+                image?.alternativeText ||
+                articulo?.titulo,
+              type: facebookMetaImage?.mime || image?.mime,
+            },
+          ],
+          site_name: SITE_NAME,
+        }}
+        noindex={seo?.metaRobots?.includes("noindex")}
+        nofollow={seo?.metaRobots?.includes("nofollow")}
+      />
+      <Layout>
+        <ArticuloBody articulo={articuloEntidad} />
+        <ArticuloAside relacionados={relacionados} articulo={articuloEntidad} />
+      </Layout>
+    </>
   );
 };
 

@@ -13,6 +13,7 @@ import { PropsWithServerCache } from "@gqty/react";
 import { getImageURL } from "lib/api";
 import Layout from "components/Layout";
 import Loading from "components/loading";
+import { NextSeo } from "next-seo";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -38,27 +39,30 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   }
 
   return page ? (
-    <Layout>
-      <Section fluid space large>
-        <DecoContainer>
-          <DecoSquare />
-          <DecoRounded color={colors.academy}>
-            <CheckContainer>
-              <Check />
-            </CheckContainer>
-          </DecoRounded>
-        </DecoContainer>
-        <Container>
-          <div>
-            <Title>{page.titular}</Title>
-            <Content
-              dangerouslySetInnerHTML={{ __html: page.contenido || "" }}
-            />
-            <Cta cta={page.cta} />
-          </div>
-        </Container>
-      </Section>
-    </Layout>
+    <>
+      <NextSeo nofollow noindex />
+      <Layout>
+        <Section fluid space large>
+          <DecoContainer>
+            <DecoSquare />
+            <DecoRounded color={colors.academy}>
+              <CheckContainer>
+                <Check />
+              </CheckContainer>
+            </DecoRounded>
+          </DecoContainer>
+          <Container>
+            <div>
+              <Title>{page.titular}</Title>
+              <Content
+                dangerouslySetInnerHTML={{ __html: page.contenido || "" }}
+              />
+              <Cta cta={page.cta} />
+            </div>
+          </Container>
+        </Section>
+      </Layout>
+    </>
   ) : null;
 };
 
