@@ -38,6 +38,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     pagination: {
       pageSize: 16,
     },
+    sort: ["createdAt:desc"],
   })?.data;
 
   const categorias = query.categories({

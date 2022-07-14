@@ -22,6 +22,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     pagination: {
       pageSize: 16,
     },
+    sort: ["createdAt:desc"],
   })?.data;
 
   if (query.$state.isLoading) {
