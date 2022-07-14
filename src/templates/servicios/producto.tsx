@@ -19,6 +19,7 @@ const Producto = ({ servicio }: ProductProps) => {
         <InfoContainer>
           <Title>{nombre}</Title>
           <Description
+            className="ck-content"
             dangerouslySetInnerHTML={{ __html: descripcion || "" }}
           />
         </InfoContainer>

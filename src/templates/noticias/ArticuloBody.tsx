@@ -44,7 +44,10 @@ const ArticuloBody = ({ articulo }: ArticuloBodyProps) => {
           {/* The post's metadata like author, publish date, and comments */}
           <Meta articulo={post} />
         </Header>
-        <Content dangerouslySetInnerHTML={{ __html: post.contenido || "" }} />
+        <Content
+          className="ck-content"
+          dangerouslySetInnerHTML={{ __html: post.contenido || "" }}
+        />
       </InfoContainer>
     </Article>
   ) : null;

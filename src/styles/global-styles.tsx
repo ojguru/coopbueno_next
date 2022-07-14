@@ -1,10 +1,11 @@
-import { css } from '@emotion/react'
-import tipography from './tipography'
-import normalize from './normalize'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import 'pure-react-carousel/dist/react-carousel.es.css'
-import colors from './colors'
+import { css } from "@emotion/react";
+import tipography from "./tipography";
+import normalize from "./normalize";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "pure-react-carousel/dist/react-carousel.es.css";
+import colors from "./colors";
+import ckeditorStyles from "styles/content-styles";
 
 const cssReset = css`
   html,
@@ -57,14 +58,14 @@ const cssReset = css`
 
   blockquote::before,
   blockquote::after {
-    content: '';
+    content: "";
   }
 
   a,
   path {
     transition: all 0.15s linear;
   }
-`
+`;
 
 const documentSetup = css`
   html {
@@ -74,8 +75,8 @@ const documentSetup = css`
   body {
     box-sizing: border-box;
     color: ${colors.text.base};
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont,
-      'Helvetica Neue', Helvetica, sans-serif;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont,
+      "Helvetica Neue", Helvetica, sans-serif;
     font-size: 1.6rem;
     letter-spacing: -0.015em;
     text-align: left;
@@ -93,7 +94,7 @@ const documentSetup = css`
   #site-content {
     overflow: hidden;
   }
-`
+`;
 
 const accessibilitySettings = css`
   @media (prefers-reduced-motion: reduce) {
@@ -102,7 +103,7 @@ const accessibilitySettings = css`
       transition-duration: 0s !important;
     }
   }
-`
+`;
 
 const elementBase = css`
   main {
@@ -190,7 +191,7 @@ const elementBase = css`
   a:focus {
     text-decoration: none;
   }
-`
+`;
 
 const listStyle = css`
   ul,
@@ -259,7 +260,7 @@ const listStyle = css`
   dd + dt {
     margin-top: 1.5rem;
   }
-`
+`;
 
 const quoteStyle = css`
   blockquote {
@@ -292,7 +293,7 @@ const quoteStyle = css`
   blockquote p:last-child {
     margin: 0;
   }
-`
+`;
 
 const codeStyle = css`
   code,
@@ -324,7 +325,7 @@ const codeStyle = css`
     background: transparent;
     padding: 0;
   }
-`
+`;
 
 const mediaStyle = css`
   figure {
@@ -368,7 +369,7 @@ const mediaStyle = css`
   .wp-caption-text a {
     color: inherit;
   }
-`
+`;
 
 const tableStyles = css`
   table {
@@ -415,7 +416,7 @@ const tableStyles = css`
   th {
     font-weight: 700;
   }
-`
+`;
 
 const globalStyle = () =>
   css([
@@ -433,6 +434,7 @@ const globalStyle = () =>
     // slickCSS,
     // slickThemeCSS,
     // sliderCSS,
-  ])
+    ckeditorStyles,
+  ]);
 
-export default globalStyle
+export default globalStyle;
