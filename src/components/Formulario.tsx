@@ -11,6 +11,9 @@ interface FormularioProps {
 }
 
 const Formulario = ({ formulario }: FormularioProps) => {
+  const redirectUrl = formulario?.redireccion ?? null;
+  const inlineMessage = formulario?.mensaje ?? null;
+
   return formulario ? (
     <>
       <Script src="https://code.jquery.com/jquery-3.6.0.min.js" />
@@ -23,6 +26,7 @@ const Formulario = ({ formulario }: FormularioProps) => {
             portalId={HUBSPOT_ID}
             formId={formulario.formId}
             loading={<Loading />}
+            redirectUrl={redirectUrl}
           />
         </FormBody>
       </Form>

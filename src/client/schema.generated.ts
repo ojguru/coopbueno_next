@@ -111,14 +111,18 @@ export interface CategoryInput {
 export interface ComponentGeneralFormularioFiltersInput {
   and?: InputMaybe<Array<InputMaybe<ComponentGeneralFormularioFiltersInput>>>;
   formId?: InputMaybe<StringFilterInput>;
+  mensaje?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentGeneralFormularioFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentGeneralFormularioFiltersInput>>>;
+  redireccion?: InputMaybe<StringFilterInput>;
   titulo?: InputMaybe<StringFilterInput>;
 }
 
 export interface ComponentGeneralFormularioInput {
   formId?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["ID"]>;
+  mensaje?: InputMaybe<Scalars["String"]>;
+  redireccion?: InputMaybe<Scalars["String"]>;
   titulo?: InputMaybe<Scalars["String"]>;
 }
 
@@ -1030,18 +1034,24 @@ export const generatedSchema = {
     __typename: { __type: "String!" },
     formId: { __type: "String!" },
     id: { __type: "ID!" },
+    mensaje: { __type: "String" },
+    redireccion: { __type: "String" },
     titulo: { __type: "String" },
   },
   ComponentGeneralFormularioFiltersInput: {
     and: { __type: "[ComponentGeneralFormularioFiltersInput]" },
     formId: { __type: "StringFilterInput" },
+    mensaje: { __type: "StringFilterInput" },
     not: { __type: "ComponentGeneralFormularioFiltersInput" },
     or: { __type: "[ComponentGeneralFormularioFiltersInput]" },
+    redireccion: { __type: "StringFilterInput" },
     titulo: { __type: "StringFilterInput" },
   },
   ComponentGeneralFormularioInput: {
     formId: { __type: "String" },
     id: { __type: "ID" },
+    mensaje: { __type: "String" },
+    redireccion: { __type: "String" },
     titulo: { __type: "String" },
   },
   ComponentGeneralItems: {
@@ -2859,6 +2869,8 @@ export interface ComponentGeneralFormulario {
   __typename?: "ComponentGeneralFormulario";
   formId: ScalarsEnums["String"];
   id: ScalarsEnums["ID"];
+  mensaje?: Maybe<ScalarsEnums["String"]>;
+  redireccion?: Maybe<ScalarsEnums["String"]>;
   titulo?: Maybe<ScalarsEnums["String"]>;
 }
 

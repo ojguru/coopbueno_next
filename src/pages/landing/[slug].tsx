@@ -102,6 +102,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
                 width={1080}
                 height={1080}
                 priority
+                objectFit="contain"
               />
             </Header>
             <FormWrapper>
