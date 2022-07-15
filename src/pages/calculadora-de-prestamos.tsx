@@ -15,226 +15,241 @@ import PageHeader from "components/PageHeader";
 import { ComponentGeneralFormulario } from "client";
 import { NextSeo } from "next-seo";
 import { SITE_NAME, SITE_URL } from "lib/constants";
-import { getImageURL } from "lib/api";
+import Formulario from "components/Formulario";
 
 const Page = ({}) => {
   const formulario: ComponentGeneralFormulario = {
     id: "formulario-b845c8ab-9eea-48c1-90ca-278bef416e72",
-    formId: "b845fc8ab-9eea-48c1-90ca-278bef416e72",
+    formId: "b845c8ab-9eea-48c1-90ca-278bef416e72",
   };
-  // const formatNumber = new Intl.NumberFormat("en-US");
 
-  // const {
-  //   register,
-  //   formState: { errors },
-  //   handleSubmit,
-  //   setValue,
-  //   getValues,
-  // } = useForm();
+  const formatNumber = new Intl.NumberFormat("en-US");
 
-  // const [isFormSubmiting, setFormSubmiting] = useState(false);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    setValue,
+    getValues,
+  } = useForm();
 
-  // const [amortizationReady, setAmortizationReady] = useState(false);
-  // const [showAmortization, setShowAmortization] = useState(false);
-  // const [valueTotalInterest, setInterest] = useState(0);
+  const [isFormSubmiting, setFormSubmiting] = useState(false);
+  const [amortizationReady, setAmortizationReady] = useState(false);
+  const [showAmortization, setShowAmortization] = useState(false);
+  const [valueTotalInterest, setInterest] = useState(0);
 
-  // const [results, setResults] = useState({
-  //   monthlyPayment: 0.0,
-  //   monthlyInterest: 0.0,
-  //   monthlyCapital: 0.0,
-  //   totalPayment: 0.0,
-  //   totalInterest: 0.0,
-  //   isResult: false,
-  //   amortization: {
-  //     head: [],
-  //     body: [],
-  //   },
-  // });
+  const resu: any = {
+    monthlyPayment: 0,
+    monthlyInterest: 0,
+    monthlyCapital: 0,
+    totalPayment: 0,
+    totalInterest: 0,
+    isResult: false,
+    amortization: {
+      header: [],
+      body: [],
+    },
+  };
+  const [results, setResults] = useState(resu);
 
-  // const [errorMessages, setErrorMessages] = useState([]);
+  const [errorMessages, setErrorMessages] = useState([]);
 
-  // const onSubmit = async (data) => {
-  //   setFormSubmiting(true);
+  const onSubmit = async (data: any) => {
+    setFormSubmiting(true);
 
-  //   // Parámetros iniciales
-  //   const amount = Number(data.amount);
-  //   const rateType = data.rate_type; // Define si la tasa es anual o mensual;
-  //   const rate = rateType ? Number(data.rate) * 12 : Number(data.rate); // Se transforma a meses
-  //   const periodType = data.period_type;
-  //   const duration = periodType
-  //     ? Number(data.period)
-  //     : Number(data.period) * 12; //Se transforma a meses
-  //   const method = data.method; //Define el metodo de calculo
+    // Parámetros iniciales
+    const amount: number = Number(data.amount);
+    const rateType: boolean = data.rate_type; // Define si la tasa es anual o mensual;
+    const rate: number = rateType ? Number(data.rate) * 12 : Number(data.rate); // Se transforma a meses
+    const periodType: boolean = data.period_type;
+    const duration: number = periodType
+      ? Number(data.period)
+      : Number(data.period) * 12; //Se transforma a meses
+    const method: boolean = data.method; //Define el metodo de calculo
 
-  //   const {
-  //     monthlyPayment,
-  //     monthlyInterest,
-  //     monthlyCapital,
-  //     totalPayment,
-  //     totalInterest,
-  //     isResult,
-  //   } = calculate(method, amount, duration, rate);
+    const {
+      monthlyPayment,
+      monthlyInterest,
+      monthlyCapital,
+      totalPayment,
+      totalInterest,
+      isResult,
+    } = calculate(method, amount, duration, rate, false);
 
-  //   const { amortization } = amortize(method, amount, duration, rate);
+    const { amortization } = amortize(method, amount, duration, rate);
 
-  //   setResults({
-  //     monthlyPayment,
-  //     monthlyInterest,
-  //     monthlyCapital,
-  //     totalPayment,
-  //     totalInterest,
-  //     isResult,
-  //     amortization,
-  //   });
+    setResults({
+      monthlyPayment,
+      monthlyInterest,
+      monthlyCapital,
+      totalPayment,
+      totalInterest,
+      isResult,
+      amortization,
+    });
 
-  //   setFormSubmiting(false);
-  // };
+    setFormSubmiting(false);
+  };
 
-  // //Closure
-  // const anotherFunction = () => {
-  //   let count = 0;
-  //   const remember = (value: number, duration?: number) => {
-  //     if (duration == 1) {
-  //       return (count = 0);
-  //     } else {
-  //       return (count += Number(value));
-  //     }
-  //   };
-  //   return remember;
-  // };
+  //Closure
+  const anotherFunction = () => {
+    let count = 0;
+    const remember = (value: number, duration?: number) => {
+      if (duration == 1) {
+        return (count = 0);
+      } else {
+        return (count += Number(value));
+      }
+    };
+    return remember;
+  };
 
-  // const remember = anotherFunction();
+  const remember = anotherFunction();
 
-  // const calculate = (
-  //   iMethod?: string,
-  //   iAmount?: number,
-  //   iDuration?: number,
-  //   iRate?: number,
-  //   active?: boolean
-  // ) => {
-  //   // Parámetros iniciales
-  //   const amount = iAmount;
-  //   const rate = iRate / 100 / 12; // Se transforma a meses
-  //   const duration = iDuration;
+  const calculate = (
+    iMethod: boolean,
+    iAmount: number,
+    iDuration: number,
+    iRate: number,
+    active: boolean
+  ) => {
+    // Parámetros iniciales
+    const amount = iAmount;
+    const rate = iRate / 100 / 12; // Se transforma a meses
+    const duration = iDuration;
 
-  //   if (iMethod) {
-  //     // Cálculos Cuota Fija
-  //     const capital = amount / duration;
-  //     const interest = amount * rate;
-  //     const monthly = capital + interest;
+    if (iMethod) {
+      // Cálculos Cuota Fija
+      const capital = amount / duration;
+      const interest = amount * rate;
+      const monthly = capital + interest;
 
-  //     //Logica de la suma de los  intereses compuesto.
-  //     if (active && duration !== 1) {
-  //       remember(interest, duration);
-  //     } else if (duration == 1) {
-  //       const value = remember(interest);
-  //       setInterest(value);
-  //     }
+      //Logica de la suma de los  intereses compuesto.
+      if (active && duration !== 1) {
+        remember(interest, duration);
+      } else if (duration == 1) {
+        const value = remember(interest);
+        setInterest(value);
+      }
 
-  //     if (isFinite(monthly)) {
-  //       const monthlyPaymentCalculated = Number(monthly.toFixed(2));
-  //       const monthlyInterest = Number(interest.toFixed(2));
-  //       const monthlyCapital = Number(capital.toFixed(2));
-  //       const totalPaymentCalculated = Number(amount.toFixed(2));
-  //       const totalInterestCalculated = Number(duration.toFixed(2));
+      const monthlyPaymentCalculated = Number(monthly.toFixed(2));
+      const monthlyInterest = Number(interest.toFixed(2));
+      const monthlyCapital = Number(capital.toFixed(2));
+      const totalPaymentCalculated = Number(amount.toFixed(2));
+      const totalInterestCalculated = Number(duration.toFixed(2));
 
-  //       return {
-  //         monthlyPayment: monthlyPaymentCalculated,
-  //         monthlyInterest,
-  //         monthlyCapital,
-  //         totalPayment: totalPaymentCalculated,
-  //         totalInterest: totalInterestCalculated,
-  //         amount: amount,
-  //         balance: amount - Number(monthlyCapital),
-  //         remainingDuration: duration - 1,
-  //         isResult: true,
-  //       };
-  //     }
-  //   } else {
-  //     // Cálculos Cuota Fija
-  //     const x = Math.pow(1 + rate, duration);
-  //     const monthly = (amount * x * rate) / (x - 1);
-  //     const interest = amount * rate;
-  //     const capital = monthly - interest;
+      return {
+        monthlyPayment: monthlyPaymentCalculated,
+        monthlyInterest,
+        monthlyCapital,
+        totalPayment: totalPaymentCalculated,
+        totalInterest: totalInterestCalculated,
+        amount: amount,
+        balance: amount - Number(monthlyCapital),
+        remainingDuration: duration - 1,
+        isResult: true,
+      };
+    } else {
+      // Cálculos Cuota Fija
+      const x = Math.pow(1 + rate, duration);
+      const monthly = (amount * x * rate) / (x - 1);
+      const interest = amount * rate;
+      const capital = monthly - interest;
 
-  //     if (isFinite(monthly)) {
-  //       const monthlyPaymentCalculated = Number(monthly.toFixed(2));
-  //       const monthlyInterest = Number(interest.toFixed(2));
-  //       const monthlyCapital = Number(capital.toFixed(2));
-  //       const totalPaymentCalculated = Number((monthly * duration).toFixed(2));
-  //       const totalInterestCalculated = Number(
-  //         (monthly * duration - amount).toFixed(2)
-  //       );
+      const monthlyPaymentCalculated = Number(monthly.toFixed(2));
+      const monthlyInterest = Number(interest.toFixed(2));
+      const monthlyCapital = Number(capital.toFixed(2));
+      const totalPaymentCalculated = Number((monthly * duration).toFixed(2));
+      const totalInterestCalculated = Number(
+        (monthly * duration - amount).toFixed(2)
+      );
 
-  //       // Set up results to the state to be displayed to the user
-  //       return {
-  //         monthlyPayment: monthlyPaymentCalculated,
-  //         monthlyInterest,
-  //         monthlyCapital,
-  //         totalPayment: totalPaymentCalculated,
-  //         totalInterest: totalInterestCalculated,
-  //         amount: amount,
-  //         balance: amount - monthlyCapital,
-  //         remainingDuration: duration - 1,
-  //         isResult: true,
-  //       };
-  //     }
-  //   }
-  // };
+      // Set up results to the state to be displayed to the user
+      return {
+        monthlyPayment: monthlyPaymentCalculated,
+        monthlyInterest,
+        monthlyCapital,
+        totalPayment: totalPaymentCalculated,
+        totalInterest: totalInterestCalculated,
+        amount: amount,
+        balance: amount - monthlyCapital,
+        remainingDuration: duration - 1,
+        isResult: true,
+      };
+    }
+  };
 
-  // const amortize = (iMethod, amount, duration, rate) => {
-  //   let body = [];
-  //   let result;
-  //   for (var i = 0; i < duration; i++) {
-  //     if (i < 1) {
-  //       result = calculate(iMethod, amount, duration, rate, true);
-  //     } else {
-  //       result = calculate(
-  //         iMethod,
-  //         result.balance,
-  //         result.remainingDuration,
-  //         rate,
-  //         true
-  //       );
-  //     }
+  const amortize = (
+    iMethod: boolean,
+    amount: number,
+    duration: number,
+    rate: number
+  ) => {
+    let body = [];
+    let result = {
+      monthlyPayment: 0,
+      monthlyInterest: 0,
+      monthlyCapital: 0,
+      totalPayment: 0,
+      totalInterest: 0,
+      amount: 0,
+      balance: 0,
+      remainingDuration: 0,
+      isResult: false,
+    };
+    for (var i = 0; i < duration; i++) {
+      if (i < 1) {
+        result = calculate(iMethod, amount, duration, rate, true);
+      } else {
+        result = calculate(
+          iMethod,
+          result.balance,
+          result.remainingDuration,
+          rate,
+          true
+        );
+      }
 
-  //     setAmortizationReady(true);
-  //     body.push([
-  //       i + 1,
-  //       result.monthlyPayment,
-  //       result.monthlyCapital,
-  //       result.monthlyInterest,
-  //       result.balance,
-  //     ]);
-  //   }
+      setAmortizationReady(true);
+      body.push([
+        i + 1,
+        result.monthlyPayment,
+        result.monthlyCapital,
+        result.monthlyInterest,
+        result.balance,
+      ]);
+    }
 
-  //   setAmortizationReady(true);
+    setAmortizationReady(true);
 
-  //   return {
-  //     amortization: {
-  //       head: ["pago", "Cuota", "Capital", "Intereses", "Balance"],
-  //       body,
-  //     },
-  //   };
-  // };
+    return {
+      amortization: {
+        head: ["pago", "Cuota", "Capital", "Intereses", "Balance"],
+        body,
+      },
+    };
+  };
 
-  // const changeRateAmount = () => {
-  //   const { rate, rate_type } = getValues();
+  const changeRateAmount = () => {
+    const { rate, rate_type } = getValues();
 
-  //   rate_type ? setValue("rate", rate / 12) : setValue("rate", rate * 12);
-  // };
+    setValue("rate_type", !rate_type);
 
-  // const changePeriodAmount = () => {
-  //   const { period, period_type } = getValues();
+    !rate_type ? setValue("rate", rate / 12) : setValue("rate", rate * 12);
+  };
 
-  //   period_type
-  //     ? setValue("period", period * 12)
-  //     : setValue("period", period / 12);
-  // };
+  const changePeriodAmount = () => {
+    const { period, period_type } = getValues();
 
-  // const { method } = getValues();
+    setValue("period_type", !period_type);
+    !period_type
+      ? setValue("period", period * 12)
+      : setValue("period", period / 12);
+  };
 
-  // const { ModalUI, openModal } = useModal();
+  const { method } = getValues();
+
+  const { ModalUI, openModal } = useModal();
   return true ? (
     <>
       <NextSeo
@@ -250,7 +265,7 @@ const Page = ({}) => {
       />
       <Layout>
         <Container space>
-          {/* <PageHeader title="Calculadora de préstamos" />
+          <PageHeader title="Calculadora de préstamos" />
           <Calculator>
             <Form onSubmit={handleSubmit(onSubmit)}>
               <Inputs>
@@ -326,7 +341,7 @@ const Page = ({}) => {
                 </InputWrapper>
                 {errorMessages.length > 0 && (
                   <ErrorMessages>
-                    {errorMessages.map((item, index) => {
+                    {errorMessages.map((item: any, index) => {
                       return (
                         <ErrorMessage key={index}>{item.message}</ErrorMessage>
                       );
@@ -352,7 +367,9 @@ const Page = ({}) => {
                     {formatNumber.format(
                       method
                         ? Number(
-                            (results.totalPayment + valueTotalInterest).toFixed(2)
+                            (results.totalPayment + valueTotalInterest).toFixed(
+                              2
+                            )
                           )
                         : results.totalPayment
                     )}
@@ -398,25 +415,31 @@ const Page = ({}) => {
                   <Table>
                     <THead>
                       <Tr>
-                        {results.amortization.head.map((item, index) => {
-                          return <Th key={index}>{item}</Th>;
-                        })}
+                        {results.amortization.head.map(
+                          (item: any, index: number) => {
+                            return <Th key={index}>{item}</Th>;
+                          }
+                        )}
                       </Tr>
                     </THead>
                     <TBody>
-                      {results.amortization.body.map((item, index) => {
-                        const fees = item;
+                      {results.amortization.body.map(
+                        (item: any, index: number) => {
+                          const fees = item;
 
-                        return (
-                          <Tr key={index}>
-                            {fees.map((item, index) => {
-                              return (
-                                <Td key={index}>{formatNumber.format(item)}</Td>
-                              );
-                            })}
-                          </Tr>
-                        );
-                      })}
+                          return (
+                            <Tr key={index}>
+                              {fees.map((item: any, index: number) => {
+                                return (
+                                  <Td key={index}>
+                                    {formatNumber.format(item)}
+                                  </Td>
+                                );
+                              })}
+                            </Tr>
+                          );
+                        }
+                      )}
                     </TBody>
                   </Table>
                 </Amortization>
@@ -443,9 +466,8 @@ const Page = ({}) => {
 
             <ModalUI title="Contáctanos">
               <Formulario formulario={formulario} />
-              
             </ModalUI>
-          </Calculator> */}
+          </Calculator>
         </Container>
       </Layout>
     </>
