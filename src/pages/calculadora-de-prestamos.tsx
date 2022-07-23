@@ -18,7 +18,15 @@ import { NextSeo } from "next-seo";
 import { SITE_NAME, SITE_URL } from "lib/constants";
 import Formulario from "components/Formulario";
 
-const Page = ({}) => {
+import { GetStaticProps } from "next";
+import { prepareReactRender, useHydrateCache } from "client";
+import { PropsWithServerCache } from "@gqty/react";
+
+type PageProps = PropsWithServerCache<{}>;
+const Page = ({ cacheSnapshot }: PageProps) => {
+  useHydrateCache({
+    cacheSnapshot,
+  });
   const formulario: ComponentGeneralFormulario = {
     id: "formulario-b845c8ab-9eea-48c1-90ca-278bef416e72",
     formId: "b845c8ab-9eea-48c1-90ca-278bef416e72",
@@ -504,6 +512,14 @@ const Page = ({}) => {
 };
 
 export default Page;
+
+export const getStaticProps: GetStaticProps<PageProps> = async (_ctx: any) => {
+  const { cacheSnapshot } = await prepareReactRender(<Page />);
+
+  return {
+    props: { cacheSnapshot },
+  };
+};
 
 const SSwitch = withStyles({
   switchBase: {

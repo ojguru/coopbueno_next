@@ -8,7 +8,16 @@ import Promese from "templates/about/about-promese";
 import Slides from "templates/about/about-slides";
 import image from "../../public/nosotros.jpg";
 
-const Page = () => {
+import { GetStaticProps } from "next";
+import { prepareReactRender, useHydrateCache } from "client";
+import { PropsWithServerCache } from "@gqty/react";
+
+type PageProps = PropsWithServerCache<{}>;
+const Page = ({ cacheSnapshot }: PageProps) => {
+  useHydrateCache({
+    cacheSnapshot,
+  });
+
   return (
     <>
       <NextSeo
@@ -41,3 +50,11 @@ const Page = () => {
 };
 
 export default Page;
+
+export const getStaticProps: GetStaticProps<PageProps> = async (_ctx: any) => {
+  const { cacheSnapshot } = await prepareReactRender(<Page />);
+
+  return {
+    props: { cacheSnapshot },
+  };
+};

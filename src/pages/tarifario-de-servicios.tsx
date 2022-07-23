@@ -6,18 +6,12 @@ import { h3 } from "styles/tipography";
 
 import { GetStaticProps } from "next";
 
-import {
-  useQuery,
-  prepareReactRender,
-  useHydrateCache,
-  Servicio,
-} from "client";
+import { useQuery, prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import Layout from "components/Layout";
 import Loading from "components/loading";
 import { NextSeo } from "next-seo";
 import { SITE_NAME, SITE_URL } from "lib/constants";
-import { getImageURL } from "lib/api";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
