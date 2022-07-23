@@ -11,7 +11,7 @@ import { MenuItem } from "lib/auxiliar";
  */
 
 interface NavigationProps {
-  items?: MenuItem[];
+  items?: MenuItem[] | any[];
   split?: boolean;
   isMain?: boolean;
   color?: string;

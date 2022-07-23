@@ -76,7 +76,7 @@ const Container = styled.div`
     width: 100%;
     ${props.full
       ? css`
-          height: 80vh;
+          height: 100vh;
           display: flex;
           align-items: center;
         `

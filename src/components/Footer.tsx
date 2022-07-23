@@ -141,16 +141,18 @@ const Footer = ({}) => {
             </Certification>
           </Link>
         </Certifications>
-        <Link href="/">
-          <Logo>
-            <Image
-              src={logo}
-              width="300"
-              height="67.41"
-              alt="Coopbueno Logo Footer"
-              objectFit="contain"
-            />
-          </Logo>
+        <Link href="/" passHref>
+          <a>
+            <Logo>
+              <Image
+                src={logo}
+                width="300"
+                height="67.41"
+                alt="Coopbueno Logo Footer"
+                objectFit="contain"
+              />
+            </Logo>
+          </a>
         </Link>
       </Container>
     </SiteFooter>

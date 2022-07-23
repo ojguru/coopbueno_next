@@ -31,4 +31,5 @@ export default Layout;
 
 const Main = styled.main`
   overflow: hidden;
+  min-height: 100vh;
 `;
