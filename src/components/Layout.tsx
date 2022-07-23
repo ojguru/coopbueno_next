@@ -11,8 +11,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      {/* <NextSeo {...props.seo} /> */}
-      {/* <Header /> */}
+      <Header />
       <Main>
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
@@ -23,7 +22,7 @@ const Layout = ({ children }: LayoutProps) => {
           return child;
         })}
       </Main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

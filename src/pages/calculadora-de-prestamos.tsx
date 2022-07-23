@@ -9,6 +9,7 @@ import ctas from "styles/cta";
 import { mq, container } from "components/grid";
 
 import { useForm } from "react-hook-form";
+import { ErrorMessage as InputError } from "@hookform/error-message";
 import { h4 } from "styles/tipography";
 import colors from "styles/colors";
 import PageHeader from "components/PageHeader";
@@ -66,6 +67,11 @@ const Page = ({}) => {
       ? Number(data.period)
       : Number(data.period) * 12; //Se transforma a meses
     const method: boolean = data.method; //Define el metodo de calculo
+
+    //Retorna si los valores principales no existen
+    if (!amount || !rate || !duration) {
+      return;
+    }
 
     const {
       monthlyPayment,
@@ -235,7 +241,9 @@ const Page = ({}) => {
 
     setValue("rate_type", !rate_type);
 
-    !rate_type ? setValue("rate", rate / 12) : setValue("rate", rate * 12);
+    !rate_type
+      ? setValue("rate", (rate / 12).toFixed(2))
+      : setValue("rate", rate * 12);
   };
 
   const changePeriodAmount = () => {
@@ -285,7 +293,11 @@ const Page = ({}) => {
                     })}
                   />
                   {errors["amount"] ? (
-                    <InputError>{errors["amount"].message}</InputError>
+                    <InputError
+                      errors={errors}
+                      name="amount"
+                      render={({ message }) => <p>{message}</p>}
+                    />
                   ) : null}
                 </InputWrapper>
                 <FormControlLabel
@@ -310,7 +322,11 @@ const Page = ({}) => {
                     })}
                   />
                   {errors["period"] ? (
-                    <InputError>{errors["period"].message}</InputError>
+                    <InputError
+                      errors={errors}
+                      name="period"
+                      render={({ message }) => <p>{message}</p>}
+                    />
                   ) : null}
                 </InputWrapper>
                 <FormControlLabel
@@ -336,7 +352,11 @@ const Page = ({}) => {
                     })}
                   />
                   {errors["rate"] ? (
-                    <InputError>{errors["rate"].message}</InputError>
+                    <InputError
+                      errors={errors}
+                      name="rate"
+                      render={({ message }) => <p>{message}</p>}
+                    />
                   ) : null}
                 </InputWrapper>
                 {errorMessages.length > 0 && (
@@ -561,7 +581,12 @@ const Inputs = styled.div``;
 
 const InputWrapper = styled.div`
   margin-bottom: 2rem;
+  p {
+    color: red;
+    font-weight: 600;
+  }
 `;
+
 interface InputProps {
   bgColor?: string;
   textColor?: string;
@@ -591,9 +616,9 @@ const Input = styled.input`
   `}
 `;
 
-const InputError = styled.p`
-  color: ${colors.red.base};
-`;
+// const InputError = styled.p`
+//   color: ${colors.red.base};
+// `;
 
 const AmortizationBox = styled.div`
   overflow: auto;

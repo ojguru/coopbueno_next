@@ -23,6 +23,8 @@ const HomeServicios = ({ servicios = [] }: HomeServiciosProps) => {
         isIntrinsicHeight={true}
         isPlaying={false}
         lockOnWindowScroll
+        dragEnabled={false}
+        touchEnabled={false}
       >
         <Tabs>
           {mainItems.map((item, index) => {
