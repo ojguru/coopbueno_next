@@ -132,7 +132,21 @@ export const getStaticProps: GetStaticProps<PageProps> = async (_ctx: any) => {
   const slug = _ctx.params.slug.toString();
   const { cacheSnapshot } = await prepareReactRender(<Page slug={slug} />);
 
+  // NOT FOUND - DETERMINAMOS SI NO EXISTEN DATOS EN LA CONSULTA DEL SNAPSHOT
+  const snapShot: any = await JSON.parse(cacheSnapshot);
+  const cache = await snapShot.cache;
+  const keys = Object.keys(cache).filter((key) => key.includes("landings"));
+
+  const notFound =
+    keys.filter((key) => {
+      return (
+        cache[key]?.data?.filter((item: any) => item.attributes?.slug === slug)
+          .length > 0
+      );
+    }).length === 0;
+
   return {
+    notFound: notFound,
     props: {
       cacheSnapshot,
       slug,
