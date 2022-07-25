@@ -32,11 +32,13 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
     pagination: {
       pageSize: 3,
     },
+    sort: ["createdAt:desc"],
   })?.data;
   const noticias = query.noticias({
     pagination: {
       pageSize: 3,
     },
+    sort: ["createdAt:desc"],
   })?.data;
   const slides = query.slides()?.data;
   const servicios = query.servicios({
@@ -78,9 +80,7 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
               url: getImageURL(image?.url),
               width: image?.width || 900,
               height: image?.height || 800,
-              alt:
-                image?.alternativeText ||
-                "Coopbueno apoyando tus sueños",
+              alt: image?.alternativeText || "Coopbueno apoyando tus sueños",
               type: image?.mime,
             },
           ],

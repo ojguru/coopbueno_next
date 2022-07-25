@@ -44,6 +44,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
         notContains: slug,
       },
     },
+    sort: ["createdAt:desc"],
   })?.data;
 
   if (query.$state.isLoading) {
