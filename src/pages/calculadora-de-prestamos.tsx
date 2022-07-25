@@ -9,7 +9,7 @@ import ctas from "styles/cta";
 import { mq, container } from "components/grid";
 
 import { useForm } from "react-hook-form";
-import { ErrorMessage as InputError } from "@hookform/error-message";
+import { ErrorMessage } from "@hookform/error-message";
 import { h4 } from "styles/tipography";
 import colors from "styles/colors";
 import PageHeader from "components/PageHeader";
@@ -301,7 +301,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                     })}
                   />
                   {errors["amount"] ? (
-                    <InputError
+                    <ErrorMessage
                       errors={errors}
                       name="amount"
                       render={({ message }) => <p>{message}</p>}
@@ -330,7 +330,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                     })}
                   />
                   {errors["period"] ? (
-                    <InputError
+                    <ErrorMessage
                       errors={errors}
                       name="period"
                       render={({ message }) => <p>{message}</p>}
@@ -360,7 +360,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                     })}
                   />
                   {errors["rate"] ? (
-                    <InputError
+                    <ErrorMessage
                       errors={errors}
                       name="rate"
                       render={({ message }) => <p>{message}</p>}
@@ -370,9 +370,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                 {errorMessages.length > 0 && (
                   <ErrorMessages>
                     {errorMessages.map((item: any, index) => {
-                      return (
-                        <ErrorMessage key={index}>{item.message}</ErrorMessage>
-                      );
+                      return <ErrorMsg key={index}>{item.message}</ErrorMsg>;
                     })}
                   </ErrorMessages>
                 )}
@@ -632,7 +630,7 @@ const Input = styled.input`
   `}
 `;
 
-// const InputError = styled.p`
+// const ErrorMessage = styled.p`
 //   color: ${colors.red.base};
 // `;
 
@@ -656,7 +654,7 @@ const Submit = styled.input`
 
 const ErrorMessages = styled.div``;
 
-const ErrorMessage = styled.p`
+const ErrorMsg = styled.p`
   color: red;
 `;
 

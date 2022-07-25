@@ -7,6 +7,28 @@ import { NextSeo } from "next-seo";
 import Head from "next/head";
 import { SITE_NAME } from "lib/constants";
 
+// The handler to smoothly scroll to the element into view
+const handExitComplete = (): void => {
+  if (typeof window !== "undefined") {
+    const hashId = window.location.hash;
+
+    console.log({ location: window.location, hashId });
+
+    if (hashId) {
+      const element = document.querySelector(hashId);
+      console.log({ element });
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        });
+      }
+    }
+  }
+};
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AppWrapper>
@@ -40,7 +62,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             cardType: "summary_large_image",
           }}
         />
-
         <Component {...pageProps} />
       </>
     </AppWrapper>
