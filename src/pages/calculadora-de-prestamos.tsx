@@ -9,7 +9,7 @@ import ctas from "styles/cta";
 import { mq, container } from "components/grid";
 
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
+// import { ErrorMessage } from "@hookform/error-message";
 import { h4 } from "styles/tipography";
 import colors from "styles/colors";
 import PageHeader from "components/PageHeader";
@@ -300,13 +300,13 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                       required: "Este campo es requerido",
                     })}
                   />
-                  {errors["amount"] ? (
+                  {/* {errors["amount"] ? (
                     <ErrorMessage
                       errors={errors}
                       name="amount"
                       render={({ message }) => <p>{message}</p>}
                     />
-                  ) : null}
+                  ) : null} */}
                 </InputWrapper>
                 <FormControlLabel
                   control={
@@ -329,13 +329,13 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                       required: "Este campo es requerido",
                     })}
                   />
-                  {errors["period"] ? (
+                  {/* {errors["period"] ? (
                     <ErrorMessage
                       errors={errors}
                       name="period"
                       render={({ message }) => <p>{message}</p>}
                     />
-                  ) : null}
+                  ) : null} */}
                 </InputWrapper>
                 <FormControlLabel
                   control={
@@ -359,13 +359,13 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                       required: "Este campo es requerido",
                     })}
                   />
-                  {errors["rate"] ? (
+                  {/* {errors["rate"] ? (
                     <ErrorMessage
                       errors={errors}
                       name="rate"
                       render={({ message }) => <p>{message}</p>}
                     />
-                  ) : null}
+                  ) : null} */}
                 </InputWrapper>
                 {errorMessages.length > 0 && (
                   <ErrorMessages>
