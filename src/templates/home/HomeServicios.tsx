@@ -15,7 +15,7 @@ const HomeServicios = ({ servicios = [] }: HomeServiciosProps) => {
     .reverse();
 
   return servicios.length ? (
-    <Section id="services" fluid space>
+    <Section id="servicios" fluid space>
       <CarouselProvider
         naturalSlideWidth={16}
         naturalSlideHeight={9}

@@ -6,12 +6,18 @@ import colors from "styles/colors";
 import { h6 } from "styles/tipography";
 import Cta from "components/Cta";
 import { getImageURL } from "lib/api";
+import { ComponentSharedCta } from "client";
 
 interface HomeCoverProps {
   portada: any;
 }
 const HomeCover = ({ portada }: HomeCoverProps) => {
   const imagen = portada.imagen?.data?.attributes.url;
+
+  const cta: ComponentSharedCta = {
+    ...portada.cta,
+    uri: "#servicios",
+  };
 
   return (
     <Cover as="section" fluid spaceBottom>
@@ -31,7 +37,7 @@ const HomeCover = ({ portada }: HomeCoverProps) => {
         <Copy>{portada.copy}</Copy>
 
         <LinkBox>
-          <Cta cta={portada.cta} />
+          <Cta cta={cta} />
         </LinkBox>
       </Content>
     </Cover>

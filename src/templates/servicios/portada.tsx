@@ -16,13 +16,10 @@ const Portada = ({ servicio }: PortadaProps) => {
   const title = portada?.titular;
   const copy = portada?.copy;
   const media = portada?.imagen?.data?.attributes?.url;
-  const cta = portada?.cta;
-
-  // const linkParsed = libraries.source.parse(state.router.link)
-  // const ctaLink = libraries.source.stringify({
-  //   path: linkParsed.path,
-  //   hash: '#product',
-  // })
+  const cta = {
+    ...portada?.cta,
+    uri: "#descripcion",
+  };
 
   return portada ? (
     <Section space>
