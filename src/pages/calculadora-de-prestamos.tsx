@@ -271,7 +271,6 @@ const Page = ({ cacheSnapshot }: PageProps) => {
       <NextSeo
         title="Calculadora de préstamos"
         description="Calcula tus préstamos y solicítalos con facilidad."
-        canonical={`${SITE_URL}`}
         openGraph={{
           url: `${SITE_URL}`,
           title: "Calculadora de préstamos",

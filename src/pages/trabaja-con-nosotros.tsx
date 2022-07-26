@@ -26,7 +26,6 @@ const Page = ({ cacheSnapshot }: PageProps) => {
       <NextSeo
         title="Trabaja con nosotros"
         description="Aplica para una de nuestras vacantes."
-        canonical={`${SITE_URL}`}
         openGraph={{
           url: `${SITE_URL}`,
           title: "Trabaja con nosotros",

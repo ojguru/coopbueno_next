@@ -45,7 +45,6 @@ const Page = ({ cacheSnapshot }: PageProps) => {
       <NextSeo
         title="Sucursales"
         description="Conoce nuestras sucursales."
-        canonical={`${SITE_URL}`}
         openGraph={{
           url: `${SITE_URL}`,
           title: "Sucursales",

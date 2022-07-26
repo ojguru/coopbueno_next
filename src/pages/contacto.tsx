@@ -37,7 +37,6 @@ const Page = ({ cacheSnapshot }: PageProps) => {
       <NextSeo
         title="Contacto"
         description="Haz contacto con nosotros a través de los canales que tenesmos disponibles para ti."
-        canonical={`${SITE_URL}`}
         openGraph={{
           url: `${SITE_URL}`,
           title: "Contacto",

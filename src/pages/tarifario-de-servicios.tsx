@@ -35,7 +35,6 @@ const Page = ({ cacheSnapshot }: PageProps) => {
       <NextSeo
         title="Tarifario de servicios"
         description="Conoce las tarifas de nuestros servicios"
-        canonical={`${SITE_URL}`}
         openGraph={{
           url: `${SITE_URL}`,
           title: "Tarifario de servicios",
