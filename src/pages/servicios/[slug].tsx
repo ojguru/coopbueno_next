@@ -49,10 +49,6 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     return <Loading full />;
   }
 
-  if (!servicio) {
-    return <Error statusCode={404} title="Servicio no encontrado" />;
-  }
-
   //SEO
   const image = servicio?.portada?.imagen?.data?.attributes;
 
