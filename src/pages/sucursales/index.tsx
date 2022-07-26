@@ -117,7 +117,9 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                   </Content>
                   <LinkBox>
                     <Link href={location ?? ""} passHref>
-                      <ReadMore target="_blank">Ubicación</ReadMore>
+                      <ReadMore target="_blank" rel="noreferrer noopener">
+                        Ubicación
+                      </ReadMore>
                     </Link>
                   </LinkBox>
                 </SucursalCard>

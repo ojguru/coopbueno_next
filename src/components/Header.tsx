@@ -80,7 +80,9 @@ const Header = ({}) => {
               href="https://www.cosefi.com/CoopBueno/IBanking/Web/Customer/SIBanking_Login.aspx"
               passHref
             >
-              <Coopvirtual target="_blank">Coopvirtual</Coopvirtual>
+              <Coopvirtual target="_blank" rel="noreferrer noopener">
+                Coopvirtual
+              </Coopvirtual>
             </Link>
             <MenuButtonUI />
           </NavContainer>
@@ -90,14 +92,18 @@ const Header = ({}) => {
             href="https://www.cosefi.com/CoopBueno/IBanking/Web/Customer/SIBanking_Login.aspx"
             passHref
           >
-            <CtaCoopVirtual target="_blank" bgColor={colors.primary.base}>
+            <CtaCoopVirtual
+              target="_blank"
+              rel="noreferrer noopener"
+              bgColor={colors.primary.base}
+            >
               Coopvirtual
             </CtaCoopVirtual>
           </Link>
           <Navigation items={items} isMain />
           <SocialBox>
             <Link href={FACEBOOK}>
-              <a target="_blank">
+              <a target="_blank" rel="noreferrer noopener">
                 <SocialIcon color={colors.primary.base}>
                   <div style={{ display: "none" }}>Redes Sociales</div>
                   <FacebookIcon />
@@ -105,7 +111,7 @@ const Header = ({}) => {
               </a>
             </Link>
             <Link href={INSTAGRAM}>
-              <a target="_blank">
+              <a target="_blank" rel="noreferrer noopener">
                 <SocialIcon color={colors.primary.base}>
                   <div style={{ display: "none" }}>Redes Sociales</div>
                   <InstagramIcon />
@@ -113,7 +119,7 @@ const Header = ({}) => {
               </a>
             </Link>
             <Link href={TWITTER}>
-              <a target="_blank">
+              <a target="_blank" rel="noreferrer noopener">
                 <SocialIcon color={colors.primary.base}>
                   <div style={{ display: "none" }}>Redes Sociales</div>
                   <TwitterIcon />

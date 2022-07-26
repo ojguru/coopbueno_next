@@ -55,7 +55,7 @@ const Footer = ({}) => {
                 <div style={{ display: "table-column" }}>Phones</div>
                 {TELEFONOS.map((telefono, index) => (
                   <Link href={`tel:${telefono}`} passHref key={index}>
-                    <a target="_blank">
+                    <a target="_blank" rel="noreferrer noopener">
                       <PhoneNumber>{telefono}</PhoneNumber>
                     </a>
                   </Link>
@@ -63,7 +63,7 @@ const Footer = ({}) => {
               </PhoneBox>
             </ContactItem>
             <Link href={`mailto:${EMAIL}`} passHref>
-              <a target="_blank">
+              <a target="_blank" rel="noreferrer noopener">
                 <ContactItem>
                   <ContactIcon>
                     <div style={{ display: "table-column" }}>Email</div>
@@ -74,7 +74,7 @@ const Footer = ({}) => {
               </a>
             </Link>
             <Link href={`${UBICACION}`} passHref>
-              <a target="_blank">
+              <a target="_blank" rel="noreferrer noopener">
                 <ContactItem>
                   <ContactIcon>
                     <div style={{ display: "table-column" }}>Google Maps</div>
@@ -87,7 +87,7 @@ const Footer = ({}) => {
           </ContactBox>
           <SocialBox>
             <Link href={FACEBOOK}>
-              <a target="_blank">
+              <a target="_blank" rel="noreferrer noopener">
                 <SocialIcon color={colors.primary.base}>
                   <div style={{ display: "none" }}>Redes Sociales</div>
                   <FacebookIcon />
@@ -95,7 +95,7 @@ const Footer = ({}) => {
               </a>
             </Link>
             <Link href={INSTAGRAM}>
-              <a target="_blank">
+              <a target="_blank" rel="noreferrer noopener">
                 <SocialIcon color={colors.primary.base}>
                   <div style={{ display: "none" }}>Redes Sociales</div>
                   <InstagramIcon />
@@ -103,7 +103,7 @@ const Footer = ({}) => {
               </a>
             </Link>
             <Link href={TWITTER}>
-              <a target="_blank">
+              <a target="_blank" rel="noreferrer noopener">
                 <SocialIcon color={colors.primary.base}>
                   <div style={{ display: "none" }}>Redes Sociales</div>
                   <TwitterIcon />
@@ -126,6 +126,7 @@ const Footer = ({}) => {
           <Link
             href="https://certificaciones.uaf.gob.do/certificaciones_so_view.php?editid1=46"
             target="_blank"
+            rel="noreferrer noopener"
             rel="nofollow"
             // hreflang="es"
             title="Cerficación Sujeto Obligado - Unidad de Análisis Financiero"

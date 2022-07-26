@@ -60,7 +60,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                     href={getURL(memoria?.archivo?.data?.attributes?.url)}
                     passHref
                   >
-                    <SLink target="_blank" download>
+                    <SLink target="_blank" rel="noreferrer noopener" download>
                       <CardImage>
                         <Image
                           src={getImageURL(

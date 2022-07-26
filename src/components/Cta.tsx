@@ -9,7 +9,12 @@ interface CtaProps {
 const Cta = ({ cta }: CtaProps) => {
   return cta ? (
     <Link href={cta.uri ?? ""} passHref>
-      <SLink target={cta.target ? "_blank" : ""}>{cta.texto}</SLink>
+      <SLink
+        target={cta.target ? "_blank" : ""}
+        rel={cta.target ? "noreferrer noopener" : ""}
+      >
+        {cta.texto}
+      </SLink>
     </Link>
   ) : null;
 };
