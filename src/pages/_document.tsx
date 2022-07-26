@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 class MyDocument extends Document {
   render() {
@@ -15,6 +16,13 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <Script
+            src="//js-na1.hs-scripts.com/5494710.js"
+            id="hs-script-loader"
+            strategy="afterInteractive"
+            async
+            defer
+          />
         </body>
       </Html>
     );
