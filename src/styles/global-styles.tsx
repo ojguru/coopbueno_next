@@ -8,6 +8,10 @@ import colors from "./colors";
 import ckeditorStyles from "styles/content-styles";
 
 const cssReset = css`
+  #adsbox {
+    display: none;
+  }
+
   html,
   body {
     border: none;
