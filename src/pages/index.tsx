@@ -1,3 +1,6 @@
+import React from "react";
+import styled from "@emotion/styled";
+
 import HomeCover from "templates/home/HomeCover";
 import HomeAcademy from "templates/home/HomeAcademy";
 import HomeNews from "templates/home/HomeNews";
@@ -88,6 +91,7 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
         }}
       />
       <Layout>
+        <Title>Coopbueno</Title>
         <HomeCover portada={home?.portada} />
         <HomeSlider slides={slides} />
         <HomeServicios {...{ servicios }} />
@@ -109,3 +113,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async (_ctx: any) => {
     props: { cacheSnapshot },
   };
 };
+
+const Title = styled.h1`
+  display: none;
+`;
