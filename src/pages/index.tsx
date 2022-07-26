@@ -71,13 +71,13 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
     <>
       <NextSeo
         title="Apoyando tus sueños"
-        description="Sabemos el valor de tus sueños y queremos ayudarte a alcanzarlos. En Coopbueno contamos con todas las herramientas financieras para alcanzar todo lo que te propongas."
+        description="En Coopbueno sabemos el valor de tus sueños, contamos con todas las herramientas financieras para alcanzar todo lo que te propongas."
         canonical={`${SITE_URL}`}
         openGraph={{
           url: `${SITE_URL}`,
           title: "Apoyando tus sueños",
           description:
-            "Sabemos el valor de tus sueños y queremos ayudarte a alcanzarlos. En Coopbueno contamos con todas las herramientas financieras para alcanzar todo lo que te propongas.",
+            "En Coopbueno sabemos el valor de tus sueños, contamos con todas las herramientas financieras para alcanzar todo lo que te propongas.",
           images: [
             {
               url: getImageURL(image?.url),

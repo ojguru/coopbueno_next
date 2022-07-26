@@ -37,23 +37,23 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
 
   const categoria = articuloEntidad?.attributes?.category?.data?.attributes;
 
-  const relacionados =
-    query.articles({
-      pagination: {
-        pageSize: 4,
-      },
-      filters: {
-        category: {
-          slug: {
-            eq: categoria?.slug,
-          },
-        },
-        slug: {
-          notContains: slug,
-        },
-      },
-      sort: ["createdAt:desc"],
-    })?.data || [];
+  const relacionados: any[] = [];
+  // query.articles({
+  //   pagination: {
+  //     pageSize: 4,
+  //   },
+  //   filters: {
+  //     category: {
+  //       slug: {
+  //         eq: categoria?.slug,
+  //       },
+  //     },
+  //     slug: {
+  //       notContains: slug,
+  //     },
+  //   },
+  //   sort: ["createdAt:desc"],
+  // })?.data || [];
 
   if (query.$state.isLoading) {
     return <Loading full />;
