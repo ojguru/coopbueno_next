@@ -7,9 +7,11 @@ import { NextSeo } from "next-seo";
 import Head from "next/head";
 import { SITE_NAME, SITE_URL } from "lib/constants";
 import { useRouter } from "next/router";
+import { GoogleAnalytics, usePageViews } from "nextjs-google-analytics";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  usePageViews();
 
   return (
     <AppWrapper>
@@ -18,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Head>
           <link rel="icon" href="/favicon.ico" />
         </Head>
+        <GoogleAnalytics />
         <NextSeo
           title="Apoyando tus sueños"
           titleTemplate={`%s - ${SITE_NAME}`}
