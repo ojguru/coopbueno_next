@@ -113,16 +113,18 @@ const iconStyle = css`
     flex-basis: 1.8rem;
     width: 2.5rem;
     margin-right: 1rem;
+    padding: 1rem 0;
   }
 `;
 
 const SucursalPhoneBox = styled.div`
   ${iconStyle}
+  margin: 0;
 `;
 const PhoneList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 0rem 1rem;
   ${mq.lg} {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -131,14 +133,17 @@ const PhoneList = styled.div`
 const SucursalPhone = styled.a`
   text-decoration: none;
   display: inline-block;
+  padding: 1rem 0;
 `;
 
 const InfoWrapper = styled.span`
   display: inline-block;
   vertical-align: top;
   flex: 1;
+  padding: 1rem 0;
 `;
 
 const SucursalSchedule = styled.p`
   ${iconStyle}
+  margin: 0;
 `;

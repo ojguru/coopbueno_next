@@ -108,6 +108,7 @@ const SectionTitle = styled.h2`
   text-transform: uppercase;
   font-weight: bold;
   margin-top: 0;
+  padding: 1.5rem 0;
   ${h1}
 `;
 
