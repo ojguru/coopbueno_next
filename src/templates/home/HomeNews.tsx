@@ -68,6 +68,7 @@ const HomeNews = ({ noticias = [] }: HomeNewsProps) => {
                         <ImageContainer>
                           <Image
                             src={getImageURL(post.imagen.data.attributes.url)}
+                            alt={post.titulo}
                             width={1920}
                             height={1080}
                             objectFit="cover"

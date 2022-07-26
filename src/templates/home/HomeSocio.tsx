@@ -4,7 +4,7 @@ import { container, mq } from "components/grid";
 import Image from "next/image";
 import { h1 } from "styles/tipography";
 import { InView } from "react-intersection-observer";
-import { Spring, animated, config } from "@react-spring/web";
+import { Spring, animated } from "@react-spring/web";
 import { sectionAnimation } from "styles/animations";
 import colors from "styles/colors";
 import { getImageURL } from "lib/api";

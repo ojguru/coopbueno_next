@@ -3,7 +3,6 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { mq, container } from "components/grid";
 import Image from "next/image";
-import Link from "next/link";
 import { h1 } from "styles/tipography";
 import { getImageURL } from "lib/api";
 import colors from "styles/colors";
@@ -20,12 +19,10 @@ const HomePromo = ({ home }: HomePromoProps) => {
       <Container>
         <Image
           src={getImageURL(informacion.imagen.data.attributes.url)}
+          alt={informacion.titulo}
           width={1080}
           height={1080}
           objectFit="contain"
-          // bgColor="transparent"
-          // size="116.5%"
-          // height="auto"
         />
         <div>
           <Title>{informacion.titulo}</Title>

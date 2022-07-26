@@ -72,6 +72,7 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                               <ImageWrapper>
                                 <Image
                                   src={item.icono}
+                                  alt={item.nombre}
                                   width={1080}
                                   height={1080}
                                   objectFit="contain"

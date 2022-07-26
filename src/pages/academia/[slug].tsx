@@ -4,6 +4,7 @@ import { GetStaticProps } from "next";
 
 import {
   useQuery,
+  useTransactionQuery,
   prepareReactRender,
   useHydrateCache,
   ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK,
@@ -35,25 +36,25 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     },
   })?.data[0];
 
-  const categoria = articuloEntidad?.attributes?.category?.data?.attributes;
+  // const categoria = articuloEntidad?.attributes?.category?.data?.attributes;
 
-  const relacionados: any[] = [];
-  // query.articles({
-  //   pagination: {
-  //     pageSize: 4,
-  //   },
-  //   filters: {
-  //     category: {
-  //       slug: {
-  //         eq: categoria?.slug,
-  //       },
-  //     },
-  //     slug: {
-  //       notContains: slug,
-  //     },
-  //   },
-  //   sort: ["createdAt:desc"],
-  // })?.data || [];
+  const relacionados =
+    query.articles({
+      pagination: {
+        pageSize: 4,
+      },
+      filters: {
+        // category: {
+        //   slug: {
+        //     eq: categoria?.slug,
+        //   },
+        // },
+        slug: {
+          notContains: slug,
+        },
+      },
+      sort: ["createdAt:desc"],
+    })?.data || [];
 
   if (query.$state.isLoading) {
     return <Loading full />;
