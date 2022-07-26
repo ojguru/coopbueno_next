@@ -24,6 +24,7 @@ const HomeCover = ({ portada }: HomeCoverProps) => {
       <ImageContainer>
         <Image
           src={getImageURL(imagen)}
+          alt="Coopbueno Apoyando Tus Sueños"
           width={1920}
           height={1080}
           priority

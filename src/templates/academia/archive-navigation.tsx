@@ -34,6 +34,7 @@ const Navigation = ({ categorias, fixed, inView }: NavigationProps) => {
                       <Media>
                         <Image
                           src={getImageURL(icon?.url)}
+                          alt={categoria?.name}
                           width={1080}
                           height={1080}
                           objectFit="contain"
