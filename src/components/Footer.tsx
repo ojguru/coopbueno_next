@@ -126,8 +126,7 @@ const Footer = ({}) => {
           <Link
             href="https://certificaciones.uaf.gob.do/certificaciones_so_view.php?editid1=46"
             target="_blank"
-            rel="noreferrer noopener"
-            rel="nofollow"
+            rel="noreferrer noopener nofollow"
             // hreflang="es"
             title="Cerficación Sujeto Obligado - Unidad de Análisis Financiero"
           >
