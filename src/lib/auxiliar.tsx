@@ -46,7 +46,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
       item: {
         id: ENUM_SERVICIO_TIPO.personas,
         attributes: {
-          title: ENUM_SERVICIO_TIPO.personas,
+          title: "Personas",
         },
       },
       children: [
@@ -54,7 +54,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
           item: {
             id: ENUM_SERVICIO_CATEGORIA.ahorro,
             attributes: {
-              title: ENUM_SERVICIO_CATEGORIA.ahorro,
+              title: "Ahorro",
             },
           },
           children: serviceItems
@@ -73,7 +73,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
           item: {
             id: ENUM_SERVICIO_CATEGORIA.prestamos,
             attributes: {
-              title: ENUM_SERVICIO_CATEGORIA.prestamos,
+              title: "Préstamos",
             },
           },
           children: serviceItems
@@ -92,7 +92,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
           item: {
             id: ENUM_SERVICIO_CATEGORIA.facilidades,
             attributes: {
-              title: ENUM_SERVICIO_CATEGORIA.facilidades,
+              title: "Facilidades",
             },
           },
           children: serviceItems
@@ -113,7 +113,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
       item: {
         id: ENUM_SERVICIO_TIPO.empresas,
         attributes: {
-          title: ENUM_SERVICIO_TIPO.empresas,
+          title: "Empresas",
         },
       },
       children: [
@@ -121,7 +121,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
           item: {
             id: ENUM_SERVICIO_CATEGORIA.ahorro,
             attributes: {
-              title: ENUM_SERVICIO_CATEGORIA.ahorro,
+              title: "Ahorro",
             },
           },
           children: serviceItems
@@ -140,7 +140,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
           item: {
             id: ENUM_SERVICIO_CATEGORIA.prestamos,
             attributes: {
-              title: ENUM_SERVICIO_CATEGORIA.prestamos,
+              title: "Préstamos",
             },
           },
           children: serviceItems
@@ -159,7 +159,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
           item: {
             id: ENUM_SERVICIO_CATEGORIA.facilidades,
             attributes: {
-              title: ENUM_SERVICIO_CATEGORIA.facilidades,
+              title: "Facilidades",
             },
           },
           children: serviceItems
