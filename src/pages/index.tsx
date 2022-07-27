@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 
 import HomeCover from "templates/home/HomeCover";
@@ -60,15 +60,11 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
     sort: ["nombre:asc"],
   })?.data;
 
-  if (query.$state.isLoading) {
-    return <Loading full />;
-  }
-
   //SEO
   const image = home?.portada?.imagen.data?.attributes;
 
   return (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title="Apoyando tus sueños"
         description="En Coopbueno sabemos el valor de tus sueños, contamos con todas las herramientas financieras para alcanzar todo lo que te propongas."
@@ -100,7 +96,7 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
         <HomeNews noticias={noticias} />
         <HomePromo {...{ home }} />
       </Layout>
-    </>
+    </Suspense>
   );
 };
 

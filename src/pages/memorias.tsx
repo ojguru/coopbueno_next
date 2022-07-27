@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 import { container, mq } from "components/grid";
 import PageHeader from "components/PageHeader";
@@ -31,12 +31,8 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     sort: ["ano:desc"],
   })?.data;
 
-  if (query.$state.isLoading) {
-    return <Loading full />;
-  }
-
   return memorias?.length ? (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title="Memorias Anuales Coopbueno"
         description="Se parte de nuestro crecimiento."
@@ -81,7 +77,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
           </List>
         </Section>
       </Layout>
-    </>
+    </Suspense>
   ) : null;
 };
 

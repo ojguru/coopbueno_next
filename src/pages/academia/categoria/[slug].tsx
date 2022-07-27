@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Archivo from "templates/academia/archivo";
 
 import { GetStaticProps } from "next";
@@ -47,12 +47,8 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     },
   })?.data;
 
-  if (query.$state.isLoading) {
-    return <Loading full />;
-  }
-
   return (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title={`Categoría ${categoria?.attributes?.name} - Academia de Sueños`}
         description={categoria?.attributes?.description}
@@ -72,7 +68,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           categorias={categorias}
         />
       </Layout>
-    </>
+    </Suspense>
   );
 };
 

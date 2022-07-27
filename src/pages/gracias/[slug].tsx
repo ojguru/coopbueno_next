@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { container, mq } from "components/grid";
@@ -33,12 +33,8 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
 
   const page = thankyou?.attributes;
 
-  if (query.$state.isLoading) {
-    return <Loading full />;
-  }
-
   return page?.slug ? (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo nofollow noindex />
       <Layout>
         <Section fluid space large>
@@ -61,7 +57,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           </Container>
         </Section>
       </Layout>
-    </>
+    </Suspense>
   ) : null;
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 import { container } from "components/grid";
 import Layout from "components/Layout";
@@ -45,10 +45,6 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
 
   const servicio = servicioEntidad?.attributes;
 
-  if (query.$state.isLoading) {
-    return <Loading full />;
-  }
-
   //SEO
   const image = servicio?.portada?.imagen?.data?.attributes;
 
@@ -65,7 +61,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   const facebookMetaImage = facebookMeta?.image?.data?.attributes;
 
   return servicio ? (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title={seo?.metaTitle || servicio?.nombre}
         description={seo?.metaDescription || servicio?.portada?.copy}
@@ -102,7 +98,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           <Conversion servicio={servicio} />
         </Section>
       </Layout>
-    </>
+    </Suspense>
   ) : null;
 };
 

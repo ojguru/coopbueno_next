@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import { GetStaticProps } from "next";
 
@@ -47,10 +47,6 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     sort: ["createdAt:desc"],
   })?.data;
 
-  if (query.$state.isLoading) {
-    return <Loading full />;
-  }
-
   //SEO
   const articulo = articuloEntidad?.attributes;
   const image = articulo?.imagen?.data?.attributes;
@@ -68,7 +64,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   const facebookMetaImage = facebookMeta?.image?.data?.attributes;
 
   return (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title={seo?.metaTitle || articulo?.titulo}
         description={seo?.metaDescription || articulo?.descripcion}
@@ -98,7 +94,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
         <ArticuloBody articulo={articuloEntidad} />
         <ArticuloAside relacionados={relacionados} articulo={articuloEntidad} />
       </Layout>
-    </>
+    </Suspense>
   );
 };
 

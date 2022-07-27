@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 import { container, mq } from "components/grid";
 import PageHeader from "components/PageHeader";
@@ -6,7 +6,12 @@ import { h3 } from "styles/tipography";
 
 import { GetStaticProps } from "next";
 
-import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import {
+  useQuery,
+  prepareReactRender,
+  useHydrateCache,
+  Servicio,
+} from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import Layout from "components/Layout";
 import Loading from "components/loading";
@@ -26,12 +31,8 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     },
   })?.data;
 
-  if (query.$state.isLoading) {
-    return <Loading full />;
-  }
-
   return servicios?.length ? (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title="Tarifario de servicios"
         description="Conoce las tarifas de nuestros servicios"
@@ -76,7 +77,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
           </Services>
         </Section>
       </Layout>
-    </>
+    </Suspense>
   ) : null;
 };
 

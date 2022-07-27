@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Switch, FormControlLabel, withStyles } from "@material-ui/core";
@@ -21,6 +21,7 @@ import Formulario from "components/Formulario";
 import { GetStaticProps } from "next";
 import { prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
+import Loading from "components/loading";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -267,7 +268,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
 
   const { ModalUI, openModal } = useModal();
   return true ? (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title="Calculadora de préstamos"
         description="Calcula tus préstamos y solicítalos con facilidad."
@@ -495,7 +496,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
           </Calculator>
         </Container>
       </Layout>
-    </>
+    </Suspense>
   ) : (
     <Layout>
       <MessageBox>

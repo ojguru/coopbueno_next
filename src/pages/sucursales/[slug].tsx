@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { container, mq } from "components/grid";
@@ -40,15 +40,11 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
 
   const sucursal = sucursalEntidad?.attributes;
 
-  if (query.$state.isLoading) {
-    return <Loading full />;
-  }
-
   //SEO
   const image = sucursal?.imagen?.data?.attributes;
 
   return sucursal ? (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title={`Sucursal ${sucursal?.nombre}`}
         description={`Sucursal Coopbueno ${sucursal?.nombre}`}
@@ -121,7 +117,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           </Container>
         </Section>
       </Layout>
-    </>
+    </Suspense>
   ) : null;
 };
 

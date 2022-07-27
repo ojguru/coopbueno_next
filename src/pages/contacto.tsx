@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Portada from "templates/contacto/portada";
 import ContactOffices from "templates/contacto/oficinas";
 
@@ -28,12 +28,8 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     sort: ["orden:asc"],
   })?.data;
 
-  if (query.$state.isLoading) {
-    return <Loading full />;
-  }
-
   return (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title="Contacto"
         description="Haz contacto con nosotros a través de los canales que tenesmos disponibles para ti."
@@ -58,7 +54,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
         <Portada />
         <ContactOffices sucursales={sucursales} />
       </Layout>
-    </>
+    </Suspense>
   );
 };
 

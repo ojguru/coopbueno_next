@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Archivo from "templates/noticias/archivo";
 
 import { GetStaticProps } from "next";
@@ -25,12 +25,8 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     sort: ["createdAt:desc"],
   })?.data;
 
-  if (query.$state.isLoading) {
-    return <Loading full />;
-  }
-
   return (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title="Noticias"
         description="Listado de nocitias de Coopbueno."
@@ -48,7 +44,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
           articulos={articulos}
         />
       </Layout>
-    </>
+    </Suspense>
   );
 };
 

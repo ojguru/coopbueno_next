@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 import { container, mq } from "components/grid";
 import Image from "next/image";
@@ -44,10 +44,6 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     (item) => item?.$on.ComponentGeneralLista
   );
 
-  if (query.$state.isLoading) {
-    return <Loading full />;
-  }
-
   // SEO
   const image = page?.imagen?.data?.attributes;
 
@@ -64,7 +60,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   const facebookMetaImage = facebookMeta?.image?.data?.attributes;
 
   return page ? (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title={seo?.metaTitle || page?.titular}
         description={seo?.metaDescription || page?.copy || page?.titular}
@@ -122,7 +118,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           <Deco />
         </Article>
       </Layout>
-    </>
+    </Suspense>
   ) : null;
 };
 

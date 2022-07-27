@@ -2,7 +2,7 @@ import Layout from "components/Layout";
 import { getImageURL } from "lib/api";
 import { SITE_NAME, SITE_URL } from "lib/constants";
 import { NextSeo } from "next-seo";
-import React from "react";
+import React, { Suspense } from "react";
 import Cover from "templates/about/about-cover";
 import Promese from "templates/about/about-promese";
 import Slides from "templates/about/about-slides";
@@ -11,6 +11,7 @@ import image from "../../public/nosotros.jpg";
 import { GetStaticProps } from "next";
 import { prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
+import Loading from "components/loading";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -19,7 +20,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
   });
 
   return (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title="Nosotros"
         description="Conoce nuestra historia."
@@ -44,7 +45,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
         <Promese />
         <Slides />
       </Layout>
-    </>
+    </Suspense>
   );
 };
 

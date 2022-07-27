@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 import { container } from "components/grid";
 import Layout from "components/Layout";
@@ -10,6 +10,7 @@ import { SITE_NAME, SITE_URL } from "lib/constants";
 import { GetStaticProps } from "next";
 import { prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
+import Loading from "components/loading";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -22,7 +23,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     formId: "2f4be6c7-cf07-4ca6-be13-ea67ff4ad4b0",
   };
   return (
-    <>
+    <Suspense fallback={<Loading full />}>
       <NextSeo
         title="Trabaja con nosotros"
         description="Aplica para una de nuestras vacantes."
@@ -39,7 +40,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
           <Formulario formulario={formulario} />
         </Section>
       </Layout>
-    </>
+    </Suspense>
   );
 };
 

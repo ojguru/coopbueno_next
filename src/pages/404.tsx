@@ -1,10 +1,11 @@
 import Layout from "components/Layout";
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 
 import { GetStaticProps } from "next";
 import { prepareReactRender, useHydrateCache } from "client";
 import { PropsWithServerCache } from "@gqty/react";
+import Loading from "components/loading";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -12,11 +13,13 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     cacheSnapshot,
   });
   return (
-    <Layout>
-      <Section>
-        <Title>Página no encontrada</Title>
-      </Section>
-    </Layout>
+    <Suspense fallback={<Loading full />}>
+      <Layout>
+        <Section>
+          <Title>Página no encontrada</Title>
+        </Section>
+      </Layout>
+    </Suspense>
   );
 };
 
