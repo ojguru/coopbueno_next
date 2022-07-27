@@ -73,7 +73,7 @@ const {
   defaults: {
     // Set this flag as "true" if your usage involves React Suspense
     // Keep in mind that you can overwrite it in a per-hook basis
-    suspense: false,
+    suspense: true,
 
     // Set this flag based on your needs
     staleWhileRevalidate: false,
