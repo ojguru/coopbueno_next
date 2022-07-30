@@ -69,6 +69,7 @@ export interface BooleanFilterInput {
   containsi?: InputMaybe<Scalars["Boolean"]>;
   endsWith?: InputMaybe<Scalars["Boolean"]>;
   eq?: InputMaybe<Scalars["Boolean"]>;
+  eqi?: InputMaybe<Scalars["Boolean"]>;
   gt?: InputMaybe<Scalars["Boolean"]>;
   gte?: InputMaybe<Scalars["Boolean"]>;
   in?: InputMaybe<Array<InputMaybe<Scalars["Boolean"]>>>;
@@ -289,6 +290,7 @@ export interface DateTimeFilterInput {
   containsi?: InputMaybe<Scalars["DateTime"]>;
   endsWith?: InputMaybe<Scalars["DateTime"]>;
   eq?: InputMaybe<Scalars["DateTime"]>;
+  eqi?: InputMaybe<Scalars["DateTime"]>;
   gt?: InputMaybe<Scalars["DateTime"]>;
   gte?: InputMaybe<Scalars["DateTime"]>;
   in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]>>>;
@@ -343,6 +345,7 @@ export interface FloatFilterInput {
   containsi?: InputMaybe<Scalars["Float"]>;
   endsWith?: InputMaybe<Scalars["Float"]>;
   eq?: InputMaybe<Scalars["Float"]>;
+  eqi?: InputMaybe<Scalars["Float"]>;
   gt?: InputMaybe<Scalars["Float"]>;
   gte?: InputMaybe<Scalars["Float"]>;
   in?: InputMaybe<Array<InputMaybe<Scalars["Float"]>>>;
@@ -390,6 +393,7 @@ export interface IDFilterInput {
   containsi?: InputMaybe<Scalars["ID"]>;
   endsWith?: InputMaybe<Scalars["ID"]>;
   eq?: InputMaybe<Scalars["ID"]>;
+  eqi?: InputMaybe<Scalars["ID"]>;
   gt?: InputMaybe<Scalars["ID"]>;
   gte?: InputMaybe<Scalars["ID"]>;
   in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
@@ -413,6 +417,7 @@ export interface IntFilterInput {
   containsi?: InputMaybe<Scalars["Int"]>;
   endsWith?: InputMaybe<Scalars["Int"]>;
   eq?: InputMaybe<Scalars["Int"]>;
+  eqi?: InputMaybe<Scalars["Int"]>;
   gt?: InputMaybe<Scalars["Int"]>;
   gte?: InputMaybe<Scalars["Int"]>;
   in?: InputMaybe<Array<InputMaybe<Scalars["Int"]>>>;
@@ -436,6 +441,7 @@ export interface JSONFilterInput {
   containsi?: InputMaybe<Scalars["JSON"]>;
   endsWith?: InputMaybe<Scalars["JSON"]>;
   eq?: InputMaybe<Scalars["JSON"]>;
+  eqi?: InputMaybe<Scalars["JSON"]>;
   gt?: InputMaybe<Scalars["JSON"]>;
   gte?: InputMaybe<Scalars["JSON"]>;
   in?: InputMaybe<Array<InputMaybe<Scalars["JSON"]>>>;
@@ -662,6 +668,7 @@ export interface StringFilterInput {
   containsi?: InputMaybe<Scalars["String"]>;
   endsWith?: InputMaybe<Scalars["String"]>;
   eq?: InputMaybe<Scalars["String"]>;
+  eqi?: InputMaybe<Scalars["String"]>;
   gt?: InputMaybe<Scalars["String"]>;
   gte?: InputMaybe<Scalars["String"]>;
   in?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
@@ -743,6 +750,8 @@ export interface UploadFileFiltersInput {
   caption?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   ext?: InputMaybe<StringFilterInput>;
+  folder?: InputMaybe<UploadFolderFiltersInput>;
+  folderPath?: InputMaybe<StringFilterInput>;
   formats?: InputMaybe<JSONFilterInput>;
   hash?: InputMaybe<StringFilterInput>;
   height?: InputMaybe<IntFilterInput>;
@@ -765,6 +774,8 @@ export interface UploadFileInput {
   alternativeText?: InputMaybe<Scalars["String"]>;
   caption?: InputMaybe<Scalars["String"]>;
   ext?: InputMaybe<Scalars["String"]>;
+  folder?: InputMaybe<Scalars["ID"]>;
+  folderPath?: InputMaybe<Scalars["String"]>;
   formats?: InputMaybe<Scalars["JSON"]>;
   hash?: InputMaybe<Scalars["String"]>;
   height?: InputMaybe<Scalars["Int"]>;
@@ -777,6 +788,32 @@ export interface UploadFileInput {
   size?: InputMaybe<Scalars["Float"]>;
   url?: InputMaybe<Scalars["String"]>;
   width?: InputMaybe<Scalars["Int"]>;
+}
+
+export interface UploadFolderFiltersInput {
+  and?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  children?: InputMaybe<UploadFolderFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  files?: InputMaybe<UploadFileFiltersInput>;
+  id?: InputMaybe<IDFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UploadFolderFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  parent?: InputMaybe<UploadFolderFiltersInput>;
+  path?: InputMaybe<StringFilterInput>;
+  pathId?: InputMaybe<IntFilterInput>;
+  sitemap_exclude?: InputMaybe<BooleanFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+}
+
+export interface UploadFolderInput {
+  children?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  files?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  name?: InputMaybe<Scalars["String"]>;
+  parent?: InputMaybe<Scalars["ID"]>;
+  path?: InputMaybe<Scalars["String"]>;
+  pathId?: InputMaybe<Scalars["Int"]>;
+  sitemap_exclude?: InputMaybe<Scalars["Boolean"]>;
 }
 
 export interface UsersPermissionsLoginInput {
@@ -962,6 +999,7 @@ export const generatedSchema = {
     containsi: { __type: "Boolean" },
     endsWith: { __type: "Boolean" },
     eq: { __type: "Boolean" },
+    eqi: { __type: "Boolean" },
     gt: { __type: "Boolean" },
     gte: { __type: "Boolean" },
     in: { __type: "[Boolean]" },
@@ -1300,6 +1338,7 @@ export const generatedSchema = {
     containsi: { __type: "DateTime" },
     endsWith: { __type: "DateTime" },
     eq: { __type: "DateTime" },
+    eqi: { __type: "DateTime" },
     gt: { __type: "DateTime" },
     gte: { __type: "DateTime" },
     in: { __type: "[DateTime]" },
@@ -1332,6 +1371,7 @@ export const generatedSchema = {
     containsi: { __type: "Float" },
     endsWith: { __type: "Float" },
     eq: { __type: "Float" },
+    eqi: { __type: "Float" },
     gt: { __type: "Float" },
     gte: { __type: "Float" },
     in: { __type: "[Float]" },
@@ -1433,6 +1473,7 @@ export const generatedSchema = {
     containsi: { __type: "ID" },
     endsWith: { __type: "ID" },
     eq: { __type: "ID" },
+    eqi: { __type: "ID" },
     gt: { __type: "ID" },
     gte: { __type: "ID" },
     in: { __type: "[ID]" },
@@ -1455,6 +1496,7 @@ export const generatedSchema = {
     containsi: { __type: "Int" },
     endsWith: { __type: "Int" },
     eq: { __type: "Int" },
+    eqi: { __type: "Int" },
     gt: { __type: "Int" },
     gte: { __type: "Int" },
     in: { __type: "[Int]" },
@@ -1477,6 +1519,7 @@ export const generatedSchema = {
     containsi: { __type: "JSON" },
     endsWith: { __type: "JSON" },
     eq: { __type: "JSON" },
+    eqi: { __type: "JSON" },
     gt: { __type: "JSON" },
     gte: { __type: "JSON" },
     in: { __type: "[JSON]" },
@@ -1917,6 +1960,7 @@ export const generatedSchema = {
     containsi: { __type: "String" },
     endsWith: { __type: "String" },
     eq: { __type: "String" },
+    eqi: { __type: "String" },
     gt: { __type: "String" },
     gte: { __type: "String" },
     in: { __type: "[String]" },
@@ -2088,6 +2132,8 @@ export const generatedSchema = {
     caption: { __type: "StringFilterInput" },
     createdAt: { __type: "DateTimeFilterInput" },
     ext: { __type: "StringFilterInput" },
+    folder: { __type: "UploadFolderFiltersInput" },
+    folderPath: { __type: "StringFilterInput" },
     formats: { __type: "JSONFilterInput" },
     hash: { __type: "StringFilterInput" },
     height: { __type: "IntFilterInput" },
@@ -2109,6 +2155,8 @@ export const generatedSchema = {
     alternativeText: { __type: "String" },
     caption: { __type: "String" },
     ext: { __type: "String" },
+    folder: { __type: "ID" },
+    folderPath: { __type: "String" },
     formats: { __type: "JSON" },
     hash: { __type: "String" },
     height: { __type: "Int" },
@@ -2121,6 +2169,77 @@ export const generatedSchema = {
     size: { __type: "Float" },
     url: { __type: "String" },
     width: { __type: "Int" },
+  },
+  UploadFileRelationResponseCollection: {
+    __typename: { __type: "String!" },
+    data: { __type: "[UploadFileEntity!]!" },
+  },
+  UploadFolder: {
+    __typename: { __type: "String!" },
+    children: {
+      __type: "UploadFolderRelationResponseCollection",
+      __args: {
+        filters: "UploadFolderFiltersInput",
+        pagination: "PaginationArg",
+        sort: "[String]",
+      },
+    },
+    createdAt: { __type: "DateTime" },
+    files: {
+      __type: "UploadFileRelationResponseCollection",
+      __args: {
+        filters: "UploadFileFiltersInput",
+        pagination: "PaginationArg",
+        sort: "[String]",
+      },
+    },
+    name: { __type: "String!" },
+    parent: { __type: "UploadFolderEntityResponse" },
+    path: { __type: "String!" },
+    pathId: { __type: "Int!" },
+    updatedAt: { __type: "DateTime" },
+  },
+  UploadFolderEntity: {
+    __typename: { __type: "String!" },
+    attributes: { __type: "UploadFolder" },
+    id: { __type: "ID" },
+  },
+  UploadFolderEntityResponse: {
+    __typename: { __type: "String!" },
+    data: { __type: "UploadFolderEntity" },
+  },
+  UploadFolderEntityResponseCollection: {
+    __typename: { __type: "String!" },
+    data: { __type: "[UploadFolderEntity!]!" },
+    meta: { __type: "ResponseCollectionMeta!" },
+  },
+  UploadFolderFiltersInput: {
+    and: { __type: "[UploadFolderFiltersInput]" },
+    children: { __type: "UploadFolderFiltersInput" },
+    createdAt: { __type: "DateTimeFilterInput" },
+    files: { __type: "UploadFileFiltersInput" },
+    id: { __type: "IDFilterInput" },
+    name: { __type: "StringFilterInput" },
+    not: { __type: "UploadFolderFiltersInput" },
+    or: { __type: "[UploadFolderFiltersInput]" },
+    parent: { __type: "UploadFolderFiltersInput" },
+    path: { __type: "StringFilterInput" },
+    pathId: { __type: "IntFilterInput" },
+    sitemap_exclude: { __type: "BooleanFilterInput" },
+    updatedAt: { __type: "DateTimeFilterInput" },
+  },
+  UploadFolderInput: {
+    children: { __type: "[ID]" },
+    files: { __type: "[ID]" },
+    name: { __type: "String" },
+    parent: { __type: "ID" },
+    path: { __type: "String" },
+    pathId: { __type: "Int" },
+    sitemap_exclude: { __type: "Boolean" },
+  },
+  UploadFolderRelationResponseCollection: {
+    __typename: { __type: "String!" },
+    data: { __type: "[UploadFolderEntity!]!" },
   },
   UsersPermissionsCreateRolePayload: {
     __typename: { __type: "String!" },
@@ -2412,6 +2531,10 @@ export const generatedSchema = {
       __type: "UploadFileEntityResponse",
       __args: { data: "UploadFileInput!" },
     },
+    createUploadFolder: {
+      __type: "UploadFolderEntityResponse",
+      __args: { data: "UploadFolderInput!" },
+    },
     createUsersPermissionsRole: {
       __type: "UsersPermissionsCreateRolePayload",
       __args: { data: "UsersPermissionsRoleInput!" },
@@ -2448,6 +2571,10 @@ export const generatedSchema = {
     deleteTpage: { __type: "TpageEntityResponse", __args: { id: "ID!" } },
     deleteUploadFile: {
       __type: "UploadFileEntityResponse",
+      __args: { id: "ID!" },
+    },
+    deleteUploadFolder: {
+      __type: "UploadFolderEntityResponse",
       __args: { id: "ID!" },
     },
     deleteUsersPermissionsRole: {
@@ -2552,6 +2679,10 @@ export const generatedSchema = {
     updateUploadFile: {
       __type: "UploadFileEntityResponse",
       __args: { data: "UploadFileInput!", id: "ID!" },
+    },
+    updateUploadFolder: {
+      __type: "UploadFolderEntityResponse",
+      __args: { data: "UploadFolderInput!", id: "ID!" },
     },
     updateUsersPermissionsRole: {
       __type: "UsersPermissionsUpdateRolePayload",
@@ -2712,6 +2843,18 @@ export const generatedSchema = {
         sort: "[String]",
       },
     },
+    uploadFolder: {
+      __type: "UploadFolderEntityResponse",
+      __args: { id: "ID" },
+    },
+    uploadFolders: {
+      __type: "UploadFolderEntityResponseCollection",
+      __args: {
+        filters: "UploadFolderFiltersInput",
+        pagination: "PaginationArg",
+        sort: "[String]",
+      },
+    },
     usersPermissionsRole: {
       __type: "UsersPermissionsRoleEntityResponse",
       __args: { id: "ID" },
@@ -2777,6 +2920,7 @@ export const generatedSchema = {
       "Sucursal",
       "Tpage",
       "UploadFile",
+      "UploadFolder",
       "UsersPermissionsPermission",
       "UsersPermissionsRole",
       "UsersPermissionsUser",
@@ -3034,6 +3178,7 @@ export interface GenericMorph {
     | "Sucursal"
     | "Tpage"
     | "UploadFile"
+    | "UploadFolder"
     | "UsersPermissionsPermission"
     | "UsersPermissionsRole"
     | "UsersPermissionsUser"
@@ -3498,6 +3643,65 @@ export interface UploadFileEntityResponseCollection {
   meta: ResponseCollectionMeta;
 }
 
+export interface UploadFileRelationResponseCollection {
+  __typename?: "UploadFileRelationResponseCollection";
+  data: Array<UploadFileEntity>;
+}
+
+export interface UploadFolder {
+  __typename?: "UploadFolder";
+  children: (args?: {
+    filters?: Maybe<UploadFolderFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<UploadFolderRelationResponseCollection>;
+  createdAt?: Maybe<ScalarsEnums["DateTime"]>;
+  files: (args?: {
+    filters?: Maybe<UploadFileFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<UploadFileRelationResponseCollection>;
+  name: ScalarsEnums["String"];
+  parent?: Maybe<UploadFolderEntityResponse>;
+  path: ScalarsEnums["String"];
+  pathId: ScalarsEnums["Int"];
+  updatedAt?: Maybe<ScalarsEnums["DateTime"]>;
+}
+
+export interface UploadFolderEntity {
+  __typename?: "UploadFolderEntity";
+  attributes?: Maybe<UploadFolder>;
+  id?: Maybe<ScalarsEnums["ID"]>;
+}
+
+export interface UploadFolderEntityResponse {
+  __typename?: "UploadFolderEntityResponse";
+  data?: Maybe<UploadFolderEntity>;
+}
+
+export interface UploadFolderEntityResponseCollection {
+  __typename?: "UploadFolderEntityResponseCollection";
+  data: Array<UploadFolderEntity>;
+  meta: ResponseCollectionMeta;
+}
+
+export interface UploadFolderRelationResponseCollection {
+  __typename?: "UploadFolderRelationResponseCollection";
+  data: Array<UploadFolderEntity>;
+}
+
 export interface UsersPermissionsCreateRolePayload {
   __typename?: "UsersPermissionsCreateRolePayload";
   ok: ScalarsEnums["Boolean"];
@@ -3712,6 +3916,9 @@ export interface Mutation {
   createUploadFile: (args: {
     data: UploadFileInput;
   }) => Maybe<UploadFileEntityResponse>;
+  createUploadFolder: (args: {
+    data: UploadFolderInput;
+  }) => Maybe<UploadFolderEntityResponse>;
   /**
    * Create a new role
    */
@@ -3753,6 +3960,9 @@ export interface Mutation {
   deleteUploadFile: (args: {
     id: Scalars["ID"];
   }) => Maybe<UploadFileEntityResponse>;
+  deleteUploadFolder: (args: {
+    id: Scalars["ID"];
+  }) => Maybe<UploadFolderEntityResponse>;
   /**
    * Delete an existing role
    */
@@ -3858,6 +4068,10 @@ export interface Mutation {
     data: UploadFileInput;
     id: Scalars["ID"];
   }) => Maybe<UploadFileEntityResponse>;
+  updateUploadFolder: (args: {
+    data: UploadFolderInput;
+    id: Scalars["ID"];
+  }) => Maybe<UploadFolderEntityResponse>;
   /**
    * Update an existing role
    */
@@ -4100,6 +4314,20 @@ export interface Query {
      */
     sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
   }) => Maybe<UploadFileEntityResponseCollection>;
+  uploadFolder: (args?: {
+    id?: Maybe<Scalars["ID"]>;
+  }) => Maybe<UploadFolderEntityResponse>;
+  uploadFolders: (args?: {
+    filters?: Maybe<UploadFolderFiltersInput>;
+    /**
+     * @defaultValue `{}`
+     */
+    pagination?: Maybe<PaginationArg>;
+    /**
+     * @defaultValue `[]`
+     */
+    sort?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  }) => Maybe<UploadFolderEntityResponseCollection>;
   usersPermissionsRole: (args?: {
     id?: Maybe<Scalars["ID"]>;
   }) => Maybe<UsersPermissionsRoleEntityResponse>;
@@ -4227,6 +4455,12 @@ export interface SchemaObjectTypes {
   UploadFileEntity: UploadFileEntity;
   UploadFileEntityResponse: UploadFileEntityResponse;
   UploadFileEntityResponseCollection: UploadFileEntityResponseCollection;
+  UploadFileRelationResponseCollection: UploadFileRelationResponseCollection;
+  UploadFolder: UploadFolder;
+  UploadFolderEntity: UploadFolderEntity;
+  UploadFolderEntityResponse: UploadFolderEntityResponse;
+  UploadFolderEntityResponseCollection: UploadFolderEntityResponseCollection;
+  UploadFolderRelationResponseCollection: UploadFolderRelationResponseCollection;
   UsersPermissionsCreateRolePayload: UsersPermissionsCreateRolePayload;
   UsersPermissionsDeleteRolePayload: UsersPermissionsDeleteRolePayload;
   UsersPermissionsLoginPayload: UsersPermissionsLoginPayload;
@@ -4332,6 +4566,12 @@ export type SchemaObjectTypesNames =
   | "UploadFileEntity"
   | "UploadFileEntityResponse"
   | "UploadFileEntityResponseCollection"
+  | "UploadFileRelationResponseCollection"
+  | "UploadFolder"
+  | "UploadFolderEntity"
+  | "UploadFolderEntityResponse"
+  | "UploadFolderEntityResponseCollection"
+  | "UploadFolderRelationResponseCollection"
   | "UsersPermissionsCreateRolePayload"
   | "UsersPermissionsDeleteRolePayload"
   | "UsersPermissionsLoginPayload"
@@ -4385,6 +4625,7 @@ export interface $GenericMorph {
   Sucursal?: Sucursal;
   Tpage?: Tpage;
   UploadFile?: UploadFile;
+  UploadFolder?: UploadFolder;
   UsersPermissionsPermission?: UsersPermissionsPermission;
   UsersPermissionsRole?: UsersPermissionsRole;
   UsersPermissionsUser?: UsersPermissionsUser;

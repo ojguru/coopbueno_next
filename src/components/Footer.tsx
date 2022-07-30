@@ -22,23 +22,13 @@ import {
 } from "lib/constants";
 import logo from "../../public/coopbueno_logo_footer.svg";
 import colors from "styles/colors";
-import { useQuery } from "client";
 import { getHierarchicalItems } from "lib/auxiliar";
+import { MenusMenuItemEntity } from "client";
 
-const Footer = ({}) => {
-  const menuItems = useQuery().menusMenuItems({
-    pagination: {
-      pageSize: 100,
-    },
-    filters: {
-      root_menu: {
-        slug: {
-          eq: "footer",
-        },
-      },
-    },
-  })?.data;
-
+interface FooterProps {
+  menuItems?: MenusMenuItemEntity[];
+}
+const Footer = ({ menuItems = [] }: FooterProps) => {
   const items = getHierarchicalItems(menuItems);
 
   return (

@@ -10,7 +10,13 @@ import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import colors from "styles/colors";
 import logo from "../../public/coopbueno_logo.svg";
-import { ENUM_SERVICIO_CATEGORIA, ENUM_SERVICIO_TIPO, useQuery } from "client";
+import {
+  ENUM_SERVICIO_CATEGORIA,
+  ENUM_SERVICIO_TIPO,
+  MenusMenuItemEntity,
+  ServicioEntity,
+  useQuery,
+} from "client";
 import useMenu from "hooks/useMenu";
 import Navigation from "./navigation/navigation";
 import {
@@ -22,42 +28,16 @@ import { InstagramIcon, FacebookIcon, TwitterIcon } from "./icons";
 import { FACEBOOK, INSTAGRAM, TWITTER } from "lib/constants";
 import ctas from "styles/cta";
 
-const Header = ({}) => {
+interface HeaderProps {
+  menuItems?: MenusMenuItemEntity[];
+  servicios?: ServicioEntity[];
+}
+const Header = ({ menuItems = [], servicios = [] }: HeaderProps) => {
   const [ref, inView, entry] = useInView({ initialInView: true });
 
   const { MenuModalUI, MenuButtonUI } = useMenu();
 
-  const servicios = useQuery().servicios({
-    pagination: {
-      pageSize: 100,
-    },
-    filters: {
-      categoria: {
-        in: [
-          ENUM_SERVICIO_CATEGORIA.ahorro,
-          ENUM_SERVICIO_CATEGORIA.prestamos,
-          ENUM_SERVICIO_CATEGORIA.facilidades,
-        ],
-      },
-    },
-    sort: ["nombre:asc"],
-  })?.data;
-
   const serviceItems = getServiceHierarchicalItems(servicios);
-
-  const menuItems = useQuery().menusMenuItems({
-    pagination: {
-      pageSize: 100,
-    },
-    filters: {
-      root_menu: {
-        slug: {
-          eq: "header",
-        },
-      },
-    },
-    sort: ["order:asc"],
-  })?.data;
 
   const items = [...serviceItems, ...getHierarchicalItems(menuItems)];
 
