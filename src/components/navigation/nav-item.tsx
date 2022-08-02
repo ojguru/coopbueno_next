@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { animated, Spring, config } from "@react-spring/web";
 import Link from "next/link";
 import NavList from "./nav-list";
 import { LeftArrowIcon } from "../icons";
 import colors from "styles/colors";
-import { mq } from "components/grid";
 import { MenuItem } from "lib/auxiliar";
 import { getURL } from "lib/api";
 
@@ -77,39 +75,11 @@ const NavItem = ({
           {item?.attributes?.title}
         </ItemLabel>
       )}
-      <Spring
-        reset={isOpen}
-        from={{
-          opacity: isOpen ? 0 : 1,
-        }}
-        to={{
-          opacity: isOpen ? 1 : 0,
-        }}
-        config={config.default}
-      >
-        {(styles) => (
-          <AListWrapper style={styles}>
-            <Spring
-              reset={isOpen}
-              from={{
-                marginTop: isOpen ? -1920 : 0,
-                opacity: isOpen ? 0 : 1,
-              }}
-              to={{
-                marginTop: isOpen ? 0 : -1920,
-                opacity: isOpen ? 1 : 0,
-              }}
-              config={config.default}
-            >
-              {(styles) => (
-                <AList style={styles}>
-                  {hasChildren ? <NavList items={children} /> : null}
-                </AList>
-              )}
-            </Spring>
-          </AListWrapper>
-        )}
-      </Spring>
+      <AListWrapper active={isOpen}>
+        <AList active={isOpen}>
+          {hasChildren ? <NavList items={children} /> : null}
+        </AList>
+      </AListWrapper>
     </Item>
   );
 };
@@ -176,8 +146,36 @@ const ItemLabel = styled.span`
   ${itemTextStyles}
 `;
 
-const AListWrapper = styled(animated.div)`
+interface AListWrapperProps {
+  active: boolean;
+}
+const AListWrapper = styled.div`
   overflow: hidden;
+  ${({ active }: AListWrapperProps) => css`
+    ${active
+      ? css`
+          opacity: 1;
+        `
+      : css`
+          opacity: 0;
+        `}
+  `}
 `;
 
-const AList = styled(animated.div)``;
+interface AListProps {
+  active: boolean;
+}
+const AList = styled.div`
+  ${({ active }: AListProps) => css`
+    transition: all 0.25s ease-in-out;
+    ${active
+      ? css`
+          margin-top: 0;
+          opacity: 1;
+        `
+      : css`
+          margin-top: -1920px;
+          opacity: 0;
+        `}
+  `}
+`;

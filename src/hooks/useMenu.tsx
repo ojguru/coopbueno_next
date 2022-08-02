@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { CloseIcon, MenuIcon } from "components/icons";
 import colors from "styles/colors";
 import { container, mq } from "components/grid";
-import { useSpring, a, config } from "@react-spring/web";
+// import { useSpring, a, config } from "@react-spring/web";
 // import { useAppContext } from "context/appContext";
 
 const useMenu = () => {
@@ -12,17 +12,17 @@ const useMenu = () => {
 
   let [activador, setActivador] = useState(false);
 
-  const wrapperSpring = useSpring({
-    immediate: activador ? false : true,
-    from: {
-      right: activador ? (isMenuOpen ? "-100%" : "0") : "-100%",
-      opacity: activador ? (isMenuOpen ? 0 : 1) : 0,
-    },
-    to: {
-      right: activador ? (isMenuOpen ? "0" : "-100%") : "-100%",
-      opacity: activador ? (isMenuOpen ? 1 : 0) : 0,
-    },
-  });
+  // const wrapperSpring = useSpring({
+  //   immediate: activador ? false : true,
+  //   from: {
+  //     right: activador ? (isMenuOpen ? "-100%" : "0") : "-100%",
+  //     opacity: activador ? (isMenuOpen ? 0 : 1) : 0,
+  //   },
+  //   to: {
+  //     right: activador ? (isMenuOpen ? "0" : "-100%") : "-100%",
+  //     opacity: activador ? (isMenuOpen ? 1 : 0) : 0,
+  //   },
+  // });
 
   useEffect(() => {
     setActivador(true);
@@ -38,7 +38,7 @@ const useMenu = () => {
         onClick={(e) => {
           setMenuOpen(false);
         }}
-        style={wrapperSpring}
+        active={isMenuOpen}
       >
         {isMenuOpen && (
           <Global
@@ -57,7 +57,7 @@ const useMenu = () => {
             e.stopPropagation();
           }}
         >
-          <AModal style={wrapperSpring}>
+          <AModal active={isMenuOpen}>
             <Column>
               <ModalHeader>
                 <span></span>
@@ -98,19 +98,32 @@ const useMenu = () => {
 
 export default useMenu;
 
-const ModalWrapper = styled(a.div)`
-  background: transparent;
-  overflow-y: auto;
-  overflow-x: hidden;
-  position: fixed;
-  opacity: 0;
-  z-index: 20000;
-  width: 100%;
-  display: flex;
-  top: 0;
-  bottom: 0;
-  align-items: baseline;
-  justify-content: flex-end;
+interface ModalWrapperProps {
+  active: boolean;
+}
+const ModalWrapper = styled.div`
+  ${({ active }: ModalWrapperProps) => css`
+    background: transparent;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
+    z-index: 20000;
+    width: 100%;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    align-items: baseline;
+    justify-content: flex-end;
+    ${active
+      ? css`
+          opacity: 1;
+          right: 0;
+        `
+      : css`
+          opacity: 0;
+          right: -100%;
+        `}
+  `}
 `;
 
 const CardModal = styled.div`
@@ -132,7 +145,22 @@ const CardModal = styled.div`
   }
 `;
 
-const AModal = styled(a.div)``;
+interface AModalProps {
+  active: boolean;
+}
+const AModal = styled.div`
+  ${({ active }: AModalProps) => css`
+    ${active
+      ? css`
+          opacity: 1;
+          right: 0;
+        `
+      : css`
+          opacity: 0;
+          right: -100%;
+        `}
+  `}
+`;
 
 const Column = styled.div`
   padding: 0 1.5rem;
