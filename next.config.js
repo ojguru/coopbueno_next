@@ -27,9 +27,6 @@ const nextConfig = {
       // labelFormat: string,
     },
   },
-  experimental: {
-    nextScriptWorkers: true,
-  },
 };
 
 module.exports = nextConfig;
