@@ -1,5 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import Script from "next/script";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+const Script = dynamic(() => import("next/script"), { ssr: false });
 
 class MyDocument extends Document {
   render() {
@@ -29,16 +31,18 @@ class MyDocument extends Document {
             type="text/javascript"
             strategy="lazyOnload"
           /> */}
-          <Script
-            src="https://js.usemessages.com/conversations-embed.js"
-            id="hubspot-messages-loader"
-            // type="text/javascript"
-            strategy="beforeInteractive"
-            data-loader="hs-scriptloader"
-            data-hsjs-portal="5494710"
-            data-hsjs-env="prod"
-            data-hsjs-hublet="na1"
-          />
+          <Suspense>
+            <Script
+              src="https://js.usemessages.com/conversations-embed.js"
+              id="hubspot-messages-loader"
+              // type="text/javascript"
+              strategy="afterInteractive"
+              data-loader="hs-scriptloader"
+              data-hsjs-portal="5494710"
+              data-hsjs-env="prod"
+              data-hsjs-hublet="na1"
+            />
+          </Suspense>
         </body>
       </Html>
     );
