@@ -1,5 +1,5 @@
 import { Global } from "@emotion/react";
-import "../styles/globals.css";
+// import "../styles/globals.css";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import globalStyle from "styles/global-styles";
 import { AppWrapper } from "context/appContext";
