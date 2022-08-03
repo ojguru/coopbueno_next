@@ -48,7 +48,7 @@ const Header = ({ menuItems = [], servicios = [] }: HeaderProps) => {
           <LogoContainer>
             <Link href="/" passHref>
               <StyledLink>
-                <Image src={logo} alt="Coopbueno Logo" />
+                <Image src={logo} alt="Coopbueno Logo" priority />
               </StyledLink>
             </Link>
           </LogoContainer>
