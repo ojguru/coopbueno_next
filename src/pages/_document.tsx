@@ -34,7 +34,7 @@ class MyDocument extends Document {
             src="/conversation.js"
             id="hubspot-messages-loader"
             // type="text/javascript"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
             data-loader="hs-scriptloader"
             data-hsjs-portal={HUBSPOT_ID}
             data-hsjs-env="prod"
