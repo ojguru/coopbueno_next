@@ -8,8 +8,18 @@ class MyDocument extends Document {
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link rel="preconnect" href="https://www.google-analytics.com" />
-          <link rel="preconnect" href="https://js.usemessages.com"></link>
+          <link
+            rel="preconnect dns-prefetch"
+            href="https://www.google-analytics.com"
+          />
+          <link
+            rel="preconnect dns-prefetch"
+            href="https://www.googletagmanager.com"
+          />
+          <link
+            rel="preconnect dns-prefetch"
+            href="https://js.usemessages.com"
+          ></link>
           <link
             href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
@@ -34,7 +44,7 @@ class MyDocument extends Document {
           <Script
             src="https://js.usemessages.com/conversations-embed.js"
             id="hubspot-messages-loader"
-            type="text/javascript"
+            // type="text/javascript"
             strategy="beforeInteractive"
             data-loader="hs-scriptloader"
             data-hsjs-portal="5494710"

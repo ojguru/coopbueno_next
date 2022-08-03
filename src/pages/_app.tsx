@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Global styles={globalStyle} />
       <>
         <Head>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="preload" href="/favicon.ico" as="icon" />
         </Head>
         <GoogleAnalytics strategy="beforeInteractive" />
         <NextSeo
