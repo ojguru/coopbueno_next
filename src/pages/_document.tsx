@@ -25,12 +25,12 @@ class MyDocument extends Document {
             async
             defer
           /> */}
-          <Script
+          {/* <Script
             src="https://js.hs-analytics.net/analytics/1659502500000/5494710.js"
             id="hs-analytics"
             type="text/javascript"
             strategy="lazyOnload"
-          />
+          /> */}
           <Script
             src="https://js.usemessages.com/conversations-embed.js"
             id="hubspot-messages-loader"
