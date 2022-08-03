@@ -1,5 +1,4 @@
 import React from "react";
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { mq, container, bp } from "components/grid";
 import Carousel from "react-slick";
@@ -9,8 +8,6 @@ import { h1 } from "styles/tipography";
 import Cta from "components/Cta";
 import Image from "next/image";
 
-import { animated, config, Spring } from "@react-spring/web";
-import { InView } from "react-intersection-observer";
 import { getImageURL } from "lib/api";
 import { SlideEntity } from "client";
 
@@ -19,119 +16,60 @@ interface HomeSliderProps {
 }
 const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
   return slides.length ? (
-    <InView threshold={0.3}>
-      {({ ref, inView }) => (
-        <Section fluid space large ref={ref}>
-          <Spring
-            from={{
-              opacity: 0,
-              transform: `translateY(${inView ? "20rem" : "0"})`,
-            }}
-            to={{ opacity: 1, transform: "translateY(0)" }}
-            reset={inView}
-            reverse={!inView}
-            config={config.wobbly}
-          >
-            {(styles) => (
-              <animated.div style={styles}>
-                <Carousel
-                  infinite={false}
-                  autoplay
-                  pauseOnHover
-                  pauseOnFocus
-                  adaptiveHeight
-                  dots
-                  responsive={[
-                    {
-                      breakpoint: bp.md,
-                      settings: {
-                        arrows: false,
-                        dots: true,
-                      },
-                    },
-                  ]}
-                >
-                  {slides.map((item, index) => {
-                    const slide = item.attributes;
+    <Section fluid space large>
+      <CarouselWrapper>
+        <Carousel
+          infinite={false}
+          autoplay
+          pauseOnHover
+          pauseOnFocus
+          adaptiveHeight
+          dots
+          responsive={[
+            {
+              breakpoint: bp.md,
+              settings: {
+                arrows: false,
+                dots: true,
+              },
+            },
+          ]}
+        >
+          {slides.map((item, index) => {
+            const slide = item.attributes;
 
-                    return (
-                      <Slide key={index}>
-                        <Wrapper>
-                          <InView>
-                            {({ ref, inView }) => (
-                              <Spring
-                                config={config.wobbly}
-                                reset={inView}
-                                reverse={!inView}
-                                from={{
-                                  opacity: 0,
-                                  transform: `translateX(${
-                                    inView ? "-100%" : "0%"
-                                  })`,
-                                }}
-                                to={{ opacity: 1, transform: "translateX(0%)" }}
-                              >
-                                {(styles) => (
-                                  <MediaWrapper ref={ref} {...{ colors }}>
-                                    <animated.div style={styles}>
-                                      <Media>
-                                        <Image
-                                          src={getImageURL(
-                                            slide?.imagen?.data?.attributes?.url
-                                          )}
-                                          alt={
-                                            slide?.imagen?.data?.attributes
-                                              ?.alternativeText || ""
-                                          }
-                                          width={1080}
-                                          height={1080}
-                                          objectFit="cover"
-                                        />
-                                      </Media>
-                                    </animated.div>
-                                  </MediaWrapper>
-                                )}
-                              </Spring>
-                            )}
-                          </InView>
-                          <InView>
-                            {({ ref, inView }) => (
-                              <Spring
-                                config={config.molasses}
-                                reset={inView}
-                                reverse={!inView}
-                                from={{
-                                  opacity: 0,
-                                }}
-                                to={{ opacity: 1 }}
-                              >
-                                {(styles) => (
-                                  <animated.div style={styles} ref={ref}>
-                                    <SlideInfo>
-                                      <Title>{slide?.titular}</Title>
-                                      <Copy
-                                        dangerouslySetInnerHTML={{
-                                          __html: slide?.copy || "",
-                                        }}
-                                      />
-                                      <Cta cta={slide?.cta} />
-                                    </SlideInfo>
-                                  </animated.div>
-                                )}
-                              </Spring>
-                            )}
-                          </InView>
-                        </Wrapper>
-                      </Slide>
-                    );
-                  })}
-                </Carousel>
-              </animated.div>
-            )}
-          </Spring>
-        </Section>
-      )}
-    </InView>
+            return (
+              <Slide key={index}>
+                <Wrapper>
+                  <MediaWrapper>
+                    <Media>
+                      <Image
+                        src={getImageURL(slide?.imagen?.data?.attributes?.url)}
+                        alt={
+                          slide?.imagen?.data?.attributes?.alternativeText || ""
+                        }
+                        width={1080}
+                        height={1080}
+                        objectFit="cover"
+                      />
+                    </Media>
+                  </MediaWrapper>
+                  <SlideInfo>
+                    <Title>{slide?.titular}</Title>
+                    <Copy
+                      dangerouslySetInnerHTML={{
+                        __html: slide?.copy || "",
+                      }}
+                    />
+                    <Cta cta={slide?.cta} />
+                  </SlideInfo>
+                </Wrapper>
+              </Slide>
+            );
+          })}
+        </Carousel>
+      </CarouselWrapper>
+    </Section>
   ) : null;
 };
 
@@ -174,9 +112,12 @@ const Wrapper = styled.div`
   }
 `;
 
+const CarouselWrapper = styled.div``;
+
 const SlideInfo = styled.div`
   margin-bottom: 2rem;
   text-align: center;
+  transition: all 0.25s ease-in-out;
   ${mq.md} {
     text-align: left;
   }
@@ -193,6 +134,7 @@ const Copy = styled.p``;
 const MediaWrapper = styled.div`
   position: relative;
   margin-bottom: 2rem;
+  transition: all 0.25s ease-in-out;
   &:before {
     content: "";
     width: 15%;

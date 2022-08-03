@@ -1,35 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, memo } from "react";
 import { css, Global } from "@emotion/react";
 import styled from "@emotion/styled";
 import { CloseIcon, MenuIcon } from "components/icons";
 import colors from "styles/colors";
 import { container, mq } from "components/grid";
-// import { useSpring, a, config } from "@react-spring/web";
-// import { useAppContext } from "context/appContext";
 
 const useMenu = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
-  let [activador, setActivador] = useState(false);
-
-  // const wrapperSpring = useSpring({
-  //   immediate: activador ? false : true,
-  //   from: {
-  //     right: activador ? (isMenuOpen ? "-100%" : "0") : "-100%",
-  //     opacity: activador ? (isMenuOpen ? 0 : 1) : 0,
-  //   },
-  //   to: {
-  //     right: activador ? (isMenuOpen ? "0" : "-100%") : "-100%",
-  //     opacity: activador ? (isMenuOpen ? 1 : 0) : 0,
-  //   },
-  // });
-
-  useEffect(() => {
-    setActivador(true);
-  }, []);
-
   interface MenuModalUIProps {
-    children?: any;
+    children: any;
   }
   const MenuModalUI = ({ children }: MenuModalUIProps) => {
     return (
@@ -38,6 +18,7 @@ const useMenu = () => {
         onClick={(e) => {
           setMenuOpen(false);
         }}
+        id={Math.random().toString()}
         active={isMenuOpen}
       >
         {isMenuOpen && (

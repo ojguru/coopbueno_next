@@ -5,10 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { h1, h5 } from "styles/tipography";
 import { AcademiaIcon } from "components/icons";
-import { Spring, animated } from "@react-spring/web";
-import { InView } from "react-intersection-observer";
 
-import { sectionAnimation } from "styles/animations";
 import colors from "styles/colors";
 import { getImageURL } from "lib/api";
 import { ArticleEntity } from "client";
@@ -16,67 +13,51 @@ import { ArticleEntity } from "client";
 interface HomeAcademyProps {
   posts?: ArticleEntity[];
 }
-interface InViewProps {
-  ref: any;
-  inView: boolean;
-}
 const HomeAcademy = ({ posts }: HomeAcademyProps) => {
   return posts?.length ? (
-    <InView threshold={0}>
-      {({ ref, inView }) => (
-        <Spring reset={inView} reverse={!inView} {...sectionAnimation}>
-          {(styles) => (
-            <Section fluid space ref={ref}>
-              <animated.div style={styles}>
-                <Link href={"/academia"} passHref>
-                  <a>
-                    <SectionTitle>Academia de sueños</SectionTitle>
-                    <SectionImage>
-                      <AcademiaIcon />
-                    </SectionImage>
-                  </a>
+    <Section fluid space>
+      <Link href={"/academia"} passHref>
+        <a>
+          <SectionTitle>Academia de sueños</SectionTitle>
+          <SectionImage>
+            <AcademiaIcon />
+          </SectionImage>
+        </a>
+      </Link>
+      <Body>
+        {posts.map((item, index) => {
+          const post = item.attributes;
+          const image = post?.image?.data?.attributes;
+          return post ? (
+            <Slide key={index}>
+              <Post>
+                <Link href={`/academia/${post.slug}`} passHref>
+                  <PostLink aria-label="Post Link">
+                    <MediaWrapper>
+                      <ImageContainer>
+                        <Image
+                          src={getImageURL(image?.url)}
+                          alt={image?.alternativeText || ""}
+                          width={1920}
+                          height={1080}
+                          objectFit="cover"
+                        />
+                      </ImageContainer>
+                    </MediaWrapper>
+                    <Title>{post.title}</Title>
+                    <Excerpt
+                      dangerouslySetInnerHTML={{
+                        __html: post.description || "",
+                      }}
+                    />
+                  </PostLink>
                 </Link>
-                <Body>
-                  {posts.map((item, index) => {
-                    const post = item.attributes;
-                    const image = post?.image?.data?.attributes;
-                    return post ? (
-                      <Slide key={index}>
-                        <animated.div style={styles}>
-                          <Post>
-                            <Link href={`/academia/${post.slug}`} passHref>
-                              <PostLink aria-label="Post Link">
-                                <MediaWrapper>
-                                  <ImageContainer>
-                                    <Image
-                                      src={getImageURL(image?.url)}
-                                      alt={image?.alternativeText || ""}
-                                      width={1920}
-                                      height={1080}
-                                      objectFit="cover"
-                                    />
-                                  </ImageContainer>
-                                </MediaWrapper>
-                                <Title>{post.title}</Title>
-                                <Excerpt
-                                  dangerouslySetInnerHTML={{
-                                    __html: post.description || "",
-                                  }}
-                                />
-                              </PostLink>
-                            </Link>
-                          </Post>
-                        </animated.div>
-                      </Slide>
-                    ) : null;
-                  })}
-                </Body>
-              </animated.div>
-            </Section>
-          )}
-        </Spring>
-      )}
-    </InView>
+              </Post>
+            </Slide>
+          ) : null;
+        })}
+      </Body>
+    </Section>
   ) : null;
 };
 

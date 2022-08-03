@@ -3,9 +3,6 @@ import styled from "@emotion/styled";
 import { container, mq } from "components/grid";
 import Image from "next/image";
 import { h1 } from "styles/tipography";
-import { InView } from "react-intersection-observer";
-import { Spring, animated } from "@react-spring/web";
-import { sectionAnimation } from "styles/animations";
 import colors from "styles/colors";
 import { getImageURL } from "lib/api";
 import Cta from "components/Cta";
@@ -17,36 +14,26 @@ const HomeSocio = ({ home }: HomeSocioProps) => {
   const razones = home.razones;
 
   return home.razones ? (
-    <InView threshold={0.3}>
-      {({ ref, inView }) => (
-        <Spring reset={inView} reverse={!inView} {...sectionAnimation}>
-          {(styles) => (
-            <Section ref={ref}>
-              <animated.div style={styles}>
-                <Container space>
-                  <Media>
-                    <Image
-                      src={getImageURL(razones.imagen.data.attributes.url)}
-                      alt={razones.imagen.data.attributes.alternativeText}
-                      width={1080}
-                      height={1080}
-                      objectFit="contain"
-                    />
-                  </Media>
-                  <Content>
-                    <Title>{razones.titulo}</Title>
-                    <Description
-                      dangerouslySetInnerHTML={{ __html: razones.descripcion }}
-                    />
-                    <Cta cta={razones.cta} />
-                  </Content>
-                </Container>
-              </animated.div>
-            </Section>
-          )}
-        </Spring>
-      )}
-    </InView>
+    <Section>
+      <Container space>
+        <Media>
+          <Image
+            src={getImageURL(razones.imagen.data.attributes.url)}
+            alt={razones.imagen.data.attributes.alternativeText}
+            width={1080}
+            height={1080}
+            objectFit="contain"
+          />
+        </Media>
+        <Content>
+          <Title>{razones.titulo}</Title>
+          <Description
+            dangerouslySetInnerHTML={{ __html: razones.descripcion }}
+          />
+          <Cta cta={razones.cta} />
+        </Content>
+      </Container>
+    </Section>
   ) : null;
 };
 

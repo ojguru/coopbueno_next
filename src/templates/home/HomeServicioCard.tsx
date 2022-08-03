@@ -10,7 +10,6 @@ import { Slide } from "pure-react-carousel";
 
 import { h3 } from "styles/tipography";
 
-import { animated } from "@react-spring/web";
 import { InView } from "react-intersection-observer";
 import { ENUM_SERVICIO_CATEGORIA, ServicioEntity } from "client";
 import colors from "styles/colors";
@@ -60,68 +59,63 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                     active={isActive}
                     hidden={active !== -1 && !isActive}
                   >
-                    <animated.div>
-                      <ServiceCard {...{ isActive }}>
-                        <div
-                          onClick={(e) => {
-                            setActive(index);
-                          }}
-                        >
-                          <CardImage {...{ isActive }}>
-                            <Media>
-                              <ImageWrapper>
-                                <Image
-                                  src={item.icono}
-                                  alt={item.nombre}
-                                  width={1080}
-                                  height={1080}
-                                  objectFit="contain"
-                                />
-                              </ImageWrapper>
-                            </Media>
-                          </CardImage>
-                          <CardContent {...{ isActive }}>
-                            <CardTitle {...{ isActive }}>
-                              {item.nombre}
-                            </CardTitle>
-                            <CardServices {...{ isActive }}>
-                              {items
-                                .filter((service) => {
-                                  return (
-                                    service?.attributes?.categoria ===
-                                    item.nombre
-                                  );
-                                })
-                                .map((service, index) => {
-                                  const servicio = service.attributes;
+                    <ServiceCard {...{ isActive }}>
+                      <div
+                        onClick={(e) => {
+                          setActive(index);
+                        }}
+                      >
+                        <CardImage {...{ isActive }}>
+                          <Media>
+                            <ImageWrapper>
+                              <Image
+                                src={item.icono}
+                                alt={item.nombre}
+                                width={1080}
+                                height={1080}
+                                objectFit="contain"
+                              />
+                            </ImageWrapper>
+                          </Media>
+                        </CardImage>
+                        <CardContent {...{ isActive }}>
+                          <CardTitle {...{ isActive }}>{item.nombre}</CardTitle>
+                          <CardServices {...{ isActive }}>
+                            {items
+                              .filter((service) => {
+                                return (
+                                  service?.attributes?.categoria === item.nombre
+                                );
+                              })
+                              .map((service, index) => {
+                                const servicio = service.attributes;
 
-                                  return servicio ? (
-                                    <Link
-                                      key={index}
-                                      href={`/servicios/${servicio.slug}`}
-                                      passHref
-                                    >
-                                      <StyledLink>
-                                        <Service key={index}>
-                                          {servicio.nombre}
-                                        </Service>
-                                      </StyledLink>
-                                    </Link>
-                                  ) : null;
-                                })}
-                            </CardServices>
-                          </CardContent>
-                        </div>
-                        <CardCloseBtn
-                          {...{ isActive }}
-                          onClick={(e) => {
-                            setActive(-1);
-                          }}
-                        >
-                          <CloseIcon />
-                        </CardCloseBtn>
-                      </ServiceCard>
-                    </animated.div>
+                                return servicio ? (
+                                  <Link
+                                    key={index}
+                                    href={`/servicios/${servicio.slug}`}
+                                    passHref
+                                  >
+                                    <StyledLink>
+                                      <Service key={index}>
+                                        {servicio.nombre}
+                                      </Service>
+                                    </StyledLink>
+                                  </Link>
+                                ) : null;
+                              })}
+                          </CardServices>
+                        </CardContent>
+                      </div>
+                      <CardCloseBtn
+                        {...{ isActive }}
+                        onClick={(e) => {
+                          setActive(-1);
+                        }}
+                      >
+                        <CloseIcon />
+                      </CardCloseBtn>
+                    </ServiceCard>
                   </Card>
                 );
               })}
