@@ -20,7 +20,7 @@ class MyDocument extends Document {
           <Script
             src="//js-na1.hs-scripts.com/5494710.js"
             id="hs-script-loader"
-            strategy="worker"
+            strategy="beforeInteractive"
             async
             defer
           />
