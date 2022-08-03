@@ -18,12 +18,28 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <Script
+          {/* <Script
             src="//js-na1.hs-scripts.com/5494710.js"
             id="hs-script-loader"
             strategy="beforeInteractive"
             async
             defer
+          /> */}
+          <Script
+            src="https://js.hs-analytics.net/analytics/1659502500000/5494710.js"
+            id="hs-analytics"
+            type="text/javascript"
+            strategy="lazyOnload"
+          />
+          <Script
+            src="https://js.usemessages.com/conversations-embed.js"
+            id="hubspot-messages-loader"
+            type="text/javascript"
+            strategy="lazyOnload"
+            data-loader="hs-scriptloader"
+            data-hsjs-portal="5494710"
+            data-hsjs-env="prod"
+            data-hsjs-hublet="na1"
           />
         </body>
       </Html>
