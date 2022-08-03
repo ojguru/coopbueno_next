@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Head>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <GoogleAnalytics strategy="afterInteractive" />
+        <GoogleAnalytics strategy="lazyOnload" />
         <NextSeo
           title="Apoyando tus sueños"
           titleTemplate={`%s - ${SITE_NAME}`}
