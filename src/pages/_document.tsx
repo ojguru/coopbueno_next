@@ -9,6 +9,12 @@ class MyDocument extends Document {
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link rel="preload" href="/conversation.js" as="script"></link>
+          <link
+            rel="preload"
+            href="https://www.google-analytics.com/analytics.js"
+            as="script"
+          ></link>
           <link
             href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
@@ -24,7 +30,7 @@ class MyDocument extends Document {
             async
             defer
           /> */}
-          <Script
+          {/* <Script
             src="/conversation.js"
             id="hubspot-messages-loader"
             // type="text/javascript"
@@ -33,7 +39,7 @@ class MyDocument extends Document {
             data-hsjs-portal="5494710"
             data-hsjs-env="prod"
             data-hsjs-hublet="na1"
-          />
+          /> */}
         </body>
       </Html>
     );
