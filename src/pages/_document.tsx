@@ -30,18 +30,11 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          {/* <Script
-            src="//js-na1.hs-scripts.com/5494710.js"
-            id="hs-script-loader"
-            strategy="beforeInteractive"
-            async
-            defer
-          /> */}
           <Script
             src="/conversation.js"
             id="hubspot-messages-loader"
             // type="text/javascript"
-            strategy="beforeInteractive"
+            strategy="afterInteractive"
             data-loader="hs-scriptloader"
             data-hsjs-portal={HUBSPOT_ID}
             data-hsjs-env="prod"
