@@ -33,7 +33,7 @@ class MyDocument extends Document {
             src="https://js.usemessages.com/conversations-embed.js"
             id="hubspot-messages-loader"
             // type="text/javascript"
-            strategy="afterInteractive"
+            strategy="beforeInteractive"
             data-loader="hs-scriptloader"
             data-hsjs-portal="5494710"
             data-hsjs-env="prod"

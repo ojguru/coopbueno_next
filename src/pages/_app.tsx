@@ -30,9 +30,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Global styles={globalStyle} />
       <>
         <Head>
-          <link rel="preload" href="/favicon.ico" as="icon" />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
-        <GoogleAnalytics strategy="afterInteractive" />
+        <GoogleAnalytics strategy="beforeInteractive" />
         <NextSeo
           title="Apoyando tus sueños"
           titleTemplate={`%s - ${SITE_NAME}`}
