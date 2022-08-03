@@ -16,6 +16,11 @@ class MyDocument extends Document {
             as="script"
           ></link>
           <link
+            rel="preload"
+            href="https://www.googletagmanager.com/gtag/js?id=UA-98073795-1"
+            as="script"
+          ></link>
+          <link
             href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
           />
