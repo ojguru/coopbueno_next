@@ -17,14 +17,14 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <Script
+          {/* <Script
             src="//js-na1.hs-scripts.com/5494710.js"
             id="hs-script-loader"
             strategy="beforeInteractive"
             async
             defer
-          />
-          {/* <Script
+          /> */}
+          <Script
             src="/conversation.js"
             id="hubspot-messages-loader"
             // type="text/javascript"
@@ -33,7 +33,7 @@ class MyDocument extends Document {
             data-hsjs-portal="5494710"
             data-hsjs-env="prod"
             data-hsjs-hublet="na1"
-          /> */}
+          />
         </body>
       </Html>
     );
