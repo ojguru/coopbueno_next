@@ -65,11 +65,6 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@builder.io/partytown@^0.6.4":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.6.4.tgz#8610c9e73cc52a95b963c1878760ebe628eee048"
-  integrity sha512-W6C7O0eSg6YNujHYZozXK5iJ+V69QVLLLRv+NlmYh1vFe0PUJ3kmAhRCx7rUqI3XAA/KpdyfdxLoopBg3GlfVA==
-
 "@corex/deepmerge@^4.0.29":
   version "4.0.29"
   resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-4.0.29.tgz#af9debf07d7f6b0d2a9d04a266abf2c1418ed2f6"

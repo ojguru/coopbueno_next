@@ -14,6 +14,11 @@ class MyDocument extends Document {
           <link rel="preload" href="/conversation.js" as="script"></link>
           <link
             rel="preload"
+            href="https://static.hsappstatic.net/conversations-visitor-ui/static-1.12919/bundles/visitor.js"
+            as="script"
+          ></link>
+          <link
+            rel="preload"
             href="https://www.google-analytics.com/analytics.js"
             as="script"
           ></link>
