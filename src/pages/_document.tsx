@@ -17,40 +17,23 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          {/* <Script
+          <Script
             src="//js-na1.hs-scripts.com/5494710.js"
             id="hs-script-loader"
-            strategy="beforeInteractive"
+            strategy="worker"
             async
             defer
-          /> */}
+          />
           {/* <Script
-            src="https://js.hs-analytics.net/analytics/1659502500000/5494710.js"
-            id="hs-analytics"
-            type="text/javascript"
-            strategy="lazyOnload"
-          /> */}
-          {/* <Script id="google-analytics" strategy="afterInteractive">
-            {`
-              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-              })(window,document,'script','/analytics.js','ga');
-  
-              ga('create', ${NEXT_PUBLIC_GA_MEASUREMENT_ID}, 'auto');
-              ga('send', 'pageview');
-              `}
-          </Script> */}
-          <Script
             src="/conversation.js"
             id="hubspot-messages-loader"
             // type="text/javascript"
-            strategy="lazyOnload"
+            strategy="beforeInteractive"
             data-loader="hs-scriptloader"
             data-hsjs-portal="5494710"
             data-hsjs-env="prod"
             data-hsjs-hublet="na1"
-          />
+          /> */}
         </body>
       </Html>
     );
