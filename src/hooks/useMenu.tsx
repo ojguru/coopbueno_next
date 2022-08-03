@@ -1,4 +1,4 @@
-import React, { useState, memo } from "react";
+import React, { useState } from "react";
 import { css, Global } from "@emotion/react";
 import styled from "@emotion/styled";
 import { CloseIcon, MenuIcon } from "components/icons";
