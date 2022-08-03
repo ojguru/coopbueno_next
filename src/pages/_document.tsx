@@ -30,7 +30,7 @@ class MyDocument extends Document {
             async
             defer
           /> */}
-          {/* <Script
+          <Script
             src="/conversation.js"
             id="hubspot-messages-loader"
             // type="text/javascript"
@@ -39,7 +39,7 @@ class MyDocument extends Document {
             data-hsjs-portal="5494710"
             data-hsjs-env="prod"
             data-hsjs-hublet="na1"
-          /> */}
+          />
         </body>
       </Html>
     );
