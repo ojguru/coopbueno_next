@@ -1,7 +1,6 @@
+const NEXT_PUBLIC_GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
-const Script = dynamic(() => import("next/script"), { ssr: false });
+import Script from "next/script";
 
 class MyDocument extends Document {
   render() {
@@ -31,18 +30,27 @@ class MyDocument extends Document {
             type="text/javascript"
             strategy="lazyOnload"
           /> */}
-          <Suspense>
-            <Script
-              src="https://js.usemessages.com/conversations-embed.js"
-              id="hubspot-messages-loader"
-              // type="text/javascript"
-              strategy="afterInteractive"
-              data-loader="hs-scriptloader"
-              data-hsjs-portal="5494710"
-              data-hsjs-env="prod"
-              data-hsjs-hublet="na1"
-            />
-          </Suspense>
+          {/* <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','/analytics.js','ga');
+  
+              ga('create', ${NEXT_PUBLIC_GA_MEASUREMENT_ID}, 'auto');
+              ga('send', 'pageview');
+              `}
+          </Script> */}
+          <Script
+            src="/conversation.js"
+            id="hubspot-messages-loader"
+            // type="text/javascript"
+            strategy="afterInteractive"
+            data-loader="hs-scriptloader"
+            data-hsjs-portal="5494710"
+            data-hsjs-env="prod"
+            data-hsjs-hublet="na1"
+          />
         </body>
       </Html>
     );
