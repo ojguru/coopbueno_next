@@ -10,6 +10,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link rel="preload" href="/conversation.js" as="script" />
 
           <link
             href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -51,7 +52,7 @@ class MyDocument extends Document {
           <Script
             src="/conversation.js"
             id="hubspot-messages-loader"
-            strategy="worker"
+            strategy="lazyOnload"
             data-loader="hs-scriptloader"
             data-hsjs-portal={HUBSPOT_ID}
             data-hsjs-env="prod"
