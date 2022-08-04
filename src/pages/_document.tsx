@@ -11,30 +11,47 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
 
-          <link rel="preload" href="/conversation.js" as="script"></link>
-          <link
-            rel="preload"
-            href="https://www.google-analytics.com/analytics.js"
-            as="script"
-          ></link>
-          <link
-            rel="preload"
-            href={`https://www.googletagmanager.com/gtag/js?id=${NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
-            as="script"
-          ></link>
           <link
             href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
+          />
+
+          <script
+            data-partytown-config
+            dangerouslySetInnerHTML={{
+              __html: `
+              partytown = {
+                lib: "/_next/static/~partytown/",
+                debug: true,
+                "forward": ["dataLayer.push","gtag"]
+              };
+            `,
+            }}
           />
         </Head>
         <body>
           <Main />
           <NextScript />
           <Script
+            id="tag-manager"
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+            strategy="worker"
+          ></Script>
+          <Script src="/analytics.js" id="google-analytics" strategy="worker" />
+          <Script id="google-analytics-script" strategy="worker">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+  
+              gtag('config', '${NEXT_PUBLIC_GA_MEASUREMENT_ID}');
+              `}
+          </Script>
+          <Script
             src="/conversation.js"
             id="hubspot-messages-loader"
-            // type="text/javascript"
-            strategy="afterInteractive"
+            strategy="worker"
             data-loader="hs-scriptloader"
             data-hsjs-portal={HUBSPOT_ID}
             data-hsjs-env="prod"

@@ -18,7 +18,6 @@ const useMenu = () => {
         onClick={(e) => {
           setMenuOpen(false);
         }}
-        id={Math.random().toString()}
         active={isMenuOpen}
       >
         {isMenuOpen && (

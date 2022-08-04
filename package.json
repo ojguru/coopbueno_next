@@ -37,6 +37,7 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
+    "@builder.io/partytown": "^0.6.4",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@gqty/cli": "^3.3.0",

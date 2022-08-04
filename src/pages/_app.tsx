@@ -1,5 +1,4 @@
 import { Global } from "@emotion/react";
-// import "../styles/globals.css";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import globalStyle from "styles/global-styles";
 import { AppWrapper } from "context/appContext";
@@ -7,7 +6,7 @@ import { NextSeo } from "next-seo";
 import Head from "next/head";
 import { SITE_NAME, SITE_URL } from "lib/constants";
 import { useRouter } from "next/router";
-import { GoogleAnalytics, usePageViews, event } from "nextjs-google-analytics";
+import { event } from "nextjs-google-analytics";
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
   event(metric.name, {
@@ -23,7 +22,6 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  usePageViews();
 
   return (
     <AppWrapper>
@@ -32,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Head>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <GoogleAnalytics strategy="afterInteractive" />
+
         <NextSeo
           title="Apoyando tus sueños"
           titleTemplate={`%s - ${SITE_NAME}`}
