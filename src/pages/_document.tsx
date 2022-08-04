@@ -52,7 +52,7 @@ class MyDocument extends Document {
           <Script
             src="/conversation.js"
             id="hubspot-messages-loader"
-            strategy="lazyOnload"
+            strategy="beforeInteractive"
             data-loader="hs-scriptloader"
             data-hsjs-portal={HUBSPOT_ID}
             data-hsjs-env="prod"
