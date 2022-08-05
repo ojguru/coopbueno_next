@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     `);
     };
     addEventListener("scroll", hsChat);
-    addEventListener("scroll", hsChat);
+    addEventListener("click", hsChat);
   }, []);
   return (
     <AppWrapper>
