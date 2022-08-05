@@ -32,7 +32,7 @@ class MyDocument extends Document {
                 // debug: true,
                 "forward": [
                   "dataLayer.push", 
-                  // "_hsq.push"
+                  "_hsq.push"
                 ],                
                 resolveUrl: function (url, location, type) {
                   if (type === 'script') {
@@ -75,7 +75,7 @@ class MyDocument extends Document {
           <Script
             src={`https://js.hs-analytics.net/analytics/1659664200000/${HUBSPOT_ID}.js`}
             id="hs-analytics"
-            strategy="afterInteractive"
+            strategy="worker"
           />
 
           <Script id="loader" strategy="afterInteractive">{`
