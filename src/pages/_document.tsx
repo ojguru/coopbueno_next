@@ -51,6 +51,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          {/* CARGA GOOGLE ANALYTICS EN EL WORKER */}
           <Script
             id="tag-manager"
             async
@@ -71,13 +72,7 @@ class MyDocument extends Document {
               gtag('config', '${NEXT_PUBLIC_GA_MEASUREMENT_ID}');
               `}
           </Script>
-
-          <Script
-            src={`https://js.hs-analytics.net/analytics/1659664200000/${HUBSPOT_ID}.js`}
-            id="hs-analytics"
-            strategy="worker"
-          />
-
+          {/* CARGA EL SCRIPT DE CONVERSACIONES HUBSPOT EN EL MAIN THREAD */}
           <Script id="loader" strategy="afterInteractive">{`
             !function(t, e, r) {
               if (!document.getElementById(t)) {
@@ -97,6 +92,121 @@ class MyDocument extends Document {
               "data-hsjs-hublet": "na1"
           });
           `}</Script>
+          {/* CARGA LOS SCRIPT DE HUBSPOT EN EL WORKER */}
+          <Script type="text/javascript" id="hs-script-load" strategy="worker">
+            {`
+            !(function (t, e, r) {
+              if (!document.getElementById(t)) {
+                var n = document.createElement("script");
+                for (var a in ((n.src =
+                  "https://js.usemessages.com/conversations-embed.js"),
+                (n.type = "text/javascript"),
+                (n.id = t),
+                r))
+                  r.hasOwnProperty(a) && n.setAttribute(a, r[a]);
+                var i = document.getElementsByTagName("script")[0];
+                i.parentNode.insertBefore(n, i);
+              }
+            })("hubspot-messages-loader", 0, {
+              "data-loader": "hs-scriptloader",
+              "data-hsjs-portal": ${HUBSPOT_ID},
+              "data-hsjs-env": "prod",
+              "data-hsjs-hublet": "na1",
+            });
+            !(function (t, e, r) {
+              if (!document.getElementById(t)) {
+                var n = document.createElement("script");
+                for (var a in ((n.src = "https://js.hsleadflows.net/leadflows.js"),
+                (n.type = "text/javascript"),
+                (n.id = t),
+                r))
+                  r.hasOwnProperty(a) && n.setAttribute(a, r[a]);
+                var i = document.getElementsByTagName("script")[0];
+                i.parentNode.insertBefore(n, i);
+              }
+            })("LeadFlows-${HUBSPOT_ID}", 0, {
+              crossorigin: "anonymous",
+              "data-leadin-portal-id": ${HUBSPOT_ID},
+              "data-leadin-env": "prod",
+              "data-loader": "hs-scriptloader",
+              "data-hsjs-portal": ${HUBSPOT_ID},
+              "data-hsjs-env": "prod",
+              "data-hsjs-hublet": "na1",
+            });
+            !(function (t, e, r) {
+              if (!document.getElementById(t)) {
+                var n = document.createElement("script");
+                for (var a in ((n.src =
+                  "https://js.hscollectedforms.net/collectedforms.js"),
+                (n.type = "text/javascript"),
+                (n.id = t),
+                r))
+                  r.hasOwnProperty(a) && n.setAttribute(a, r[a]);
+                var i = document.getElementsByTagName("script")[0];
+                i.parentNode.insertBefore(n, i);
+              }
+            })("CollectedForms-${HUBSPOT_ID}", 0, {
+              crossorigin: "anonymous",
+              "data-leadin-portal-id": ${HUBSPOT_ID},
+              "data-leadin-env": "prod",
+              "data-loader": "hs-scriptloader",
+              "data-hsjs-portal": ${HUBSPOT_ID},
+              "data-hsjs-env": "prod",
+              "data-hsjs-hublet": "na1",
+            });
+            var _hsp = (window._hsp = window._hsp || []);
+            _hsp.push(["addEnabledFeatureGates", ["CookieBanner:DomainCollection"]]);
+            !(function (t, e, r) {
+              if (!document.getElementById(t)) {
+                var n = document.createElement("script");
+                for (var a in ((n.src = "https://js.hs-banner.com/${HUBSPOT_ID}.js"),
+                (n.type = "text/javascript"),
+                (n.id = t),
+                r))
+                  r.hasOwnProperty(a) && n.setAttribute(a, r[a]);
+                var i = document.getElementsByTagName("script")[0];
+                i.parentNode.insertBefore(n, i);
+              }
+            })("cookieBanner-${HUBSPOT_ID}", 0, {
+              "data-cookieconsent": "ignore",
+              "data-hs-ignore": true,
+              "data-loader": "hs-scriptloader",
+              "data-hsjs-portal": ${HUBSPOT_ID},
+              "data-hsjs-env": "prod",
+              "data-hsjs-hublet": "na1",
+            });
+            !(function (e, t) {
+              if (!document.getElementById(e)) {
+                var c = document.createElement("script");
+                (c.src = "https://js.hs-analytics.net/analytics/1659664200000/${HUBSPOT_ID}.js"),
+                  (c.type = "text/javascript"),
+                  (c.id = e);
+                var n = document.getElementsByTagName("script")[0];
+                n.parentNode.insertBefore(c, n);
+              }
+            })("hs-analytics");
+            !(function (t, e, r) {
+              if (!document.getElementById(t)) {
+                var n = document.createElement("script");
+                for (var a in ((n.src = "https://js.hsadspixel.net/fb.js"),
+                (n.type = "text/javascript"),
+                (n.id = t),
+                r))
+                  r.hasOwnProperty(a) && n.setAttribute(a, r[a]);
+                var i = document.getElementsByTagName("script")[0];
+                i.parentNode.insertBefore(n, i);
+              }
+            })("hs-ads-pixel-${HUBSPOT_ID}", 0, {
+              "data-ads-portal-id": ${HUBSPOT_ID},
+              "data-ads-env": "prod",
+              "data-loader": "hs-scriptloader",
+              "data-hsjs-portal": ${HUBSPOT_ID},
+              "data-hsjs-env": "prod",
+              "data-hsjs-hublet": "na1",
+            });
+            
+            `}
+          </Script>
         </body>
       </Html>
     );

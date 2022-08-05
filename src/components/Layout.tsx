@@ -18,7 +18,6 @@ const Layout = ({ children }: LayoutProps) => {
 
   useEffect(() => {
     window.eval(`
-      // _hsq.push(['setPath', '${router.asPath}']);
       _hsq.push(["trackPageView"]);
     `);
   }, [router]);
