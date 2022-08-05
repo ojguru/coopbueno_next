@@ -10,17 +10,18 @@ class MyDocument extends Document {
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
+          {/* <link
             rel="preload"
             href="https://js.usemessages.com/conversations-embed.js"
             as="script"
-          />
+          /> */}
 
           <link
             href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
           />
 
+          {/* CONFIGURACIONES PARTYTOWN */}
           <Script
             id="partytown-config"
             strategy="beforeInteractive"
@@ -73,7 +74,7 @@ class MyDocument extends Document {
               `}
           </Script>
           {/* CARGA EL SCRIPT DE CONVERSACIONES HUBSPOT EN EL MAIN THREAD */}
-          <Script id="loader" strategy="afterInteractive">{`
+          {/* <Script id="loader" strategy="beforeInteractive">{`
             !function(t, e, r) {
               if (!document.getElementById(t)) {
                   var n = document.createElement("script");
@@ -91,28 +92,28 @@ class MyDocument extends Document {
               "data-hsjs-env": "prod",
               "data-hsjs-hublet": "na1"
           });
-          `}</Script>
+          `}</Script> */}
           {/* CARGA LOS SCRIPT DE HUBSPOT EN EL WORKER */}
           <Script type="text/javascript" id="hs-script-load" strategy="worker">
             {`
-            !(function (t, e, r) {
-              if (!document.getElementById(t)) {
-                var n = document.createElement("script");
-                for (var a in ((n.src =
-                  "https://js.usemessages.com/conversations-embed.js"),
-                (n.type = "text/javascript"),
-                (n.id = t),
-                r))
-                  r.hasOwnProperty(a) && n.setAttribute(a, r[a]);
-                var i = document.getElementsByTagName("script")[0];
-                i.parentNode.insertBefore(n, i);
-              }
-            })("hubspot-messages-loader", 0, {
-              "data-loader": "hs-scriptloader",
-              "data-hsjs-portal": ${HUBSPOT_ID},
-              "data-hsjs-env": "prod",
-              "data-hsjs-hublet": "na1",
-            });
+            // !(function (t, e, r) {
+            //   if (!document.getElementById(t)) {
+            //     var n = document.createElement("script");
+            //     for (var a in ((n.src =
+            //       "https://js.usemessages.com/conversations-embed.js"),
+            //     (n.type = "text/javascript"),
+            //     (n.id = t),
+            //     r))
+            //       r.hasOwnProperty(a) && n.setAttribute(a, r[a]);
+            //     var i = document.getElementsByTagName("script")[0];
+            //     i.parentNode.insertBefore(n, i);
+            //   }
+            // })("hubspot-messages-loader", 0, {
+            //   "data-loader": "hs-scriptloader",
+            //   "data-hsjs-portal": ${HUBSPOT_ID},
+            //   "data-hsjs-env": "prod",
+            //   "data-hsjs-hublet": "na1",
+            // });
             !(function (t, e, r) {
               if (!document.getElementById(t)) {
                 var n = document.createElement("script");

@@ -4,9 +4,10 @@ import globalStyle from "styles/global-styles";
 import { AppWrapper } from "context/appContext";
 import { NextSeo } from "next-seo";
 import Head from "next/head";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { HUBSPOT_ID, SITE_NAME, SITE_URL } from "lib/constants";
 import { useRouter } from "next/router";
 import { event } from "nextjs-google-analytics";
+import { useEffect } from "react";
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
   event(metric.name, {
@@ -23,6 +24,30 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
+  useEffect(() => {
+    const prueba = async () => {
+      window.eval(`
+      !function(t, e, r) {
+        if (!document.getElementById(t)) {
+            var n = document.createElement("script");
+            for (var a in n.src = "https://js.usemessages.com/conversations-embed.js",
+            n.type = "text/javascript",
+            n.id = t,
+            r)
+                r.hasOwnProperty(a) && n.setAttribute(a, r[a]);
+            var i = document.getElementsByTagName("script")[0];
+            i.parentNode.insertBefore(n, i)
+        }
+    }("hubspot-messages-loader", 0, {
+        "data-loader": "hs-scriptloader",
+        "data-hsjs-portal": ${HUBSPOT_ID},
+        "data-hsjs-env": "prod",
+        "data-hsjs-hublet": "na1"
+    });
+    `);
+    };
+    addEventListener("scroll", prueba);
+  }, []);
   return (
     <AppWrapper>
       <Global styles={globalStyle} />
