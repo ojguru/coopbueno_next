@@ -68,6 +68,15 @@ class MyDocument extends Document {
               `}
           </Script>
 
+          <Script
+            type="text/javascript"
+            id="hs-script-loader"
+            async
+            defer
+            src="//js.hs-scripts.com/5494710.js"
+            strategy="afterInteractive"
+          />
+
           {/* <Script
             type="text/javascript"
             async
@@ -113,13 +122,13 @@ class MyDocument extends Document {
             src="https://js.hsleadflows.net/leadflows.js"
             strategy="worker"
           /> */}
-          <Script
+          {/* <Script
             type="text/javascript"
             async
             defer
             src="https://js.usemessages.com/conversations-embed.js"
-            strategy="afterInteractive"
-          />
+            strategy="worker"
+          /> */}
         </body>
       </Html>
     );
