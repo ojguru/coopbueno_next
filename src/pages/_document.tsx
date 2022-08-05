@@ -17,14 +17,19 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
 
-          <script
+          <Script
+            id="partytown-config"
+            strategy="beforeInteractive"
             data-partytown-config
             dangerouslySetInnerHTML={{
               __html: `
               partytown = {
                 lib: "/_next/static/~partytown/",
-                debug: true,
-                "forward": ["dataLayer.push","gtag", "_hsq.push"],
+                // debug: true,
+                "forward": [
+                  "dataLayer.push", 
+                  "_hsq.push"
+                ],
                 resolveUrl: function (url, location, type) {
                   if (type === 'script') {
                     const proxyUrl = new URL('https://cdn.builder.codes/api/v1/js-proxy');
@@ -62,67 +67,59 @@ class MyDocument extends Document {
               gtag('config', '${NEXT_PUBLIC_GA_MEASUREMENT_ID}');
               `}
           </Script>
-          <Script
+
+          {/* <Script
             type="text/javascript"
             async
             defer
             src="https://js.hs-analytics.net/analytics/1659628500000/5494710.js"
             strategy="worker"
-          />
+          /> */}
 
-          <Script
+          {/* <Script
             type="text/javascript"
             async
             defer
             src="https://js.hs-banner.com/5494710.js"
             strategy="worker"
-          />
+          /> */}
 
-          <Script
+          {/* <Script
             type="text/javascript"
             async
             defer
             src="http://js.hs-scripts.com/5494710.js"
             strategy="worker"
-          />
+          /> */}
 
-          <Script
+          {/* <Script
             type="text/javascript"
             async
             defer
             src="https://js.hsadspixel.net/fb.js"
             strategy="worker"
-          />
-          <Script
+          /> */}
+          {/* <Script
             type="text/javascript"
             async
             defer
             src="https://js.hscollectedforms.net/collectedforms.js"
             strategy="worker"
-          />
-          <Script
+          /> */}
+          {/* <Script
             type="text/javascript"
             async
             defer
             src="https://js.hsleadflows.net/leadflows.js"
             strategy="worker"
-          />
+          /> */}
           <Script
             type="text/javascript"
             async
             defer
             src="https://js.usemessages.com/conversations-embed.js"
-            strategy="worker"
+            strategy="afterInteractive"
           />
-          {/* <Script
-            src="/conversation.js"
-            id="hubspot-messages-loader"
-            strategy="worker"
-            data-loader="hs-scriptloader"
-            data-hsjs-portal={HUBSPOT_ID}
-            data-hsjs-env="prod"
-            data-hsjs-hublet="na1"
-          /> */}
         </body>
       </Html>
     );

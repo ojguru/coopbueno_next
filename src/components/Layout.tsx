@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 
 import Header from "components/Header";
 import Footer from "components/Footer";
 
+// import Script from "next/script";
+
 import { ENUM_SERVICIO_CATEGORIA, useQuery } from "client";
+import { useRouter } from "next/router";
 
 interface LayoutProps {
   children?: any;
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const router = useRouter();
+
+  // useEffect(() => {
+  //   window.eval(`
+  //     _hsq.push(['setPath', '${router.asPath}']);
+  //     _hsq.push(["trackPageView"]);
+  //   `);
+  // }, [router]);
+
   const servicios =
     useQuery().servicios({
       pagination: {
