@@ -4,8 +4,6 @@ import styled from "@emotion/styled";
 import Header from "components/Header";
 import Footer from "components/Footer";
 
-// import Script from "next/script";
-
 import { ENUM_SERVICIO_CATEGORIA, useQuery } from "client";
 import { useRouter } from "next/router";
 
