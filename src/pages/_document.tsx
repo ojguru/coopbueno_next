@@ -96,7 +96,7 @@ class MyDocument extends Document {
             defer
           /> */}
 
-          <Script id="loader" strategy="afterInteractive">{`
+          <Script id="loader" strategy="worker">{`
             !function(t, e, r) {
               if (!document.getElementById(t)) {
                   var n = document.createElement("script");
