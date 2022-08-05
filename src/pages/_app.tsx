@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    const prueba = async () => {
+    const hsChat = async () => {
       window.eval(`
       !function(t, e, r) {
         if (!document.getElementById(t)) {
@@ -46,7 +46,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     });
     `);
     };
-    addEventListener("scroll", prueba);
+    addEventListener("scroll", hsChat);
+    addEventListener("scroll", hsChat);
   }, []);
   return (
     <AppWrapper>
