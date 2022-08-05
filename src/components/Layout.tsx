@@ -16,12 +16,12 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const router = useRouter();
 
-  // useEffect(() => {
-  //   window.eval(`
-  //     _hsq.push(['setPath', '${router.asPath}']);
-  //     _hsq.push(["trackPageView"]);
-  //   `);
-  // }, [router]);
+  useEffect(() => {
+    window.eval(`
+      // _hsq.push(['setPath', '${router.asPath}']);
+      _hsq.push(["trackPageView"]);
+    `);
+  }, [router]);
 
   const servicios =
     useQuery().servicios({
