@@ -51,7 +51,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     setTimeout(() => {
       hsChat();
-    }, 2000);
+    }, 3500);
     addEventListener("scroll", hsChat);
     addEventListener("click", hsChat);
   }, []);
