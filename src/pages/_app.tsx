@@ -38,8 +38,8 @@ function MyApp({ Component, pageProps }: AppProps) {
             var i = document.getElementsByTagName("script")[0];
             i.parentNode.insertBefore(n, i)
         }
-        removeEventListener("scroll", hsChat);
-        removeEventListener("click", hsChat);
+        removeEventListener("scroll", ()=>{});
+        removeEventListener("click", ()=>{});
     }("hubspot-messages-loader", 0, {
         "data-loader": "hs-scriptloader",
         "data-hsjs-portal": ${HUBSPOT_ID},
@@ -51,7 +51,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     setTimeout(() => {
       hsChat();
-    }, 1000);
+    }, 3000);
     addEventListener("scroll", hsChat);
     addEventListener("click", hsChat);
   }, []);
