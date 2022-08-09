@@ -4,6 +4,7 @@ import Loading from "components/loading";
 import { HUBSPOT_ID } from "lib/constants";
 import { ComponentGeneralFormulario } from "client";
 import Script from "next/script";
+import Head from "next/head";
 
 interface FormularioProps {
   formulario?: ComponentGeneralFormulario;
@@ -12,17 +13,19 @@ interface FormularioProps {
 const Formulario = ({ formulario }: FormularioProps) => {
   return (
     <Suspense fallback={<Loading />}>
+      <Head>
+        <link
+          rel="preload"
+          href="//js.hsforms.net/forms/v2.js?pre=1"
+          as="script"
+        />
+      </Head>
       <Form>
         {formulario?.titulo ? (
           <FormHeader>{formulario?.titulo}</FormHeader>
         ) : null}
         <FormBody>
           <div id={`form-${formulario?.formId}`} />
-          <Script
-            type="text/javascript"
-            src="https://code.jquery.com/jquery-3.6.0.min.js"
-            strategy="lazyOnload"
-          />
           <Script
             type="text/javascript"
             src="//js.hsforms.net/forms/v2.js?pre=1"
@@ -38,6 +41,20 @@ const Formulario = ({ formulario }: FormularioProps) => {
               };
 
               window.hbspt.forms.create(arg);
+
+              const getJQuery = async () => {
+                setTimeout(() => {
+                  fetch("https://code.jquery.com/jquery-3.6.0.min.js")
+                    .then((res) => res.text())
+                    .then((res) => {
+                      window.eval(res);
+                    });
+                }, 7000);
+              };
+
+              if (!window?.jQuery) {
+                getJQuery();
+              }
             }}
           />
         </FormBody>
