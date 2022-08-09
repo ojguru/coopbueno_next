@@ -29,7 +29,7 @@ const Formulario = ({ formulario }: FormularioProps) => {
           <Script
             type="text/javascript"
             src="//js.hsforms.net/forms/v2.js?pre=1"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
             onReady={() => {
               let arg = {
                 region: "na1",
@@ -49,7 +49,7 @@ const Formulario = ({ formulario }: FormularioProps) => {
                     .then((res) => {
                       window.eval(res);
                     });
-                }, 7000);
+                }, 3000);
               };
 
               if (!window?.jQuery) {
