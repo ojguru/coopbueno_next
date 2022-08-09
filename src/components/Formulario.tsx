@@ -11,65 +11,55 @@ interface FormularioProps {
 }
 
 const Formulario = ({ formulario }: FormularioProps) => {
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    if (window.hbspt) {
-      setLoaded(true);
-    } else {
-      setTimeout(() => {
-        setLoaded(true);
-      }, 3500);
-    }
-  }, []);
   return (
     <Suspense fallback={<Loading />}>
-      {loaded ? (
-        <Form>
-          {formulario?.titulo ? (
-            <FormHeader>{formulario?.titulo}</FormHeader>
-          ) : null}
-          <FormBody>
-            <div id={`form-${formulario?.formId}`} />
-            {loaded ? (
-              <Script
-                id="hsForm"
-                type="text/javascript"
-                src="//js.hsforms.net/forms/v2.js?pre=1"
-                strategy="afterInteractive"
-                onReady={() => {
-                  let arg = {
-                    region: "na1",
-                    portalId: `${HUBSPOT_ID}`,
-                    formId: formulario?.formId,
-                    target: `#form-${formulario?.formId}`,
-                    redirectUrl: formulario?.redireccion || null,
-                    inlineMessage: formulario?.mensaje || null,
-                  };
+      <Head>
+        <link
+          rel="preload"
+          href="//js.hsforms.net/forms/v2.js?pre=1"
+          as="script"
+        />
+      </Head>
+      <Form>
+        {formulario?.titulo ? (
+          <FormHeader>{formulario?.titulo}</FormHeader>
+        ) : null}
+        <FormBody>
+          <div id={`form-${formulario?.formId}`} />
+          <Script
+            id="hsForm"
+            type="text/javascript"
+            src="//js.hsforms.net/forms/v2.js?pre=1"
+            strategy="afterInteractive"
+            onReady={() => {
+              let arg = {
+                region: "na1",
+                portalId: `${HUBSPOT_ID}`,
+                formId: formulario?.formId,
+                target: `#form-${formulario?.formId}`,
+                redirectUrl: formulario?.redireccion || null,
+                inlineMessage: formulario?.mensaje || null,
+              };
 
-                  window.hbspt.forms.create(arg);
+              window.hbspt?.forms?.create(arg);
 
-                  const getJQuery = async () => {
-                    setTimeout(() => {
-                      fetch("https://code.jquery.com/jquery-3.6.0.min.js")
-                        .then((res) => res.text())
-                        .then((res) => {
-                          window.eval(res);
-                        });
-                    }, 3000);
-                  };
+              const getJQuery = async () => {
+                setTimeout(() => {
+                  fetch("https://code.jquery.com/jquery-3.6.0.min.js")
+                    .then((res) => res.text())
+                    .then((res) => {
+                      window.eval(res);
+                    });
+                }, 3000);
+              };
 
-                  if (!window?.jQuery) {
-                    getJQuery();
-                  }
-                }}
-              />
-            ) : null}
-          </FormBody>
-        </Form>
-      ) : (
-        <Loading />
-      )}
+              if (!window?.jQuery) {
+                getJQuery();
+              }
+            }}
+          />
+        </FormBody>
+      </Form>
     </Suspense>
   );
 };

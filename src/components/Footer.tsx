@@ -24,6 +24,7 @@ import logo from "../../public/coopbueno_logo_footer.svg";
 import colors from "styles/colors";
 import { getHierarchicalItems } from "lib/auxiliar";
 import { MenusMenuItemEntity } from "client";
+import { getImageURL } from "lib/api";
 
 interface FooterProps {
   menuItems?: MenusMenuItemEntity[];
@@ -121,13 +122,15 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
             title="Cerficación Sujeto Obligado - Unidad de Análisis Financiero"
           >
             <Certification>
-              {/* <Image
-                src="https://certificaciones.uaf.gob.do/certificados/UAF00046MLEB.png"
+              <Image
+                src={getImageURL(
+                  "https://certificaciones.uaf.gob.do/certificados/UAF00046MLEB.png"
+                )}
                 alt="Sello de Certificación de Sujeto Obligado"
                 width="83"
                 height="100"
                 lang="es"
-              /> */}
+              />
             </Certification>
           </Link>
         </Certifications>
