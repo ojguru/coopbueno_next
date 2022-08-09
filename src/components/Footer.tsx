@@ -21,6 +21,7 @@ import {
   EMAIL,
 } from "lib/constants";
 import logo from "../../public/coopbueno_logo_footer.svg";
+import uaf from "../../public/uaf.webp";
 import colors from "styles/colors";
 import { getHierarchicalItems } from "lib/auxiliar";
 import { MenusMenuItemEntity } from "client";
@@ -123,9 +124,10 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
           >
             <Certification>
               <Image
-                src={getImageURL(
-                  "https://certificaciones.uaf.gob.do/certificados/UAF00046MLEB.png"
-                )}
+                // src={getImageURL(
+                //   "https://certificaciones.uaf.gob.do/certificados/UAF00046MLEB.png"
+                // )}
+                src={uaf}
                 alt="Sello de Certificación de Sujeto Obligado"
                 width="83"
                 height="100"
