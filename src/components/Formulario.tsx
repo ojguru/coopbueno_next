@@ -24,13 +24,6 @@ const Formulario = ({ formulario }: FormularioProps) => {
   }, []);
   return (
     <Suspense fallback={<Loading />}>
-      <Head>
-        <link
-          rel="preload"
-          href="//js.hsforms.net/forms/v2.js?pre=1"
-          as="script"
-        />
-      </Head>
       {loaded ? (
         <Form>
           {formulario?.titulo ? (
