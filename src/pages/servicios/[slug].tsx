@@ -11,7 +11,6 @@ import Beneficios from "templates/servicios/beneficios";
 import Video from "templates/servicios/video";
 import Loading from "components/loading";
 import { NextSeo } from "next-seo";
-import Error from "next/error";
 
 import { GetStaticProps } from "next";
 

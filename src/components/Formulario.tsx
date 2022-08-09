@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import Loading from "components/loading";
 import { HUBSPOT_ID } from "lib/constants";
@@ -11,6 +11,17 @@ interface FormularioProps {
 }
 
 const Formulario = ({ formulario }: FormularioProps) => {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (window.hbspt) {
+      setLoaded(true);
+    } else {
+      setTimeout(() => {
+        setLoaded(true);
+      }, 3500);
+    }
+  }, []);
   return (
     <Suspense fallback={<Loading />}>
       <Head>
@@ -20,45 +31,52 @@ const Formulario = ({ formulario }: FormularioProps) => {
           as="script"
         />
       </Head>
-      <Form>
-        {formulario?.titulo ? (
-          <FormHeader>{formulario?.titulo}</FormHeader>
-        ) : null}
-        <FormBody>
-          <div id={`form-${formulario?.formId}`} />
-          <Script
-            type="text/javascript"
-            src="//js.hsforms.net/forms/v2.js?pre=1"
-            strategy="afterInteractive"
-            onReady={() => {
-              let arg = {
-                region: "na1",
-                portalId: `${HUBSPOT_ID}`,
-                formId: formulario?.formId,
-                target: `#form-${formulario?.formId}`,
-                redirectUrl: formulario?.redireccion || null,
-                inlineMessage: formulario?.mensaje || null,
-              };
+      {loaded ? (
+        <Form>
+          {formulario?.titulo ? (
+            <FormHeader>{formulario?.titulo}</FormHeader>
+          ) : null}
+          <FormBody>
+            <div id={`form-${formulario?.formId}`} />
+            {loaded ? (
+              <Script
+                id="hsForm"
+                type="text/javascript"
+                src="//js.hsforms.net/forms/v2.js?pre=1"
+                strategy="afterInteractive"
+                onReady={() => {
+                  let arg = {
+                    region: "na1",
+                    portalId: `${HUBSPOT_ID}`,
+                    formId: formulario?.formId,
+                    target: `#form-${formulario?.formId}`,
+                    redirectUrl: formulario?.redireccion || null,
+                    inlineMessage: formulario?.mensaje || null,
+                  };
 
-              window.hbspt.forms.create(arg);
+                  window.hbspt.forms.create(arg);
 
-              const getJQuery = async () => {
-                setTimeout(() => {
-                  fetch("https://code.jquery.com/jquery-3.6.0.min.js")
-                    .then((res) => res.text())
-                    .then((res) => {
-                      window.eval(res);
-                    });
-                }, 3000);
-              };
+                  const getJQuery = async () => {
+                    setTimeout(() => {
+                      fetch("https://code.jquery.com/jquery-3.6.0.min.js")
+                        .then((res) => res.text())
+                        .then((res) => {
+                          window.eval(res);
+                        });
+                    }, 3000);
+                  };
 
-              if (!window?.jQuery) {
-                getJQuery();
-              }
-            }}
-          />
-        </FormBody>
-      </Form>
+                  if (!window?.jQuery) {
+                    getJQuery();
+                  }
+                }}
+              />
+            ) : null}
+          </FormBody>
+        </Form>
+      ) : (
+        <Loading />
+      )}
     </Suspense>
   );
 };
