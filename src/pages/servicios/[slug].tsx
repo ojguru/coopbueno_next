@@ -7,7 +7,7 @@ import Producto from "templates/servicios/producto";
 import Ventajas from "templates/servicios/ventajas";
 import Requisitos from "templates/servicios/requisitos";
 import Beneficios from "templates/servicios/beneficios";
-import Conversion from "templates/servicios/conversion";
+
 import Video from "templates/servicios/video";
 import Loading from "components/loading";
 import { NextSeo } from "next-seo";
@@ -24,6 +24,7 @@ import {
 import { PropsWithServerCache } from "@gqty/react";
 import { getImageURL } from "lib/api";
 import { SITE_NAME, SITE_URL } from "lib/constants";
+import Conversion from "templates/servicios/conversion";
 
 type PageProps = PropsWithServerCache<{
   slug?: string;

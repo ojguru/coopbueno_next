@@ -1,37 +1,49 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 import Loading from "components/loading";
 import { HUBSPOT_ID } from "lib/constants";
 import { ComponentGeneralFormulario } from "client";
 import Script from "next/script";
-import HubspotForm from "react-hubspot-form";
 
 interface FormularioProps {
   formulario?: ComponentGeneralFormulario;
 }
 
 const Formulario = ({ formulario }: FormularioProps) => {
-  const redirectUrl = formulario?.redireccion ?? null;
-  const inlineMessage = formulario?.mensaje ?? null;
-
-  return formulario ? (
-    <>
-      <Script src="https://code.jquery.com/jquery-3.6.0.min.js" />
+  return (
+    <Suspense fallback={<Loading />}>
       <Form>
-        {formulario.titulo ? (
-          <FormHeader>{formulario.titulo}</FormHeader>
+        {formulario?.titulo ? (
+          <FormHeader>{formulario?.titulo}</FormHeader>
         ) : null}
         <FormBody>
-          <HubspotForm
-            portalId={HUBSPOT_ID}
-            formId={formulario.formId}
-            loading={<Loading />}
-            redirectUrl={redirectUrl}
+          <div id={`form-${formulario?.formId}`} />
+          <Script
+            type="text/javascript"
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            strategy="lazyOnload"
+          />
+          <Script
+            type="text/javascript"
+            src="//js.hsforms.net/forms/v2.js?pre=1"
+            strategy="lazyOnload"
+            onReady={() => {
+              let arg = {
+                region: "na1",
+                portalId: `${HUBSPOT_ID}`,
+                formId: formulario?.formId,
+                target: `#form-${formulario?.formId}`,
+                redirectUrl: formulario?.redireccion || null,
+                inlineMessage: formulario?.mensaje || null,
+              };
+
+              window.hbspt.forms.create(arg);
+            }}
           />
         </FormBody>
       </Form>
-    </>
-  ) : null;
+    </Suspense>
+  );
 };
 
 export default Formulario;

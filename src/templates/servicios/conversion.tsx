@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { container } from "components/grid";
 import { h1 } from "styles/tipography";
@@ -11,10 +11,6 @@ interface ConversionProps {
 
 const Conversion = ({ servicio }: ConversionProps) => {
   const formulario = servicio?.formulario;
-  const [loaded, setLoaded] = useState(false);
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
 
   return formulario ? (
     <Section space>
@@ -25,7 +21,9 @@ const Conversion = ({ servicio }: ConversionProps) => {
         </FormBox>
       </Container>
     </Section>
-  ) : null;
+  ) : (
+    <div />
+  );
 };
 
 export default Conversion;

@@ -4,19 +4,19 @@ import { GetStaticProps } from "next";
 
 import {
   useQuery,
-  useTransactionQuery,
   prepareReactRender,
   useHydrateCache,
   ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK,
 } from "client";
 import { PropsWithServerCache } from "@gqty/react";
-import ArticuloBody from "templates/academia/ArticuloBody";
-import ArticuloAside from "templates/academia/ArticuloAside";
 import Layout from "components/Layout";
 import Loading from "components/loading";
 import { NextSeo } from "next-seo";
 import { SITE_NAME, SITE_URL } from "lib/constants";
 import { getImageURL } from "lib/api";
+
+import ArticuloBody from "templates/academia/ArticuloBody";
+import ArticuloAside from "templates/academia/ArticuloAside";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -100,7 +100,12 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
       />
       <Layout>
         <ArticuloBody articulo={articuloEntidad} />
-        <ArticuloAside articulo={articuloEntidad} relacionados={relacionados} />
+        <Suspense fallback="">
+          <ArticuloAside
+            articulo={articuloEntidad}
+            relacionados={relacionados}
+          />
+        </Suspense>
       </Layout>
     </Suspense>
   );

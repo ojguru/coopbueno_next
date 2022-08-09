@@ -9,7 +9,6 @@ import Layout from "components/Layout";
 import Loading from "components/loading";
 import { NextSeo } from "next-seo";
 import { SITE_NAME, SITE_URL } from "lib/constants";
-import { getImageURL } from "lib/api";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
