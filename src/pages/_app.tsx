@@ -56,41 +56,41 @@ function MyApp({ Component, pageProps }: AppProps) {
     addEventListener("click", hsChat);
   }, []);
   return (
-    <AppWrapper>
+    <>
       <Global styles={globalStyle} />
-      <>
-        <Head>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-        <NextSeo
-          title="Apoyando tus sueños"
-          titleTemplate={`%s - ${SITE_NAME}`}
-          defaultTitle="Apoyando tus sueños"
-          description="Apoyando tus sueños"
-          canonical={`${SITE_URL}${router.asPath}`}
-          openGraph={{
-            url: "https://coopbueno.com.do/",
-            title: SITE_NAME,
-            description: "Apoyando tus sueños",
-            images: [
-              {
-                url: "/og-image.png",
-                width: 800,
-                height: 420,
-                alt: `${SITE_NAME} - apoyando tus sueños`,
-              },
-            ],
-          }}
-          twitter={{
-            handle: "@handle",
-            site: "@site",
-            cardType: "summary_large_image",
-          }}
-        />
+      <NextSeo
+        title="Apoyando tus sueños"
+        titleTemplate={`%s - ${SITE_NAME}`}
+        defaultTitle="Apoyando tus sueños"
+        description="Apoyando tus sueños"
+        canonical={`${SITE_URL}${router.asPath}`}
+        openGraph={{
+          url: "https://coopbueno.com.do/",
+          title: SITE_NAME,
+          description: "Apoyando tus sueños",
+          images: [
+            {
+              url: "/og-image.png",
+              width: 800,
+              height: 420,
+              alt: `${SITE_NAME} - apoyando tus sueños`,
+            },
+          ],
+        }}
+        twitter={{
+          handle: "@handle",
+          site: "@site",
+          cardType: "summary_large_image",
+        }}
+      />
+      <AppWrapper>
         <Component {...pageProps} />
-      </>
-    </AppWrapper>
+      </AppWrapper>
+    </>
   );
 }
 

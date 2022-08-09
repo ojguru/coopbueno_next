@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { css, Global } from "@emotion/react";
 import styled from "@emotion/styled";
 import { CloseIcon, MenuIcon } from "components/icons";
 import colors from "styles/colors";
 import { container, mq } from "components/grid";
+import { useAppContext } from "context/appContext";
 
 const useMenu = () => {
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const { isMenuOpen, setMenuOpen } = useAppContext();
 
   interface MenuModalUIProps {
     children: any;

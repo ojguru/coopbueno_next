@@ -13,6 +13,38 @@ interface FormularioProps {
 const Formulario = ({ formulario }: FormularioProps) => {
   return (
     <Suspense fallback={<Loading />}>
+      <Script
+        id="hsForm"
+        type="text/javascript"
+        src="//js.hsforms.net/forms/v2.js?pre=1"
+        strategy="afterInteractive"
+        onReady={() => {
+          let arg = {
+            region: "na1",
+            portalId: `${HUBSPOT_ID}`,
+            formId: formulario?.formId,
+            target: `#form-${formulario?.formId}`,
+            redirectUrl: formulario?.redireccion || null,
+            inlineMessage: formulario?.mensaje || null,
+          };
+
+          window.hbspt?.forms?.create(arg);
+
+          const getJQuery = async () => {
+            setTimeout(() => {
+              fetch("https://code.jquery.com/jquery-3.6.0.min.js")
+                .then((res) => res.text())
+                .then((res) => {
+                  window.eval(res);
+                });
+            }, 4000);
+          };
+
+          if (!window?.jQuery) {
+            getJQuery();
+          }
+        }}
+      />
       <Head>
         <link
           rel="preload"
@@ -26,38 +58,6 @@ const Formulario = ({ formulario }: FormularioProps) => {
         ) : null}
         <FormBody>
           <div id={`form-${formulario?.formId}`} />
-          <Script
-            id="hsForm"
-            type="text/javascript"
-            src="//js.hsforms.net/forms/v2.js?pre=1"
-            strategy="afterInteractive"
-            onReady={() => {
-              let arg = {
-                region: "na1",
-                portalId: `${HUBSPOT_ID}`,
-                formId: formulario?.formId,
-                target: `#form-${formulario?.formId}`,
-                redirectUrl: formulario?.redireccion || null,
-                inlineMessage: formulario?.mensaje || null,
-              };
-
-              window.hbspt?.forms?.create(arg);
-
-              const getJQuery = async () => {
-                setTimeout(() => {
-                  fetch("https://code.jquery.com/jquery-3.6.0.min.js")
-                    .then((res) => res.text())
-                    .then((res) => {
-                      window.eval(res);
-                    });
-                }, 3000);
-              };
-
-              if (!window?.jQuery) {
-                getJQuery();
-              }
-            }}
-          />
         </FormBody>
       </Form>
     </Suspense>

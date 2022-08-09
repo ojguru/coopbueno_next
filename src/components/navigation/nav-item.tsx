@@ -7,6 +7,7 @@ import { LeftArrowIcon } from "../icons";
 import colors from "styles/colors";
 import { MenuItem } from "lib/auxiliar";
 import { getURL } from "lib/api";
+import { useAppContext } from "context/appContext";
 
 interface NavItemProps {
   el?: MenuItem;
@@ -30,6 +31,7 @@ const NavItem = ({
   const isLink = item?.attributes?.url !== "#";
 
   const [isOpen, setOpen] = useState(false);
+  const { setMenuOpen } = useAppContext();
 
   return (
     <Item
@@ -60,6 +62,9 @@ const NavItem = ({
             aria-current={isCurrentPage ? "page" : undefined}
             aria-label="Item de la navegacion..."
             target={item?.attributes?.target || ""}
+            onClick={() => {
+              setMenuOpen(false);
+            }}
           >
             {item?.attributes?.title}
           </ItemLink>
