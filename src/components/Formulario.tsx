@@ -1,10 +1,9 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 import Loading from "components/loading";
 import { HUBSPOT_ID } from "lib/constants";
 import { ComponentGeneralFormulario } from "client";
 import Script from "next/script";
-import Head from "next/head";
 
 interface FormularioProps {
   formulario?: ComponentGeneralFormulario;
@@ -15,15 +14,16 @@ const Formulario = ({ formulario }: FormularioProps) => {
     <Suspense fallback={<Loading />}>
       <Script
         id="hsForm"
-        type="text/javascript"
         src="//js.hsforms.net/forms/v2.js?pre=1"
+        type="text/javascript"
         strategy="afterInteractive"
+        defer
         onReady={() => {
           let arg = {
             region: "na1",
             portalId: `${HUBSPOT_ID}`,
             formId: formulario?.formId,
-            target: `#form-${formulario?.formId}`,
+            target: `.form-${formulario?.formId}`,
             redirectUrl: formulario?.redireccion || null,
             inlineMessage: formulario?.mensaje || null,
           };
@@ -45,19 +45,12 @@ const Formulario = ({ formulario }: FormularioProps) => {
           }
         }}
       />
-      <Head>
-        <link
-          rel="preload"
-          href="//js.hsforms.net/forms/v2.js?pre=1"
-          as="script"
-        />
-      </Head>
       <Form>
         {formulario?.titulo ? (
           <FormHeader>{formulario?.titulo}</FormHeader>
         ) : null}
         <FormBody>
-          <div id={`form-${formulario?.formId}`} />
+          <div className={`form-${formulario?.formId}`} />
         </FormBody>
       </Form>
     </Suspense>

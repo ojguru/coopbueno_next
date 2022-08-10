@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import styled from "@emotion/styled";
-
-import Header from "components/Header";
-import Footer from "components/Footer";
 
 import { ENUM_SERVICIO_CATEGORIA, useQuery } from "client";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 
 interface LayoutProps {
   children?: any;
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const Header = dynamic(() => import("components/Header"));
+  const Footer = dynamic(() => import("components/Footer"));
   const router = useRouter();
 
   useEffect(() => {
@@ -68,7 +68,9 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <>
-      <Header menuItems={headerItems} servicios={servicios} />
+      <Suspense>
+        <Header menuItems={headerItems} servicios={servicios} />
+      </Suspense>
       <Main>
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
@@ -79,7 +81,9 @@ const Layout = ({ children }: LayoutProps) => {
           return child;
         })}
       </Main>
-      <Footer menuItems={footerItems} />
+      <Suspense>
+        <Footer menuItems={footerItems} />
+      </Suspense>
     </>
   );
 };
