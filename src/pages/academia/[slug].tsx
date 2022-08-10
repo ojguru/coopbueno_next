@@ -19,7 +19,7 @@ import ArticuloBody from "templates/academia/ArticuloBody";
 import dynamic from "next/dynamic";
 const ArticuloAside = dynamic(
   () => import("templates/academia/ArticuloAside"),
-  { ssr: false }
+  { ssr: true }
 );
 
 type PageProps = PropsWithServerCache<{

@@ -13,7 +13,7 @@ import dynamic from "next/dynamic";
 import ArticuloBody from "templates/noticias/ArticuloBody";
 const ArticuloAside = dynamic(
   () => import("templates/noticias/ArticuloAside"),
-  { ssr: false }
+  { ssr: true }
 );
 import Layout from "components/Layout";
 import Loading from "components/loading";
