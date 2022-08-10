@@ -16,8 +16,7 @@ const Formulario = ({ formulario }: FormularioProps) => {
         id="hsForm"
         src="//js.hsforms.net/forms/v2.js?pre=1"
         type="text/javascript"
-        strategy="afterInteractive"
-        defer
+        strategy="lazyOnload"
         onReady={() => {
           let arg = {
             region: "na1",

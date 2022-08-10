@@ -11,16 +11,6 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            rel="preload"
-            href="https://js.usemessages.com/conversations-embed.js"
-            as="script"
-          />
-          <link
-            rel="preload"
-            href="//js.hsforms.net/forms/v2.js?pre=1"
-            as="script"
-          />
-          <link
             href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
           />
@@ -61,15 +51,13 @@ class MyDocument extends Document {
             id="tag-manager"
             src={`https://www.googletagmanager.com/gtag/js?id=${NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
             strategy="worker"
-            defer
           ></Script>
           <Script
             src="https://www.google-analytics.com/analytics.js"
             id="google-analytics"
             strategy="worker"
-            defer
           />
-          <Script id="google-analytics-script" strategy="worker" defer>
+          <Script id="google-analytics-script" strategy="worker">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -79,12 +67,7 @@ class MyDocument extends Document {
               `}
           </Script>
           {/* CARGA LOS SCRIPT DE HUBSPOT EN EL WORKER */}
-          <Script
-            type="text/javascript"
-            id="hs-script-load"
-            strategy="worker"
-            defer
-          >
+          <Script type="text/javascript" id="hs-script-load" strategy="worker">
             {`
             // !(function (t, e, r) {
             //   if (!document.getElementById(t)) {
