@@ -22,6 +22,7 @@ import Loading from "components/loading";
 import { NextSeo } from "next-seo";
 import { SITE_NAME, SITE_URL } from "lib/constants";
 import { getImageURL } from "lib/api";
+import dynamic from "next/dynamic";
 
 type HomeProps = PropsWithServerCache<{}>;
 const Home = ({ cacheSnapshot }: HomeProps) => {

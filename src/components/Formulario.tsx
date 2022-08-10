@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import Loading from "components/loading";
 import { HUBSPOT_ID } from "lib/constants";
@@ -14,6 +14,17 @@ const Formulario = ({ formulario }: FormularioProps) => {
   const { hsFormLoaded, setHsFormLoaded } = useAppContext();
   const [formActive, setFormActive] = useState("");
 
+  const hsOptions = {
+    region: "na1",
+    portalId: `${HUBSPOT_ID}`,
+    formId: formulario?.formId,
+    target: `.form-${formulario?.formId}`,
+    redirectUrl: formulario?.redireccion || null,
+    inlineMessage: formulario?.mensaje || null,
+  };
+
+  const titulo = formulario?.titulo;
+
   useEffect(() => {
     if (!window.hbspt) {
       setTimeout(() => {
@@ -22,58 +33,43 @@ const Formulario = ({ formulario }: FormularioProps) => {
     }
   }, [setHsFormLoaded]);
 
-  return (
-    <Suspense fallback={<Loading />}>
-      {hsFormLoaded ? (
-        <>
-          <Form>
-            {formulario?.titulo ? (
-              <FormHeader>{formulario?.titulo}</FormHeader>
-            ) : null}
-            <FormBody>
-              <div className={`form-${formulario?.formId}`} />
-            </FormBody>
-          </Form>
-          <Script
-            id="hsForm"
-            src="//js.hsforms.net/forms/v2.js?pre=1"
-            type="text/javascript"
-            strategy="lazyOnload"
-            onReady={() => {
-              let arg = {
-                region: "na1",
-                portalId: `${HUBSPOT_ID}`,
-                formId: formulario?.formId,
-                target: `.form-${formulario?.formId}`,
-                redirectUrl: formulario?.redireccion || null,
-                inlineMessage: formulario?.mensaje || null,
-              };
+  return hsFormLoaded ? (
+    <>
+      <Form>
+        {titulo ? <FormHeader>{titulo}</FormHeader> : null}
+        <FormBody>
+          <div className={`form-${formulario?.formId}`} />
+        </FormBody>
+      </Form>
+      <Script
+        id="hsForm"
+        src="//js.hsforms.net/forms/v2.js?pre=1"
+        type="text/javascript"
+        strategy="lazyOnload"
+        onReady={() => {
+          if (formulario?.formId && !(formulario.formId === formActive)) {
+            window.hbspt?.forms?.create(hsOptions);
+            setFormActive(formulario?.formId);
+          }
 
-              if (formulario?.formId && !(formulario.formId === formActive)) {
-                window.hbspt?.forms?.create(arg);
-                setFormActive(formulario?.formId);
-              }
+          const getJQuery = async () => {
+            setTimeout(() => {
+              fetch("https://code.jquery.com/jquery-3.6.0.min.js")
+                .then((res) => res.text())
+                .then((res) => {
+                  window.eval(res);
+                });
+            }, 4000);
+          };
 
-              const getJQuery = async () => {
-                setTimeout(() => {
-                  fetch("https://code.jquery.com/jquery-3.6.0.min.js")
-                    .then((res) => res.text())
-                    .then((res) => {
-                      window.eval(res);
-                    });
-                }, 4000);
-              };
-
-              if (!window?.jQuery) {
-                getJQuery();
-              }
-            }}
-          />
-        </>
-      ) : (
-        <Loading />
-      )}
-    </Suspense>
+          if (!window?.jQuery) {
+            getJQuery();
+          }
+        }}
+      />
+    </>
+  ) : (
+    <Loading />
   );
 };
 

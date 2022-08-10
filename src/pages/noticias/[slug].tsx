@@ -9,8 +9,12 @@ import {
   ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK,
 } from "client";
 import { PropsWithServerCache } from "@gqty/react";
+import dynamic from "next/dynamic";
 import ArticuloBody from "templates/noticias/ArticuloBody";
-import ArticuloAside from "templates/noticias/ArticuloAside";
+const ArticuloAside = dynamic(
+  () => import("templates/noticias/ArticuloAside"),
+  { ssr: false }
+);
 import Layout from "components/Layout";
 import Loading from "components/loading";
 import { NextSeo } from "next-seo";

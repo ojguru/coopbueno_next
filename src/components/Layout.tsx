@@ -54,6 +54,7 @@ const Layout = ({ children }: LayoutProps) => {
       sort: ["order:asc"],
     })
     ?.data.map((item) => {
+      //No borrar variables sin utilizar. Se usa para GQTY
       const url = item.attributes?.url;
       const target = item.attributes?.target;
       const title = item.attributes?.title;

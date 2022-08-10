@@ -8,6 +8,11 @@ import Ventajas from "templates/servicios/ventajas";
 import Requisitos from "templates/servicios/requisitos";
 import Beneficios from "templates/servicios/beneficios";
 
+import dynamic from "next/dynamic";
+const Conversion = dynamic(() => import("templates/servicios/conversion"), {
+  ssr: false,
+});
+
 import Video from "templates/servicios/video";
 import Loading from "components/loading";
 import { NextSeo } from "next-seo";
@@ -23,7 +28,6 @@ import {
 import { PropsWithServerCache } from "@gqty/react";
 import { getImageURL } from "lib/api";
 import { SITE_NAME, SITE_URL } from "lib/constants";
-import Conversion from "templates/servicios/conversion";
 
 type PageProps = PropsWithServerCache<{
   slug?: string;

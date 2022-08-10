@@ -16,7 +16,11 @@ import { SITE_NAME, SITE_URL } from "lib/constants";
 import { getImageURL } from "lib/api";
 
 import ArticuloBody from "templates/academia/ArticuloBody";
-import ArticuloAside from "templates/academia/ArticuloAside";
+import dynamic from "next/dynamic";
+const ArticuloAside = dynamic(
+  () => import("templates/academia/ArticuloAside"),
+  { ssr: false }
+);
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -100,12 +104,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
       />
       <Layout>
         <ArticuloBody articulo={articuloEntidad} />
-        <Suspense fallback="">
-          <ArticuloAside
-            articulo={articuloEntidad}
-            relacionados={relacionados}
-          />
-        </Suspense>
+        <ArticuloAside articulo={articuloEntidad} relacionados={relacionados} />
       </Layout>
     </Suspense>
   );

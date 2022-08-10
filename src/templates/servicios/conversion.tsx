@@ -21,9 +21,7 @@ const Conversion = ({ servicio }: ConversionProps) => {
         </FormBox>
       </Container>
     </Section>
-  ) : (
-    <div />
-  );
+  ) : null;
 };
 
 export default Conversion;

@@ -1,7 +1,7 @@
 import { Global } from "@emotion/react";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import globalStyle from "styles/global-styles";
-import { AppWrapper, useAppContext } from "context/appContext";
+import { AppWrapper } from "context/appContext";
 import { NextSeo } from "next-seo";
 import Head from "next/head";
 import { HUBSPOT_ID, SITE_NAME, SITE_URL } from "lib/constants";
@@ -53,8 +53,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       setTimeout(() => {
         hsChat();
       }, 5000);
-      addEventListener("scroll", hsChat);
-      addEventListener("click", hsChat);
+      addEventListener("scroll", hsChat, { passive: true });
+      addEventListener("click", hsChat, { passive: true });
     }
   }, []);
   return (
