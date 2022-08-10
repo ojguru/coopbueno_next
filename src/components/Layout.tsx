@@ -10,8 +10,8 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const Header = dynamic(() => import("components/Header"));
-  const Footer = dynamic(() => import("components/Footer"));
+  const Header = dynamic(() => import("components/Header"), { suspense: true });
+  const Footer = dynamic(() => import("components/Footer"), { suspense: true });
   const router = useRouter();
 
   useEffect(() => {
