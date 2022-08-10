@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import Loading from "components/loading";
 import { HUBSPOT_ID } from "lib/constants";
@@ -12,6 +12,7 @@ interface FormularioProps {
 
 const Formulario = ({ formulario }: FormularioProps) => {
   const { hsFormLoaded, setHsFormLoaded } = useAppContext();
+  const [formActive, setFormActive] = useState("");
 
   useEffect(() => {
     if (!window.hbspt) {
@@ -25,6 +26,14 @@ const Formulario = ({ formulario }: FormularioProps) => {
     <Suspense fallback={<Loading />}>
       {hsFormLoaded ? (
         <>
+          <Form>
+            {formulario?.titulo ? (
+              <FormHeader>{formulario?.titulo}</FormHeader>
+            ) : null}
+            <FormBody>
+              <div className={`form-${formulario?.formId}`} />
+            </FormBody>
+          </Form>
           <Script
             id="hsForm"
             src="//js.hsforms.net/forms/v2.js?pre=1"
@@ -40,7 +49,10 @@ const Formulario = ({ formulario }: FormularioProps) => {
                 inlineMessage: formulario?.mensaje || null,
               };
 
-              window.hbspt?.forms?.create(arg);
+              if (formulario?.formId && !(formulario.formId === formActive)) {
+                window.hbspt?.forms?.create(arg);
+                setFormActive(formulario?.formId);
+              }
 
               const getJQuery = async () => {
                 setTimeout(() => {
@@ -57,14 +69,6 @@ const Formulario = ({ formulario }: FormularioProps) => {
               }
             }}
           />
-          <Form>
-            {formulario?.titulo ? (
-              <FormHeader>{formulario?.titulo}</FormHeader>
-            ) : null}
-            <FormBody>
-              <div className={`form-${formulario?.formId}`} />
-            </FormBody>
-          </Form>
         </>
       ) : (
         <Loading />
