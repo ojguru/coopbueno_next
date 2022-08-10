@@ -13,7 +13,9 @@ const Conversion = dynamic(() => import("templates/servicios/conversion"), {
   ssr: false,
 });
 
-import Video from "templates/servicios/video";
+const Video = dynamic(() => import("templates/servicios/video"), {
+  ssr: false,
+});
 import Loading from "components/loading";
 import { NextSeo } from "next-seo";
 
