@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { container, mq } from "components/grid";
-import Loading from "components/loading";
 import FeaturedMedia from "next/image";
 import colors from "styles/colors";
 import imagen from "../../../public/contacto.png";
@@ -9,16 +8,11 @@ import Formulario from "components/Formulario";
 import { ComponentGeneralFormulario } from "client";
 
 const Portada = () => {
-  const [loaded, setLoaded] = useState(false);
-
   const formulario: ComponentGeneralFormulario = {
     id: "formulairo-862702b9-c601-459d-82ac-f51aa43ebbe6",
     formId: "862702b9-c601-459d-82ac-f51aa43ebbe6",
   };
 
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
   return (
     <>
       <StyledSection space>
@@ -31,7 +25,7 @@ const Portada = () => {
             <FeaturedMedia src={imagen} alt="Contacto Coopbueno" priority />
           </ContactImage>
           <ContactForm>
-            {loaded ? <Formulario formulario={formulario} /> : <Loading />}
+            <Formulario formulario={formulario} />
           </ContactForm>
         </Container>
       </StyledSection>

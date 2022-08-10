@@ -43,6 +43,7 @@ const Loader = styled.div`
           ? css`cubic-bezier(0.65, 0.815, 0.735, 0.395)`
           : css`cubic-bezier(0.165, 0.84, 0.44, 1)`}
         infinite;
+      animation-iteration-count: infinite;
     `}
 `;
 
