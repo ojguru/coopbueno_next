@@ -7,6 +7,7 @@ import Producto from "templates/servicios/producto";
 import Ventajas from "templates/servicios/ventajas";
 import Requisitos from "templates/servicios/requisitos";
 import Beneficios from "templates/servicios/beneficios";
+import Navegador from "templates/home/HomeServicios";
 
 import dynamic from "next/dynamic";
 const Conversion = dynamic(() => import("templates/servicios/conversion"), {
@@ -26,6 +27,7 @@ import {
   prepareReactRender,
   useHydrateCache,
   ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK,
+  ENUM_SERVICIO_CATEGORIA,
 } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import { getImageURL } from "lib/api";
@@ -49,6 +51,22 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
       },
     },
   })?.data[0];
+
+  const servicios = query.servicios({
+    pagination: {
+      pageSize: 100,
+    },
+    filters: {
+      categoria: {
+        in: [
+          ENUM_SERVICIO_CATEGORIA.ahorro,
+          ENUM_SERVICIO_CATEGORIA.prestamos,
+          ENUM_SERVICIO_CATEGORIA.facilidades,
+        ],
+      },
+    },
+    sort: ["nombre:asc"],
+  })?.data;
 
   const servicio = servicioEntidad?.attributes;
 
@@ -106,6 +124,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           <Requisitos servicio={servicio} />
           <Conversion servicio={servicio} />
         </Section>
+        <Navegador servicios={servicios} />
       </Layout>
     </Suspense>
   ) : null;
