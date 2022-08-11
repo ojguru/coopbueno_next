@@ -117,23 +117,25 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
         <Certifications>
           <Link
             href="https://certificaciones.uaf.gob.do/certificaciones_so_view.php?editid1=46"
-            target="_blank"
             rel="noreferrer noopener nofollow"
             // hreflang="es"
             title="Cerficación Sujeto Obligado - Unidad de Análisis Financiero"
+            passHref
           >
-            <Certification>
-              <Image
-                // src={getImageURL(
-                //   "https://certificaciones.uaf.gob.do/certificados/UAF00046MLEB.png"
-                // )}
-                src={uaf}
-                alt="Sello de Certificación de Sujeto Obligado"
-                width="83"
-                height="100"
-                lang="es"
-              />
-            </Certification>
+            <a target="_blank">
+              <Certification>
+                <Image
+                  // src={getImageURL(
+                  //   "https://certificaciones.uaf.gob.do/certificados/UAF00046MLEB.png"
+                  // )}
+                  src={uaf}
+                  alt="Sello de Certificación de Sujeto Obligado"
+                  width="83"
+                  height="100"
+                  lang="es"
+                />
+              </Certification>
+            </a>
           </Link>
         </Certifications>
         <Link href="/" passHref>

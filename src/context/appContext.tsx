@@ -15,6 +15,7 @@ interface AppWrapper {
 export function AppWrapper({ children }: AppWrapper) {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [hsFormLoaded, setHsFormLoaded] = useState(false);
+  const [startTime, setStartTime] = useState(Date.now());
 
   const sharedState = useMemo(() => {
     return {
@@ -22,7 +23,7 @@ export function AppWrapper({ children }: AppWrapper) {
       setMenuOpen,
       hsFormLoaded,
       setHsFormLoaded,
-      startTime: Date.now(),
+      startTime,
     };
   }, [isMenuOpen, hsFormLoaded]);
 
