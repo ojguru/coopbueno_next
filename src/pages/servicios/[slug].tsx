@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { container } from "components/grid";
 import dynamic from "next/dynamic";
@@ -104,6 +104,15 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
     titulo: servicio?.formulario?.titulo || "",
   };
 
+  //USADO PAR ACTIVAR EL VIDEO Y QUE NO SE CARGUE SIEMPRE QUE ESTÉ INVIEW
+  const [videoActive, setVideoActive] = useState(false);
+
+  useEffect(() => {
+    if (inView) {
+      setVideoActive(true);
+    }
+  }, [inView, setVideoActive]);
+
   return servicio ? (
     <Suspense fallback={<Loading full />}>
       <NextSeo
@@ -135,7 +144,9 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
         <Section space>
           <Portada servicio={servicio} />
           <Producto servicio={servicio} />
-          <div ref={ref}>{inView ? <Video servicio={servicio} /> : null}</div>
+          <div ref={ref}>
+            {videoActive ? <Video servicio={servicio} /> : null}
+          </div>
           <Ventajas servicio={servicio} />
           <Beneficios servicio={servicio} />
           <Requisitos servicio={servicio} />
