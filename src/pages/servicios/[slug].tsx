@@ -35,6 +35,7 @@ import {
   useHydrateCache,
   ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK,
   ENUM_SERVICIO_CATEGORIA,
+  ComponentGeneralFormulario,
 } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import { getImageURL } from "lib/api";
@@ -94,6 +95,15 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
 
   const facebookMetaImage = facebookMeta?.image?.data?.attributes;
 
+  // EVITA PETICIÓN EXTRA A GRAPHQL
+  const formulario: ComponentGeneralFormulario = {
+    id: servicio?.formulario?.id || "",
+    formId: servicio?.formulario?.formId || "",
+    redireccion: servicio?.formulario?.redireccion || "",
+    mensaje: servicio?.formulario?.mensaje || "",
+    titulo: servicio?.formulario?.titulo || "",
+  };
+
   return servicio ? (
     <Suspense fallback={<Loading full />}>
       <NextSeo
@@ -129,7 +139,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           <Ventajas servicio={servicio} />
           <Beneficios servicio={servicio} />
           <Requisitos servicio={servicio} />
-          <Conversion servicio={servicio} />
+          <Conversion formulario={formulario} />
         </Section>
         <NavegadorServicios servicios={servicios} />
       </Layout>

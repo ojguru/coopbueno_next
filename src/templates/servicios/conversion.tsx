@@ -2,16 +2,14 @@ import React from "react";
 import styled from "@emotion/styled";
 import { container } from "components/grid";
 import { h1 } from "styles/tipography";
-import { Servicio } from "client";
+import { ComponentGeneralFormulario, Servicio } from "client";
 import Formulario from "components/Formulario";
 
 interface ConversionProps {
-  servicio: Servicio;
+  formulario: ComponentGeneralFormulario;
 }
 
-const Conversion = ({ servicio }: ConversionProps) => {
-  const formulario = servicio?.formulario;
-
+const Conversion = ({ formulario }: ConversionProps) => {
   return formulario ? (
     <Section space>
       <Container>
