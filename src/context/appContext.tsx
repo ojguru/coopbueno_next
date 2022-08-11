@@ -6,6 +6,7 @@ const AppContext = createContext({
   setMenuOpen: (a: boolean) => {},
   hsFormLoaded: false,
   setHsFormLoaded: (a: boolean) => {},
+  startTime: Date.now(),
 });
 
 interface AppWrapper {
@@ -21,6 +22,7 @@ export function AppWrapper({ children }: AppWrapper) {
       setMenuOpen,
       hsFormLoaded,
       setHsFormLoaded,
+      startTime: Date.now(),
     };
   }, [isMenuOpen, hsFormLoaded]);
 

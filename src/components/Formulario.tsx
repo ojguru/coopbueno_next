@@ -5,6 +5,7 @@ import { HUBSPOT_ID } from "lib/constants";
 import { ComponentGeneralFormulario } from "client";
 import Script from "next/script";
 import { useAppContext } from "context/appContext";
+import { useInView } from "react-intersection-observer";
 
 interface FormularioProps {
   formulario?: ComponentGeneralFormulario;
@@ -25,51 +26,64 @@ const Formulario = ({ formulario }: FormularioProps) => {
 
   const titulo = formulario?.titulo;
 
+  const { startTime } = useAppContext();
+
+  const [ref, inView] = useInView({ initialInView: false });
+
   useEffect(() => {
-    if (!window.hbspt) {
-      setTimeout(() => {
+    if (inView && !hsFormLoaded && !window.hbspt) {
+      if (Date.now() - startTime > 5000) {
         setHsFormLoaded(true);
-      }, 5000);
+      } else {
+        setTimeout(() => {
+          setHsFormLoaded(true);
+        }, 5000);
+      }
     }
-  }, [setHsFormLoaded]);
+  }, [hsFormLoaded, setHsFormLoaded, startTime, inView]);
 
-  return hsFormLoaded ? (
-    <>
-      <Form>
-        {titulo ? <FormHeader>{titulo}</FormHeader> : null}
-        <FormBody>
-          <div className={`form-${formulario?.formId}`} />
-        </FormBody>
-      </Form>
-      <Script
-        id="hsForm"
-        src="//js.hsforms.net/forms/v2.js?pre=1"
-        type="text/javascript"
-        strategy="lazyOnload"
-        onReady={() => {
-          if (formulario?.formId && !(formulario.formId === formActive)) {
-            window.hbspt?.forms?.create(hsOptions);
-            setFormActive(formulario?.formId);
-          }
+  return (
+    <Form ref={ref}>
+      {hsFormLoaded ? (
+        <>
+          {titulo ? <FormHeader>{titulo}</FormHeader> : null}
 
-          const getJQuery = async () => {
-            setTimeout(() => {
-              fetch("https://code.jquery.com/jquery-3.6.0.min.js")
-                .then((res) => res.text())
-                .then((res) => {
-                  window.eval(res);
-                });
-            }, 4000);
-          };
+          <FormBody>
+            <div className={`form-${formulario?.formId}`} />
+          </FormBody>
 
-          if (!window?.jQuery) {
-            getJQuery();
-          }
-        }}
-      />
-    </>
-  ) : (
-    <Loading />
+          {/* Ejecuta el script cada vez que se renderiza el componente */}
+          <Script
+            id="hsFormLoader"
+            src="//js.hsforms.net/forms/v2.js?pre=1"
+            strategy="lazyOnload"
+            defer
+            onReady={() => {
+              if (formulario?.formId && !(formulario.formId === formActive)) {
+                window.hbspt?.forms?.create(hsOptions);
+                setFormActive(formulario?.formId);
+              }
+
+              const getJQuery = async () => {
+                setTimeout(() => {
+                  fetch("https://code.jquery.com/jquery-3.6.0.min.js")
+                    .then((res) => res.text())
+                    .then((res) => {
+                      window.eval(res);
+                    });
+                }, 4000);
+              };
+
+              if (!window?.jQuery) {
+                getJQuery();
+              }
+            }}
+          />
+        </>
+      ) : (
+        <Loading />
+      )}
+    </Form>
   );
 };
 

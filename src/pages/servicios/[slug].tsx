@@ -30,6 +30,7 @@ import {
 import { PropsWithServerCache } from "@gqty/react";
 import { getImageURL } from "lib/api";
 import { SITE_NAME, SITE_URL } from "lib/constants";
+import { useInView } from "react-intersection-observer";
 
 type PageProps = PropsWithServerCache<{
   slug?: string;
@@ -50,6 +51,8 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
   })?.data[0];
 
   const servicio = servicioEntidad?.attributes;
+
+  const [ref, inView] = useInView({ initialInView: false });
 
   //SEO
   const image = servicio?.portada?.imagen?.data?.attributes;
@@ -97,7 +100,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
         <Section space>
           <Portada servicio={servicio} />
           <Producto servicio={servicio} />
-          <Video servicio={servicio} />
+          <div ref={ref}>{inView ? <Video servicio={servicio} /> : null}</div>
           <Ventajas servicio={servicio} />
           <Beneficios servicio={servicio} />
           <Requisitos servicio={servicio} />
