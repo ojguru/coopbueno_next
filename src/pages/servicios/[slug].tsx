@@ -1,15 +1,15 @@
 import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 import { container } from "components/grid";
+import dynamic from "next/dynamic";
 import Layout from "components/Layout";
+import Loading from "components/loading";
 import Portada from "templates/servicios/portada";
 import Producto from "templates/servicios/producto";
 import Ventajas from "templates/servicios/ventajas";
 import Requisitos from "templates/servicios/requisitos";
 import Beneficios from "templates/servicios/beneficios";
-import Navegador from "templates/home/HomeServicios";
 
-import dynamic from "next/dynamic";
 const Conversion = dynamic(() => import("templates/servicios/conversion"), {
   ssr: false,
 });
@@ -17,7 +17,14 @@ const Conversion = dynamic(() => import("templates/servicios/conversion"), {
 const Video = dynamic(() => import("templates/servicios/video"), {
   ssr: false,
 });
-import Loading from "components/loading";
+
+const NavegadorServicios = dynamic(
+  () => import("templates/home/HomeServicios"),
+  {
+    ssr: false,
+  }
+);
+
 import { NextSeo } from "next-seo";
 
 import { GetStaticProps } from "next";
@@ -124,7 +131,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           <Requisitos servicio={servicio} />
           <Conversion servicio={servicio} />
         </Section>
-        <Navegador servicios={servicios} />
+        <NavegadorServicios servicios={servicios} />
       </Layout>
     </Suspense>
   ) : null;
