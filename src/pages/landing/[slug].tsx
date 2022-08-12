@@ -83,8 +83,14 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           ],
           site_name: SITE_NAME,
         }}
-        noindex={seo?.metaRobots?.includes("noindex")}
-        nofollow={seo?.metaRobots?.includes("nofollow")}
+        noindex={
+          seo?.metaRobots?.includes("noindex") ||
+          process.env.NODE_ENV === "development"
+        }
+        nofollow={
+          seo?.metaRobots?.includes("nofollow") ||
+          process.env.NODE_ENV === "development"
+        }
       />
       <Layout>
         <Article space fluid>
