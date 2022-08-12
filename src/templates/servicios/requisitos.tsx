@@ -67,11 +67,11 @@ const Requirement = styled.li`
 `;
 
 const RequirementsBox = styled.div`
-  padding: 2.5rem 1.5rem;
+  padding: 10%;
   border-radius: 1.5rem;
   position: relative;
   ${mq.md} {
-    padding: 2.5rem;
+    padding: 5%;
     border-radius: 2.5rem;
   }
   &:before {
