@@ -1,5 +1,3 @@
-const env = process.env.NODE_ENV;
-
 import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 
@@ -21,10 +19,9 @@ import {
 } from "client";
 import { PropsWithServerCache } from "@gqty/react";
 import Loading from "components/loading";
-import { DefaultSeo, NextSeo } from "next-seo";
+import { NextSeo } from "next-seo";
 import { SITE_NAME, SITE_URL } from "lib/constants";
 import { getImageURL } from "lib/api";
-import dynamic from "next/dynamic";
 
 type HomeProps = PropsWithServerCache<{}>;
 const Home = ({ cacheSnapshot }: HomeProps) => {
@@ -68,10 +65,6 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
 
   return (
     <Suspense fallback={<Loading full />}>
-      <DefaultSeo
-        dangerouslySetAllPagesToNoFollow={env === "development"}
-        dangerouslySetAllPagesToNoIndex={env === "development"}
-      />
       <NextSeo
         title="Apoyando tus sueños"
         description="En Coopbueno sabemos el valor de tus sueños, contamos con todas las herramientas financieras para alcanzar todo lo que te propongas."
