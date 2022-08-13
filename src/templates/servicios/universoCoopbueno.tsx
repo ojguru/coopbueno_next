@@ -16,7 +16,7 @@ const Producto = ({ servicio }: ProductProps) => {
   const imagen = servicio?.icono?.data?.attributes;
 
   return (
-    <Section id="descripcion">
+    <Section>
       <Container>
         <InfoContainer>
           {/* <Title>{nombre}</Title> */}

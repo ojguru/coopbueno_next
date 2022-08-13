@@ -4,7 +4,7 @@ import { container, mq } from "components/grid";
 import dynamic from "next/dynamic";
 import Layout from "components/Layout";
 import Loading from "components/loading";
-import Portada from "templates/servicios/portada";
+import Portada from "templates/servicios/portadaInfanitil";
 import Producto from "templates/servicios/producto";
 import UniversoCoopbueno from "templates/servicios/universoCoopbueno";
 import LibretaInfantil from "templates/servicios/libretaInfantil";
@@ -309,6 +309,7 @@ const Sol = styled.div`
 const NavegacionDeco = styled.div`
   position: relative;
 `;
+
 const Space = styled.div`
   position: absolute;
   bottom: 0%;
