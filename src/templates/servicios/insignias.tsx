@@ -28,16 +28,16 @@ const Insignias = () => {
         <div>
           <Lista>
             <Insignia>
-              <Image src={insignia1} />
+              <Image src={insignia1} alt="Universo Coopbueno Insignia" />
             </Insignia>
             <Insignia>
-              <Image src={insignia2} />
+              <Image src={insignia2} alt="Universo Coopbueno Insignia" />
             </Insignia>
             <Insignia>
-              <Image src={insignia3} />
+              <Image src={insignia3} alt="Universo Coopbueno Insignia" />
             </Insignia>
             <Insignia>
-              <Image src={insignia4} />
+              <Image src={insignia4} alt="Universo Coopbueno Insignia" />
             </Insignia>
           </Lista>
         </div>
@@ -52,37 +52,37 @@ const Insignias = () => {
       </Body>
       <AlbumContainer space thin>
         <Album>
-          <Image src={album} />
+          <Image src={album} alt="Universo Coopbueno Album" />
         </Album>
         <Etiquetas>
           <Etiqueta>
-            <Image src={etiqueta1} />
+            <Image src={etiqueta1} alt="Universo Coopbueno Etiqueta" />
           </Etiqueta>
           <Etiqueta>
-            <Image src={etiqueta2} />
+            <Image src={etiqueta2} alt="Universo Coopbueno Etiqueta" />
           </Etiqueta>
           <Etiqueta>
-            <Image src={etiqueta3} />
+            <Image src={etiqueta3} alt="Universo Coopbueno Etiqueta" />
           </Etiqueta>
           <Etiqueta>
-            <Image src={etiqueta4} />
+            <Image src={etiqueta4} alt="Universo Coopbueno Etiqueta" />
           </Etiqueta>
           <Etiqueta>
-            <Image src={etiqueta5} />
+            <Image src={etiqueta5} alt="Universo Coopbueno Etiqueta" />
           </Etiqueta>
           <Etiqueta>
-            <Image src={etiqueta6} />
+            <Image src={etiqueta6} alt="Universo Coopbueno Etiqueta" />
           </Etiqueta>
           <Etiqueta>
-            <Image src={etiqueta7} />
+            <Image src={etiqueta7} alt="Universo Coopbueno Etiqueta" />
           </Etiqueta>
           <Etiqueta>
-            <Image src={etiqueta8} />
+            <Image src={etiqueta8} alt="Universo Coopbueno Etiqueta" />
           </Etiqueta>
         </Etiquetas>
       </AlbumContainer>
       <Space>
-        <Image src={space} />
+        <Image src={space} alt="Universo Coopbueno Espacio" />
       </Space>
     </Section>
   );

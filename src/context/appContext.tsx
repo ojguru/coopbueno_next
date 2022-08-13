@@ -25,7 +25,7 @@ export function AppWrapper({ children }: AppWrapper) {
       setHsFormLoaded,
       startTime,
     };
-  }, [isMenuOpen, hsFormLoaded]);
+  }, [isMenuOpen, hsFormLoaded, startTime]);
 
   return (
     <AppContext.Provider value={sharedState}>{children}</AppContext.Provider>

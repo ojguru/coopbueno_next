@@ -164,35 +164,35 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
         <RequisitosDeco>
           <Requisitos servicio={servicio} />
           <Planeta1>
-            <Image src={planeta1} />
+            <Image src={planeta1} alt="Universo Coopbueno Planeta" />
           </Planeta1>
           <Planeta2>
-            <Image src={planeta2} />
+            <Image src={planeta2} alt="Universo Coopbueno Planeta" />
           </Planeta2>
           <Moneda1>
-            <Image src={copimoneda} />
+            <Image src={copimoneda} alt="Universo Coopbueno Planeta" />
           </Moneda1>
           <Moneda2>
-            <Image src={copimoneda} />
+            <Image src={copimoneda} alt="Universo Coopbueno Planeta" />
           </Moneda2>
           <Moneda3>
-            <Image src={copimoneda} />
+            <Image src={copimoneda} alt="Universo Coopbueno Planeta" />
           </Moneda3>
         </RequisitosDeco>
 
         <ConversionDeco>
           <Conversion formulario={formulario} />
           <Planeta3>
-            <Image src={planeta3} />
+            <Image src={planeta3} alt="Universo Coopbueno Planeta" />
           </Planeta3>
           <Sol>
-            <Image src={sol} />
+            <Image src={sol} alt="Universo Coopbueno Sol" />
           </Sol>
         </ConversionDeco>
         <NavegacionDeco>
           <NavegadorServicios servicios={servicios} />
           <Space>
-            <Image src={space} />
+            <Image src={space} alt="Universo Coopbueno Espacio" />
           </Space>
         </NavegacionDeco>
       </Layout>

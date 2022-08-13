@@ -36,7 +36,7 @@ const Producto = ({ servicio }: ProductProps) => {
         </MediaContainer>
       </Container>
       <Space>
-        <Image src={space} />
+        <Image src={space} alt="Universo Coopbueno Espacio" />
       </Space>
     </Section>
   );
