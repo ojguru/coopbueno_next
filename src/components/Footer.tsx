@@ -139,7 +139,7 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
           </Link>
         </Certifications>
         <Link href="/" passHref>
-          <a>
+          <a rel="noopener">
             <Logo>
               <Image
                 src={logo}
