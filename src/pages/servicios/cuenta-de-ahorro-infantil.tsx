@@ -18,6 +18,7 @@ import planeta2 from "../../../public/ahorro-infantil/planeta2.webp";
 import planeta3 from "../../../public/ahorro-infantil/planeta3.webp";
 import sol from "../../../public/ahorro-infantil/sol.webp";
 import copimoneda from "../../../public/ahorro-infantil/copimoneda.webp";
+import space from "../../../public/ahorro-infantil/space.webp";
 
 const Conversion = dynamic(() => import("templates/servicios/conversion"), {
   ssr: false,
@@ -150,47 +151,50 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
         nofollow={seo?.metaRobots?.includes("nofollow")}
       />
       <Layout>
-        <Section space>
-          <Portada servicio={servicio} />
-          <Producto servicio={servicio} />
-          <UniversoCoopbueno servicio={servicio} />
-          <div ref={ref}>
-            {videoActive ? <Video servicio={servicio} /> : null}
-          </div>
-          <LibretaInfantil servicio={servicio} />
-          <Insignias />
-          <Ventajas servicio={servicio} />
-          <Beneficios servicio={servicio} />
-          <RequisitosDeco>
-            <Requisitos servicio={servicio} />
-            <Planeta1>
-              <Image src={planeta1} />
-            </Planeta1>
-            <Planeta2>
-              <Image src={planeta2} />
-            </Planeta2>
-            <Moneda1>
-              <Image src={copimoneda} />
-            </Moneda1>
-            <Moneda2>
-              <Image src={copimoneda} />
-            </Moneda2>
-            <Moneda3>
-              <Image src={copimoneda} />
-            </Moneda3>
-          </RequisitosDeco>
+        <Portada servicio={servicio} />
+        <Producto servicio={servicio} />
+        <UniversoCoopbueno servicio={servicio} />
+        <div ref={ref}>
+          {videoActive ? <Video servicio={servicio} /> : null}
+        </div>
+        <LibretaInfantil servicio={servicio} />
+        <Insignias />
+        <Ventajas servicio={servicio} />
+        <Beneficios servicio={servicio} />
+        <RequisitosDeco>
+          <Requisitos servicio={servicio} />
+          <Planeta1>
+            <Image src={planeta1} />
+          </Planeta1>
+          <Planeta2>
+            <Image src={planeta2} />
+          </Planeta2>
+          <Moneda1>
+            <Image src={copimoneda} />
+          </Moneda1>
+          <Moneda2>
+            <Image src={copimoneda} />
+          </Moneda2>
+          <Moneda3>
+            <Image src={copimoneda} />
+          </Moneda3>
+        </RequisitosDeco>
 
-          <ConversionDeco>
-            <Conversion formulario={formulario} />
-            <Planeta3>
-              <Image src={planeta3} />
-            </Planeta3>
-            <Sol>
-              <Image src={sol} />
-            </Sol>
-          </ConversionDeco>
-        </Section>
-        <NavegadorServicios servicios={servicios} />
+        <ConversionDeco>
+          <Conversion formulario={formulario} />
+          <Planeta3>
+            <Image src={planeta3} />
+          </Planeta3>
+          <Sol>
+            <Image src={sol} />
+          </Sol>
+        </ConversionDeco>
+        <NavegacionDeco>
+          <NavegadorServicios servicios={servicios} />
+          <Space>
+            <Image src={space} />
+          </Space>
+        </NavegacionDeco>
       </Layout>
     </Suspense>
   ) : null;
@@ -223,10 +227,6 @@ export const getStaticProps: GetStaticProps<PageProps> = async (_ctx: any) => {
     },
   };
 };
-
-const Section = styled.section`
-  ${container}
-`;
 
 const RequisitosDeco = styled.div`
   ${container}
@@ -304,4 +304,21 @@ const Sol = styled.div`
   top: 10rem;
   width: 25%;
   transform: translate(-50%, 0%);
+`;
+
+const NavegacionDeco = styled.div`
+  position: relative;
+`;
+const Space = styled.div`
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+  width: 200%;
+  z-index: -1;
+  transform-origin: center center;
+  transform: translate(-55%, 50%) rotate(-65deg);
+  ${mq.md} {
+    width: 100%;
+    /* transform: translate(-60%, -50%); */
+  }
 `;

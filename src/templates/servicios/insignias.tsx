@@ -15,11 +15,12 @@ import etiqueta5 from "../../../public/ahorro-infantil/etiqueta5.svg";
 import etiqueta6 from "../../../public/ahorro-infantil/etiqueta6.svg";
 import etiqueta7 from "../../../public/ahorro-infantil/etiqueta7.svg";
 import etiqueta8 from "../../../public/ahorro-infantil/etiqueta8.svg";
+import space from "../../../public/ahorro-infantil/space.webp";
 import { h1 } from "styles/tipography";
 
 const Insignias = () => {
   return (
-    <Section space>
+    <Section space fluid>
       <Header>
         <Title>Insignias</Title>
       </Header>
@@ -80,6 +81,9 @@ const Insignias = () => {
           </Etiqueta>
         </Etiquetas>
       </AlbumContainer>
+      <Space>
+        <Image src={space} />
+      </Space>
     </Section>
   );
 };
@@ -89,6 +93,7 @@ export default Insignias;
 const Section = styled.section`
   ${container}
   padding: 0;
+  position: relative;
 `;
 
 const Header = styled.div`
@@ -182,4 +187,17 @@ const Etiqueta = styled.li`
   margin: 0;
   box-shadow: 0.25rem 0.25rem 5rem rgba(0, 0, 0, 0.15);
   border-radius: 50%;
+`;
+
+const Space = styled.div`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  z-index: -1;
+  transform: translate(60%, -50%) scaleX(-1);
+  ${mq.md} {
+    width: 70%;
+    transform: translate(60%, -60%) scaleX(-1);
+  }
 `;

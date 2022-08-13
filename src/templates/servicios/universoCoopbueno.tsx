@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Servicio } from "client";
 
 import logoUniversoCoopbueno from "../../../public/ahorro-infantil/logo_universo_coopbueno.webp";
+import space from "../../../public/ahorro-infantil/space.webp";
 
 interface ProductProps {
   servicio: Servicio;
@@ -15,7 +16,7 @@ const Producto = ({ servicio }: ProductProps) => {
   const imagen = servicio?.icono?.data?.attributes;
 
   return (
-    <Section id="descripcion" space>
+    <Section id="descripcion">
       <Container>
         <InfoContainer>
           {/* <Title>{nombre}</Title> */}
@@ -34,6 +35,9 @@ const Producto = ({ servicio }: ProductProps) => {
           />
         </MediaContainer>
       </Container>
+      <Space>
+        <Image src={space} />
+      </Space>
     </Section>
   );
 };
@@ -41,8 +45,8 @@ const Producto = ({ servicio }: ProductProps) => {
 export default Producto;
 
 const Section = styled.section`
-  ${container}
   padding: 0;
+  position: relative;
 `;
 
 const Container = styled.div`
@@ -74,6 +78,7 @@ const MediaContainer = styled.div`
 
 const Description = styled.div`
   position: relative;
+  text-shadow: 0.1rem 0.1rem 0.025rem white;
   &:before {
     content: "";
     position: absolute;
@@ -86,5 +91,18 @@ const Description = styled.div`
     z-index: -1;
     opacity: 0.25;
     transform: translate(-50%, -50%);
+  }
+`;
+
+const Space = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  transform: translate(-60%, 25%);
+  ${mq.lg} {
+    width: 60%;
+    transform: translate(-60%, 40%);
   }
 `;

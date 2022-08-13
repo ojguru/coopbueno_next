@@ -59,4 +59,6 @@ const RequirementsList = styled.ul`
   }
 `;
 
-const Requirement = styled.li``;
+const Requirement = styled.li`
+  text-shadow: 0.1rem 0.1rem 0.025rem white;
+`;
