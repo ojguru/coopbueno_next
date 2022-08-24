@@ -18,9 +18,10 @@ const Image: RenderFn<{
       <Imagen
         src={data?.file?.url}
         id={id}
-        width={data.file.width}
-        height={data.file.height}
+        width={data.file.width || 1920}
+        height={data.file.height || 1080}
         alt={data.file.alternativeText || data.file.name}
+        objectFit="contain"
       />
     </Div>
   );
