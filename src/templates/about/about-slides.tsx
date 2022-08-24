@@ -1,10 +1,10 @@
-import React from 'react'
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import Image from 'next/image'
-import { CarouselProvider, Slider, Slide, Dot } from 'pure-react-carousel'
-import colors from 'styles/colors'
+import React from "react";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import Image from "next/image";
+import { CarouselProvider, Slider, Slide, Dot } from "pure-react-carousel";
+import colors from "styles/colors";
 
 const Slides = ({}) => {
   // const biographyImage = metabox['about-biography-image']
@@ -97,27 +97,27 @@ const Slides = ({}) => {
                 </p>
                 <ul>
                   <li>
-                    César Domingo Hernández
+                    Guillermo Espinal
                     <br />
                     Presidente
                   </li>
                   <li>
-                    Guillermo Espinal
+                    Carlos Yoel Tejada Lantigua
                     <br />
                     Vice-presidente
                   </li>
                   <li>
-                    Yamil Núñez
+                    Maireny Encarnación
                     <br />
                     Secretaria
                   </li>
                   <li>
-                    José Antonio Ramírez
+                    Yamil Núñez
                     <br />
                     Tesorero
                   </li>
                   <li>
-                    Carlos Yoel Tejada Lantigua
+                    Carlos Danilo Ramos
                     <br />
                     Vocal
                   </li>
@@ -129,17 +129,17 @@ const Slides = ({}) => {
                 </p>
                 <ul>
                   <li>
-                    Juan Aquilino Bueno
+                    Pedro José Caba
                     <br />
                     Presidente
                   </li>
                   <li>
-                    Pedro José Caba
+                    Luines Fernando Herrera
                     <br />
                     Secretario
                   </li>
                   <li>
-                    Luines Herrera
+                    Domingo Abigail Bueno
                     <br />
                     Vocal
                   </li>
@@ -158,10 +158,10 @@ const Slides = ({}) => {
                   <li>
                     Milagros Alt. Ventura Gil
                     <br />
-                    Secretario
+                    Secretaria
                   </li>
                   <li>
-                    María Lucrecia Gómez
+                    Jhamni Magalis Cordero
                     <br />
                     Vocal
                   </li>
@@ -234,18 +234,18 @@ const Slides = ({}) => {
         </SliderX>
       </CarouselProvider>
     </Section>
-  )
-}
+  );
+};
 
-export default Slides
+export default Slides;
 
 const Section = styled.section`
   ${container}
-`
+`;
 
 const Navigation = styled.div`
   text-align: center;
-`
+`;
 
 const NavWrapper = styled.div`
   ${container}
@@ -258,7 +258,7 @@ const NavWrapper = styled.div`
   text-align: center;
   display: inline-block;
   width: initial;
-`
+`;
 
 const NavItem = styled.div`
   padding: 0;
@@ -274,7 +274,7 @@ const NavItem = styled.div`
     text-transform: uppercase;
     font-weight: bold;
     &:after {
-      content: '';
+      content: "";
       display: block;
       margin-top: 0.5rem;
       width: 10rem;
@@ -287,14 +287,14 @@ const NavItem = styled.div`
     &[disabled] {
       color: ${colors.green.base};
       &:after {
-        content: '';
+        content: "";
         background-color: green;
       }
     }
   }
-`
+`;
 
-const BLayout = styled.div``
+const BLayout = styled.div``;
 
 const DLayout = styled.div`
   display: grid;
@@ -302,19 +302,19 @@ const DLayout = styled.div`
   ${mq.md} {
     grid-template-columns: 1fr 1fr;
   }
-`
+`;
 
-const Div = styled.div``
+const Div = styled.div``;
 
 const Subtitle = styled.h2`
   text-transform: uppercase;
-`
+`;
 
 const SliderX = styled(Slider)`
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
   border-radius: 2rem;
-`
+`;
 
 const SlideX = styled(Slide)`
   ${container}
@@ -322,14 +322,14 @@ const SlideX = styled(Slide)`
   ${mq.md} {
     padding: 0 3rem;
   }
-`
+`;
 
 const carouselProviderStyles = css`
   border-radius: 2%;
-`
+`;
 
 const DecoLeft = styled.div`
-  ${({ color = 'green' }) => css`
+  ${({ color = "green" }) => css`
     position: absolute;
     top: 0;
     left: 0;
@@ -341,7 +341,7 @@ const DecoLeft = styled.div`
     transform: rotate(45deg) translate(-80%, 0);
     border-radius: 5rem;
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       width: 100%;
       height: 100%;
@@ -354,10 +354,10 @@ const DecoLeft = styled.div`
       border-radius: inherit;
     }
   `}
-`
+`;
 
 const DecoRight = styled.div`
-  ${({ color = 'green' }) => css`
+  ${({ color = "green" }) => css`
     position: absolute;
     bottom: 0;
     right: 0;
@@ -369,4 +369,4 @@ const DecoRight = styled.div`
     transform: rotate(45deg) translate(50%, 0);
     border-radius: 5rem;
   `}
-`
+`;

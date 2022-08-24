@@ -7,6 +7,7 @@ import { container, mq } from "components/grid";
 import Image from "next/image";
 import { NoticiaEntity } from "client";
 import { getImageURL } from "lib/api";
+import Editor from "components/editor.js/Editor";
 
 interface ArticuloBodyProps {
   articulo?: NoticiaEntity;
@@ -44,10 +45,9 @@ const ArticuloBody = ({ articulo }: ArticuloBodyProps) => {
           {/* The post's metadata like author, publish date, and comments */}
           <Meta articulo={post} />
         </Header>
-        <Content
-          className="ck-content"
-          dangerouslySetInnerHTML={{ __html: post.contenido || "" }}
-        />
+        <Content>
+          <Editor content={post.contenido} />
+        </Content>
       </InfoContainer>
     </Article>
   ) : null;

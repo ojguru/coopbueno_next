@@ -4,9 +4,10 @@ import styled from "@emotion/styled";
 import Categorias from "./ArticuloCategorias";
 import Meta from "./ArticuloMeta";
 import { container, mq } from "components/grid";
-import Image from "next/image";
+import Imagen from "next/image";
 import { ArticleEntity } from "client";
 import { getImageURL } from "lib/api";
+import Editor from "components/editor.js/Editor";
 
 interface ArticuloBodyProps {
   articulo: ArticleEntity | undefined;
@@ -26,7 +27,7 @@ const ArticuloBody = ({ articulo }: ArticuloBodyProps) => {
     <Article>
       <MediaContainer>
         <Media>
-          <Image
+          <Imagen
             src={getImageURL(imagen?.url)}
             alt={post?.title}
             width={1920}
@@ -37,7 +38,7 @@ const ArticuloBody = ({ articulo }: ArticuloBodyProps) => {
         </Media>
       </MediaContainer>
       <InfoContainer maxWidth="75rem" space thin>
-        <Header>
+        <PostHeader>
           <Categorias categorias={categorias} />
 
           <PostTitle
@@ -48,11 +49,10 @@ const ArticuloBody = ({ articulo }: ArticuloBodyProps) => {
 
           {/* The post's metadata like author, publish date, and comments */}
           <Meta articulo={post} />
-        </Header>
-        <Content
-          className="ck-content"
-          dangerouslySetInnerHTML={{ __html: post?.content || "" }}
-        />
+        </PostHeader>
+        <Content>
+          <Editor content={post.content} />
+        </Content>
       </InfoContainer>
     </Article>
   ) : null;
@@ -98,7 +98,7 @@ const InfoContainer = styled.div`
   `}
 `;
 
-const Header = styled.div`
+const PostHeader = styled.div`
   background-color: #fff;
   margin: 0;
   padding: 2rem 0;
