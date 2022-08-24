@@ -153,12 +153,12 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
       <Layout>
         <Portada servicio={servicio} />
         <Producto servicio={servicio} />
-        <UniversoCoopbueno servicio={servicio} />
-        <div ref={ref}>
+        {/* <UniversoCoopbueno servicio={servicio} /> */}
+        {/* <div ref={ref}>
           {videoActive ? <Video servicio={servicio} /> : null}
-        </div>
-        <LibretaInfantil servicio={servicio} />
-        <Insignias />
+        </div> */}
+        {/* <LibretaInfantil servicio={servicio} /> */}
+        {/* <Insignias /> */}
         <Ventajas servicio={servicio} />
         <Beneficios servicio={servicio} />
         <RequisitosDeco>
