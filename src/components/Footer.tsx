@@ -117,12 +117,14 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
         <Certifications>
           <Link
             href="https://certificaciones.uaf.gob.do/certificaciones_so_view.php?editid1=46"
-            rel="noreferrer noopener nofollow"
             // hreflang="es"
-            title="Cerficación Sujeto Obligado - Unidad de Análisis Financiero"
             passHref
           >
-            <a target="_blank">
+            <a
+              target="_blank"
+              rel="noreferrer noopener nofollow"
+              title="Cerficación Sujeto Obligado - Unidad de Análisis Financiero"
+            >
               <Certification>
                 <Image
                   // src={getImageURL(
