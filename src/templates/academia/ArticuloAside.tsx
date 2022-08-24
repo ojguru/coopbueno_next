@@ -44,7 +44,7 @@ const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
             </Block>
           </AsideSection>
         ) : null} */}
-        <AsideSection as="div">
+        {/* <AsideSection as="div">
           <Block>
             <SectionTitle>Comentarios</SectionTitle>
             <FacebookProvider appId="709986282911816">
@@ -53,7 +53,7 @@ const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
               />
             </FacebookProvider>
           </Block>
-        </AsideSection>
+        </AsideSection> */}
         {relacionados.length ? (
           <Related as="div">
             <SectionTitle>CONTENIDO RELACIONADO</SectionTitle>
