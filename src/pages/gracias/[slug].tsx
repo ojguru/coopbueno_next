@@ -13,6 +13,7 @@ import { PropsWithServerCache } from "@gqty/react";
 import Layout from "components/Layout";
 import Loading from "components/loading";
 import { NextSeo } from "next-seo";
+import Editor from "components/editor.js/Editor";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -49,9 +50,9 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
           <Container>
             <div>
               <Title>{page.titular}</Title>
-              <Content
-                dangerouslySetInnerHTML={{ __html: page.contenido || "" }}
-              />
+              <Content>
+                <Editor content={page.contenido} />
+              </Content>
               <Cta cta={page.cta} />
             </div>
           </Container>
