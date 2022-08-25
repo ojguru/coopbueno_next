@@ -4,6 +4,7 @@ import { container, mq } from "components/grid";
 import Image from "next/image";
 import { Servicio } from "client";
 import { getImageURL } from "lib/api";
+import Editor from "components/editor.js/Editor";
 
 interface ProductProps {
   servicio: Servicio;
@@ -18,10 +19,9 @@ const Producto = ({ servicio }: ProductProps) => {
       <Container>
         <InfoContainer>
           <Title>{nombre}</Title>
-          <Description
-            className="ck-content"
-            dangerouslySetInnerHTML={{ __html: descripcion || "" }}
-          />
+          <Description>
+            <Editor content={descripcion} />
+          </Description>
         </InfoContainer>
         <MediaContainer>
           <Image
