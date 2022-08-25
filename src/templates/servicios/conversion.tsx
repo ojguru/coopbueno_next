@@ -10,7 +10,7 @@ interface ConversionProps {
 }
 
 const Conversion = ({ formulario }: ConversionProps) => {
-  return formulario ? (
+  return formulario?.id ? (
     <Section space>
       <Container>
         <Title>Solicitar información</Title>
