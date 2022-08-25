@@ -6,6 +6,8 @@ import { ComponentGeneralFormulario } from "client";
 import Script from "next/script";
 import { useAppContext } from "context/appContext";
 import { useInView } from "react-intersection-observer";
+import Editor from "./editor.js/Editor";
+import { renderToString } from "react-dom/server";
 
 interface FormularioProps {
   formulario?: ComponentGeneralFormulario;
@@ -15,13 +17,17 @@ const Formulario = ({ formulario }: FormularioProps) => {
   const { hsFormLoaded, setHsFormLoaded } = useAppContext();
   const [formActive, setFormActive] = useState("");
 
+  // Se renderiza el mensaje en una variable, porque la propiedad inlineMessage de hubspot
+  // no acepta componentes de react.
+  const mensaje = renderToString(<Editor content={formulario?.mensaje} />);
+
   const hsOptions = {
     region: "na1",
     portalId: `${HUBSPOT_ID}`,
     formId: formulario?.formId,
     target: `.form-${formulario?.formId}`,
     redirectUrl: formulario?.redireccion || null,
-    inlineMessage: formulario?.mensaje || null,
+    inlineMessage: mensaje || null,
   };
 
   const titulo = formulario?.titulo;
