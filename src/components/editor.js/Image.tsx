@@ -10,6 +10,7 @@ const Image: RenderFn<{
     height: string | number;
     width: string | number;
     alternativeText?: string;
+    alt?: string;
     name?: string;
   };
 }> = ({ id, data, className = "" }) => {
@@ -20,7 +21,7 @@ const Image: RenderFn<{
         id={id}
         width={data.file.width || 1920}
         height={data.file.height || 1080}
-        alt={data.file.alternativeText || data.file.name}
+        alt={data.file.alternativeText || data.file.alt || data.file.name}
         objectFit="contain"
       />
     </Div>
