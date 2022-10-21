@@ -35,15 +35,17 @@ const Home = ({ cacheSnapshot }: HomeProps) => {
     pagination: {
       pageSize: 3,
     },
-    sort: ["createdAt:desc"],
+    sort: ["publishedAt:desc"],
   })?.data;
   const noticias = query.noticias({
     pagination: {
       pageSize: 3,
     },
-    sort: ["createdAt:desc"],
+    sort: ["publishedAt:desc"],
   })?.data;
-  const slides = query.slides()?.data;
+  const slides = query.slides({
+    sort: ["publishedAt:desc"],
+  })?.data;
   const servicios = query.servicios({
     pagination: {
       pageSize: 100,
