@@ -83,7 +83,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
         <li>Las agencias publicitarias que participan en el desarrollo de la presente campaña</li>
         <li>Los abogados notarios</li>
         <li>Empleados de Cosefi</li>
-        <li>Las cuentas tipo: San Bueno, Orden de pago, ahorros institucionales, depósitos a plazo fijos y cuentas de aportaciones</li>
+        <li>Las cuentas tipo: San Bueno, Orden de pago, ahorros institucionales y cuentas de aportaciones</li>
       </ul>
       `,
     },
