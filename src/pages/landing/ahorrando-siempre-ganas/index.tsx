@@ -229,13 +229,12 @@ const Copy = styled.p`
 const Cover = styled.div``;
 
 const Premios = styled.div`
-  display: fex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10rem;
+  text-align: center;
   div {
+    display: inline-block;
     width: 100%;
     max-width: 500px;
+    margin: 5rem 0;
   }
 `;
 
