@@ -20,7 +20,7 @@ import Image from "next/image";
 //recursos
 import textura from "../../../../public/landing/ahorrando-siempre-ganas/textura.webp";
 import portada from "../../../../public/landing/ahorrando-siempre-ganas/cover.webp";
-import logo from "../../../../public/landing/ahorrando-siempre-ganas/logo.svg";
+import logo from "../../../../public/landing/ahorrando-siempre-ganas/logo.webp";
 import resort from "../../../../public/landing/ahorrando-siempre-ganas/resort.webp";
 import carros from "../../../../public/landing/ahorrando-siempre-ganas/carros.webp";
 import dinero from "../../../../public/landing/ahorrando-siempre-ganas/dinero.webp";
