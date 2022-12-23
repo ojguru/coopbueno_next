@@ -59,8 +59,8 @@ const Page = ({ cacheSnapshot }: PageProps) => {
       respuesta: `
       <p>Los boletos serán generados de forma electrónica de la siguiente manera:</p>
       <ul>
-        <li>1 boleto por cada RD$500.00 de incremento promedio en las cuentas de ahorros</li>
-        <li>2 boletos por apertura de certificados financieros</li>
+        <li>1 boleto por cada RD$500.00 de incremento promedio en las cuentas de ahorros.</li>
+        <li>2 boletos por apertura de certificados financieros.</li>
         <li>2 boletos por colocar créditos al día para aquellos que tengan más de dos cuotas atrasadas.</li>
       </ul>
       `,
@@ -85,6 +85,23 @@ const Page = ({ cacheSnapshot }: PageProps) => {
         <li>Empleados de Cosefi</li>
         <li>Las cuentas tipo: San Bueno, Orden de pago, ahorros institucionales y cuentas de aportaciones</li>
       </ul>
+      `,
+    },
+    {
+      pregunta: "¿Debo registrarme en algun lugar para participar?",
+      respuesta: `
+      <p>Participar es sencillo:</p>
+      <ol>
+        <li>Si eres socio de Coopbueno, solo debes continuar realizando tus transacciones con normalidad y generarás boletos cuando esas transacciones cumplan con lo especificado en las bases del consurso.</li>
+        <li>Si aun no eres socio de Coopbueno, te invitamos a que seas parte de la cooperativa, visita la sucursal más cercana y adquieras el servicio que mejor se adecue a tus necesidades financieras.</li>
+      </ol>
+      `,
+    },
+    {
+      pregunta:
+        "¿Los certificados financieros solo generan boletos en la apertura?",
+      respuesta: `
+        <p>Los certificados siguen generando boletos con el pago de interés, generando 1 boleto adicional por cada RD$500.00 de incremento promedio en la cuenta de ahorro.</p>
       `,
     },
     {
