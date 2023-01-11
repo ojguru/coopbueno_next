@@ -24,6 +24,10 @@ import logo from "../../../../public/landing/ahorrando-siempre-ganas/logo.webp";
 import resort from "../../../../public/landing/ahorrando-siempre-ganas/resort.webp";
 import carros from "../../../../public/landing/ahorrando-siempre-ganas/carros.webp";
 import dinero from "../../../../public/landing/ahorrando-siempre-ganas/dinero.webp";
+import bandera from "../../../../public/landing/ahorrando-siempre-ganas/bandera.webp";
+import carita from "../../../../public/landing/ahorrando-siempre-ganas/carita.webp";
+import flor from "../../../../public/landing/ahorrando-siempre-ganas/flor.webp";
+import arcoiris from "../../../../public/landing/ahorrando-siempre-ganas/arcoiris.webp";
 import Formulario from "components/Formulario";
 import dynamic from "next/dynamic";
 const Conversion = dynamic(() => import("./conversion"), {
@@ -52,7 +56,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     {
       pregunta: "¿Cuándo se realizará el sorteo?",
       respuesta:
-        "<p>El sorteo será realizado el día 14 de febrero de 2022. Será transmitido en vivo por los canales digitales y redes sociales de la Cooperativa.</p>",
+        "<p>El sorteo será realizado el día 14 de febrero de 2023. Será transmitido en vivo por los canales digitales y redes sociales de la Cooperativa.</p>",
     },
     {
       pregunta: "¿Cómo genero boletos?",
@@ -131,6 +135,24 @@ const Page = ({ cacheSnapshot }: PageProps) => {
           </Portada>
           <Cover>
             <Container spaceBottom>
+              <Bandera>
+                <Image src={bandera} priority />
+              </Bandera>
+              <Bandera1>
+                <Image src={bandera} priority />
+              </Bandera1>
+              <Bandera2>
+                <Image src={bandera} priority />
+              </Bandera2>
+              <Carita>
+                <Image src={carita} priority />
+              </Carita>
+              <Flor>
+                <Image src={flor} priority />
+              </Flor>
+              <Arcoiris>
+                <Image src={arcoiris} priority />
+              </Arcoiris>
               <Logo>
                 <Image src={logo} priority />
               </Logo>
@@ -260,3 +282,46 @@ const Resort = styled.div``;
 const Carros = styled.div``;
 
 const Dinero = styled.div``;
+
+const Bandera = styled.div`
+  position: absolute;
+  width: 60%;
+  top: 0;
+  right: 0;
+  transform: translate(60%, 0%) scaleX(-1);
+  z-index: 0;
+`;
+const Bandera1 = styled.div`
+  position: absolute;
+  width: 60%;
+  left: 0;
+  top: 50%;
+  transform: translate(-70%, -20%);
+  z-index: 0;
+`;
+
+const Bandera2 = styled.div`
+  position: absolute;
+  width: 60%;
+  right: 0;
+  bottom: 0;
+  transform: translate(80%, 0%) scaleX(-1);
+  z-index: 0;
+`;
+const Flor = styled.div`
+  position: absolute;
+  bottom: 0%;
+  right: 0;
+  width: 10rem;
+`;
+const Arcoiris = styled.div`
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  width: 10rem;
+`;
+const Carita = styled.div`
+  position: absolute;
+  bottom: 0%;
+  width: 10rem;
+`;
