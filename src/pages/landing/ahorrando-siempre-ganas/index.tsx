@@ -55,8 +55,15 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     },
     {
       pregunta: "¿Cuándo se realizará el sorteo?",
-      respuesta:
-        "<p>El sorteo será realizado el día 14 de febrero de 2023. Será transmitido en vivo por los canales digitales y redes sociales de la Cooperativa.</p>",
+      respuesta: `
+        <p>Serán realizado 3 sorteos:</p>
+        <ol>
+          <li>Primer sorteo se realizará el <strong>14 de febrero de 2023</strong>, donde serán permiados <strong>14 ganadores de RD$50,000.00</strong>, <strong>14 ganadores de RD$25,000.00</strong> y <strong>2 ganadores</strong> de fines de semana en un resort.</li></br>
+          <li>Segundo sorteo se realizará el <strong>1 de abril de 2023</strong>, donde será seleccionado el ganador del primer carro <strong>Kia Picanto</strong>.</li></br>
+          <li>Tercer sorteo se realizará el <strong>27 de mayo de 2023</strong>, donde será seleccionado el ganador del segundo carro <strong>Kia Picanto</strong>.</li></br>
+        </ol>
+        <p>Los sorteos serán transmitidos en vivo por los canales digitales y redes sociales de la Cooperativa</p>
+      `,
     },
     {
       pregunta: "¿Cómo genero boletos?",
@@ -115,6 +122,164 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     },
   ];
 
+  const ganadores50 = [
+    {
+      nombre: "Enmanuel",
+      apellido: "Rodríguez Vargas",
+      sucursal: "Partido",
+    },
+    {
+      nombre: "Efigenia Evangelista",
+      apellido: "Rodríguez Jiménez",
+      sucursal: "El Pino",
+    },
+    {
+      nombre: "Yinelki Felicia",
+      apellido: "Castro de Ortiz",
+      sucursal: "Castañuelas",
+    },
+    {
+      nombre: "Awilda del Carmen",
+      apellido: "Castro de Gómez",
+      sucursal: "Villa Vásquez",
+    },
+    {
+      nombre: "Evelín María",
+      apellido: "García de Rodríguez",
+      sucursal: "Dajabón",
+    },
+    {
+      nombre: "Milquella",
+      apellido: "Bello Pichardo",
+      sucursal: "Dajabón",
+    },
+    {
+      nombre: "Yelmison",
+      apellido: "Almánzar Jiménez",
+      sucursal: "Villa Isabella",
+    },
+    {
+      nombre: "Marleni Evangelista",
+      apellido: "Martínez Quiñónez",
+      sucursal: "El Pocito",
+    },
+    {
+      nombre: "Wáscar Fernando",
+      apellido: "López Polanco",
+      sucursal: "Santiago",
+    },
+    {
+      nombre: "Cristino",
+      apellido: "Medina Carrera",
+      sucursal: "Santiago",
+    },
+    {
+      nombre: "Cándida",
+      apellido: "Paulina Marte",
+      sucursal: "Santo Domingo",
+    },
+    {
+      nombre: "Ángel de los Santos",
+      apellido: "Medina Gil",
+      sucursal: "Santo Domingo",
+    },
+    {
+      nombre: "Ángel Daniel",
+      apellido: "Vargas Santana",
+      sucursal: "Santiago",
+    },
+    {
+      nombre: "Francisco Javier",
+      apellido: "Tejada Tejada",
+      sucursal: "Villa los Almácigos",
+    },
+  ];
+  const ganadores25 = [
+    {
+      nombre: "Altagracia",
+      apellido: "Laureano",
+      sucursal: "Santiago",
+    },
+    {
+      nombre: "José Armando",
+      apellido: "Escarramán Silverio",
+      sucursal: "Villa Isabela",
+    },
+    {
+      nombre: "María Evangelista",
+      apellido: "Liriano Veras",
+      sucursal: "Santiago",
+    },
+    {
+      nombre: "Nelson Nicolás",
+      apellido: "González",
+      sucursal: "Santiago",
+    },
+    {
+      nombre: "Ramón Bolivar",
+      apellido: "Reyes Rodríguez",
+      sucursal: "Castañuelas",
+    },
+    {
+      nombre: "Miriam",
+      apellido: "Cruz",
+      sucursal: "Villa Vásquez",
+    },
+    {
+      nombre: "Santa Elízabeth",
+      apellido: "Mena Santos",
+      sucursal: "Villa los Almácigos",
+    },
+    {
+      nombre: "Ana Guillermina",
+      apellido: "Espinal Collado",
+      sucursal: "Monte Cristi",
+    },
+    {
+      nombre: "Ysabel",
+      apellido: "Abreu Gómez",
+      sucursal: "Santo Domingo",
+    },
+    {
+      nombre: "María Antonia",
+      apellido: "Rivas Méndez",
+      sucursal: "Santo Domingo",
+    },
+    {
+      nombre: "Antonia Altagracia",
+      apellido: "Rivas Tejada",
+      sucursal: "Dajabón",
+    },
+    {
+      nombre: "Ángel Luis",
+      apellido: "Gómez Muñoz",
+      sucursal: "Manzanillo",
+    },
+    {
+      nombre: "Jedwin",
+      apellido: "Estévez Ferández",
+      sucursal: "El Pino (zona urbana)",
+    },
+    {
+      nombre: "José Roamir",
+      apellido: "Valenzuela Ortíz",
+      sucursal: "Oficina Principal",
+    },
+  ];
+
+  const ganadoresResort = [
+    {
+      nombre: "Bezaida Mercedes",
+      apellido: "González Gómez",
+      sucursal: "Santiago",
+    },
+    {
+      nombre: "Luciano",
+      apellido: "González Rosario",
+      sucursal: "Villa Vásquez",
+    },
+  ];
+
   return (
     <Suspense fallback={<Loading full />}>
       <NextSeo
@@ -159,23 +324,77 @@ const Page = ({ cacheSnapshot }: PageProps) => {
               <br />
               <br />
               <Copy>
-                Al incrementar <strong>RD$500.00</strong> en el balance promedio
-                de tu cuenta de ahorros generas boletos para ser uno de los
-                ganadores de:
+                <strong>Aún tienes chance de ganar.</strong> Al incrementar{" "}
+                <strong>RD$500.00</strong> en el balance promedio de tu cuenta
+                de ahorros generas boletos para ser uno de los ganadores de:
               </Copy>
               <Premios>
                 <Carros>
                   <Image src={carros} />
                 </Carros>
-                <Resort>
-                  <Image src={resort} />
-                </Resort>
-                <Dinero>
-                  <Image src={dinero} />
-                </Dinero>
               </Premios>
             </Container>
           </Cover>
+          <SeccionGanadores>
+            <GanadoresTitle>Ganadores del primer sorteo</GanadoresTitle>
+            <Dinero>
+              <Image src={dinero} />
+            </Dinero>
+            <SorteoTitle>Ganadores 14 premios de RD$50,000.00</SorteoTitle>
+            <Ganadores>
+              {ganadores50.map((item, key) => {
+                return (
+                  <Ganador key={key}>
+                    <GanadorNombreCompleto>
+                      <GanadorNombre>{item.nombre}</GanadorNombre>
+                      <br />
+                      <GanadorApellido>{item.apellido}</GanadorApellido>
+                    </GanadorNombreCompleto>
+                    <GanadorSucursal>
+                      Sucursal: <strong>{item.sucursal}</strong>
+                    </GanadorSucursal>
+                  </Ganador>
+                );
+              })}
+            </Ganadores>
+            <SorteoTitle>Ganadores 14 premios de RD$25,000.00</SorteoTitle>
+            <Ganadores>
+              {ganadores25.map((item, key) => {
+                return (
+                  <Ganador key={key}>
+                    <GanadorNombreCompleto>
+                      <GanadorNombre>{item.nombre}</GanadorNombre>
+                      <br />
+                      <GanadorApellido>{item.apellido}</GanadorApellido>
+                    </GanadorNombreCompleto>
+                    <GanadorSucursal>
+                      Sucursal: <strong>{item.sucursal}</strong>
+                    </GanadorSucursal>
+                  </Ganador>
+                );
+              })}
+            </Ganadores>
+            <Resort>
+              <Image src={resort} />
+            </Resort>
+            <SorteoTitle>Ganadores fines de semana en resort</SorteoTitle>
+            <Ganadores>
+              {ganadoresResort.map((item, key) => {
+                return (
+                  <Ganador key={key}>
+                    <GanadorNombreCompleto>
+                      <GanadorNombre>{item.nombre}</GanadorNombre>
+                      <br />
+                      <GanadorApellido>{item.apellido}</GanadorApellido>
+                    </GanadorNombreCompleto>
+                    <GanadorSucursal>
+                      Sucursal: <strong>{item.sucursal}</strong>
+                    </GanadorSucursal>
+                  </Ganador>
+                );
+              })}
+            </Ganadores>
+          </SeccionGanadores>
           <Container space>
             <QA>
               <QATitle>Bases del concurso</QATitle>
@@ -277,11 +496,17 @@ const Premios = styled.div`
   }
 `;
 
-const Resort = styled.div``;
-
 const Carros = styled.div``;
 
-const Dinero = styled.div``;
+const Dinero = styled.div`
+  max-width: 30rem;
+  margin: 0 auto;
+`;
+
+const Resort = styled.div`
+  max-width: 30rem;
+  margin: 0 auto;
+`;
 
 const Bandera = styled.div`
   position: absolute;
@@ -324,4 +549,63 @@ const Carita = styled.div`
   position: absolute;
   bottom: 0%;
   width: 10rem;
+`;
+
+const SeccionGanadores = styled.div`
+  ${container}
+`;
+
+const GanadoresTitle = styled.h2`
+  text-transform: uppercase;
+  text-align: center;
+`;
+
+const SorteoTitle = styled.h3`
+  text-transform: uppercase;
+  color: ${marron};
+`;
+
+const Ganadores = styled.ul`
+  margin: initial;
+  padding: initial;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 8rem;
+  ${mq.sm} {
+    grid-template-columns: 1fr 1fr;
+  }
+  ${mq.lg} {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+`;
+
+const Ganador = styled.li`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 2rem;
+  border: 0.2rem solid ${marron};
+  position: relative;
+`;
+
+const GanadorNombreCompleto = styled.h5`
+  text-transform: uppercase;
+  color: ${marron};
+  margin: 0;
+  margin-bottom: 0.5rem;
+`;
+
+const GanadorNombre = styled.span`
+  font-weight: 400;
+`;
+
+const GanadorApellido = styled.span`
+  font-weight: 900;
+`;
+
+const GanadorSucursal = styled.p`
+  margin: 0;
 `;
