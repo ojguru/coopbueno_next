@@ -10,7 +10,7 @@ export const TWITTER = "https://twitter.com/coopbueno";
 export const EMAIL = "contacto@coopbueno.com.do";
 export const UBICACION =
   "https://www.google.com/maps/search/?api=1&query=19.408302388319,-71.440783292055";
-export const TELEFONOS = ["809-226-4012", "646-797-2690"];
+export const TELEFONOS = ["809-226-4012"];
 
 //EDITOR
 export const GAP = "2rem";
