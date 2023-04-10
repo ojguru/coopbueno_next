@@ -34,12 +34,12 @@ const Page = ({ cacheSnapshot }: PageProps) => {
   return servicios?.length ? (
     <Suspense fallback={<Loading full />}>
       <NextSeo
-        title="Tarifario de servicios"
-        description="Conoce las tarifas de nuestros servicios"
+        title="Política de privacidad Coopbueno Móvil"
+        description="Política de privacidad aplicación Coopbueno Móvil"
         openGraph={{
           url: `${SITE_URL}`,
-          title: "Tarifario de servicios",
-          description: "Conoce las tarifas de nuestros servicios",
+          title: "Política de privacidad Coopbueno Móvil",
+          description: "Política de privacidad aplicación Coopbueno Móvil",
           site_name: SITE_NAME,
         }}
       />
