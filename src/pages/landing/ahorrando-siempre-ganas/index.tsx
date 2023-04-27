@@ -280,6 +280,14 @@ const Page = ({ cacheSnapshot }: PageProps) => {
     },
   ];
 
+  const ganadoresKia = [
+    {
+      nombre: "Max Junior",
+      apellido: "Castro Muñoz",
+      sucursal: "Santiago",
+    },
+  ];
+
   return (
     <Suspense fallback={<Loading full />}>
       <NextSeo
@@ -335,6 +343,25 @@ const Page = ({ cacheSnapshot }: PageProps) => {
               </Premios>
             </Container>
           </Cover>
+          <SeccionGanadores>
+            <GanadoresTitle>Ganador primer sorteo Kia Picanto</GanadoresTitle>
+            <Ganadores>
+              {ganadoresKia.map((item, key) => {
+                return (
+                  <Ganador key={key}>
+                    <GanadorNombreCompleto>
+                      <GanadorNombre>{item.nombre}</GanadorNombre>
+                      <br />
+                      <GanadorApellido>{item.apellido}</GanadorApellido>
+                    </GanadorNombreCompleto>
+                    <GanadorSucursal>
+                      Sucursal: <strong>{item.sucursal}</strong>
+                    </GanadorSucursal>
+                  </Ganador>
+                );
+              })}
+            </Ganadores>
+          </SeccionGanadores>
           <SeccionGanadores>
             <GanadoresTitle>Ganadores del primer sorteo</GanadoresTitle>
             <Dinero>
