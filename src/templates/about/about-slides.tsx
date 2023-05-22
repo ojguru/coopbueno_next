@@ -112,12 +112,12 @@ const Slides = ({}) => {
                     Secretaria
                   </li>
                   <li>
-                    Yamil Núñez
+                    Carlos Danilo Ramos
                     <br />
                     Tesorero
                   </li>
                   <li>
-                    Carlos Danilo Ramos
+                    Marcos Jhiovanny Jiménez Rosa
                     <br />
                     Vocal
                   </li>
@@ -198,7 +198,7 @@ const Slides = ({}) => {
                     Miembro
                   </li>
                   <li>
-                    Marcos Jhiovanny Jiménez Rosa
+                    Rafaelina Yuderca Ramos
                     <br />
                     Miembro
                   </li>
