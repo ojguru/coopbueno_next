@@ -97,27 +97,27 @@ const Slides = ({}) => {
                 </p>
                 <ul>
                   <li>
-                    Guillermo Espinal
+                    Carlos Yoel Tejada Lantigua
                     <br />
                     Presidente
                   </li>
                   <li>
-                    Carlos Yoel Tejada Lantigua
+                    Maireny Alt. Encarnación Cepeda
                     <br />
                     Vice-presidente
                   </li>
                   <li>
-                    Maireny Encarnación
+                    Rud Esmeralda Santana
                     <br />
                     Secretaria
                   </li>
                   <li>
-                    Carlos Danilo Ramos
+                    Marcos Jhiovanny Jiménez Rosa
                     <br />
                     Tesorero
                   </li>
                   <li>
-                    Marcos Jhiovanny Jiménez Rosa
+                    Carlos Danilo Ramos
                     <br />
                     Vocal
                   </li>
@@ -129,17 +129,17 @@ const Slides = ({}) => {
                 </p>
                 <ul>
                   <li>
-                    Pedro José Caba
+                    Luines Fernando Herrera Jiménez
                     <br />
                     Presidente
                   </li>
                   <li>
-                    Luines Fernando Herrera
+                    Domingo Abigail Bueno
                     <br />
                     Secretario
                   </li>
                   <li>
-                    Domingo Abigail Bueno
+                    Wilkin Evangelista Abreu Cabreja
                     <br />
                     Vocal
                   </li>
@@ -151,12 +151,12 @@ const Slides = ({}) => {
                 </p>
                 <ul>
                   <li>
-                    Claudio de Js. Espinal
+                    Milagros Alt. Ventura Gil
                     <br />
                     Presidente
                   </li>
                   <li>
-                    Milagros Alt. Ventura Gil
+                    Fermando Michel Delgado Quezada
                     <br />
                     Secretaria
                   </li>
