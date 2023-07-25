@@ -7,6 +7,7 @@ import { h1 } from "styles/tipography";
 import { getImageURL } from "lib/api";
 import colors from "styles/colors";
 import Cta from "components/Cta";
+import Editor from "components/editor.js/Editor";
 
 interface HomePromoProps {
   home?: any;
@@ -26,9 +27,9 @@ const HomePromo = ({ home }: HomePromoProps) => {
         />
         <div>
           <Title>{informacion.titulo}</Title>
-          <Description
-            dangerouslySetInnerHTML={{ __html: informacion.descripcion }}
-          />
+          <Description>
+            <Editor content={informacion.descripcion} />
+          </Description>
           <Cta cta={informacion.cta} />
         </div>
       </Container>

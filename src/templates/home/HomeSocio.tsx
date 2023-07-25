@@ -6,6 +6,7 @@ import { h1 } from "styles/tipography";
 import colors from "styles/colors";
 import { getImageURL } from "lib/api";
 import Cta from "components/Cta";
+import Editor from "components/editor.js/Editor";
 
 interface HomeSocioProps {
   home: any;
@@ -27,9 +28,9 @@ const HomeSocio = ({ home }: HomeSocioProps) => {
         </Media>
         <Content>
           <Title>{razones.titulo}</Title>
-          <Description
-            dangerouslySetInnerHTML={{ __html: razones.descripcion }}
-          />
+          <Description>
+            <Editor content={razones.descripcion} />
+          </Description>
           <Cta cta={razones.cta} />
         </Content>
       </Container>
