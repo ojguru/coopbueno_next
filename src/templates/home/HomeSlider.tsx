@@ -19,7 +19,7 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
     <Section fluid space large>
       <CarouselWrapper>
         <Carousel
-          infinite={false}
+          infinite
           autoplay
           pauseOnHover
           pauseOnFocus
