@@ -39,14 +39,14 @@ class MyDocument extends Document {
               `}
           </Script>
           {/* Start of HubSpot Embed Code  */}
-          <Script
+          {/* <Script
             type="text/javascript"
             id="hs-script-loader"
             strategy="afterInteractive"
             async
             defer
             src="//js.hs-scripts.com/5494710.js"
-          ></Script>
+          ></Script> */}
           {/* End of HubSpot Embed Code  */}
         </body>
       </Html>

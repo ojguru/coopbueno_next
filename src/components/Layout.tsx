@@ -14,9 +14,13 @@ const Layout = ({ children }: LayoutProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    window.eval(`
-      _hsq.push(["trackPageView"]);
-    `);
+    try {
+      window.eval(`
+        _hsq.push(["trackPageView"]);
+      `);
+    } catch (error) {
+      console.log(error);
+    }
   }, [router]);
 
   const servicios =
