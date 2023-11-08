@@ -27,7 +27,12 @@ const Portada = ({ servicio }: PortadaProps) => {
         <Content>
           <Title itemProp="slogan">{title}</Title>
           <Copy itemProp="disambiguatingDescription">{copy}</Copy>
-          <Cta cta={cta} />
+          <Cta
+            cta={cta}
+            onClick={() => {
+              window.fbq("track", "serviceCTA");
+            }}
+          />
         </Content>
         <ImageBlock>
           <Media>

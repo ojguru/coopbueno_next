@@ -5,13 +5,15 @@ import styled from "@emotion/styled";
 
 interface CtaProps {
   cta?: any;
+  onClick?: any;
 }
-const Cta = ({ cta }: CtaProps) => {
+const Cta = ({ cta, onClick }: CtaProps) => {
   return cta ? (
     <Link href={cta.uri ?? ""} passHref>
       <SLink
         target={cta.target ? "_blank" : ""}
         rel={cta.target ? "noreferrer noopener" : ""}
+        onClick={onClick}
       >
         {cta.texto}
       </SLink>

@@ -47,7 +47,13 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
                 <div style={{ display: "table-column" }}>Phones</div>
                 {TELEFONOS.map((telefono, index) => (
                   <Link href={`tel:${telefono}`} passHref key={index}>
-                    <a target="_blank" rel="noreferrer noopener">
+                    <a
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      onClick={() => {
+                        window.fbq("track", "Contact");
+                      }}
+                    >
                       <PhoneNumber>{telefono}</PhoneNumber>
                     </a>
                   </Link>
@@ -55,7 +61,13 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
               </PhoneBox>
             </ContactItem>
             <Link href={`mailto:${EMAIL}`} passHref>
-              <a target="_blank" rel="noreferrer noopener">
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                onClick={() => {
+                  window.fbq("track", "Contact");
+                }}
+              >
                 <ContactItem>
                   <ContactIcon>
                     <div style={{ display: "table-column" }}>Email</div>
@@ -66,7 +78,13 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
               </a>
             </Link>
             <Link href={`${UBICACION}`} passHref>
-              <a target="_blank" rel="noreferrer noopener">
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                onClick={() => {
+                  window.fbq("track", "FindLocation");
+                }}
+              >
                 <ContactItem>
                   <ContactIcon>
                     <div style={{ display: "table-column" }}>Google Maps</div>

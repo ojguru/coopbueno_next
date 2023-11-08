@@ -103,7 +103,13 @@ const Page = ({ cacheSnapshot }: PageProps) => {
 
                             return phone ? (
                               <Link href={`tel:+${phone}`} key={index} passHref>
-                                <SucursalPhone>{phone}</SucursalPhone>
+                                <SucursalPhone
+                                  onClick={() => {
+                                    window.fbq("track", "Contact");
+                                  }}
+                                >
+                                  {phone}
+                                </SucursalPhone>
                               </Link>
                             ) : null;
                           })}
@@ -113,7 +119,13 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                   </Content>
                   <LinkBox>
                     <Link href={location ?? ""} passHref>
-                      <ReadMore target="_blank" rel="noreferrer noopener">
+                      <ReadMore
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        onClick={() => {
+                          window.fbq("track", "FindLocation");
+                        }}
+                      >
                         Ubicación
                       </ReadMore>
                     </Link>

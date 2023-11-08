@@ -61,7 +61,12 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
                         __html: slide?.copy || "",
                       }}
                     />
-                    <Cta cta={slide?.cta} />
+                    <Cta
+                      cta={slide?.cta}
+                      onClick={() => {
+                        window.fbq("track", "slideCTA");
+                      }}
+                    />
                   </SlideInfo>
                 </Wrapper>
               </Slide>

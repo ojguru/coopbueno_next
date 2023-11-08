@@ -34,7 +34,13 @@ const Oficinas = ({ sucursales }: OficinasProps) => {
 
                       return (
                         <Link href={`tel:+${phone}`} key={index} passHref>
-                          <SucursalPhone>{phone}</SucursalPhone>
+                          <SucursalPhone
+                            onClick={() => {
+                              window.fbq("track", "Contact");
+                            }}
+                          >
+                            {phone}
+                          </SucursalPhone>
                         </Link>
                       );
                     })}

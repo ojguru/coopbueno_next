@@ -101,7 +101,13 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
 
                         return (
                           <Link href={`tel:+${phone}`} key={index} passHref>
-                            <SucursalPhone>{phone}</SucursalPhone>
+                            <SucursalPhone
+                              onClick={() => {
+                                window.fbq("track", "Contact");
+                              }}
+                            >
+                              {phone}
+                            </SucursalPhone>
                           </Link>
                         );
                       })}
@@ -109,7 +115,14 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
                   </SucursalPhoneBox>
                 </CardBody>
                 <LinkBox>
-                  <ReadMore href={sucursal.ubicacion ?? ""}>Ubicación</ReadMore>
+                  <ReadMore
+                    href={sucursal.ubicacion ?? ""}
+                    onClick={() => {
+                      window.fbq("track", "FindLocation");
+                    }}
+                  >
+                    Ubicación
+                  </ReadMore>
                 </LinkBox>
               </Content>
               <SucursalIMG />
