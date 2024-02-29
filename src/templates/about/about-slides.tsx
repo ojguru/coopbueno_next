@@ -183,47 +183,32 @@ const Slides = ({}) => {
                 </p>
                 <ul>
                   <li>
-                    Guillermo de Jesús Espinal Peñaló
+                    Carlos Danilo Ramos
                     <br />
                     Presidente
                   </li>
                   <li>
-                    Ignacia Miguelina Peña Acosta
+                    Yudelka Ramos
                     <br />
                     Secretaria
                   </li>
                   <li>
-                    Carlos Danilo Ramos Tejada
+                    Reinalda Santana
                     <br />
                     Miembro
                   </li>
                   <li>
-                    Rafaelina Yuderca Ramos
+                    Ignacia Peña
                     <br />
                     Miembro
                   </li>
                   <li>
-                    Reinada del Carmen Santana
+                    Guillermo Espinal
                     <br />
                     Miembro
                   </li>
                   <li>
-                    Zoila Alt. Carrasco
-                    <br />
-                    Enc. Dpto.
-                  </li>
-                  <li>
-                    Nelsón Ant. Carrasco
-                    <br />
-                    Asistente
-                  </li>
-                  <li>
-                    Wanda G. Espinal Peralta
-                    <br />
-                    Asistente
-                  </li>
-                  <li>
-                    Juana Ivelise Vásquez Santana
+                    Juana Vásquez
                     <br />
                     Colaboradora
                   </li>
