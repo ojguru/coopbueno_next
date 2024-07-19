@@ -1,0 +1,55 @@
+$primary-base: #0071bc;
+$primary-light: #73b9ff;
+$primary-dark: #006ead;
+
+$secondary-base: #b9cc00;
+$secondary-light: #f2ff82;
+$secondary-dark: #9eae00;
+
+$gray-base: #cdcdcd;
+$gray-light: #f4f3f6;
+$gray-dark: #666666;
+
+$text-base: #343d4e;
+
+$h1: var(var($text-base));
+$h2: var(var($text-base));
+$h3: var(var($text-base));
+$h4: var(var($text-base));
+$h5: var(var($text-base));
+$h6: var(var($text-base));
+
+$cta-base: #ffeb36;
+$cta-hover: #ffeb36;
+
+$header-base: transparent;
+$header-sticky: rgba(255 255 255 /0.95);
+
+:export {
+  primaryBase: $primary-base;
+  primaryLight: $primary-light;
+  primaryDark: $primary-dark;
+
+  secondaryBase: $secondary-base;
+  secondaryLight: $secondary-light;
+  secondaryDark: $secondary-dark;
+
+  grayBase: $gray-base;
+  grayLight: $gray-light;
+  grayDark: $gray-dark;
+
+  textBase: $text-base;
+
+  h1: $h1;
+  h2: $h2;
+  h3: $h3;
+  h4: $h4;
+  h5: $h5;
+  h6: $h6;
+
+  ctaBase: $cta-base;
+  ctaHover: $cta-hover;
+
+  headerBase: $header-base;
+  headerSticky: $header-sticky;
+}

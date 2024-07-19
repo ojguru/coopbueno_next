@@ -1,0 +1,80 @@
+@import "./grid.module.scss";
+@import "./mixins.scss";
+@import "./variables.module.scss";
+
+@mixin h1m {
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $h1;
+
+  @include mq(sm) {
+    font-size: 2.5rem;
+  }
+  @include mq(md) {
+    font-size: 3rem;
+  }
+  @include mq(lg) {
+    font-size: 3.5rem;
+  }
+  @include mq(xl) {
+    font-size: 4rem;
+  }
+}
+
+@mixin h2m {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: $h2;
+  @include mq(sm) {
+    font-size: 2rem;
+  }
+  @include mq(md) {
+    font-size: 2.5rem;
+  }
+  @include mq(lg) {
+    font-size: 3rem;
+  }
+  @include mq(xl) {
+    font-size: 3.5rem;
+  }
+}
+
+@mixin h3m {
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  color: $h3;
+
+  @include mq(sm) {
+    font-size: 1.8rem;
+  }
+
+  @include mq(md) {
+    font-size: 2rem;
+  }
+
+  @include mq(lg) {
+    font-size: 2.5rem;
+  }
+
+  @include mq(xl) {
+    font-size: 3rem;
+  }
+}
+
+@mixin h4m {
+  font-size: 1.2rem;
+  color: $h4;
+}
+
+@mixin h5m {
+  font-size: 1.1rem;
+  color: $h5;
+}
+
+@mixin h6m {
+  letter-spacing: 0.03125em;
+  text-transform: uppercase;
+  color: $h6;
+  font-size: 1rem;
+}

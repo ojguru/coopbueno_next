@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 
-import { ENUM_SERVICIO_CATEGORIA, useQuery } from "client";
+import { ENUM_SERVICIO_CATEGORIA, useQuery } from "@/client";
 import { useRouter } from "next/router";
-import Header from "components/Header";
-import Footer from "components/Footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 interface LayoutProps {
   children?: any;

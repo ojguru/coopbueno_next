@@ -1,0 +1,17 @@
+@import "@/styles/variables.module.scss";
+
+%parrafo {
+  white-space: break-spaces;
+}
+
+%lista {
+  list-style: none;
+  & li::before {
+    content: "\2B24";
+    color: $secondary-base;
+    font-weight: bold;
+    display: inline-block;
+    width: 2.5rem;
+    margin-left: -2.5rem;
+  }
+}
