@@ -4,7 +4,7 @@ import "@/styles/tipography.module.scss";
 import ThemeProvider from "@/components/ThemeProvider";
 import styles from "@/app/layout.module.scss";
 
-import { IBM_Plex_Sans, Poppins } from "next/font/google";
+import { Lato, Montserrat } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Suspense } from "react";
@@ -12,18 +12,18 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/constants";
 import Script from "next/script";
 import { FacebookPixelEvents } from "@/components/pixelEvents";
 
-const ibm_plex_sans = IBM_Plex_Sans({
-  weight: ["200", "300", "400", "600"],
+const montserrat = Montserrat({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   display: "swap",
-  variable: "--ibm",
+  variable: "--montserrat",
 });
 
-const poppins = Poppins({
-  weight: ["400", "500", "700", "600"],
+const lato = Lato({
+  weight: ["100", "300", "400", "700", "900"],
   subsets: ["latin"],
   display: "swap",
-  variable: "--poppins",
+  variable: "--lato",
 });
 
 export const metadata = {
@@ -50,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${ibm_plex_sans.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${lato.variable}`}>
       <head></head>
       <body className={styles.body}>
         <Script
@@ -67,13 +67,9 @@ export default function RootLayout({
           `}
         </Script>
         <ThemeProvider>
-          <Suspense>
-            <Header />
-          </Suspense>
+          <Suspense>{/* <Header /> */}</Suspense>
           <main className={styles.main}>{children}</main>
-          <Suspense>
-            <Footer />
-          </Suspense>
+          <Suspense>{/* <Footer /> */}</Suspense>
         </ThemeProvider>
         <Suspense>
           <FacebookPixelEvents />

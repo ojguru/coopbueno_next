@@ -1,0 +1,91 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.section {
+  @include containerFluid();
+  max-width: initial;
+  margin-bottom: $space-medium ;
+  margin-top: $space-medium ;
+
+  &:global(.slick-dots) {
+    font-size: 0;
+    button {
+      background-color: $primary-base;
+      opacity: 0.5;
+      &:before {
+        content: "";
+      }
+    }
+    .slick-active {
+      button {
+        background-color: $primary-base;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.slide{
+  margin: 0;
+}
+
+.wrapper {
+  @include container();
+  display: grid;
+  gap: 0rem 5rem;
+  grid-template-rows: 1fr;
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: initial;
+    align-items: center;
+  }
+}
+
+.carouselWrapper{
+}
+
+.slideInfo {
+  margin-bottom: 2rem;
+  text-align: center;
+  transition: all 0.25s ease-in-out;
+  @include mq(md) {
+    text-align: left;
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  margin-top: 0;
+  @include h1m();
+}
+
+.copy {}
+
+.mediaWrapper {
+  position: relative;
+  margin-bottom: 2rem;
+  transition: all 0.25s ease-in-out;
+  &:before {
+    content: "";
+    width: 15%;
+    height: 15%;
+    border-radius: 50%;
+    background-color: $primary-light;
+    position: absolute;
+    z-index: 2;
+    top: 0%;
+    right: 0%;
+    transform: translate(-50%, 50%);
+    opacity: inherit;
+  }
+}
+
+.media{
+  position: relative;
+  z-index: 1;
+  clip-path: ellipse(50% 50% at 50% 50%);
+  font-size: 0;
+}

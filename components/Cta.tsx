@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import cta from "styles/cta";
-import styled from "@emotion/styled";
+import styles from "./Cta.module.scss";
 
 interface CtaProps {
   cta?: any;
@@ -9,20 +8,13 @@ interface CtaProps {
 }
 const Cta = ({ cta, onClick }: CtaProps) => {
   return cta ? (
-    <Link href={cta.uri ?? ""} passHref>
-      <SLink
-        target={cta.target ? "_blank" : ""}
-        rel={cta.target ? "noreferrer noopener" : ""}
-        onClick={onClick}
-      >
-        {cta.texto}
-      </SLink>
+    <Link href={cta.uri ?? ""} className={styles.cta} target={cta.target ? "_blank" : ""}
+    rel={cta.target ? "noreferrer noopener" : ""}
+    onClick={onClick}>
+      {cta.texto}
     </Link>
   ) : null;
 };
 
 export default Cta;
 
-const SLink = styled.a`
-  ${cta}
-`;

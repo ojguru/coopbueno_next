@@ -1,32 +1,29 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 // import { mwLG } from "./layout/container";
 import Link from "next/link";
 // import SearchModal from "./search/search-modal";
 // import SearchButton from 'components/search/search-button'
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import colors from "styles/colors";
-import logo from "../../public/coopbueno_logo.svg";
+import colors from "@/styles/colors";
+import logo from "@/public/coopbueno_logo.svg";
 import {
-  ENUM_SERVICIO_CATEGORIA,
-  ENUM_SERVICIO_TIPO,
   MenusMenuItemEntity,
   ServicioEntity,
-  useQuery,
-} from "client";
-import useMenu from "hooks/useMenu";
+} from "@/gql/graphql";
+import useMenu from "@/hooks/useMenu";
 import Navigation from "./navigation/navigation";
 import {
   getHierarchicalItems,
   getServiceHierarchicalItems,
-} from "lib/auxiliar";
+} from "@/lib/auxiliar";
 
 import { InstagramIcon, FacebookIcon, TwitterIcon } from "./icons";
-import { FACEBOOK, INSTAGRAM, TWITTER } from "lib/constants";
-import ctas from "styles/cta";
+import { FACEBOOK, INSTAGRAM, TWITTER } from "@/lib/constants";
+import ctas from "@/styles/cta";
 
 interface HeaderProps {
   menuItems?: MenusMenuItemEntity[];

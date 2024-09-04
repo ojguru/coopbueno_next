@@ -1,3 +1,5 @@
+import { REVALIDATE } from "./constants";
+
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
 
 export async function fetchAPI(
@@ -6,11 +8,6 @@ export async function fetchAPI(
 ): Promise<any> {
   const headers = { "Content-Type": "application/json" };
 
-  // if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
-  //   headers[
-  //     'Authorization'
-  //   ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
-  // }
   const res = await fetch(API_URL + "/graphql", {
     method: "POST",
     headers,
@@ -18,13 +15,16 @@ export async function fetchAPI(
       query,
       variables,
     }),
+    next: { revalidate: REVALIDATE },
   });
 
   const json = await res.json();
+
   if (json.errors) {
     console.error(json.errors);
     throw new Error("Failed to fetch API");
   }
+
   return json.data;
 }
 

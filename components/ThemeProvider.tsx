@@ -12,9 +12,21 @@ interface providerProps {
 export default function ThemeProvider({ children }: providerProps) {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [token, setToken] = useState("");
+  const [hsFormLoaded, setHsFormLoaded] = useState(false);
+  const [startTime, setStartTime] = useState(Date.now());
 
   return (
-    <ThemeContext.Provider value={{ isMenuOpen, setMenuOpen, token, setToken }}>
+    <ThemeContext.Provider
+      value={{
+        isMenuOpen,
+        setMenuOpen,
+        token,
+        setToken,
+        hsFormLoaded,
+        setHsFormLoaded,
+        startTime,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

@@ -1,0 +1,81 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.cover {
+  @include containerFluid;
+  display: grid;
+  align-items: center;
+  margin-bottom: $space-medium;
+  @include mq(lg) {
+    grid-template-columns: 5% 95%;
+    // max-width: $lg;
+  }
+  @include mq(xl) {
+    max-width: $xl;
+  }
+}
+
+.imageContainer{
+  position: relative;
+  right: 0;
+  margin: 0 -$gap;
+  z-index: -1;
+  @include mq(lg) {
+    order: 2;
+    min-width: 100rem;
+  }
+  @include mq(xl) {
+    min-width: 130rem;
+  }
+}
+
+.content{
+  padding-top: 2rem;
+  text-align: center;
+  text-shadow: 0.1rem 0.1rem 0.1rem white;
+  @include mq(lg) {
+    order: 1;
+    min-width: 50rem;
+    padding-top: 10rem;
+    padding-bottom: 15rem;
+    text-align: left;
+  }
+}
+
+.title{
+  text-shadow: 1px 1px 2px $shadow-dark;
+  text-transform: uppercase;
+  margin: 0;
+  margin-bottom: 3rem;
+  color: $green-base;
+  text-align: inherit;
+  font-size: 2.9rem;
+  font-weight: 900;
+  line-height: 1.138888889;
+  @include mq(sm) {
+    font-size: 3.2rem;
+  }
+  @include mq(md) {
+    font-size: 4rem;
+  }
+  @include mq(lg) {
+    font-size: 4.5rem;
+  }
+  @include mq(xl) {
+    font-size: 5rem;
+  }
+}
+
+.copy{
+  margin-bottom: 40px;
+  text-align: inherit;
+  @include h6m();
+  color: $text-base;
+}
+
+.linkBox {
+  text-align: inherit;
+}

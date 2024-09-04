@@ -2,8 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import Link from "next/link";
 import Image from "next/image";
-import Navigation from "components/navigation/navigation";
-import { container, mq } from "components/grid";
+import Navigation from "@/components/navigation/navigation";
+import { container, mq } from "@/components/grid";
 import {
   PhoneIcon,
   LocationIcon,
@@ -19,13 +19,13 @@ import {
   TELEFONOS,
   UBICACION,
   EMAIL,
-} from "lib/constants";
-import logo from "../../public/coopbueno_logo_footer.svg";
-import uaf from "../../public/uaf.webp";
-import colors from "styles/colors";
-import { getHierarchicalItems } from "lib/auxiliar";
-import { MenusMenuItemEntity } from "client";
-import { getImageURL } from "lib/api";
+} from "@/lib/constants";
+import logo from "@/public/coopbueno_logo_footer.svg";
+import uaf from "@/public/uaf.webp";
+import colors from "@/styles/colors";
+import { getHierarchicalItems } from "@/lib/auxiliar";
+import { MenusMenuItemEntity } from "@/gql/graphql";
+import { getImageURL } from "@/lib/api";
 
 interface FooterProps {
   menuItems?: MenusMenuItemEntity[];

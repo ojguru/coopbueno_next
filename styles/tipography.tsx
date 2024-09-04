@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import { mq } from 'components/grid'
+import { mq } from '@/components/grid'
 import colors from './colors'
 export const h1 = css`
   font-size: 2.9rem;
