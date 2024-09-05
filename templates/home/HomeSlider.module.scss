@@ -10,7 +10,7 @@
   margin-bottom: $space-large ;
   margin-top: $space-large ;
 
-  &:global(.slick-dots) {
+  :global(.slick-dots) {
     font-size: 0;
     button {
       background-color: $primary-base;
@@ -19,7 +19,7 @@
         content: "";
       }
     }
-    .slick-active {
+    :global(.slick-active) {
       button {
         background-color: $primary-base;
         opacity: 1;
