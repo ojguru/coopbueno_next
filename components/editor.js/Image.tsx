@@ -1,6 +1,5 @@
 import React from "react";
 import Imagen from "next/image";
-import styled from "@emotion/styled";
 import { RenderFn } from "editorjs-blocks-react-renderer";
 
 const Image: RenderFn<{
@@ -15,19 +14,15 @@ const Image: RenderFn<{
   };
 }> = ({ id, data, className = "" }) => {
   return (
-    <Div>
+    <div>
       <Imagen
         src={data?.file?.url}
         id={id}
-        width={data.file.width || 1920}
-        height={data.file.height || 1080}
-        alt={data.file.alternativeText || data.file.alt || data.file.name}
-        objectFit="contain"
+        {...data}
+        alt={data.file.alternativeText || data.file.alt || data.file.name || ""}
       />
-    </Div>
+    </div>
   );
 };
 
 export default Image;
-
-const Div = styled.div``;

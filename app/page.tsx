@@ -34,6 +34,22 @@ const QUERY = `
             }
             ${CTAFragment}
           }
+          razones{
+            titulo
+            descripcion
+            ${CTAFragment}
+            imagen {
+              ${ImageFragment}
+            }
+          }
+          informacion{
+            titulo
+            descripcion
+            imagen{
+              ${ImageFragment}
+            }
+            ${CTAFragment}
+          }
         }
       }
     }
@@ -49,7 +65,7 @@ const QUERY = `
         }
       }
     }
-    noticias ( pagination: {pageSize: 3},sort: ["publishedAt:desc"]){
+    noticias ( pagination: {pageSize: 2},sort: ["publishedAt:desc"]){
       data{
         attributes{
           titulo
@@ -143,10 +159,10 @@ export default async function Home() {
       <HomeCover portada={home?.portada} />
       <HomeSlider slides={slides} />
       <HomeServicios {...{ servicios }} />
-      {/* <HomeSocio {...{ home }} /> */}
-      {/* <HomeAcademy posts={posts} /> */}
-      {/* <HomeNews noticias={noticias} /> */}
-      {/* <HomePromo {...{ home }} /> */}
+      <HomeSocio {...{ home }} />
+      <HomeAcademy posts={posts} />
+      <HomeNews noticias={noticias} />
+      <HomePromo {...{ home }} />
     </>
   );
 }

@@ -1,0 +1,75 @@
+@import "@/styles/variables.module.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/grid.module.scss";
+@import "@/styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.section{
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+}
+
+.body{
+    @include container();
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    @include mq(md){
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.sectionTitle{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 0;
+  padding: 1.5rem 0;
+  @include h1m();
+}
+
+.post{
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.mediaWrapper{
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.imageContainer{
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  img{
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+}
+
+.title{
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.excerpt{
+  color: $text-base;
+}
+
+.postLink{
+  text-decoration: none;
+}
+
+.slide{}
+
+
+.link{
+  text-decoration: none;
+}

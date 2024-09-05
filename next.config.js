@@ -3,14 +3,33 @@ const path = require("path");
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      // "[yourapp].wpengine.com" (Update this to be your Wordpress application name in order to load images connected to your posts)
-      "localhost",
-      "certificaciones.uaf.gob.do",
-      "coopbueno.netlify.app",
-      "coopbueno.com.do",
-      "app.coopbueno.com.do",
-      "res.cloudinary.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "localhost",
+        port: "3000",
+        // pathname: "/",
+      },
+      {
+        protocol: "https",
+        hostname: "certificaciones.uaf.gob.do",
+      },
+      {
+        protocol: "https",
+        hostname: "coopbueno.netlify.app",
+      },
+      {
+        protocol: "https",
+        hostname: "coopbueno.com.do",
+      },
+      {
+        protocol: "https",
+        hostname: "app.coopbueno.com.do",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
     ],
   },
   sassOptions: {

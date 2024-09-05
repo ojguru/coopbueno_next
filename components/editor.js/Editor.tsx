@@ -2,8 +2,7 @@ import React from "react";
 import Image from "./Image";
 import Blocks from "editorjs-blocks-react-renderer";
 import Checklist from "./Checklist";
-import styled from "@emotion/styled";
-import editorStyles from "styles/editor-styles";
+import styles from "./Editor.module.scss";
 
 interface EditorProps {
   content: any;
@@ -12,7 +11,7 @@ const Editor = ({ content }: EditorProps) => {
   const blocks = JSON.parse(content || "{}").blocks;
 
   return blocks ? (
-    <EditorWrapper>
+    <div className={styles.editorWrapper}>
       <Blocks
         data={JSON.parse(content)}
         renderers={{
@@ -20,12 +19,8 @@ const Editor = ({ content }: EditorProps) => {
           image: Image,
         }}
       />
-    </EditorWrapper>
+    </div>
   ) : null;
 };
 
 export default Editor;
-
-const EditorWrapper = styled.div`
-  ${editorStyles}
-`;

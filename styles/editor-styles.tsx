@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { GAP, LINEHEIGHT } from "lib/constants";
+import { GAP, LINEHEIGHT } from "@/lib/constants";
 
 const editorStyles = css`
   p {
