@@ -17,7 +17,7 @@ interface HomeSliderProps {
 }
 const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
   return slides.length ? (
-    <section className={styles.section} fluid space large>
+    <section className={styles.section}>
       <div className={styles.carouselWrapper}>
         <Carousel
           infinite
@@ -51,7 +51,6 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
                         }
                         width={1080}
                         height={1080}
-                        objectFit="cover"
                       />
                     </div>
                   </div>

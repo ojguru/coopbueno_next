@@ -87,6 +87,7 @@ const QUERY = `
           nombre
           slug
           categoria
+          tipo
           icono{
             ${ImageFragment}
           }
@@ -141,7 +142,7 @@ export default async function Home() {
       <h1 className={styles.title}>Coopbueno</h1>
       <HomeCover portada={home?.portada} />
       <HomeSlider slides={slides} />
-      {/* <HomeServicios {...{ servicios }} /> */}
+      <HomeServicios {...{ servicios }} />
       {/* <HomeSocio {...{ home }} /> */}
       {/* <HomeAcademy posts={posts} /> */}
       {/* <HomeNews noticias={noticias} /> */}

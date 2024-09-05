@@ -25,8 +25,6 @@ const HomeCover = ({ portada }: HomeCoverProps) => {
           width={1920}
           height={1080}
           priority
-          objectFit="cover"
-          objectPosition="75% 0%"
         />
       </div>
       <div className={styles.content}>

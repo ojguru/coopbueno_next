@@ -1,21 +1,22 @@
+'use client';
+
 import React from "react";
-import styled from "@emotion/styled";
 import { CarouselProvider, Slider, Dot } from "pure-react-carousel";
 import ServicesCards from "./HomeServicioCard";
-import { container } from "components/grid";
-import { ENUM_SERVICIO_TIPO, ServicioEntity } from "client";
-import colors from "styles/colors";
+import { Enum_Servicio_Tipo, ServicioEntity } from "@/gql/graphql";
+import styles from "./HomeServicios.module.scss"
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
 interface HomeServiciosProps {
   servicios?: ServicioEntity[];
 }
 const HomeServicios = ({ servicios = [] }: HomeServiciosProps) => {
-  const mainItems = Object.values(ENUM_SERVICIO_TIPO)
+  const mainItems = Object.values(Enum_Servicio_Tipo)
     .filter((item) => item !== "beneficios")
     .reverse();
 
   return servicios.length ? (
-    <Section id="servicios" fluid space>
+    <section id="servicios" className={styles.section} >
       <CarouselProvider
         naturalSlideWidth={16}
         naturalSlideHeight={9}
@@ -26,15 +27,15 @@ const HomeServicios = ({ servicios = [] }: HomeServiciosProps) => {
         dragEnabled={false}
         touchEnabled={false}
       >
-        <Tabs>
+        <div className={styles.tabs}>
           {mainItems.map((item, index) => {
             return (
-              <Tab key={index} slide={index}>
+              <Dot key={index} slide={index} className={styles.tab}>
                 {item}
-              </Tab>
+              </Dot>
             );
           })}
-        </Tabs>
+        </div>
 
         <Slider>
           {mainItems.map((mainItem, index) => {
@@ -45,40 +46,9 @@ const HomeServicios = ({ servicios = [] }: HomeServiciosProps) => {
           })}
         </Slider>
       </CarouselProvider>
-    </Section>
+    </section>
   ) : null;
 };
 
 export default HomeServicios;
 
-const Section = styled.section`
-  ${container}
-  padding: 0;
-
-  .carousel__slider {
-    overflow: initial;
-  }
-`;
-
-const Tabs = styled.div`
-  text-align: center;
-  margin-bottom: 4rem;
-`;
-
-const Tab = styled(Dot)`
-  all: initial;
-  font-family: inherit;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
-  color: #555555;
-  background-color: ${colors.gray.lighter};
-  padding: 1.5rem 2.5rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  cursor: pointer;
-  &[disabled] {
-    text-shadow: none;
-    color: ${colors.primary.dark};
-    background-color: #ffffff;
-    cursor: initial;
-  }
-`;

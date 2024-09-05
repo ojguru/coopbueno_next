@@ -7,8 +7,8 @@
 .section {
   @include containerFluid();
   max-width: initial;
-  margin-bottom: $space-medium ;
-  margin-top: $space-medium ;
+  margin-bottom: $space-large ;
+  margin-top: $space-large ;
 
   &:global(.slick-dots) {
     font-size: 0;
