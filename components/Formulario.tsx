@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import Loading from "components/loading";
-import { HUBSPOT_ID } from "lib/constants";
-import { ComponentGeneralFormulario } from "client";
+import Loading from "@/components/loading";
+import { HUBSPOT_ID } from "@/lib/constants";
+import { ComponentGeneralFormulario } from "@/gql/graphql";
 import Script from "next/script";
 import { useAppContext } from "context/appContext";
 import { useInView } from "react-intersection-observer";

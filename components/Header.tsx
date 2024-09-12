@@ -10,10 +10,7 @@ import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import colors from "@/styles/colors";
 import logo from "@/public/coopbueno_logo.svg";
-import {
-  MenusMenuItemEntity,
-  ServicioEntity,
-} from "@/gql/graphql";
+import { MenusMenuItemEntity, ServicioEntity } from "@/gql/graphql";
 import useMenu from "@/hooks/useMenu";
 import Navigation from "./navigation/navigation";
 import {
@@ -43,7 +40,7 @@ const Header = ({ menuItems = [], servicios = [] }: HeaderProps) => {
       <HeaderWrapper inView={inView}>
         <Container fluid>
           <LogoContainer>
-            <Link href="/" passHref>
+            <Link href="/">
               <StyledLink>
                 <Image src={logo} alt="Coopbueno Logo" priority />
               </StyledLink>
@@ -53,10 +50,7 @@ const Header = ({ menuItems = [], servicios = [] }: HeaderProps) => {
             <Gadgets>
               {/* {state.theme.search.showOnHeader ? <SearchButton /> : null} */}
             </Gadgets>
-            <Link
-              href="https://www.cosefi.com/CoopBueno/IBanking/Web/Customer/SIBanking_Login.aspx"
-              passHref
-            >
+            <Link href="https://www.cosefi.com/CoopBueno/IBanking/Web/Customer/SIBanking_Login.aspx">
               <Coopvirtual target="_blank" rel="noreferrer noopener">
                 Coopvirtual
               </Coopvirtual>
@@ -65,10 +59,7 @@ const Header = ({ menuItems = [], servicios = [] }: HeaderProps) => {
           </NavContainer>
         </Container>
         <MenuModalUI>
-          <Link
-            href="https://www.cosefi.com/CoopBueno/IBanking/Web/Customer/SIBanking_Login.aspx"
-            passHref
-          >
+          <Link href="https://www.cosefi.com/CoopBueno/IBanking/Web/Customer/SIBanking_Login.aspx">
             <CtaCoopVirtual
               target="_blank"
               rel="noreferrer noopener"
@@ -118,9 +109,9 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* ${mq.lg} {
+  /* @include mq(lg) {
   } */
-  ${mq.xl} {
+  @include mq(xl) {
     max-width: 160rem;
   }
 `;
@@ -162,7 +153,7 @@ const HeaderWrapper = styled.div`
 const LogoContainer = styled.div`
   padding: 1rem;
   width: 14rem;
-  ${mq.md} {
+  @include mq(md) {
     width: 20rem;
   }
 `;
@@ -185,7 +176,7 @@ const Coopvirtual = styled.a`
   text-decoration: none;
   font-weight: 900;
   text-transform: uppercase;
-  ${mq.md} {
+  @include mq(md) {
     display: initial;
   }
 `;

@@ -3,25 +3,25 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Switch, FormControlLabel, withStyles } from "@material-ui/core";
 import useModal from "hooks/useModal";
-import Layout from "components/Layout";
+import Layout from "@/components/Layout";
 
-import ctas from "styles/cta";
-import { mq, container } from "components/grid";
+import ctas from "@/styles/cta";
+import { mq, container } from "@/components/grid";
 
 import { useForm } from "react-hook-form";
 // import { ErrorMessage } from "@hookform/error-message";
-import { h4 } from "styles/tipography";
-import colors from "styles/colors";
-import PageHeader from "components/PageHeader";
-import { ComponentGeneralFormulario } from "client";
+import { h4 } from "@/styles/tipography";
+import colors from "@/styles/colors";
+import PageHeader from "@/components/PageHeader";
+import { ComponentGeneralFormulario } from "@/gql/graphql";
 import { NextSeo } from "next-seo";
-import { SITE_NAME, SITE_URL } from "lib/constants";
-import Formulario from "components/Formulario";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
+import Formulario from "@/components/Formulario";
 
 import { GetStaticProps } from "next";
-import { prepareReactRender, useHydrateCache } from "client";
+import { prepareReactRender, useHydrateCache } from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import Loading from "components/loading";
+import Loading from "@/components/loading";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -557,13 +557,13 @@ const Calculator = styled.div`
   padding: 4rem 1.5rem;
   display: grid;
   gap: 3rem;
-  ${mq.sm} {
+  @include mq(sm) {
     padding: 4rem 2rem;
   }
-  ${mq.md} {
+  @include mq(md) {
     padding: 3rem;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     padding: 4rem;
   }
 `;
@@ -574,7 +574,7 @@ const Form = styled.form`
   margin: 0;
   display: grid;
   gap: 3rem;
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1.5fr 1fr 1fr;
   }
 `;
@@ -621,10 +621,10 @@ const Input = styled.input`
       outline: initial;
       border-color: red;
     }
-    ${mq.sm} {
+    @include mq(sm) {
       font-size: 20px;
     }
-    ${mq.lg} {
+    @include mq(lg) {
       font-size: 20px;
     }
   `}
@@ -667,10 +667,10 @@ const MessageBox = styled.div`
   background-color: white;
   padding: 2rem;
   margin: 0;
-  ${mq.sm} {
+  @include mq(sm) {
     padding: 4rem;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     padding: 8rem;
     border-radius: 4rem;
   }

@@ -1,5 +1,5 @@
 const NEXT_PUBLIC_GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-import { HUBSPOT_ID } from "lib/constants";
+import { HUBSPOT_ID } from "@/lib/constants";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
 

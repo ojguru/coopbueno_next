@@ -1,16 +1,16 @@
 import React, { Suspense } from "react";
 import styled from "@emotion/styled";
-import { container } from "components/grid";
-import Layout from "components/Layout";
-import Formulario from "components/Formulario";
-import { ComponentGeneralFormulario } from "client";
+import { container } from "@/components/grid";
+import Layout from "@/components/Layout";
+import Formulario from "@/components/Formulario";
+import { ComponentGeneralFormulario } from "@/gql/graphql";
 import { NextSeo } from "next-seo";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 import { GetStaticProps } from "next";
-import { prepareReactRender, useHydrateCache } from "client";
+import { prepareReactRender, useHydrateCache } from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import Loading from "components/loading";
+import Loading from "@/components/loading";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {

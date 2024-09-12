@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
-import { h1 } from "styles/tipography";
-import { Servicio } from "client";
+import { container, mq } from "@/components/grid";
+import { h1 } from "@/styles/tipography";
+import { Servicio } from "@/gql/graphql";
 
 interface VentajasProps {
   servicio: Servicio;
@@ -43,7 +43,7 @@ const Title = styled.h2`
   text-align: center;
   text-transform: uppercase;
   ${h1}
-  ${mq.md} {
+  @include mq(md) {
     grid-column: 1 / span 2;
   }
 `;
@@ -54,7 +54,7 @@ const RequirementsList = styled.ul`
   display: grid;
   gap: 1.5rem 3rem;
 
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
 `;

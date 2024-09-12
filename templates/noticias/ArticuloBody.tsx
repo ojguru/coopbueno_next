@@ -3,11 +3,11 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Categorias from "./ArticuloCategorias";
 import Meta from "./ArticuloMeta";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
-import { NoticiaEntity } from "client";
-import { getImageURL } from "lib/api";
-import Editor from "components/editor.js/Editor";
+import { NoticiaEntity } from "@/gql/graphql";
+import { getImageURL } from "@/lib/api";
+import Editor from "@/components/editor.js/Editor";
 
 interface ArticuloBodyProps {
   articulo?: NoticiaEntity;
@@ -58,7 +58,7 @@ export default ArticuloBody;
 const Article = styled.article`
   min-height: 100vh;
   display: grid;
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -68,7 +68,7 @@ const MediaContainer = styled.div``;
 const Media = styled.div`
   display: grid;
   font-size: 0;
-  ${mq.lg} {
+  @include mq(lg) {
     position: fixed;
     top: 0;
     left: 0;
@@ -83,11 +83,11 @@ const InfoContainer = styled.div`
   ${({ maxWidth = "70rem" }) => css`
     margin-left: auto;
     margin-right: auto;
-    ${mq.lg} {
+    @include mq(lg) {
       max-width: ${maxWidth};
       padding: 0 2rem;
     }
-    ${mq.xl} {
+    @include mq(xl) {
       padding: 0 4rem;
     }
   `}
@@ -97,7 +97,7 @@ const Header = styled.div`
   background-color: #fff;
   margin: 0;
   padding: 2rem 0;
-  ${mq.md} {
+  @include mq(md) {
     padding-top: 2rem;
     padding-bottom: 6rem;
   }
@@ -106,7 +106,7 @@ const Header = styled.div`
 const PostTitle = styled.h1`
   text-align: center;
   text-transform: uppercase;
-  ${mq.lg} {
+  @include mq(lg) {
     text-align: left;
   }
 `;

@@ -1,10 +1,10 @@
 import { Global } from "@emotion/react";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
-import globalStyle from "styles/global-styles";
+import globalStyle from "@/styles/global-styles";
 import { AppWrapper } from "context/appContext";
 import { NextSeo } from "next-seo";
 import Head from "next/head";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { useRouter } from "next/router";
 import { event } from "nextjs-google-analytics";
 

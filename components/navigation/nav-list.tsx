@@ -2,8 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import NavItem from "./nav-item";
-import { MenuItem } from "lib/auxiliar";
-import { MenusMenuItemEntity } from "client";
+import { MenuItem } from "@/lib/auxiliar";
+import { MenusMenuItemEntity } from "@/gql/graphql";
 
 interface NavListProps {
   items?: MenuItem[] | MenusMenuItemEntity[];

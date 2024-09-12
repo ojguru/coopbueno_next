@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
 import insignia1 from "../../../public/ahorro-infantil/insignia1.svg";
 import insignia2 from "../../../public/ahorro-infantil/insignia2.svg";
@@ -16,7 +16,7 @@ import etiqueta6 from "../../../public/ahorro-infantil/etiqueta6.svg";
 import etiqueta7 from "../../../public/ahorro-infantil/etiqueta7.svg";
 import etiqueta8 from "../../../public/ahorro-infantil/etiqueta8.svg";
 import space from "../../../public/ahorro-infantil/space.webp";
-import { h1 } from "styles/tipography";
+import { h1 } from "@/styles/tipography";
 
 const Insignias = () => {
   return (
@@ -111,10 +111,10 @@ const Body = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 0%;
-  ${mq.sm} {
+  @include mq(sm) {
     gap: 10%;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 2fr 1fr;
     gap: 5%;
   }
@@ -125,7 +125,7 @@ const Lista = styled.ul`
   display: grid;
   position: relative;
   grid-template-columns: 1fr 1fr;
-  ${mq.sm} {
+  @include mq(sm) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   &:after {
@@ -139,7 +139,7 @@ const Lista = styled.ul`
     border-radius: 2.5rem;
     transform: translate(0, -50%);
     z-index: 1;
-    ${mq.sm} {
+    @include mq(sm) {
       transform: translate(0, -20%);
     }
   }
@@ -163,7 +163,7 @@ const AlbumContainer = styled.div`
   align-content: center;
   justify-content: center;
   align-items: center;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 3fr 1fr;
   }
 `;
@@ -177,7 +177,7 @@ const Etiquetas = styled.ul`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 3rem;
   font-size: 0;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -196,7 +196,7 @@ const Space = styled.div`
   width: 100%;
   z-index: -1;
   transform: translate(60%, -50%) scaleX(-1);
-  ${mq.md} {
+  @include mq(md) {
     width: 70%;
     transform: translate(60%, -60%) scaleX(-1);
   }

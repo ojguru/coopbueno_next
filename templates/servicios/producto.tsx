@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
-import { Servicio } from "client";
-import { getImageURL } from "lib/api";
-import Editor from "components/editor.js/Editor";
+import { Servicio } from "@/gql/graphql";
+import { getImageURL } from "@/lib/api";
+import Editor from "@/components/editor.js/Editor";
 
 interface ProductProps {
   servicio: Servicio;
@@ -48,13 +48,13 @@ const Container = styled.div`
   ${container}
   display: grid;
   gap: 3rem;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
 `;
 
 const InfoContainer = styled.div`
-  ${mq.md} {
+  @include mq(md) {
     order: 2;
   }
 `;
@@ -66,7 +66,7 @@ const Title = styled.h1`
 const MediaContainer = styled.div`
   max-width: 30rem;
   margin: 0 auto;
-  ${mq.md} {
+  @include mq(md) {
     order: 1;
   }
 `;

@@ -1,103 +1,103 @@
-import { css } from '@emotion/react'
-import { mq } from '@/components/grid'
-import colors from './colors'
+import { css } from "@emotion/react";
+import { mq } from "@/components/grid";
+import colors from "./colors";
 export const h1 = css`
   font-size: 2.9rem;
   font-weight: 800;
   line-height: 1.138888889;
-  ${mq.sm} {
+  @include mq(sm) {
     font-size: 3.2rem;
   }
-  ${mq.md} {
+  @include mq(md) {
     font-size: 3.4rem;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     font-size: 3.6rem;
   }
-  ${mq.xl} {
+  @include mq(xl) {
     font-size: 4rem;
   }
-`
+`;
 
 export const h2 = css`
   font-size: 2.1rem;
-  ${mq.sm} {
+  @include mq(sm) {
     font-size: 2.4rem;
   }
-  ${mq.md} {
+  @include mq(md) {
     font-size: 2.6rem;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     font-size: 2.8rem;
   }
-  ${mq.xl} {
+  @include mq(xl) {
     font-size: 3.2rem;
   }
-`
+`;
 
 export const h3 = css`
   font-size: 1.9rem;
-  ${mq.sm} {
+  @include mq(sm) {
     font-size: 2rem;
   }
-  ${mq.md} {
+  @include mq(md) {
     font-size: 2.2rem;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     font-size: 2.4rem;
   }
-  ${mq.xl} {
+  @include mq(xl) {
     font-size: 2.8rem;
   }
-`
+`;
 
 export const h4 = css`
   font-size: 1.8rem;
-  ${mq.sm} {
+  @include mq(sm) {
     font-size: 1.8rem;
   }
-  ${mq.md} {
+  @include mq(md) {
     font-size: 2rem;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     font-size: 2rem;
   }
-  ${mq.xl} {
+  @include mq(xl) {
     font-size: 2.4rem;
   }
-`
+`;
 
 export const h5 = css`
   font-size: 1.7rem;
-  ${mq.sm} {
+  @include mq(sm) {
     font-size: 1.7rem;
   }
-  ${mq.md} {
+  @include mq(md) {
     font-size: 1.8rem;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     font-size: 1.8rem;
   }
-  ${mq.xl} {
+  @include mq(xl) {
     font-size: 2rem;
   }
-`
+`;
 
 export const h6 = css`
   font-size: 1.6rem;
-  ${mq.sm} {
+  @include mq(sm) {
     font-size: 1.6rem;
   }
-  ${mq.md} {
+  @include mq(md) {
     font-size: 1.7rem;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     font-size: 1.7rem;
   }
-  ${mq.xl} {
+  @include mq(xl) {
     font-size: 1.8rem;
   }
-`
+`;
 
 const tipography = css`
   main {
@@ -111,7 +111,7 @@ const tipography = css`
   h5,
   h6,
   .faux-heading {
-    font-feature-settings: 'lnum';
+    font-feature-settings: "lnum";
     font-variant-numeric: lining-nums;
     font-weight: 700;
     letter-spacing: -0.0415625em;
@@ -151,6 +151,6 @@ const tipography = css`
     text-transform: uppercase;
     ${h6}
   }
-`
+`;
 
-export default tipography
+export default tipography;

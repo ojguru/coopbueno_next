@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import colors from "./colors";
-import ckeditorStyles from "styles/content-styles";
+import ckeditorStyles from "@/styles/content-styles";
 
 const cssReset = css`
   #adsbox {

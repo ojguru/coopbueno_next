@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { css, Global } from "@emotion/react";
 import styled from "@emotion/styled";
-import { CloseIcon } from "components/icons";
-import colors from "styles/colors";
-import { fadeIn, slideDown } from "styles/animations";
-import { container, mq } from "components/grid";
+import { CloseIcon } from "@/components/icons";
+import colors from "@/styles/colors";
+import { fadeIn, slideDown } from "@/styles/animations";
+import { container, mq } from "@/components/grid";
 
 const useModal = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -100,13 +100,13 @@ const CardModal = styled.div`
   overflow: hidden;
   padding: 0 1.5rem 1.5rem 1.5rem;
   max-width: ${(props) => props.maxWidth};
-  ${mq.sm} {
+  @include mq(sm) {
     padding: 0 3rem 3rem 1.5rem;
   }
-  ${mq.md} {
+  @include mq(md) {
     padding: 0 3.5rem 3.5rem 3.5rem;
   }
-  ${mq.xl} {
+  @include mq(xl) {
     padding: 0 4.5rem 4.5rem 4.5rem;
   }
 `;

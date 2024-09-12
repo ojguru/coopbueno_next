@@ -2,8 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import NavList from "./nav-list";
-import { mq } from "components/grid";
-import { MenuItem } from "lib/auxiliar";
+import { mq } from "@/components/grid";
+import { MenuItem } from "@/lib/auxiliar";
 /**
  * Navigation Component
  *
@@ -86,10 +86,10 @@ const Container = styled.div`
     grid-template-columns: 100%;
     ${props.split
       ? css`
-          ${mq.lg} {
+          @include mq(lg) {
             grid-template-columns: 48% 48%;
           }
-          ${mq.xl} {
+          @include mq(xl) {
             grid-template-columns: 33.333333% 33.333333% 33.333333%;
           }
         `

@@ -1,6 +1,5 @@
 
-import React, { Suspense } from "react";
-import styled from "@emotion/styled";
+import React from "react";
 
 import HomeCover from "@/templates/home/HomeCover";
 import HomeAcademy from "@/templates/home/HomeAcademy";
@@ -13,7 +12,6 @@ import styles from "./page.module.scss"
 
 import { Homepage, Enum_Servicio_Categoria } from "@/gql/graphql";
 
-import Loading from "@/components/loading";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { fetchAPI, getImageURL } from "@/lib/api";
 import {

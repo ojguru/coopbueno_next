@@ -1,16 +1,16 @@
 import styled from "@emotion/styled";
 import React from "react";
 import Post from "templates/noticias/post-item";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import ArchiveHeader from "templates/noticias/archive-header";
 // import Pagination from '../archive-pagination'
 // import Navigation from 'templates/noticias/archive-navigation'
 import Link from "next/link";
 
 // import { CardActions } from "@material-ui/core";
-import colors from "styles/colors";
+import colors from "@/styles/colors";
 
-import { CategoryEntity, NoticiaEntity } from "client";
+import { CategoryEntity, NoticiaEntity } from "@/gql/graphql";
 
 interface ArchivoProps {
   titulo: string;
@@ -27,7 +27,7 @@ const Archivo = ({
   return (
     <>
       <Header spaceTop>
-        <Link href="/noticias" passHref>
+        <Link href="/noticias">
           <SLink>
             <ArchiveHeader color={colors.primary.base} title={titulo} />
           </SLink>
@@ -106,7 +106,7 @@ const Main = styled.div`
   ${container}
   display: grid;
   gap: 3rem;
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -114,13 +114,13 @@ const Main = styled.div`
 const Secondary = styled.div`
   display: grid;
   gap: 3rem;
-  ${mq.sm} {
+  @include mq(sm) {
     grid-template-columns: 1fr 1fr;
   }
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr 1fr;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     grid-column: 1 / span 2;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
@@ -137,11 +137,11 @@ const SectionImage = styled.div`
   margin: 0 auto;
   margin-bottom: 2rem;
   margin-top: 2rem;
-  ${mq.md} {
+  @include mq(md) {
     max-width: 30rem;
     margin-top: initial;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     max-width: 35rem;
   }
 `;

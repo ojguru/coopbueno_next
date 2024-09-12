@@ -1,9 +1,9 @@
 import React, { Suspense, useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import dynamic from "next/dynamic";
-import Layout from "components/Layout";
-import Loading from "components/loading";
+import Layout from "@/components/Layout";
+import Loading from "@/components/loading";
 import Portada from "templates/servicios/portadaInfanitil";
 import Producto from "templates/servicios/producto";
 import UniversoCoopbueno from "templates/servicios/universoCoopbueno";
@@ -46,10 +46,10 @@ import {
   ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK,
   ENUM_SERVICIO_CATEGORIA,
   ComponentGeneralFormulario,
-} from "client";
+} from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import { getImageURL } from "lib/api";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { getImageURL } from "@/lib/api";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { useInView } from "react-intersection-observer";
 
 type PageProps = PropsWithServerCache<{
@@ -234,12 +234,12 @@ const RequisitosDeco = styled.div`
   position: relative;
 
   section > div {
-    ${mq.md} {
+    @include mq(md) {
       display: grid;
       grid-template-columns: 6fr 1fr;
     }
     ul {
-      ${mq.md} {
+      @include mq(md) {
         grid-template-columns: 1fr 1fr;
       }
     }
@@ -318,7 +318,7 @@ const Space = styled.div`
   z-index: -1;
   transform-origin: center center;
   transform: translate(-55%, 50%) rotate(-65deg);
-  ${mq.md} {
+  @include mq(md) {
     width: 100%;
     /* transform: translate(-60%, -50%); */
   }

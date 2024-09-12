@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
-import { Servicio } from "client";
+import { Servicio } from "@/gql/graphql";
 
 import libreta from "../../../public/ahorro-infantil/libreta.webp";
 
@@ -50,13 +50,13 @@ const Container = styled.div`
   display: grid;
   gap: 3rem;
   align-items: center;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
 `;
 
 const InfoContainer = styled.div`
-  ${mq.md} {
+  @include mq(md) {
     order: 2;
   }
 `;
@@ -67,7 +67,7 @@ const Title = styled.h1`
 
 const MediaContainer = styled.div`
   margin: 0 auto;
-  ${mq.md} {
+  @include mq(md) {
     order: 1;
   }
 `;

@@ -1,21 +1,21 @@
 import React, { Suspense } from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
-import PageHeader from "components/PageHeader";
+import { container, mq } from "@/components/grid";
+import PageHeader from "@/components/PageHeader";
 import Image from "next/image";
 import Link from "next/link";
-import colors from "styles/colors";
-import { h3 } from "styles/tipography";
+import colors from "@/styles/colors";
+import { h3 } from "@/styles/tipography";
 
 import { GetStaticProps } from "next";
 
-import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import { useQuery, prepareReactRender, useHydrateCache } from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import Layout from "components/Layout";
-import { getImageURL, getURL } from "lib/api";
-import Loading from "components/loading";
+import Layout from "@/components/Layout";
+import { getImageURL, getURL } from "@/lib/api";
+import Loading from "@/components/loading";
 import { NextSeo } from "next-seo";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -52,10 +52,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
 
               return (
                 <MemoryCard key={index}>
-                  <Link
-                    href={getURL(memoria?.archivo?.data?.attributes?.url)}
-                    passHref
-                  >
+                  <Link href={getURL(memoria?.archivo?.data?.attributes?.url)}>
                     <SLink target="_blank" rel="noreferrer noopener" download>
                       <CardImage>
                         <Image
@@ -98,11 +95,11 @@ const Section = styled.section`
 const List = styled.div`
   display: grid;
   gap: 3rem;
-  ${mq.sm} {
+  @include mq(sm) {
     grid-template-columns: 1fr 1fr;
   }
 
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 `;

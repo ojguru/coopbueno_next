@@ -1,10 +1,10 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
 import { CarouselProvider, Slider, Slide, Dot } from "pure-react-carousel";
-import colors from "styles/colors";
+import colors from "@/styles/colors";
 
 const Slides = ({}) => {
   // const biographyImage = metabox['about-biography-image']
@@ -284,7 +284,7 @@ const BLayout = styled.div``;
 const DLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -304,7 +304,7 @@ const SliderX = styled(Slider)`
 const SlideX = styled(Slide)`
   ${container}
   position: relative !important;
-  ${mq.md} {
+  @include mq(md) {
     padding: 0 3rem;
   }
 `;

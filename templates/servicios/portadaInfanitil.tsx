@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
-import { h1 } from "styles/tipography";
-import Cta from "components/Cta";
-import { Servicio } from "client";
-import { getImageURL } from "lib/api";
+import { h1 } from "@/styles/tipography";
+import Cta from "@/components/Cta";
+import { Servicio } from "@/gql/graphql";
+import { getImageURL } from "@/lib/api";
 import space from "../../../public/ahorro-infantil/cover_space.webp";
 
 interface PortadaProps {
@@ -73,7 +73,7 @@ const Container = styled.div`
   ${container}
   display: grid;
   gap: 3rem;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
     align-items: center;
   }
@@ -83,7 +83,7 @@ const Content = styled.div`
   margin-bottom: 15rem;
   position: relative;
   z-index: 2;
-  ${mq.lg} {
+  @include mq(lg) {
     margin-bottom: initial;
   }
 `;
@@ -104,10 +104,10 @@ const ImageBlock = styled.div`
   transform: translate(0, 30%) rotate(-35deg);
   border-radius: 5rem;
   position: relative;
-  ${mq.md} {
+  @include mq(md) {
     transform: translate(0, 10%) rotate(-35deg);
   }
-  ${mq.lg} {
+  @include mq(lg) {
     transform: translate(0, 40%) rotate(-35deg);
   }
 `;
@@ -154,7 +154,7 @@ const Space = styled.div`
   z-index: -1;
   transform-origin: center center;
   transform: rotate(45deg) translate(-10%, 30%);
-  ${mq.md} {
+  @include mq(md) {
     width: 250%;
   }
 `;

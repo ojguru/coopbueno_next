@@ -1,0 +1,59 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.header {
+  @include container();
+  margin-top: $space-medium;
+}
+
+.main {
+  @include container();
+  margin-bottom: $space-thin;
+  margin-top: $space-thin;
+  display: grid;
+  gap: 3rem;
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.secondary {
+  display: grid;
+  gap: 3rem;
+  @include mq(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @include mq(lg) {
+    grid-column: 1 / span 2;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.mpost {
+}
+
+.spost {
+}
+
+.apost {
+}
+
+.sectionImage {
+  max-width: 20rem;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  @include mq(md) {
+    max-width: 30rem;
+    margin-top: initial;
+  }
+  @include mq(lg) {
+    max-width: 35rem;
+  }
+}

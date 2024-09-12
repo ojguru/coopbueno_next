@@ -4,10 +4,10 @@ import { css } from "@emotion/react";
 import Link from "next/link";
 import NavList from "./nav-list";
 import { LeftArrowIcon } from "../icons";
-import colors from "styles/colors";
-import { MenuItem } from "lib/auxiliar";
-import { getURL } from "lib/api";
-import { useAppContext } from "context/appContext";
+import colors from "@/styles/colors";
+import { MenuItem } from "@/lib/auxiliar";
+import { getURL } from "@/lib/api";
+import { useAppContext } from "@/context/appContext";
 
 interface NavItemProps {
   el?: MenuItem;
@@ -57,7 +57,7 @@ const NavItem = ({
       ) : null}
       {/* If link uri is the current page, add `aria-current` for a11y */}
       {isLink && !hasChildren ? (
-        <Link href={getURL(item?.attributes?.url || "")} passHref>
+        <Link href={getURL(item?.attributes?.url || "")}>
           <ItemLink
             aria-current={isCurrentPage ? "page" : undefined}
             aria-label="Item de la navegacion..."

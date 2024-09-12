@@ -1,12 +1,12 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { mq } from "components/grid";
+import { mq } from "@/components/grid";
 import Image from "next/image";
 import Link from "next/link";
-import colors from "styles/colors";
-import { Noticia } from "client";
-import { getImageURL } from "lib/api";
+import colors from "@/styles/colors";
+import { Noticia } from "@/gql/graphql";
+import { getImageURL } from "@/lib/api";
 
 interface PostProps {
   articulo: Noticia;
@@ -29,7 +29,7 @@ const Post = ({
 
   return (
     <Article {...{ maxWidth, isFirstItem, isMainItem }}>
-      <Link href={`/noticias/${slug}`} passHref>
+      <Link href={`/noticias/${slug}`}>
         <StyledLink>
           <Media>
             <Image
@@ -44,13 +44,13 @@ const Post = ({
       </Link>
       <Info>
         {/* {category ? (
-          <Link href={`/noticias/categoria/${category.slug}`} passHref>
+          <Link href={`/noticias/categoria/${category.slug}`} >
             <StyledLink>
               <Category color={colors.gray.base}>{category.name}</Category>
             </StyledLink>
           </Link>
         ) : null} */}
-        <Link href={`/noticias/${slug}`} passHref>
+        <Link href={`/noticias/${slug}`}>
           <StyledLink>
             <Title color={colors.text.base} {...{ isFirstItem }}>
               {titulo}
@@ -99,31 +99,31 @@ const Title = styled.h3`
     ${props.isFirstItem
       ? css`
           font-size: 1.9rem;
-          ${mq.sm} {
+          @include mq(sm) {
             font-size: 2rem;
           }
-          ${mq.md} {
+          @include mq(md) {
             font-size: 2.2rem;
           }
-          ${mq.lg} {
+          @include mq(lg) {
             font-size: 2.4rem;
           }
-          ${mq.xl} {
+          @include mq(xl) {
             font-size: 2.8rem;
           }
         `
       : css`
           font-size: 1.7rem;
-          ${mq.sm} {
+          @include mq(sm) {
             font-size: 1.7rem;
           }
-          ${mq.md} {
+          @include mq(md) {
             font-size: 1.8rem;
           }
-          ${mq.lg} {
+          @include mq(lg) {
             font-size: 1.8rem;
           }
-          ${mq.xl} {
+          @include mq(xl) {
             font-size: 2rem;
           }
         `}

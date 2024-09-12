@@ -1,11 +1,11 @@
 import React from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Link from "next/link";
-import { PhoneIcon, ClockIcon } from "components/icons";
-import { SucursalEntity } from "client";
-import colors from "styles/colors";
+import { PhoneIcon, ClockIcon } from "@/components/icons";
+import { SucursalEntity } from "@/gql/graphql";
+import colors from "@/styles/colors";
 
 interface OficinasProps {
   sucursales?: SucursalEntity[];
@@ -33,7 +33,7 @@ const Oficinas = ({ sucursales }: OficinasProps) => {
                       const phone = item?.telefono;
 
                       return (
-                        <Link href={`tel:+${phone}`} key={index} passHref>
+                        <Link href={`tel:+${phone}`} key={index}>
                           <SucursalPhone
                             onClick={() => {
                               window.fbq("track", "Contact");
@@ -81,7 +81,7 @@ const Container = styled.div`
   display: grid;
   flex-wrap: wrap;
   gap: 3rem;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -93,7 +93,7 @@ const Subtitle = styled.h2`
   margin-bottom: 4rem;
   width: 100%;
   max-width: 100%;
-  ${mq.md} {
+  @include mq(md) {
     grid-column: 1 / span 2;
   }
 `;
@@ -131,7 +131,7 @@ const PhoneList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0rem 1rem;
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 `;

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import ScreenReaderText from "styles/screen-reader";
+import ScreenReaderText from "@/styles/screen-reader";
 import Link from "next/link";
-import { mq } from "components/grid";
-import { CategoryEntity } from "client";
+import { mq } from "@/components/grid";
+import { CategoryEntity } from "@/gql/graphql";
 
 interface ArticuloCategoriasProps {
   categorias: CategoryEntity[];
@@ -38,7 +38,7 @@ const EntryCategories = styled.div`
   line-height: 1.25;
   margin-bottom: 2rem;
 
-  ${mq.md} {
+  @include mq(md) {
     margin-bottom: 3rem;
   }
 `;
@@ -49,7 +49,7 @@ const EntryCategoriesInner = styled.div`
   flex-wrap: wrap;
   margin: -0.5rem 0 0 -1rem;
 
-  ${mq.md} {
+  @include mq(md) {
     margin: -1rem 0 0 -2rem;
   }
 `;
@@ -63,7 +63,7 @@ const CategoryTag = styled(Link)`
   text-decoration: none;
   text-transform: uppercase;
 
-  ${mq.md} {
+  @include mq(md) {
     font-size: 1.5rem;
     margin: 1rem 0 0 2rem;
   }

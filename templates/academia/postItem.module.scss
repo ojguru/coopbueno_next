@@ -1,0 +1,82 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.article {
+  &:global(.isMainItem) {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr 2fr;
+    padding-bottom: 3rem;
+    &:global(.isFirstItem) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.media {
+  margin-bottom: 0.5rem;
+  img {
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+}
+
+.info {
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: $text-base;
+  margin: 8px 0;
+  font-size: 1.7rem;
+  @include mq(sm) {
+    font-size: 1.7rem;
+  }
+  @include mq(md) {
+    font-size: 1.8rem;
+  }
+  @include mq(lg) {
+    font-size: 1.8rem;
+  }
+  @include mq(xl) {
+    font-size: 2rem;
+  }
+  &:global(.isFirstItem) {
+    font-size: 1.9rem;
+    @include mq(sm) {
+      font-size: 2rem;
+    }
+    @include mq(md) {
+      font-size: 2.2rem;
+    }
+    @include mq(lg) {
+      font-size: 2.4rem;
+    }
+    @include mq(xl) {
+      font-size: 2.8rem;
+    }
+  }
+}
+
+.category {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $gray-base;
+  padding: 1.5rem 0;
+}
+
+.excerpt {
+  display: none;
+  &:global(.isVisible) {
+    display: block;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}

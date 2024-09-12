@@ -4,10 +4,10 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import { container, mq } from "components/grid";
-import { CategoryEntity } from "client";
-import { getImageURL } from "lib/api";
-import colors from "styles/colors";
+import { container, mq } from "@/components/grid";
+import { CategoryEntity } from "@/gql/graphql";
+import { getImageURL } from "@/lib/api";
+import colors from "@/styles/colors";
 
 interface NavigationProps {
   categorias: CategoryEntity[];
@@ -23,11 +23,7 @@ const Navigation = ({ categorias, fixed, inView }: NavigationProps) => {
             const categoria = item.attributes;
             const icon = categoria?.icon?.data?.attributes;
             return categoria ? (
-              <Link
-                href={`/academia/categoria/${categoria.slug}`}
-                key={index}
-                passHref
-              >
+              <Link href={`/academia/categoria/${categoria.slug}`} key={index}>
                 <CategoryLink>
                   <Category {...{ inView }}>
                     <CategoryMedia {...{ inView }}>
@@ -87,7 +83,7 @@ const CategoryList = styled.div`
   ${(props: { inView?: boolean }) => css`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    ${mq.md} {
+    @include mq(md) {
       gap: 1.5rem 3rem;
       ${props.inView
         ? css`
@@ -125,7 +121,7 @@ const CategoryNav = styled.div`
 
 const Category = styled.div`
   ${(props: { inView?: boolean }) => css`
-    ${mq.md} {
+    @include mq(md) {
       ${props.inView
         ? css`
             position: relative;
@@ -139,7 +135,7 @@ const Category = styled.div`
           `
         : css``}
     }
-    ${mq.lg} {
+    @include mq(lg) {
       ${props.inView
         ? css`
             min-height: 8rem;
@@ -159,10 +155,10 @@ const CategoryLink = styled.a`
 const CategoryInfo = styled.div`
   ${(props: { inView?: boolean }) => css`
     display: none;
-    ${mq.md} {
+    @include mq(md) {
       display: ${props.inView ? `block` : `none`};
     }
-    ${mq.lg} {
+    @include mq(lg) {
       padding: 0.5rem;
     }
   `}
@@ -175,10 +171,10 @@ const CategoryName = styled.span`
   text-transform: uppercase;
   padding: 0.5rem;
   color: ${colors.academy};
-  ${mq.lg} {
+  @include mq(lg) {
     font-size: 1.4rem;
   }
-  ${mq.xl} {
+  @include mq(xl) {
     font-size: 1.6rem;
   }
 `;
@@ -190,10 +186,10 @@ const CategoryMedia = styled.div`
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto;
-    ${mq.sm} {
+    @include mq(sm) {
       width: 4rem;
     }
-    ${mq.md} {
+    @include mq(md) {
       ${props.inView
         ? css`
             width: 6rem;
@@ -205,7 +201,7 @@ const CategoryMedia = styled.div`
         : `
       `}
     }
-    ${mq.lg} {
+    @include mq(lg) {
       ${props.inView
         ? css`
             width: 8rem;

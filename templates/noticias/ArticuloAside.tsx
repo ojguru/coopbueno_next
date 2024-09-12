@@ -3,9 +3,9 @@ import styled from "@emotion/styled";
 import { FacebookProvider, Comments } from "react-facebook";
 import React from "react";
 import PostItem from "./post-item";
-import { container, mq } from "components/grid";
-import { NoticiaEntity, ComponentGeneralFormulario } from "client";
-import Formulario from "components/Formulario";
+import { container, mq } from "@/components/grid";
+import { NoticiaEntity, ComponentGeneralFormulario } from "@/gql/graphql";
+import Formulario from "@/components/Formulario";
 
 interface ArticuloAsideProps {
   articulo?: NoticiaEntity;
@@ -86,10 +86,10 @@ const Container = styled.section`
   display: grid;
   gap: 3rem;
   grid-template-columns: 1fr;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
-  ${mq.xl} {
+  @include mq(xl) {
     max-width: 160rem;
   }
 `;
@@ -120,16 +120,16 @@ const Related = styled.div`
   display: grid;
   gap: 3rem;
   grid-template-columns: 1fr 1fr;
-  ${mq.md} {
+  @include mq(md) {
     grid-column: 1 / span 2;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
   ${SectionTitle} {
     grid-column: 1 / span 2;
-    ${mq.lg} {
+    @include mq(lg) {
       grid-column: 1 / span 4;
     }
   }

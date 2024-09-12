@@ -1,9 +1,9 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
-import Image from 'next/image'
-import imagen from '../../../public/nosotros.jpg'
-import colors from 'styles/colors'
+import React from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
+import Image from "next/image";
+import imagen from "../../../public/nosotros.jpg";
+import colors from "styles/colors";
 
 const Cover = () => {
   return (
@@ -42,49 +42,49 @@ const Cover = () => {
         </Content>
       </Container>
     </Section>
-  )
-}
+  );
+};
 
-export default Cover
+export default Cover;
 
 const Section = styled.section`
   ${container}
   padding: 0;
-`
+`;
 
 const Container = styled.div`
   ${container}
-  ${mq.lg} {
+  @include mq(lg) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
   }
-`
+`;
 
 const Title = styled.h1`
   text-transform: uppercase;
-`
+`;
 
 const Content = styled.div`
   position: relative;
   z-index: 2;
-  ${mq.lg} {
+  @include mq(lg) {
     order: 1;
   }
-`
+`;
 
 const MediaWrapper = styled.div`
   position: relative;
   margin-top: -25%;
   transform: scale(1.2) translate(25%, 0);
   height: auto;
-  ${mq.lg} {
+  @include mq(lg) {
     order: 2;
     transform-origin: 0 50%;
     transform: scale(1.3) translate(5%, 0);
   }
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 10%;
     left: 10%;
@@ -94,10 +94,10 @@ const MediaWrapper = styled.div`
     z-index: 2;
     border-radius: 50%;
   }
-`
+`;
 
 const Media = styled.div`
   border-radius: 50%;
   overflow: hidden;
   font-size: 0;
-`
+`;

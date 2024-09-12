@@ -3,7 +3,7 @@ import {
   ENUM_SERVICIO_TIPO,
   MenusMenuItemEntity,
   ServicioEntity,
-} from "client";
+} from "@/gql/graphql";
 
 export interface MenuItem {
   item: MenusMenuItemEntity;

@@ -1,7 +1,7 @@
 import React from "react";
 import { keyframes, css } from "@emotion/react";
 import styled from "@emotion/styled";
-import colors from "styles/colors";
+import colors from "@/styles/colors";
 
 const addAlpha = (hex: any, alpha: any) => {
   const r = parseInt(hex.slice(1, 3), 16),

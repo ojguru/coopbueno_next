@@ -1,11 +1,11 @@
-import Layout from "components/Layout";
+import Layout from "@/components/Layout";
 import React, { Suspense } from "react";
 import styled from "@emotion/styled";
 
 import { GetStaticProps } from "next";
-import { prepareReactRender, useHydrateCache } from "client";
+import { prepareReactRender, useHydrateCache } from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import Loading from "components/loading";
+import Loading from "@/components/loading";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {

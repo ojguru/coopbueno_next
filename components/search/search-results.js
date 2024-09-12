@@ -56,7 +56,7 @@ const IntroText = styled(SectionContainer)`
   margin-top: 2rem;
   font-weight: initial;
 
-  ${mq.md} {
+  @include mq(md) {
     font-size: 2rem;
     margin-top: 2.5rem;
   }
@@ -71,7 +71,7 @@ const Text = styled.p`
 
 const SearchContainer = styled(SectionContainer)`
   padding-top: 5rem;
-  ${mq.md} {
+  @include mq(md) {
     padding-top: 6rem;
   }
 `;

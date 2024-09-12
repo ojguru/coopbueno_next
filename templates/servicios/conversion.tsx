@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
-import { h1 } from "styles/tipography";
-import { ComponentGeneralFormulario, Servicio } from "client";
-import Formulario from "components/Formulario";
+import { container, mq } from "@/components/grid";
+import { h1 } from "@/styles/tipography";
+import { ComponentGeneralFormulario, Servicio } from "@/gql/graphql";
+import Formulario from "@/components/Formulario";
 
 interface ConversionProps {
   formulario: ComponentGeneralFormulario;
@@ -47,7 +47,7 @@ const FormBox = styled.div`
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
   border-radius: 1.5rem;
   background-color: white;
-  ${mq.md} {
+  @include mq(md) {
     padding: 3rem 4rem;
   }
   iframe {

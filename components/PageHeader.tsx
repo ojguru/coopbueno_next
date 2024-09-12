@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import colors from "styles/colors";
+import colors from "@/styles/colors";
 
 interface PageHeaderProps {
   title: string;

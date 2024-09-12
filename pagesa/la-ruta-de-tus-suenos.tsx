@@ -1,9 +1,9 @@
 import React, { Suspense, useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { container } from "components/grid";
+import { container } from "@/components/grid";
 import dynamic from "next/dynamic";
-import Layout from "components/Layout";
-import Loading from "components/loading";
+import Layout from "@/components/Layout";
+import Loading from "@/components/loading";
 import Portada from "templates/servicios/portada";
 import Producto from "templates/servicios/producto";
 import Ventajas from "templates/servicios/ventajas";
@@ -36,10 +36,10 @@ import {
   ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK,
   ENUM_SERVICIO_CATEGORIA,
   ComponentGeneralFormulario,
-} from "client";
+} from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import { getImageURL } from "lib/api";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { getImageURL } from "@/lib/api";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { useInView } from "react-intersection-observer";
 
 type PageProps = PropsWithServerCache<{

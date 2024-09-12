@@ -161,7 +161,7 @@ const SectionInner = styled.div`
   justify-content: space-between;
   max-width: 168rem;
 
-  ${mq.md} {
+  @include mq(md) {
     width: calc(100% - 8rem);
   }
 `;
@@ -174,7 +174,7 @@ const SearchForm = styled.form`
   display: flex;
   flex-wrap: nowrap;
 
-  ${mq.md} {
+  @include mq(md) {
     position: relative;
     width: 100%;
   }
@@ -202,7 +202,7 @@ const SearchInput = styled.input`
     display: none;
   }
 
-  ${mq.md} {
+  @include mq(md) {
     border: none;
     font-size: 3.2rem;
     height: 8rem;
@@ -245,7 +245,7 @@ const CloseButton = styled.button`
       transition: transform 0.15s ease-in-out;
       width: 1.5rem;
       fill: currentColor;
-      ${mq.md} {
+      @include mq(md) {
         height: 2.5rem;
         width: 2.5rem;
       }

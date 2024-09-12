@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
-import PageHeader from "components/PageHeader";
-import { h3 } from "styles/tipography";
+import { container, mq } from "@/components/grid";
+import PageHeader from "@/components/PageHeader";
+import { h3 } from "@/styles/tipography";
 
 import { GetStaticProps } from "next";
 
@@ -11,12 +11,12 @@ import {
   prepareReactRender,
   useHydrateCache,
   Servicio,
-} from "client";
+} from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import Layout from "components/Layout";
-import Loading from "components/loading";
+import Layout from "@/components/Layout";
+import Loading from "@/components/loading";
 import { NextSeo } from "next-seo";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -99,10 +99,10 @@ const Services = styled.div`
   display: grid;
   gap: 3rem;
   grid-template-columns: 1fr;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 `;

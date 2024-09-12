@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import FeaturedMedia from "next/image";
-import colors from "styles/colors";
+import colors from "@/styles/colors";
 import imagen from "../../../public/contacto.png";
-import Formulario from "components/Formulario";
-import { ComponentGeneralFormulario } from "client";
+import Formulario from "@/components/Formulario";
+import { ComponentGeneralFormulario } from "@/gql/graphql";
 
 const Portada = () => {
   const formulario: ComponentGeneralFormulario = {
@@ -45,7 +45,7 @@ const Container = styled.div`
   text-align: center;
   font-size: 0;
   display: grid;
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -68,7 +68,7 @@ const ContactForm = styled.div`
   min-height: 50rem;
   display: grid;
   align-items: center;
-  ${mq.lg} {
+  @include mq(lg) {
     padding: 2rem 2rem;
   }
   &:before {
@@ -118,7 +118,7 @@ const Title = styled.h1`
   font-weight: 900;
   text-align: center;
   margin-bottom: 2.5rem;
-  ${mq.md} {
+  @include mq(md) {
     margin-bottom: 5rem;
   }
 `;

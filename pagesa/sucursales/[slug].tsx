@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,17 +9,17 @@ import {
   ClockIcon,
   PhoneIcon,
   SucursalIMG,
-} from "components/icons";
+} from "@/components/icons";
 
 import { GetStaticProps } from "next";
-import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import { useQuery, prepareReactRender, useHydrateCache } from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import { getImageURL } from "lib/api";
-import colors from "styles/colors";
-import Layout from "components/Layout";
-import Loading from "components/loading";
+import { getImageURL } from "@/lib/api";
+import colors from "@/styles/colors";
+import Layout from "@/components/Layout";
+import Loading from "@/components/loading";
 import { NextSeo } from "next-seo";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -100,7 +100,7 @@ const Page = ({ cacheSnapshot, slug }: PageProps) => {
                         const phone = item?.telefono;
 
                         return (
-                          <Link href={`tel:+${phone}`} key={index} passHref>
+                          <Link href={`tel:+${phone}`} key={index}>
                             <SucursalPhone
                               onClick={() => {
                                 window.fbq("track", "Contact");
@@ -186,10 +186,10 @@ const SucursalCard = styled.div`
   padding: 1.5rem;
   display: grid;
   gap: 3rem;
-  ${mq.sm} {
+  @include mq(sm) {
     padding: 5%;
   }
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
   &:before {
@@ -226,7 +226,7 @@ const CardImage = styled.div`
   display: grid;
   overflow: hidden;
   clip-path: ellipse(75% 100% at 50% 0%);
-  ${mq.lg} {
+  @include mq(lg) {
     height: 70vh;
   }
 `;

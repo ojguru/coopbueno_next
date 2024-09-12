@@ -3,12 +3,12 @@ import Archivo from "templates/academia/archivo";
 
 import { GetStaticProps } from "next";
 
-import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import { useQuery, prepareReactRender, useHydrateCache } from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import Layout from "components/Layout";
-import Loading from "components/loading";
+import Layout from "@/components/Layout";
+import Loading from "@/components/loading";
 import { NextSeo } from "next-seo";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 type PageProps = PropsWithServerCache<{
   slug: string;

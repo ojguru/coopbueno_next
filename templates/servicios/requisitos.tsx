@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import { h1 } from "../../styles/tipography";
-import { Servicio } from "client";
-import colors from "styles/colors";
+import { Servicio } from "@/gql/graphql";
+import colors from "@/styles/colors";
 
 interface RequisitosProps {
   servicio: Servicio;
@@ -50,10 +50,10 @@ const RequirementsList = styled.ul`
   margin: 0;
   display: grid;
   gap: 1.5rem 3rem;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 `;
@@ -61,7 +61,7 @@ const RequirementsList = styled.ul`
 const Requirement = styled.li`
   margin-bottom: 1rem;
   text-align: left;
-  ${mq.md} {
+  @include mq(md) {
     text-align: left;
   }
 `;
@@ -70,7 +70,7 @@ const RequirementsBox = styled.div`
   padding: 10%;
   border-radius: 1.5rem;
   position: relative;
-  ${mq.md} {
+  @include mq(md) {
     padding: 5%;
     border-radius: 2.5rem;
   }

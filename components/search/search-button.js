@@ -34,7 +34,7 @@ export default connect(SearchButton);
 const HeaderToggle = styled.div`
   display: none;
 
-  ${mq.lg} {
+  @include mq(lg) {
     display: block;
   }
 `;

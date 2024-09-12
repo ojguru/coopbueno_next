@@ -7,13 +7,13 @@ import {
   prepareReactRender,
   useHydrateCache,
   ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK,
-} from "client";
+} from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import Layout from "components/Layout";
-import Loading from "components/loading";
+import Layout from "@/components/Layout";
+import Loading from "@/components/loading";
 import { NextSeo } from "next-seo";
-import { SITE_NAME, SITE_URL } from "lib/constants";
-import { getImageURL } from "lib/api";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
+import { getImageURL } from "@/lib/api";
 
 import ArticuloBody from "templates/academia/ArticuloBody";
 import dynamic from "next/dynamic";

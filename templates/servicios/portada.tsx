@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
-import { h1 } from "styles/tipography";
-import Cta from "components/Cta";
-import { Servicio } from "client";
-import { getImageURL } from "lib/api";
-import colors from "styles/colors";
+import { h1 } from "@/styles/tipography";
+import Cta from "@/components/Cta";
+import { Servicio } from "@/gql/graphql";
+import { getImageURL } from "@/lib/api";
+import colors from "@/styles/colors";
 
 interface PortadaProps {
   servicio?: Servicio;
@@ -71,7 +71,7 @@ const Container = styled.div`
   ${container}
   display: grid;
   gap: 3rem;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
     align-items: center;
   }
@@ -81,7 +81,7 @@ const Content = styled.div`
   margin-bottom: 15rem;
   position: relative;
   z-index: 2;
-  ${mq.lg} {
+  @include mq(lg) {
     margin-bottom: initial;
   }
 `;
@@ -102,10 +102,10 @@ const ImageBlock = styled.div`
   transform: translate(0, 30%) rotate(-35deg);
   border-radius: 5rem;
   position: relative;
-  ${mq.md} {
+  @include mq(md) {
     transform: translate(0, 10%) rotate(-35deg);
   }
-  ${mq.lg} {
+  @include mq(lg) {
     transform: translate(0, 40%) rotate(-35deg);
   }
   &:before {
@@ -120,7 +120,7 @@ const ImageBlock = styled.div`
     z-index: -1;
     opacity: 0.1;
     border-radius: inherit;
-    ${mq.md} {
+    @include mq(md) {
       opacity: 0.3;
     }
   }

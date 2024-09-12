@@ -1,19 +1,19 @@
 import React, { Suspense } from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
-import colors from "styles/colors";
+import colors from "@/styles/colors";
 
-import Formulario from "components/Formulario";
+import Formulario from "@/components/Formulario";
 
 import { GetStaticProps } from "next";
-import { prepareReactRender, useHydrateCache } from "client";
+import { prepareReactRender, useHydrateCache } from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import { getImageURL } from "lib/api";
-import Layout from "components/Layout";
-import Loading from "components/loading";
+import { getImageURL } from "@/lib/api";
+import Layout from "@/components/Layout";
+import Loading from "@/components/loading";
 import { NextSeo } from "next-seo";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -115,7 +115,7 @@ const Container = styled.div`
   ${container}
   display: grid;
   gap: 3rem;
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -129,7 +129,7 @@ const PageTitle = styled.h1`
 const FormWrapper = styled.section`
   position: relative;
   /* order: 4; */
-  ${mq.lg} {
+  @include mq(lg) {
     order: initial;
   }
 `;

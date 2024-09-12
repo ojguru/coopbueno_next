@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
-import { Servicio } from "client";
+import { Servicio } from "@/gql/graphql";
 
 import logoUniversoCoopbueno from "../../../public/ahorro-infantil/logo_universo_coopbueno.webp";
 import space from "../../../public/ahorro-infantil/space.webp";
@@ -54,13 +54,13 @@ const Container = styled.div`
   display: grid;
   gap: 3rem;
   align-items: center;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
 `;
 
 const InfoContainer = styled.div`
-  /* ${mq.md} {
+  /* @include mq(md) {
     order: 2;
   } */
 `;
@@ -71,7 +71,7 @@ const Title = styled.h1`
 
 const MediaContainer = styled.div`
   margin: 0 auto;
-  /* ${mq.md} {
+  /* @include mq(md) {
     order: 1;
   } */
 `;
@@ -101,7 +101,7 @@ const Space = styled.div`
   width: 100%;
   z-index: -1;
   transform: translate(-60%, 25%);
-  ${mq.lg} {
+  @include mq(lg) {
     width: 60%;
     transform: translate(-60%, 40%);
   }

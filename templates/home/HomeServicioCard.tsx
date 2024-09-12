@@ -6,7 +6,6 @@ import styles from "./HomeServicioCard.module.scss";
 
 import { Slide } from "pure-react-carousel";
 
-
 import { InView } from "react-intersection-observer";
 import { Enum_Servicio_Categoria, ServicioEntity } from "@/gql/graphql";
 
@@ -51,17 +50,25 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
 
                 return (
                   <div
-                    className={`${styles.card} ${isActive?"active":""}`}
+                    className={`${styles.card} ${isActive ? "active" : ""}`}
                     key={index}
                     hidden={active !== -1 && !isActive}
                   >
-                    <div className={`${styles.serviceCard} ${isActive?"active":""}`}>
+                    <div
+                      className={`${styles.serviceCard} ${
+                        isActive ? "active" : ""
+                      }`}
+                    >
                       <div
                         onClick={(e) => {
                           setActive(index);
                         }}
                       >
-                        <div className={`${styles.cardImage} ${isActive?"active":""}`}>
+                        <div
+                          className={`${styles.cardImage} ${
+                            isActive ? "active" : ""
+                          }`}
+                        >
                           <div className={styles.media}>
                             <div className={styles.imageWrapper}>
                               <Image
@@ -73,12 +80,22 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                             </div>
                           </div>
                         </div>
-                        <div className={`${styles.cardContent} ${isActive?"active":""}`}>
-                          <h3 className={`${styles.cardTitle} ${isActive?"active":""}`} >
+                        <div
+                          className={`${styles.cardContent} ${
+                            isActive ? "active" : ""
+                          }`}
+                        >
+                          <h3
+                            className={`${styles.cardTitle} ${
+                              isActive ? "active" : ""
+                            }`}
+                          >
                             {item.nombre}
                           </h3>
                           <div
-                            className={`${styles.cardServices} ${isActive?"active":""}`}
+                            className={`${styles.cardServices} ${
+                              isActive ? "active" : ""
+                            }`}
                           >
                             {items
                               .filter((service) => {
@@ -93,15 +110,11 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                                   <Link
                                     key={index}
                                     href={`/servicios/${servicio.slug}`}
-                                    passHref
                                     className={styles.link}
                                   >
-                                      <div
-                                        className={styles.service}
-                                        key={index}
-                                      >
-                                        {servicio.nombre}
-                                      </div>
+                                    <div className={styles.service} key={index}>
+                                      {servicio.nombre}
+                                    </div>
                                   </Link>
                                 ) : null;
                               })}
@@ -109,7 +122,9 @@ const HomeServiciosCard = ({ items }: HomeServiciosCardProps) => {
                         </div>
                       </div>
                       <div
-                        className={`${styles.cardCloseBtn} ${isActive?"active":""}`}
+                        className={`${styles.cardCloseBtn} ${
+                          isActive ? "active" : ""
+                        }`}
                         onClick={(e) => {
                           setActive(-1);
                         }}

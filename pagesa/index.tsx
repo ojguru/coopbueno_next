@@ -9,19 +9,19 @@ import HomePromo from "templates/home/HomePromo";
 import HomeSlider from "templates/home/HomeSlider";
 import HomeServicios from "templates/home/HomeServicios";
 import { GetStaticProps } from "next";
-import Layout from "components/Layout";
+import Layout from "@/components/Layout";
 
 import {
   useQuery,
   prepareReactRender,
   useHydrateCache,
   ENUM_SERVICIO_CATEGORIA,
-} from "client";
+} from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import Loading from "components/loading";
+import Loading from "@/components/loading";
 import { NextSeo } from "next-seo";
-import { SITE_NAME, SITE_URL } from "lib/constants";
-import { getImageURL } from "lib/api";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
+import { getImageURL } from "@/lib/api";
 
 type HomeProps = PropsWithServerCache<{}>;
 const Home = ({ cacheSnapshot }: HomeProps) => {

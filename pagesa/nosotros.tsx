@@ -1,6 +1,6 @@
-import Layout from "components/Layout";
-import { getImageURL } from "lib/api";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import Layout from "@/components/Layout";
+import { getImageURL } from "@/lib/api";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { NextSeo } from "next-seo";
 import React, { Suspense } from "react";
 import Cover from "templates/about/about-cover";
@@ -9,9 +9,9 @@ import Slides from "templates/about/about-slides";
 import image from "../../public/nosotros.jpg";
 
 import { GetStaticProps } from "next";
-import { prepareReactRender, useHydrateCache } from "client";
+import { prepareReactRender, useHydrateCache } from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import Loading from "components/loading";
+import Loading from "@/components/loading";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {

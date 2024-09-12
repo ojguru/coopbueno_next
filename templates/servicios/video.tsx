@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import YouTube from "react-youtube";
-import colors from "styles/colors";
-import { Servicio } from "client";
+import colors from "@/styles/colors";
+import { Servicio } from "@/gql/graphql";
 
 interface ProductProps {
   servicio: Servicio;
@@ -49,7 +49,7 @@ const Media = styled.div`
     width: 100%;
     height: 100%;
   }
-  ${mq.md} {
+  @include mq(md) {
     border: 4rem solid transparent;
   }
   &:before {

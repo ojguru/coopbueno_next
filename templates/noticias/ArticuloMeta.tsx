@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { CalendarIcon } from "components/icons";
-import { mq } from "components/grid";
-import ScreenReaderText from "styles/screen-reader";
-import { Noticia } from "client";
+import { CalendarIcon } from "@/components/icons";
+import { mq } from "@/components/grid";
+import ScreenReaderText from "@/styles/screen-reader";
+import { Noticia } from "@/gql/graphql";
 import Moment from "moment";
 
 export const PostMetaWrapper = styled.div`
   margin-top: 2rem;
-  ${mq.md} {
+  @include mq(md) {
     margin-top: 3rem;
   }
 `;
@@ -27,7 +27,7 @@ export const PostMetaList = styled.ul`
     fill: currentColor;
   }
 
-  ${mq.md} {
+  @include mq(md) {
     font-size: 1.6rem;
     margin: -1.4rem 0 0 -3rem;
   }
@@ -83,7 +83,7 @@ const PostMetaItem = styled.li`
   max-width: calc(100% - 2rem);
   text-transform: capitalize;
 
-  ${mq.md} {
+  @include mq(md) {
     margin: 1.4rem 0 0 3rem;
     max-width: calc(100% - 3rem);
   }

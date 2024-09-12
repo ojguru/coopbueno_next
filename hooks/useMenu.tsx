@@ -1,9 +1,9 @@
 import React from "react";
 import { css, Global } from "@emotion/react";
 import styled from "@emotion/styled";
-import { CloseIcon, MenuIcon } from "components/icons";
-import colors from "styles/colors";
-import { container, mq } from "components/grid";
+import { CloseIcon, MenuIcon } from "@/components/icons";
+import colors from "@/styles/colors";
+import { container, mq } from "@/components/grid";
 import { useAppContext } from "context/appContext";
 
 const useMenu = () => {
@@ -115,13 +115,13 @@ const CardModal = styled.div`
   flex: 1;
   overflow: hidden;
   padding: 0 1.5rem 1.5rem 1.5rem;
-  ${mq.sm} {
+  @include mq(sm) {
     padding: 0 3rem 3rem 1.5rem;
   }
-  ${mq.md} {
+  @include mq(md) {
     padding: 0 3.5rem 3.5rem 3.5rem;
   }
-  ${mq.xl} {
+  @include mq(xl) {
     padding: 0 4.5rem 4.5rem 4.5rem;
   }
 `;

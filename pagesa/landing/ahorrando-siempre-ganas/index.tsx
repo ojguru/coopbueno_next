@@ -7,14 +7,14 @@ import {
   prepareReactRender,
   useHydrateCache,
   ComponentGeneralFormulario,
-} from "client";
+} from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import Layout from "components/Layout";
-import Loading from "components/loading";
+import Layout from "@/components/Layout";
+import Loading from "@/components/loading";
 import { NextSeo } from "next-seo";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
 
 //recursos
@@ -28,7 +28,7 @@ import bandera from "../../../../public/landing/ahorrando-siempre-ganas/bandera.
 import carita from "../../../../public/landing/ahorrando-siempre-ganas/carita.webp";
 import flor from "../../../../public/landing/ahorrando-siempre-ganas/flor.webp";
 import arcoiris from "../../../../public/landing/ahorrando-siempre-ganas/arcoiris.webp";
-import Formulario from "components/Formulario";
+import Formulario from "@/components/Formulario";
 import dynamic from "next/dynamic";
 const Conversion = dynamic(() => import("./conversion"), {
   ssr: false,
@@ -506,7 +506,7 @@ const Logo = styled.div`
 const Copy = styled.p`
   color: ${marron};
   font-size: 2rem;
-  ${mq.lg} {
+  @include mq(lg) {
     font-size: 4rem;
   }
 `;
@@ -599,10 +599,10 @@ const Ganadores = styled.ul`
   grid-template-columns: 1fr;
   gap: 2rem;
   margin-bottom: 8rem;
-  ${mq.sm} {
+  @include mq(sm) {
     grid-template-columns: 1fr 1fr;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 `;

@@ -67,13 +67,17 @@ export default function RootLayout({
           `}
         </Script>
         <ThemeProvider>
-          <Suspense>{/* <Header /> */}</Suspense>
+          <Suspense>
+            {/* <Header /> */}
+          </Suspense>
           <main className={styles.main}>{children}</main>
-          <Suspense>{/* <Footer /> */}</Suspense>
+          <Suspense>
+            {/* <Footer /> */}
+          </Suspense>
         </ThemeProvider>
-        <Suspense>
+        {/* <Suspense>
           <FacebookPixelEvents />
-        </Suspense>
+        </Suspense> */}
       </body>
     </html>
   );

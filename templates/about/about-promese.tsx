@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { container, mq } from 'components/grid'
+import React from "react";
+import styled from "@emotion/styled";
+import { container, mq } from "components/grid";
 
 const Promese = () => {
   return (
@@ -36,25 +36,25 @@ const Promese = () => {
         </div>
       </Container>
     </Section>
-  )
-}
+  );
+};
 
-export default Promese
+export default Promese;
 
 const Section = styled.section`
   ${container}
   padding: 0;
-`
+`;
 
 const Container = styled.div`
   ${container}
   display: grid;
   gap: 3rem;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr 1fr;
   }
-`
+`;
 
 const Subtitle = styled.h2`
   text-transform: uppercase;
-`
+`;

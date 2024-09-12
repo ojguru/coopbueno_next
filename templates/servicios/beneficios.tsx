@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import { h1, h5 } from "../../styles/tipography";
 import Image from "next/image";
 import Link from "next/link";
-import colors from "styles/colors";
-import { Servicio } from "client";
-import { getImageURL } from "lib/api";
+import colors from "@/styles/colors";
+import { Servicio } from "@/gql/graphql";
+import { getImageURL } from "@/lib/api";
 
 interface BeneficiosProps {
   servicio: Servicio;
@@ -35,7 +35,7 @@ const Benefits = ({ servicio }: BeneficiosProps) => {
               itemScope
               itemType="https://schema.org/FinancialProduct"
             >
-              <Link href={`/servicios/${beneficio.slug}`} passHref>
+              <Link href={`/servicios/${beneficio.slug}`}>
                 <StyledLink>
                   <Benefit>
                     <BenefitMedia>
@@ -83,10 +83,10 @@ const BenefitsList = styled.ul`
   list-style: none;
   display: grid;
   gap: 3rem;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 `;

@@ -1,19 +1,19 @@
 import React, { Suspense } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 // import Image from "@frontity/components/image";
-import Cta from "components/Cta";
-import { Check } from "components/icons";
-import colors from "styles/colors";
+import Cta from "@/components/Cta";
+import { Check } from "@/components/icons";
+import colors from "@/styles/colors";
 
 import { GetStaticProps } from "next";
-import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import { useQuery, prepareReactRender, useHydrateCache } from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import Layout from "components/Layout";
-import Loading from "components/loading";
+import Layout from "@/components/Layout";
+import Loading from "@/components/loading";
 import { NextSeo } from "next-seo";
-import Editor from "components/editor.js/Editor";
+import Editor from "@/components/editor.js/Editor";
 
 type PageProps = PropsWithServerCache<{
   slug: string;
@@ -106,7 +106,7 @@ const Section = styled.article`
 const Container = styled.div`
   ${container}
   display: grid;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 2fr 1fr;
   }
 `;
@@ -121,7 +121,7 @@ const DecoContainer = styled.div`
   width: 100%;
   padding-bottom: 40%;
   position: relative;
-  ${mq.md} {
+  @include mq(md) {
     z-index: -1;
     padding-bottom: 100%;
     position: absolute;
@@ -143,7 +143,7 @@ const DecoContainer = styled.div`
     transform: translate(-50%, -50%);
     z-index: -1;
     opacity: 0.3;
-    ${mq.md} {
+    @include mq(md) {
       top: 70%;
       left: 0;
     }
@@ -160,7 +160,7 @@ const DecoContainer = styled.div`
     transform: translate(-50%, -50%);
     z-index: -1;
     opacity: 0.4;
-    ${mq.md} {
+    @include mq(md) {
       left: 0;
       top: 70%;
     }
@@ -175,7 +175,7 @@ const DecoSquare = styled.div`
   right: 0;
   border-radius: 5%;
   z-index: 1;
-  ${mq.md} {
+  @include mq(md) {
     box-shadow: 0 0 4rem ${colors.primary.dark};
     background-color: ${colors.primary.dark};
     &:before {
@@ -204,7 +204,7 @@ const DecoRounded = styled.div`
   background-color: ${colors.academy};
   transform: translate(-50%, -50%);
   z-index: 2;
-  ${mq.md} {
+  @include mq(md) {
     left: 0;
     top: 70%;
   }

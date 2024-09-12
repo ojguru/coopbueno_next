@@ -1,22 +1,22 @@
 import React, { Suspense } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import { container, mq } from "@/components/grid";
 import Image from "next/image";
 import Link from "next/link";
-import { LocationIcon, ClockIcon, PhoneIcon } from "components/icons";
-import { h3 } from "styles/tipography";
-import colors from "styles/colors";
-import Layout from "components/Layout";
+import { LocationIcon, ClockIcon, PhoneIcon } from "@/components/icons";
+import { h3 } from "@/styles/tipography";
+import colors from "@/styles/colors";
+import Layout from "@/components/Layout";
 
 import { GetStaticProps } from "next";
 
-import { useQuery, prepareReactRender, useHydrateCache } from "client";
+import { useQuery, prepareReactRender, useHydrateCache } from "@/gql/graphql";
 import { PropsWithServerCache } from "@gqty/react";
-import { getImageURL } from "lib/api";
-import Loading from "components/loading";
+import { getImageURL } from "@/lib/api";
+import Loading from "@/components/loading";
 import { NextSeo } from "next-seo";
-import { SITE_NAME, SITE_URL } from "lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 type PageProps = PropsWithServerCache<{}>;
 const Page = ({ cacheSnapshot }: PageProps) => {
@@ -102,7 +102,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                             const phone = item?.telefono;
 
                             return phone ? (
-                              <Link href={`tel:+${phone}`} key={index} passHref>
+                              <Link href={`tel:+${phone}`} key={index}>
                                 <SucursalPhone
                                   onClick={() => {
                                     window.fbq("track", "Contact");
@@ -118,7 +118,7 @@ const Page = ({ cacheSnapshot }: PageProps) => {
                     </CardBody>
                   </Content>
                   <LinkBox>
-                    <Link href={location ?? ""} passHref>
+                    <Link href={location ?? ""}>
                       <ReadMore
                         target="_blank"
                         rel="noreferrer noopener"
@@ -192,20 +192,20 @@ const Container = styled.div`
   display: grid;
   gap: 3rem;
   grid-template-columns: 1fr;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 `;
 
 const Title = styled.h1`
   text-transform: uppercase;
-  ${mq.md} {
+  @include mq(md) {
     grid-column: 1 / span 2;
   }
-  ${mq.lg} {
+  @include mq(lg) {
     grid-column: 1 / span 3;
   }
 `;
@@ -219,11 +219,11 @@ const SucursalCard = styled.div`
     ${props.isPrincipal
       ? css`
           gap: 3rem;
-          ${mq.md} {
+          @include mq(md) {
             grid-template-columns: 1fr 1fr;
             grid-column: 1 / span 2;
           }
-          ${mq.lg} {
+          @include mq(lg) {
             grid-template-columns: 2fr 1fr;
             grid-column: 1 / span 3;
           }
@@ -240,7 +240,7 @@ const Content = styled.div`
     padding: 0 1.5rem 8rem 1.5rem;
     position: relative;
     height: 100%;
-    ${mq.md} {
+    @include mq(md) {
       ${props.index % 2 != 0 && props.index != props.items.length - 1
         ? css`
             &:after {
@@ -257,7 +257,7 @@ const Content = styled.div`
           `
         : ` `}
     }
-    ${mq.lg} {
+    @include mq(lg) {
       &:after {
         content: initial;
       }

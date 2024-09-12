@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import styled from "@emotion/styled";
 import Link from "next/link";
@@ -46,7 +48,7 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
               <PhoneBox>
                 <div style={{ display: "table-column" }}>Phones</div>
                 {TELEFONOS.map((telefono, index) => (
-                  <Link href={`tel:${telefono}`} passHref key={index}>
+                  <Link href={`tel:${telefono}`} key={index}>
                     <a
                       target="_blank"
                       rel="noreferrer noopener"
@@ -60,7 +62,7 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
                 ))}
               </PhoneBox>
             </ContactItem>
-            <Link href={`mailto:${EMAIL}`} passHref>
+            <Link href={`mailto:${EMAIL}`}>
               <a
                 target="_blank"
                 rel="noreferrer noopener"
@@ -77,7 +79,7 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
                 </ContactItem>
               </a>
             </Link>
-            <Link href={`${UBICACION}`} passHref>
+            <Link href={`${UBICACION}`}>
               <a
                 target="_blank"
                 rel="noreferrer noopener"
@@ -136,7 +138,6 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
           <Link
             href="https://certificaciones.uaf.gob.do/certificaciones_so_view.php?editid1=46"
             // hreflang="es"
-            passHref
           >
             <a
               target="_blank"
@@ -158,7 +159,7 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
             </a>
           </Link>
         </Certifications>
-        <Link href="/" passHref>
+        <Link href="/">
           <a rel="noopener">
             <Logo>
               <Image
@@ -180,26 +181,26 @@ export default Footer;
 
 const Certification = styled.div`
   max-width: 6rem;
-  ${mq.md} {
+  @include mq(md) {
     max-width: 8rem;
   }
 `;
 
 const NavContainer = styled.div`
   ${container}
-  ${mq.xl} {
+  @include mq(xl) {
     max-width: 160rem;
   }
   display: grid;
   gap: 3rem;
-  ${mq.md} {
+  @include mq(md) {
     grid-template-columns: 1fr 2fr;
   }
 `;
 
 const Container = styled.div`
   ${container}
-  ${mq.xl} {
+  @include mq(xl) {
     max-width: 160rem;
   }
   display: grid;
@@ -220,7 +221,7 @@ const SiteFooter = styled.footer`
   overflow: hidden;
   padding-top: 8rem;
 
-  ${mq.lg} {
+  @include mq(lg) {
     font-size: 1.8rem;
     padding: 4.3rem 0;
     padding-top: 10rem;
@@ -279,14 +280,14 @@ const Logo = styled.div`
   margin: 2rem 0;
   width: 100%;
   max-width: 20rem;
-  ${mq.md} {
+  @include mq(md) {
     max-width: 35rem;
   }
 `;
 
 const Certifications = styled.div`
   display: block;
-  ${mq.md} {
+  @include mq(md) {
     display: inline-block;
   }
   img {
@@ -297,7 +298,7 @@ const Certifications = styled.div`
 const Contact = styled.div`
   margin-bottom: 4rem;
   order: 2;
-  ${mq.md} {
+  @include mq(md) {
     order: initial;
   }
 `;
