@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { mq } from "components/grid";
 import Image from "next/image";
 import logo from "../../public/coopbueno_logo.svg";
 

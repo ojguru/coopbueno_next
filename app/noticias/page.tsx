@@ -1,43 +1,24 @@
 import React from "react";
-import Archivo from "@/templates/academia/archivo";
+import Archivo from "@/templates/noticias/archivo";
 
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { fetchAPI } from "@/lib/api";
 import { ImageFragment } from "@/fragments/GeneralSettings";
-import { ArticleEntity, CategoryEntity } from "@/gql/graphql";
+import { NoticiaEntity } from "@/gql/graphql";
 
 const QUERY = `
   query DataHome {
-    articles ( pagination: {pageSize: 16},sort: ["createdAt:desc"]){
+    noticias ( pagination: {pageSize: 16},sort: ["createdAt:desc"]){
       data{
         attributes{
-          title
+          titulo
           slug
-          description
-          image{
+          descripcion
+          imagen{
             ${ImageFragment}
-          }
-          category{
-            data{
-              attributes{
-                name
-                slug
-              }
-            }
           }
         }
       }
-    }
-    categories ( pagination: {pageSize: 16}) {
-        data{
-            attributes{
-                name
-                slug
-                icon{
-                    ${ImageFragment}
-                }
-            }
-        }
     }
   }
 `;
@@ -65,16 +46,14 @@ export const metadata = {
 export default async function Page() {
   const data = await fetchAPI(QUERY, { variables: queryVars });
 
-  const articulos: ArticleEntity[] = data.articles.data;
-  const categorias: CategoryEntity[] = data.categories.data;
+  const articulos: NoticiaEntity[] = data.noticias.data;
 
   return (
     <>
       <Archivo
-        titulo="Academia de sueños"
-        descripcion="Conocimiento que te acerca a tus sueños"
+        titulo="Noticias"
+        descripcion="Mantente informado"
         articulos={articulos}
-        categorias={categorias}
       />
     </>
   );

@@ -1,0 +1,45 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.archiveHeader {
+  @include container();
+  color: #000000;
+  text-align: center;
+  position: relatve;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $primary-base;
+    width: 75%;
+    max-width: 30rem;
+    height: 2.5rem;
+    opacity: 0.3;
+    z-index: -1;
+  }
+}
+
+.archiveTitle {
+  color: $primary-base;
+  text-transform: uppercase;
+  letter-spacing: -0.026666667em;
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.archiveCopy {
+  color: #777673;
+  text-transform: uppercase;
+  letter-spacing: -0.026666667em;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  font-weight: 900;
+}

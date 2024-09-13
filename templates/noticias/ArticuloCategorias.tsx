@@ -1,9 +1,9 @@
 import React from "react";
-import styled from "@emotion/styled";
 import ScreenReaderText from "@/styles/screen-reader";
 import Link from "next/link";
-import { mq } from "@/components/grid";
 import { CategoryEntity } from "@/gql/graphql";
+import { getURL } from "@/lib/api";
+import styles from "./articuloCategorias.module.scss";
 
 interface ArticuloCategoriasProps {
   categorias: CategoryEntity[];
@@ -11,65 +11,26 @@ interface ArticuloCategoriasProps {
 
 const ArticuloCategorias = ({ categorias }: ArticuloCategoriasProps) => {
   return (
-    <EntryCategories>
+    <div className={styles.entryCategories}>
       <ScreenReaderText>Categorias</ScreenReaderText>
 
-      <EntryCategoriesInner>
+      <div className={styles.entryCategoriesInner}>
         {categorias.map((item, index) => {
-          const categoria = item.attributes;
+          const categoria = item?.attributes;
 
           return categoria ? (
-            <CategoryTag
+            <Link
+              className={styles.categoryTag}
               key={index}
-              href={`/academia/categoria/${categoria.slug}`}
+              href={getURL(`/academia/categoria/${categoria?.slug}`)}
             >
-              {categoria.name}
-            </CategoryTag>
+              {categoria?.name}
+            </Link>
           ) : null;
         })}
-      </EntryCategoriesInner>
-    </EntryCategories>
+      </div>
+    </div>
   );
 };
 
 export default ArticuloCategorias;
-
-const EntryCategories = styled.div`
-  line-height: 1.25;
-  margin-bottom: 2rem;
-
-  @include mq(md) {
-    margin-bottom: 3rem;
-  }
-`;
-
-const EntryCategoriesInner = styled.div`
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  margin: -0.5rem 0 0 -1rem;
-
-  @include mq(md) {
-    margin: -1rem 0 0 -2rem;
-  }
-`;
-
-const CategoryTag = styled(Link)`
-  border-bottom: 0.15rem solid currentColor;
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 0.036666667em;
-  margin: 0.5rem 0 0 1rem;
-  text-decoration: none;
-  text-transform: uppercase;
-
-  @include mq(md) {
-    font-size: 1.5rem;
-    margin: 1rem 0 0 2rem;
-  }
-
-  transition: border-bottom-color 150ms;
-  :hover {
-    border-bottom-color: transparent;
-  }
-`;

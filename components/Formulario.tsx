@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from "react";
-import styled from "@emotion/styled";
+"use client";
+
+import React, { useContext, useEffect, useState } from "react";
 import Loading from "@/components/loading";
 import { HUBSPOT_ID } from "@/lib/constants";
 import { ComponentGeneralFormulario } from "@/gql/graphql";
 import Script from "next/script";
-import { useAppContext } from "context/appContext";
 import { useInView } from "react-intersection-observer";
 import Editor from "./editor.js/Editor";
 import { renderToString } from "react-dom/server";
+import { ThemeContext } from "./ThemeProvider";
+import styles from "./formulario.module.scss";
 
 interface FormularioProps {
   formulario?: ComponentGeneralFormulario;
 }
 
 const Formulario = ({ formulario }: FormularioProps) => {
-  const { hsFormLoaded, setHsFormLoaded } = useAppContext();
+  const { hsFormLoaded, setHsFormLoaded, startTime }: any =
+    useContext(ThemeContext);
   const [formActive, setFormActive] = useState("");
 
   // Se renderiza el mensaje en una variable, porque la propiedad inlineMessage de hubspot
@@ -32,8 +35,6 @@ const Formulario = ({ formulario }: FormularioProps) => {
 
   const titulo = formulario?.titulo;
 
-  const { startTime } = useAppContext();
-
   const [ref, inView] = useInView({ initialInView: false });
 
   useEffect(() => {
@@ -49,14 +50,14 @@ const Formulario = ({ formulario }: FormularioProps) => {
   }, [hsFormLoaded, setHsFormLoaded, startTime, inView]);
 
   return (
-    <Form ref={ref}>
+    <section className={styles.form} ref={ref}>
       {hsFormLoaded ? (
         <>
-          {titulo ? <FormHeader>{titulo}</FormHeader> : null}
+          {titulo ? <h4 className={styles.formHeader}>{titulo}</h4> : null}
 
-          <FormBody>
+          <div className={styles.formBody}>
             <div className={`form-${formulario?.formId}`} />
-          </FormBody>
+          </div>
 
           {/* Ejecuta el script cada vez que se renderiza el componente */}
           <Script
@@ -89,22 +90,8 @@ const Formulario = ({ formulario }: FormularioProps) => {
       ) : (
         <Loading />
       )}
-    </Form>
+    </section>
   );
 };
 
 export default Formulario;
-
-const Form = styled.section``;
-
-const FormHeader = styled.h4`
-  margin: 0;
-  text-align: center;
-  font-weight: bold;
-  text-transform: uppercase;
-`;
-
-const FormBody = styled.div`
-  background-color: white;
-  padding: 15px;
-`;

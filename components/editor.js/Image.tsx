@@ -19,6 +19,8 @@ const Image: RenderFn<{
         src={data?.file?.url}
         id={id}
         {...data}
+        width={1920}
+        height={1080}
         alt={data.file.alternativeText || data.file.alt || data.file.name || ""}
       />
     </div>

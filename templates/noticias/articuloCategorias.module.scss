@@ -1,0 +1,45 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.entryCategories {
+  line-height: 1.25;
+  margin-bottom: 2rem;
+
+  @include mq(md) {
+    margin-bottom: 3rem;
+  }
+}
+
+.entryCategoriesInner {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.5rem 0 0 -1rem;
+
+  @include mq(md) {
+    margin: -1rem 0 0 -2rem;
+  }
+}
+
+.categoryTag {
+  border-bottom: 0.15rem solid currentColor;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.036666667em;
+  margin: 0.5rem 0 0 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  @include mq(md) {
+    font-size: 1.5rem;
+    margin: 1rem 0 0 2rem;
+  }
+
+  transition: border-bottom-color 150ms;
+  :hover {
+    border-bottom-color: transparent;
+  }
+}

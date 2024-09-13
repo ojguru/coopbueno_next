@@ -1,0 +1,134 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.navigationBar {
+  @include containerFluid();
+  max-width: initial;
+  margin-bottom: $space-thin;
+  margin-top: $space-thin;
+  padding: initial;
+}
+
+.container {
+  @include container();
+}
+
+.categoryList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  @include mq(md) {
+    gap: 1.5rem 3rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    &:global(.inView) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+}
+
+.categoryNav {
+  position: relative;
+  padding: 0.5rem;
+  width: 100%;
+  z-index: 5;
+  background-color: $navigation-base;
+  &:global(.fixed) {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    &:global(.inView) {
+      display: none;
+    }
+  }
+}
+
+.category {
+  @include mq(md) {
+    &:global(.inView) {
+      position: relative;
+      display: flex;
+      align-items: center;
+      border-radius: 6rem 0.5rem 0.5rem 6rem;
+      box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+      background-color: white;
+      min-height: 6rem;
+      padding-left: 6rem;
+    }
+  }
+  @include mq(lg) {
+    &:global(.inView) {
+      min-height: 8rem;
+      border-radius: 8rem 0.5rem 0.5rem 8rem;
+      padding-left: 8rem;
+    }
+  }
+}
+
+.link {
+  text-decoration: none;
+}
+
+.categoryInfo {
+  display: none;
+  @include mq(md) {
+    display: none;
+    &:global(.inView) {
+      display: block;
+    }
+  }
+  @include mq(lg) {
+    padding: 0.5rem;
+  }
+}
+
+.categoryName {
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: block;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  color: $academy;
+  @include mq(lg) {
+    font-size: 1.4rem;
+  }
+  @include mq(xl) {
+    font-size: 1.6rem;
+  }
+}
+
+.categoryMedia {
+  background-color: $academy;
+  width: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  @include mq(sm) {
+    width: 4rem;
+  }
+  @include mq(md) {
+    &:global(.inView) {
+      width: 6rem;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(0%, -50%);
+    }
+  }
+  @include mq(lg) {
+    &:global(.inView) {
+      width: 8rem;
+    }
+  }
+}
+
+.media {
+  padding: 18%;
+  font-size: 0;
+  img {
+    aspect-ratio: 1/1;
+    object-fit: contain;
+  }
+}

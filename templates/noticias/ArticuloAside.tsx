@@ -1,41 +1,38 @@
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { FacebookProvider, Comments } from "react-facebook";
 import React from "react";
 import PostItem from "./post-item";
-import { container, mq } from "@/components/grid";
-import { NoticiaEntity, ComponentGeneralFormulario } from "@/gql/graphql";
 import Formulario from "@/components/Formulario";
+import { ComponentGeneralFormulario, NoticiaEntity } from "@/gql/graphql";
+import styles from "./articuloAside.module.scss";
 
 interface ArticuloAsideProps {
   articulo?: NoticiaEntity;
   relacionados?: NoticiaEntity[];
 }
 const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
-  // Load the post, but only if the data is ready.
   const formulario: ComponentGeneralFormulario = {
-    id: "2",
+    id: "formulario-bf21c6d7-45e0-48e4-8c07-37e1c9efa554",
     formId: "bf21c6d7-45e0-48e4-8c07-37e1c9efa554",
   };
-
-  return articulo ? (
-    <Aside>
-      <Container space small>
+  return true ? (
+    <aside className={styles.aside}>
+      <section className={styles.container}>
         {/* FORMULARIO DE SUBSCRIPCIÓN A NEWSLETTER */}
-        <AsideSection as="div">
-          <Block>
-            <BlockBody>
-              <SectionTitle>Recibe mas contenido como este</SectionTitle>
+        <div className={styles.asideSection}>
+          <div className={styles.block}>
+            <div className={styles.blockBody}>
+              <h2 className={styles.sectionTitle}>
+                Recibe mas contenido como este
+              </h2>
               <p>
                 Subscríbete a nuestro newsletter y recibe todos los contenidos
                 que actualicemos sobre vida financiera.
               </p>
-              <Form>
+              <div className={styles.form}>
                 <Formulario formulario={formulario} />
-              </Form>
-            </BlockBody>
-          </Block>
-        </AsideSection>
+              </div>
+            </div>
+          </div>
+        </div>
         {/* CALL TO ACTION */}
         {/* {post.meta_box['post-cta'] ? (
           <AsideSection as="div" thin spaceTopNone>
@@ -51,86 +48,24 @@ const ArticuloAside = ({ articulo, relacionados = [] }: ArticuloAsideProps) => {
             <SectionTitle>Comentarios</SectionTitle>
             <FacebookProvider appId="709986282911816">
               <Comments
-                href={`https://coopbueno.com.do/noticias/${articulo?.attributes?.slug}`}
+                href={`https://coopbueno.com.do/academia/${articulo?.attributes?.slug}`}
               />
             </FacebookProvider>
           </Block>
         </AsideSection> */}
         {relacionados.length ? (
-          <Related as="div">
-            <SectionTitle>CONTENIDO RELACIONADO</SectionTitle>
+          <div className={styles.related}>
+            <h2 className={styles.sectionTitle}>CONTENIDO RELACIONADO</h2>
             {relacionados.map((item, index) => {
               const post = item.attributes;
 
-              return post ? <PostItem key={index} articulo={post} /> : null;
+              return <PostItem key={index} articulo={post} />;
             })}
-          </Related>
+          </div>
         ) : null}
-      </Container>
-    </Aside>
+      </section>
+    </aside>
   ) : null;
 };
 
 export default ArticuloAside;
-
-const Aside = styled.aside`
-  background-color: white;
-  box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.15);
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
-`;
-
-const Container = styled.section`
-  ${container}
-  display: grid;
-  gap: 3rem;
-  grid-template-columns: 1fr;
-  @include mq(md) {
-    grid-template-columns: 1fr 1fr;
-  }
-  @include mq(xl) {
-    max-width: 160rem;
-  }
-`;
-
-const AsideSection = styled.section``;
-
-const Block = styled.div`
-  background-color: white;
-`;
-
-interface BlockBodyProps {
-  maxWidth?: string;
-}
-const BlockBody = styled.div`
-  ${({ maxWidth = "70rem" }: BlockBodyProps) => css`
-    max-width: ${maxWidth};
-  `}
-`;
-
-const Form = styled.div``;
-
-const SectionTitle = styled.h2`
-  text-transform: uppercase;
-  margin-top: initial;
-`;
-
-const Related = styled.div`
-  display: grid;
-  gap: 3rem;
-  grid-template-columns: 1fr 1fr;
-  @include mq(md) {
-    grid-column: 1 / span 2;
-  }
-  @include mq(lg) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-
-  ${SectionTitle} {
-    grid-column: 1 / span 2;
-    @include mq(lg) {
-      grid-column: 1 / span 4;
-    }
-  }
-`;
