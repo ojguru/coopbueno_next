@@ -97,7 +97,7 @@ const Slides = ({}) => {
                 </p>
                 <ul>
                   <li>
-                    Carlos Yoel Tejada Lantigua
+                    Carlos Danilo Ramos Tejada
                     <br />
                     Presidente
                   </li>
@@ -112,12 +112,12 @@ const Slides = ({}) => {
                     Secretaria
                   </li>
                   <li>
-                    Marcos Jhiovanny Jiménez Rosa
+                    Carlos Yoel Tejada Lantigua
                     <br />
                     Tesorero
                   </li>
                   <li>
-                    Carlos Danilo Ramos
+                    José Antonio Ramírez Peña
                     <br />
                     Vocal
                   </li>
@@ -129,17 +129,17 @@ const Slides = ({}) => {
                 </p>
                 <ul>
                   <li>
-                    Luines Fernando Herrera Jiménez
+                    Domingo Abigail Bueno Cruz
                     <br />
                     Presidente
                   </li>
                   <li>
-                    Domingo Abigail Bueno
+                    Wilkin Evangelista Abreu Cabreja
                     <br />
                     Secretario
                   </li>
                   <li>
-                    Wilkin Evangelista Abreu Cabreja
+                    Rodolfo Antonio Herández Gil
                     <br />
                     Vocal
                   </li>
@@ -151,17 +151,17 @@ const Slides = ({}) => {
                 </p>
                 <ul>
                   <li>
-                    Milagros Alt. Ventura Gil
+                    Jhamni Magalis Paula Cordero
                     <br />
                     Presidente
                   </li>
                   <li>
-                    Fermando Michel Delgado Quezada
+                    María Lucrecia Gómez
                     <br />
-                    Secretaria
+                    Secretario
                   </li>
                   <li>
-                    Jhamni Magalis Cordero
+                    Fermando Michel Delgado Quezada
                     <br />
                     Vocal
                   </li>
@@ -188,29 +188,24 @@ const Slides = ({}) => {
                     Presidente
                   </li>
                   <li>
-                    Yudelka Ramos
+                    Ignacia Miguelina Peña
                     <br />
                     Secretaria
                   </li>
                   <li>
-                    Reinalda Santana
+                    Reinalda Del Carmen Santana
                     <br />
                     Miembro
                   </li>
                   <li>
-                    Ignacia Peña
+                    Guillermo De Jesús Espinal Peñaló
                     <br />
                     Miembro
                   </li>
                   <li>
-                    Guillermo Espinal
+                    Rafaelina Y. Ramos Vásquez
                     <br />
                     Miembro
-                  </li>
-                  <li>
-                    Juana Vásquez
-                    <br />
-                    Colaboradora
                   </li>
                 </ul>
               </Div>
