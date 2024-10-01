@@ -11,7 +11,7 @@ const Lista = ({ lista }: ListaProps) => {
     <Section>
       <Title>{lista.titulo}</Title>
       <List>
-        {lista.items().map((benefit, index) => {
+        {lista.items.map((benefit, index) => {
           return <Item key={index}>{benefit?.texto}</Item>;
         })}
       </List>

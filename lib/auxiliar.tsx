@@ -1,6 +1,6 @@
 import {
-  ENUM_SERVICIO_CATEGORIA,
-  ENUM_SERVICIO_TIPO,
+  Enum_Servicio_Categoria,
+  Enum_Servicio_Tipo,
   MenusMenuItemEntity,
   ServicioEntity,
 } from "@/gql/graphql";
@@ -44,7 +44,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
   const tipos = [
     {
       item: {
-        id: ENUM_SERVICIO_TIPO.personas,
+        id: Enum_Servicio_Tipo.Personas,
         attributes: {
           title: "Personas",
         },
@@ -52,7 +52,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
       children: [
         {
           item: {
-            id: ENUM_SERVICIO_CATEGORIA.ahorro,
+            id: Enum_Servicio_Categoria.Ahorro,
             attributes: {
               title: "Ahorro",
             },
@@ -61,8 +61,8 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
             .filter(
               (servicio) =>
                 servicio.attributes?.categoria ===
-                  ENUM_SERVICIO_CATEGORIA.ahorro &&
-                servicio.attributes?.tipo === ENUM_SERVICIO_TIPO.personas
+                  Enum_Servicio_Categoria.Ahorro &&
+                servicio.attributes?.tipo === Enum_Servicio_Tipo.Personas
             )
             .map((servicio) => ({
               item: servicio,
@@ -71,7 +71,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
         },
         {
           item: {
-            id: ENUM_SERVICIO_CATEGORIA.prestamos,
+            id: Enum_Servicio_Categoria.Prestamos,
             attributes: {
               title: "Préstamos",
             },
@@ -80,8 +80,8 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
             .filter(
               (servicio) =>
                 servicio.attributes?.categoria ===
-                  ENUM_SERVICIO_CATEGORIA.prestamos &&
-                servicio.attributes?.tipo === ENUM_SERVICIO_TIPO.personas
+                  Enum_Servicio_Categoria.Prestamos &&
+                servicio.attributes?.tipo === Enum_Servicio_Tipo.Personas
             )
             .map((servicio) => ({
               item: servicio,
@@ -90,7 +90,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
         },
         {
           item: {
-            id: ENUM_SERVICIO_CATEGORIA.facilidades,
+            id: Enum_Servicio_Categoria.Facilidades,
             attributes: {
               title: "Facilidades",
             },
@@ -99,8 +99,8 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
             .filter(
               (servicio) =>
                 servicio.attributes?.categoria ===
-                  ENUM_SERVICIO_CATEGORIA.facilidades &&
-                servicio.attributes?.tipo === ENUM_SERVICIO_TIPO.personas
+                  Enum_Servicio_Categoria.Facilidades &&
+                servicio.attributes?.tipo === Enum_Servicio_Tipo.Personas
             )
             .map((servicio) => ({
               item: servicio,
@@ -111,7 +111,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
     },
     {
       item: {
-        id: ENUM_SERVICIO_TIPO.empresas,
+        id: Enum_Servicio_Tipo.Empresas,
         attributes: {
           title: "Empresas",
         },
@@ -119,7 +119,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
       children: [
         {
           item: {
-            id: ENUM_SERVICIO_CATEGORIA.ahorro,
+            id: Enum_Servicio_Categoria.Ahorro,
             attributes: {
               title: "Ahorro",
             },
@@ -128,8 +128,8 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
             .filter(
               (servicio) =>
                 servicio.attributes?.categoria ===
-                  ENUM_SERVICIO_CATEGORIA.ahorro &&
-                servicio.attributes?.tipo === ENUM_SERVICIO_TIPO.empresas
+                  Enum_Servicio_Categoria.Ahorro &&
+                servicio.attributes?.tipo === Enum_Servicio_Tipo.Empresas
             )
             .map((servicio) => ({
               item: servicio,
@@ -138,7 +138,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
         },
         {
           item: {
-            id: ENUM_SERVICIO_CATEGORIA.prestamos,
+            id: Enum_Servicio_Categoria.Prestamos,
             attributes: {
               title: "Préstamos",
             },
@@ -147,8 +147,8 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
             .filter(
               (servicio) =>
                 servicio.attributes?.categoria ===
-                  ENUM_SERVICIO_CATEGORIA.prestamos &&
-                servicio.attributes?.tipo === ENUM_SERVICIO_TIPO.empresas
+                  Enum_Servicio_Categoria.Prestamos &&
+                servicio.attributes?.tipo === Enum_Servicio_Tipo.Empresas
             )
             .map((servicio) => ({
               item: servicio,
@@ -157,7 +157,7 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
         },
         {
           item: {
-            id: ENUM_SERVICIO_CATEGORIA.facilidades,
+            id: Enum_Servicio_Categoria.Facilidades,
             attributes: {
               title: "Facilidades",
             },
@@ -166,8 +166,8 @@ const getServiceHierarchicalItems = (servicios: ServicioEntity[] = []) => {
             .filter(
               (servicio) =>
                 servicio.attributes?.categoria ===
-                  ENUM_SERVICIO_CATEGORIA.facilidades &&
-                servicio.attributes?.tipo === ENUM_SERVICIO_TIPO.empresas
+                  Enum_Servicio_Categoria.Facilidades &&
+                servicio.attributes?.tipo === Enum_Servicio_Tipo.Empresas
             )
             .map((servicio) => ({
               item: servicio,

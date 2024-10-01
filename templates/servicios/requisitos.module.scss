@@ -1,0 +1,59 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.section {
+  @include container();
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+}
+
+.title {
+  text-align: left;
+  text-transform: uppercase;
+  @include h1m();
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.5rem 3rem;
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.requirement {
+  margin-bottom: 1rem;
+  text-align: left;
+  @include mq(md) {
+    text-align: left;
+  }
+}
+
+.box {
+  padding: 10%;
+  border-radius: 1.5rem;
+  position: relative;
+  @include mq(md) {
+    padding: 5%;
+    border-radius: 2.5rem;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $primary-base;
+    opacity: 0.15;
+    border-radius: 2.5rem;
+  }
+}

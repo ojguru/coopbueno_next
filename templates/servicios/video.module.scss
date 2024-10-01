@@ -1,0 +1,61 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.section {
+  @include container();
+  padding: 0;
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+}
+
+.container {
+  @include container();
+}
+
+.media {
+  border-radius: 2rem;
+  border: 2rem solid transparent;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  padding-bottom: 56.25%;
+  position: relative;
+  background-color: white;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  @include mq(md) {
+    border: 4rem solid transparent;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-100%, -50%);
+    width: 10%;
+    padding-bottom: 10%;
+    background-color: $primary-base;
+    border-radius: 10%;
+    z-index: -1;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(75%, 50%);
+    width: 15%;
+    padding-bottom: 15%;
+    background-color: $primary-base;
+    border-radius: 10%;
+    z-index: 2;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+}

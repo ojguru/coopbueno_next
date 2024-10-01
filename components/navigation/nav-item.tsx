@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import { LeftArrowIcon } from "../icons";
 import colors from "@/styles/colors";
 import { MenuItem } from "@/lib/auxiliar";
 import { getURL } from "@/lib/api";
-import { useAppContext } from "@/context/appContext";
+import { ThemeContext } from "@/components/ThemeProvider";
 
 interface NavItemProps {
   el?: MenuItem;
@@ -31,7 +31,7 @@ const NavItem = ({
   const isLink = item?.attributes?.url !== "#";
 
   const [isOpen, setOpen] = useState(false);
-  const { setMenuOpen } = useAppContext();
+  const { setMenuOpen }: any = useContext(ThemeContext);
 
   return (
     <Item

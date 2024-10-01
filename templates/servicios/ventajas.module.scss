@@ -1,0 +1,38 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.section {
+}
+
+.container {
+  @include container();
+  display: grid;
+  gap: 1.5rem 3rem;
+}
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  @include h1m();
+  @include mq(md) {
+    grid-column: 1 / span 2;
+  }
+}
+
+.requirementsList {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.5rem 3rem;
+
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.requirement {
+  text-shadow: 0.1rem 0.1rem 0.025rem white;
+}

@@ -4,6 +4,10 @@
 @import "./mixins.scss";
 @import "./tipography.module.scss";
 
+* {
+  scroll-behavior: smooth;
+}
+
 /* CSS RESET */
 
 #adsbox {

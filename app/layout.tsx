@@ -27,10 +27,10 @@ const lato = Lato({
 });
 
 export const metadata = {
-  title: "Preventis",
+  title: "Coopbueno",
   description: SITE_DESCRIPTION,
   openGraph: {
-    title: "Preventis",
+    title: "Coopbueno",
     description: SITE_DESCRIPTION,
     url: `${SITE_URL}`,
     siteName: SITE_NAME,
@@ -67,13 +67,9 @@ export default function RootLayout({
           `}
         </Script>
         <ThemeProvider>
-          <Suspense>
-            {/* <Header /> */}
-          </Suspense>
+          <Suspense>{/* <Header /> */}</Suspense>
           <main className={styles.main}>{children}</main>
-          <Suspense>
-            {/* <Footer /> */}
-          </Suspense>
+          <Suspense>{/* <Footer /> */}</Suspense>
         </ThemeProvider>
         {/* <Suspense>
           <FacebookPixelEvents />

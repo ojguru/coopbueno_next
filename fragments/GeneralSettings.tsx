@@ -42,3 +42,41 @@ export const CTAFragment = `
   }
 `;
 
+export const SEOFragment = `
+  seo{
+    metaTitle
+    metaDescription
+    metaImage{
+      ${ImageFragment}
+    }
+    keywords
+    metaRobots
+    metaViewport
+    canonicalURL
+  }
+`;
+
+export const BenefitFragment = `
+  data{
+    attributes{
+      nombre
+      slug
+      portada{
+        titular
+      }
+      icono{
+        ${ImageFragment}
+      }
+    }
+  }
+`;
+
+export const FormFragment = `
+  formulario{
+    id
+    formId
+    redireccion
+    mensaje
+    titulo
+  }
+`;
