@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import styles from "./oficinas.module.scss";
 import { Maybe } from "graphql/jsutils/Maybe";
+import { sendEvent } from "@/lib/api";
 
 interface PhoneProps {
   phone: string | Maybe<string>;
@@ -15,7 +16,7 @@ const Phone = ({ phone }: PhoneProps) => {
       className={styles.phone}
       href={`tel:+${phone}`}
       onClick={() => {
-        window.fbq("track", "Contact");
+        sendEvent("Contact", true, {});
       }}
     >
       {phone}

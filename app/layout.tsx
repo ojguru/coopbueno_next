@@ -71,9 +71,9 @@ export default function RootLayout({
           <main className={styles.main}>{children}</main>
           <Suspense>{/* <Footer /> */}</Suspense>
         </ThemeProvider>
-        {/* <Suspense>
+        <Suspense>
           <FacebookPixelEvents />
-        </Suspense> */}
+        </Suspense>
       </body>
     </html>
   );

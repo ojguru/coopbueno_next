@@ -28,12 +28,7 @@ const Portada = ({ servicio }: PortadaProps) => {
           <p className={styles.copy} itemProp="disambiguatingDescription">
             {copy}
           </p>
-          <Cta
-            cta={cta}
-            // onClick={() => {
-            //   window.fbq("track", "serviceCTA");
-            // }}
-          />
+          <Cta cta={cta} fbqEvent={"serviceCTA"} />
         </div>
         <div className={styles.imageBlock}>
           <div className={styles.media}>
