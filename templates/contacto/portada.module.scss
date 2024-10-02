@@ -1,0 +1,98 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+@import "pure-react-carousel/dist/react-carousel.es.css";
+
+.section {
+  @include container();
+  padding: 0;
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+}
+
+.container {
+  text-align: center;
+  font-size: 0;
+  display: grid;
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.header {
+}
+
+.contactImage {
+  margin-bottom: 4rem;
+  min-height: 100%;
+  img {
+    object-fit: cover;
+    aspect-ratio: 6/4.5;
+  }
+}
+
+.contactForm {
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  position: relative;
+  background-color: white;
+  min-height: 50rem;
+  display: grid;
+  align-items: center;
+  @include mq(lg) {
+    padding: 2rem 2rem;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15rem;
+    padding-bottom: 15rem;
+    background-color: $green-base;
+    box-shadow: 0 1rem 1.5rem $green-base;
+    border-radius: 1.5rem;
+    transform: translate(15%, 15%);
+    z-index: -1;
+    opacity: 0.4;
+  }
+}
+
+.deco {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30rem;
+  padding-bottom: 30rem;
+  background-color: $green-base;
+  box-shadow: 0 1.5rem 3rem $green-base;
+  border-radius: 5rem;
+  transform: translate(15%, 15%);
+  z-index: -1;
+  opacity: 0.7;
+  transform: translate(-50%, 0) rotate(30deg);
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 20%;
+    width: 20%;
+    padding-bottom: 20%;
+    background-color: $secondary-base;
+    border-radius: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  @include mq(md) {
+    margin-bottom: 5rem;
+  }
+}
