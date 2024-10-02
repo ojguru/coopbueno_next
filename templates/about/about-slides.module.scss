@@ -1,0 +1,137 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+@import "pure-react-carousel/dist/react-carousel.es.css";
+
+.section {
+  @include container();
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+}
+
+.navigation {
+  text-align: center;
+}
+
+.navWrapper {
+  @include container();
+  padding: 0;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  display: inline-block;
+  width: initial;
+}
+
+.navItem {
+  padding: 0;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  button {
+    color: $gray-base;
+    background: transparent;
+    width: 100%;
+    padding: 1.5rem 4rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    &:after {
+      content: "";
+      display: block;
+      margin-top: 0.5rem;
+      width: 10rem;
+      height: 0.2rem;
+      background-color: transparent;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    &[disabled] {
+      color: $green-base;
+      &:after {
+        content: "";
+        background-color: green;
+      }
+    }
+  }
+}
+
+.bLayout {
+}
+
+.dLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.sliderX {
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
+  border-radius: 2rem;
+}
+
+.slideX {
+  @include container();
+  position: relative !important;
+  padding: 1.5rem;
+  @include mq(md) {
+    padding: 0 3rem;
+  }
+}
+
+.carouselProviderStyles {
+  border-radius: 2%;
+}
+
+.decoLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  padding-bottom: 100%;
+  background-color: $primary-base;
+  transform-origin: 0 0;
+  transform: rotate(45deg) translate(-80%, 0);
+  border-radius: 5rem;
+  &:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 20%;
+    top: -20%;
+    background-color: inherit;
+    transform: scale(1);
+    opacity: 0.1;
+    z-index: 0;
+    border-radius: inherit;
+  }
+}
+
+.decoRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 0;
+  width: 50%;
+  padding-bottom: 50%;
+  background-color: $primary-light;
+  transform-origin: 100% 100%;
+  transform: rotate(45deg) translate(50%, 0);
+  border-radius: 5rem;
+}

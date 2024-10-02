@@ -1,10 +1,10 @@
+"use client";
+
 import React from "react";
-import { css } from "@emotion/react";
-import styled from "@emotion/styled";
-import { container, mq } from "@/components/grid";
 import Image from "next/image";
 import { CarouselProvider, Slider, Slide, Dot } from "pure-react-carousel";
-import colors from "@/styles/colors";
+import styles from "./about-slides.module.scss";
+import "pure-react-carousel/dist/react-carousel.es.css";
 
 const Slides = ({}) => {
   // const biographyImage = metabox['about-biography-image']
@@ -14,9 +14,9 @@ const Slides = ({}) => {
   //   const firstOffices = metabox["about-first-offices"];
 
   return (
-    <Section space>
-      <DecoLeft color={colors.primary.base} />
-      {/* <DecoRight color={colors.primary.light} /> */}
+    <section className={styles.section}>
+      <div className={styles.decoLeft} />
+      {/* <div className={styles.decoRight} /> */}
       <CarouselProvider
         naturalSlideWidth={16}
         naturalSlideHeight={9}
@@ -28,24 +28,26 @@ const Slides = ({}) => {
         lockOnWindowScroll={true}
         // css={carouselProviderStyles}
       >
-        <Navigation>
-          <NavWrapper>
-            <NavItem>
+        <div className={styles.navigation}>
+          <div className={styles.navWrapper}>
+            <div className={styles.navItem}>
               <Dot slide={0}>Biografía</Dot>
-            </NavItem>
-            <NavItem>
+            </div>
+            <div className={styles.navItem}>
               <Dot slide={1}>Directiva</Dot>
-            </NavItem>
-          </NavWrapper>
-        </Navigation>
-        <SliderX trayTag="div">
-          <SlideX index={0} key={0} tag="div">
-            <Subtitle>Biografía Manuel Ramón Bueno Caba (Momón)</Subtitle>
-            <BLayout>
-              {/* <Div>
+            </div>
+          </div>
+        </div>
+        <Slider className={styles.sliderX} trayTag="div">
+          <Slide className={styles.slideX} index={0} key={0} tag="div">
+            <h2 className={styles.title}>
+              Biografía Manuel Ramón Bueno Caba (Momón)
+            </h2>
+            <div className={styles.bLayout}>
+              {/* <div>
                 <Image src={biographyImage} />
-              </Div> */}
-              <Div>
+              </div> */}
+              <div>
                 <p>
                   Nació en el año 1906, hijo de los señores Mercedes Bueno y
                   doña Julia Caba, ambos oriundos de la comunidad de Partido
@@ -82,16 +84,16 @@ const Slides = ({}) => {
                   Sus hijos agradecen al pueblo y a esta empresa haber escogido
                   su nombre para la misma.
                 </p>
-              </Div>
-            </BLayout>
-          </SlideX>
-          <SlideX index={1} key={1} tag="div">
+              </div>
+            </div>
+          </Slide>
+          <Slide className={styles.slideX} index={1} key={1} tag="div">
             <div>
-              <Subtitle>Directiva</Subtitle>
+              <h2 className={styles.title}>Directiva</h2>
               <p>Miembros de los Consejos de COOPBUENO.</p>
             </div>
-            <DLayout>
-              <Div>
+            <div className={styles.dLayout}>
+              <div>
                 <p>
                   <strong>Consejo de Administración</strong>
                 </p>
@@ -122,8 +124,8 @@ const Slides = ({}) => {
                     Vocal
                   </li>
                 </ul>
-              </Div>
-              <Div>
+              </div>
+              <div>
                 <p>
                   <strong>Comité de Crédito</strong>
                 </p>
@@ -144,8 +146,8 @@ const Slides = ({}) => {
                     Vocal
                   </li>
                 </ul>
-              </Div>
-              <Div>
+              </div>
+              <div>
                 <p>
                   <strong>Consejo de Vigilancia</strong>
                 </p>
@@ -166,8 +168,8 @@ const Slides = ({}) => {
                     Vocal
                   </li>
                 </ul>
-              </Div>
-              <Div>
+              </div>
+              <div>
                 <p>
                   <strong>Departamento de Educación</strong>
                 </p>
@@ -176,8 +178,8 @@ const Slides = ({}) => {
                   <li>Nelson Carrasco</li>
                   <li>Wanda Espinal</li>
                 </ul>
-              </Div>
-              <Div>
+              </div>
+              <div>
                 <p>
                   <strong>Comisión de Educación</strong>
                 </p>
@@ -213,145 +215,13 @@ const Slides = ({}) => {
                     Colaboradora
                   </li>
                 </ul>
-              </Div>
-            </DLayout>
-          </SlideX>
-        </SliderX>
+              </div>
+            </div>
+          </Slide>
+        </Slider>
       </CarouselProvider>
-    </Section>
+    </section>
   );
 };
 
 export default Slides;
-
-const Section = styled.section`
-  ${container}
-`;
-
-const Navigation = styled.div`
-  text-align: center;
-`;
-
-const NavWrapper = styled.div`
-  ${container}
-  padding: 0;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  display: inline-block;
-  width: initial;
-`;
-
-const NavItem = styled.div`
-  padding: 0;
-  text-align: center;
-  display: inline-block;
-  position: relative;
-  button {
-    color: ${colors.gray.base};
-    background: transparent;
-    width: 100%;
-    padding: 1.5rem 4rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-    &:after {
-      content: "";
-      display: block;
-      margin-top: 0.5rem;
-      width: 10rem;
-      height: 0.2rem;
-      background-color: transparent;
-      position: absolute;
-      left: 50%;
-      transform: translate(-50%, 0);
-    }
-    &[disabled] {
-      color: ${colors.green.base};
-      &:after {
-        content: "";
-        background-color: green;
-      }
-    }
-  }
-`;
-
-const BLayout = styled.div``;
-
-const DLayout = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  @include mq(md) {
-    grid-template-columns: 1fr 1fr;
-  }
-`;
-
-const Div = styled.div``;
-
-const Subtitle = styled.h2`
-  text-transform: uppercase;
-`;
-
-const SliderX = styled(Slider)`
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
-  border-radius: 2rem;
-`;
-
-const SlideX = styled(Slide)`
-  ${container}
-  position: relative !important;
-  @include mq(md) {
-    padding: 0 3rem;
-  }
-`;
-
-const carouselProviderStyles = css`
-  border-radius: 2%;
-`;
-
-const DecoLeft = styled.div`
-  ${({ color = "green" }) => css`
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 0;
-    width: 100%;
-    padding-bottom: 100%;
-    background-color: ${color};
-    transform-origin: 0 0;
-    transform: rotate(45deg) translate(-80%, 0);
-    border-radius: 5rem;
-    &:before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 20%;
-      top: -20%;
-      background-color: inherit;
-      transform: scale(1);
-      opacity: 0.1;
-      z-index: 0;
-      border-radius: inherit;
-    }
-  `}
-`;
-
-const DecoRight = styled.div`
-  ${({ color = "green" }) => css`
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 0;
-    width: 50%;
-    padding-bottom: 50%;
-    background-color: ${color};
-    transform-origin: 100% 100%;
-    transform: rotate(45deg) translate(50%, 0);
-    border-radius: 5rem;
-  `}
-`;

@@ -1,0 +1,67 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+@import "pure-react-carousel/dist/react-carousel.es.css";
+
+.section {
+  @include container();
+  padding: 0;
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+}
+
+.container {
+  @include container();
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+}
+
+.title {
+  text-transform: uppercase;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  @include mq(lg) {
+    order: 1;
+  }
+}
+
+.mediaWrapper {
+  position: relative;
+  margin-top: -25%;
+  transform: scale(1.2) translate(25%, 0);
+  height: auto;
+  @include mq(lg) {
+    order: 2;
+    transform-origin: 0 50%;
+    transform: scale(1.3) translate(5%, 0);
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    width: 10%;
+    padding-bottom: 10%;
+    background-color: $secondary-base;
+    z-index: 2;
+    border-radius: 50%;
+  }
+}
+
+.media {
+  border-radius: 50%;
+  overflow: hidden;
+  font-size: 0;
+  img {
+    object-fit: cover;
+    aspect-ratio: 1/1;
+  }
+}

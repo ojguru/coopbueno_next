@@ -1,13 +1,12 @@
 import React from "react";
-import styled from "@emotion/styled";
-import { container, mq } from "components/grid";
+import styles from "./about-promese.module.scss";
 
 const Promese = () => {
   return (
-    <Section>
-      <Container space>
+    <div className={styles.section}>
+      <div className={styles.container}>
         <div>
-          <Subtitle>Misión</Subtitle>
+          <h2 className={styles.title}>Misión</h2>
           <p>
             Somos una institución de economía solidaria que apoya el crecimiento
             sostenible de las comunidades, creando valor a los sueños de los
@@ -16,7 +15,7 @@ const Promese = () => {
           </p>
         </div>
         <div>
-          <Subtitle>Visión</Subtitle>
+          <h2 className={styles.title}>Visión</h2>
           <p>
             Ser reconocida como una cooperativa comprometida con el apoyo socio
             ambiental, la innovación y el mejoramiento económico de sus
@@ -24,7 +23,7 @@ const Promese = () => {
           </p>
         </div>
         <div>
-          <Subtitle>Valores</Subtitle>
+          <h2 className={styles.title}>Valores</h2>
           <p>COOPBUENO se caracteriza por los siguientes valores:</p>
           <ul>
             <li>Empatía</li>
@@ -34,27 +33,9 @@ const Promese = () => {
             <li>Transparencia</li>
           </ul>
         </div>
-      </Container>
-    </Section>
+      </div>
+    </div>
   );
 };
 
 export default Promese;
-
-const Section = styled.section`
-  ${container}
-  padding: 0;
-`;
-
-const Container = styled.div`
-  ${container}
-  display: grid;
-  gap: 3rem;
-  @include mq(md) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-`;
-
-const Subtitle = styled.h2`
-  text-transform: uppercase;
-`;
