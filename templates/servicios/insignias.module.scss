@@ -1,0 +1,125 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.section {
+  @include containerFluid();
+  max-width: initial;
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+  padding: 0;
+  position: relative;
+}
+
+.header {
+  @include container();
+}
+
+.title {
+  @include h1m();
+  text-transform: uppercase;
+  margin-bottom: 4rem;
+}
+
+.body {
+  @include container();
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0%;
+  @include mq(sm) {
+    gap: 10%;
+  }
+  @include mq(lg) {
+    grid-template-columns: 2fr 1fr;
+    gap: 5%;
+  }
+}
+
+.lista {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr 1fr;
+  @include mq(sm) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    top: 50%;
+    left: 0%;
+    box-shadow: 0.25rem 0.25rem 5rem rgba(0, 0, 0, 0.15);
+    border-radius: 2.5rem;
+    transform: translate(0, -50%);
+    z-index: 1;
+    @include mq(sm) {
+      transform: translate(0, -20%);
+    }
+  }
+}
+
+.insignia {
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  padding: 15%;
+  position: relative;
+  z-index: 1;
+}
+
+.contenido {
+}
+
+.albumContainer {
+  @include container();
+  margin-bottom: $space-thin;
+  margin-top: $space-thin;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  @include mq(md) {
+    grid-template-columns: 3fr 1fr;
+  }
+}
+
+.album {
+}
+
+.etiquetas {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 3rem;
+  font-size: 0;
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.etiqueta {
+  list-style: none;
+  margin: 0;
+  box-shadow: 0.25rem 0.25rem 5rem rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+}
+
+.space {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  z-index: -1;
+  transform: translate(60%, -50%) scaleX(-1);
+  @include mq(md) {
+    width: 70%;
+    transform: translate(60%, -60%) scaleX(-1);
+  }
+}

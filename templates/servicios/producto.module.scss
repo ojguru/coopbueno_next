@@ -12,7 +12,6 @@
 }
 
 .container {
-  @include container();
   display: grid;
   gap: 3rem;
   @include mq(md) {

@@ -1,5 +1,5 @@
 import React from "react";
-import Portada from "@/templates/servicios/portada";
+import Portada from "@/templates/servicios/portadaInfantil";
 import Producto from "@/templates/servicios/producto";
 import Ventajas from "@/templates/servicios/ventajas";
 import Requisitos from "@/templates/servicios/requisitos";
@@ -8,6 +8,15 @@ import Conversion from "@/templates/servicios/conversion";
 import Video from "@/templates/servicios/serviceVideo";
 import NavegadorServicios from "@/templates/home/HomeServicios";
 import styles from "./page.module.scss";
+
+import Insignias from "@/templates/servicios/insignias";
+import Image from "next/image";
+import planeta1 from "@/public/ahorro-infantil/planeta1.webp";
+import planeta2 from "@/public/ahorro-infantil/planeta2.webp";
+import planeta3 from "@/public/ahorro-infantil/planeta3.webp";
+import sol from "@/public/ahorro-infantil/sol.webp";
+import copimoneda from "@/public/ahorro-infantil/copimoneda.webp";
+import space from "@/public/ahorro-infantil/space.webp";
 
 import {
   ComponentGeneralFormulario,
@@ -170,12 +179,46 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <Portada servicio={servicio} />
         <Producto servicio={servicio} />
         <Video servicio={servicio} />
+        {/* <Insignias /> */}
         <Ventajas servicio={servicio} />
         <Beneficios servicio={servicio} />
-        <Requisitos servicio={servicio} />
-        <Conversion formulario={formulario} />
+        {/* REQUISITOS */}
+        <div className={styles.requisitosDeco}>
+          <Requisitos servicio={servicio} />
+          <div className={styles.planeta1}>
+            <Image src={planeta1} alt={"Universo Coopbueno Planeta"} />
+          </div>
+          <div className={styles.planeta2}>
+            <Image src={planeta2} alt={"Universo Coopbueno Planeta"} />
+          </div>
+          <div className={styles.moneda1}>
+            <Image src={copimoneda} alt={"Universo Coopbueno Copimoneda"} />
+          </div>
+          <div className={styles.moneda2}>
+            <Image src={copimoneda} alt={"Universo Coopbueno Copimoneda"} />
+          </div>
+          <div className={styles.moneda3}>
+            <Image src={copimoneda} alt={"Universo Coopbueno Copimoneda"} />
+          </div>
+        </div>
+        {/* FORMULARIO */}
+        <div className={styles.conversionDeco}>
+          <Conversion formulario={formulario} />
+          <div className={styles.planeta3}>
+            <Image src={planeta3} alt={"Universo Coopbueno Planeta"} />
+          </div>
+          <div className={styles.sol}>
+            <Image src={sol} alt={"Universo Coopbueno Sol"} />
+          </div>
+        </div>
       </section>
-      <NavegadorServicios servicios={servicios} />
+      {/* NAVEGADOR DE SERVICIOS */}
+      <div className={styles.navegacionDeco}>
+        <NavegadorServicios servicios={servicios} />
+        <div className={styles.space}>
+          <Image src={space} alt={"Universo Coopbueno Espacio"} />
+        </div>
+      </div>
     </>
   ) : null;
 }

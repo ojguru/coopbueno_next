@@ -38,11 +38,3 @@ $space-large: 15rem;
 @mixin containerFluid {
   @include baseContainer();
 }
-
-.container {
-  @include container();
-}
-
-.containerFluid {
-  @include containerFluid();
-}
