@@ -26,25 +26,25 @@ const QUERY = `
 
 const queryVars = {};
 
-// export const metadata = {
-//   title: `Contacto - ${SITE_NAME}`,
-//   description:
-//     "Haz contacto con nosotros a través de los canales que tenesmos disponibles para ti.",
-//   openGraph: {
-//     title: "Contacto",
-//     description:
-//       "Haz contacto con nosotros a través de los canales que tenesmos disponibles para ti.",
-//     url: `${SITE_URL}`,
-//     siteName: SITE_NAME,
-//     images: [
-//       {
-//         url: image.src,
-//         width: 800,
-//         height: 600,
-//       },
-//     ],
-//   },
-// };
+export const metadata = {
+  title: `Contacto - ${SITE_NAME}`,
+  description:
+    "Haz contacto con nosotros a través de los canales que tenesmos disponibles para ti.",
+  openGraph: {
+    title: "Contacto",
+    description:
+      "Haz contacto con nosotros a través de los canales que tenesmos disponibles para ti.",
+    url: `${SITE_URL}`,
+    siteName: SITE_NAME,
+    images: [
+      {
+        url: image.src,
+        width: 800,
+        height: 600,
+      },
+    ],
+  },
+};
 
 export default async function Page() {
   const data = await fetchAPI(QUERY, { variables: queryVars });
