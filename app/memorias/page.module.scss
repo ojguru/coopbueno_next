@@ -1,0 +1,48 @@
+@import "@/styles/variables.module.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/grid.module.scss";
+@import "@/styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.section {
+  @include container();
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+}
+
+.list {
+  display: grid;
+  gap: 3rem;
+  @include mq(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.memoryCard {
+  max-width: 250px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.cardImage {
+  width: 250px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border: 0.5px solid $gray-base;
+  font-size: 0;
+}
+
+.memoryName {
+  @include h3m();
+  margin: 5px 0;
+  font-size: 5rem;
+  text-align: center;
+  color: $green-base;
+}
