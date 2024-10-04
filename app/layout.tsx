@@ -146,7 +146,7 @@ export default async function RootLayout({
         <ThemeProvider>
           <Header servicios={servicios} menuItems={headerItems} />
           <main className={styles.main}>{children}</main>
-          {/* <Footer /> */}
+          <Footer menuItems={footerItems} />
         </ThemeProvider>
         <Suspense>
           <FacebookPixelEvents />

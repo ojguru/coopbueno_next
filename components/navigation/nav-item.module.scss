@@ -41,6 +41,9 @@
   padding-right: 4rem;
   font-family: var(--poppins), sans-serif;
   font-weight: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 .itemLink {
   @include itemText();

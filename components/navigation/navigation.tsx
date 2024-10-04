@@ -30,10 +30,7 @@ const Navigation = ({
 }: NavigationProps) => {
   return items.length ? (
     <div className={styles.menu} {...props}>
-      <div
-        className={styles.container}
-        // split={split}
-      >
+      <div className={`${styles.container} ${split ? "split" : ""}`}>
         {!split ? (
           <div className={styles.block}>
             <>
