@@ -7,10 +7,10 @@
 .main {
   overflow: hidden;
   min-height: 100vh;
-  padding-bottom: 10rem;
+  // padding-bottom: 10rem;
 
-  padding-top: 7rem;
-  @include mq(lg) {
-    padding-top: 8rem;
-  }
+  // padding-top: 7rem;
+  // @include mq(lg) {
+  //   padding-top: 8rem;
+  // }
 }

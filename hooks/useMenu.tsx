@@ -1,3 +1,4 @@
+"use client";
 import React, { useContext } from "react";
 import { css, Global } from "@emotion/react";
 import styled from "@emotion/styled";

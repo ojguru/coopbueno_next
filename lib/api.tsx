@@ -11,8 +11,6 @@ export async function fetchAPI(
 ): Promise<any> {
   const headers = { "Content-Type": "application/json" };
 
-  console.log("RRRRRRRRRRRRRRRRR", API_URL, FACEBOOK_PIXEL_ID);
-
   const res = await fetch(API_URL + "/graphql", {
     method: "POST",
     headers,

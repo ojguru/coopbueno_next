@@ -1,0 +1,9 @@
+.list {
+  margin: 0;
+  margin-left: 1.5rem;
+  &:global(.isMain) {
+    padding: 0;
+    margin: 0;
+    margin-left: initial;
+  }
+}

@@ -1,0 +1,102 @@
+@import "@/styles/variables.module.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/grid.module.scss";
+@import "@/styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+@import "@/components/Cta.module.scss";
+
+.container {
+  @include containerFluid();
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* @include mq(lg) {
+    } */
+  @include mq(xl) {
+    max-width: 160rem;
+  }
+}
+
+.navContainer {
+  display: grid;
+  align-items: center;
+  grid-auto-flow: column;
+  gap: 1.5rem;
+}
+
+.header {
+}
+
+.wrapper {
+  position: relative;
+  z-index: 100;
+  transition: background 0.2s ease-in-out;
+
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: $header-sticky;
+  &:global(.inView) {
+    background-color: $header-base;
+    box-shadow: initial;
+  }
+}
+
+.logoContainer {
+  padding: 1rem;
+  width: 14rem;
+  @include mq(md) {
+    width: 20rem;
+  }
+}
+
+.link {
+  text-decoration: none;
+}
+
+.gadgets {
+  display: flex;
+  align-items: center;
+}
+
+.coopvirtual {
+  display: none;
+  @include cta();
+  color: $primary-base;
+  background-color: white;
+  display: none;
+  text-shadow: none;
+  text-decoration: none;
+  font-weight: 900;
+  text-transform: uppercase;
+  @include mq(md) {
+    display: initial;
+  }
+}
+
+.socialBox {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: auto auto auto 1fr;
+  margin-top: 2rem;
+}
+
+.socialIcon {
+  background-color: $primary-base;
+  padding: 0.7rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  color: white;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.ctaCoopvirtual {
+  @include cta();
+  margin-bottom: 1rem;
+  background-color: $primary-base;
+}

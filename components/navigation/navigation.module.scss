@@ -1,0 +1,32 @@
+.menu {
+  margin: 0 auto;
+}
+
+.container {
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 100%;
+  //     ${props.split
+  //       ? css`
+  //           ${mq.lg} {
+  //             grid-template-columns: 48% 48%;
+  //           }
+  //           ${mq.xl} {
+  //             grid-template-columns: 33.333333% 33.333333% 33.333333%;
+  //           }
+  //         `
+  //       : css``}
+  //   `}
+}
+
+.block {
+  z-index: initial;
+}
+
+.label {
+  // color: ${props.labelColor};
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+}

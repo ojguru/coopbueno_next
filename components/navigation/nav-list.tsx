@@ -1,9 +1,8 @@
 import React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import NavItem from "./nav-item";
-import { MenuItem } from "@/lib/auxiliar";
 import { MenusMenuItemEntity } from "@/gql/graphql";
+import { MenuItem } from "@/lib/auxiliar";
+import styles from "./nav-list.module.scss";
 
 interface NavListProps {
   items?: MenuItem[] | MenusMenuItemEntity[];
@@ -22,7 +21,7 @@ const NavList = ({
   ...props
 }: NavListProps) => {
   return (
-    <List {...{ isMain, ...props }}>
+    <ul className={`${styles.list} ${isMain ? "isMain" : ""}`} {...props}>
       {items?.map((item?: any, index?: number) => {
         return (
           <NavItem
@@ -35,22 +34,8 @@ const NavList = ({
           />
         );
       })}
-    </List>
+    </ul>
   );
 };
 
 export default NavList;
-
-const List = styled.ul`
-  ${(props: { isMain?: boolean }) => css`
-    ${props.isMain
-      ? css`
-          padding: 0;
-          margin: 0;
-        `
-      : css`
-          margin: 0;
-          margin-left: 1.5rem;
-        `}
-  `}
-`;
