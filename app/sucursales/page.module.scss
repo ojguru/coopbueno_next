@@ -1,0 +1,254 @@
+@import "@/styles/variables.module.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/grid.module.scss";
+@import "@/styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.section {
+  position: relative;
+}
+
+.deco {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  padding-bottom: 50%;
+  border-radius: 5%;
+  background-color: rgba($primary-light, 0.15);
+  transform: translate(80%, -30%) rotate(-35deg);
+  &:before {
+    content: "";
+    position: absolute;
+    left: 8%;
+    top: 0;
+    width: 6%;
+    padding-bottom: 6%;
+    border-radius: 50%;
+    background-color: $secondary-base;
+    transform: translate(0, -50%);
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    left: 15%;
+    top: 22%;
+    width: 100%;
+    padding-bottom: 100%;
+    border-radius: inherit;
+    background-color: $primary-light;
+    box-shadow: -0.5rem 0.5rem 2.5rem $primary-light;
+  }
+}
+
+.container {
+  @include container();
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: 1fr;
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  @include mq(md) {
+    grid-column: 1 / span 2;
+  }
+  @include mq(lg) {
+    grid-column: 1 / span 3;
+  }
+}
+
+.sucursalCard {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+  align-self: baseline;
+  &:global(.principal) {
+    gap: 3rem;
+    align-self: initial;
+    @include mq(md) {
+      grid-template-columns: 1fr 1fr;
+      grid-column: 1 / span 2;
+    }
+    @include mq(lg) {
+      grid-template-columns: 2fr 1fr;
+      grid-column: 1 / span 3;
+    }
+  }
+}
+
+.content {
+  padding: 0 1.5rem 8rem 1.5rem;
+  position: relative;
+  height: 100%;
+  @include mq(md) {
+    &:global(.contentStyle1) {
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(1.5rem, -50%);
+        height: 70%;
+        width: 0.2rem;
+        background-color: gray;
+        opacity: 0.3;
+      }
+    }
+  }
+  @include mq(lg) {
+    &:after {
+      content: initial !important;
+    }
+    &:global(.contentStyle2) {
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-1.5rem, -50%);
+        height: 70%;
+        width: 0.2rem;
+        background-color: gray;
+        opacity: 0.3;
+      }
+
+      &:after {
+        content: "" !important;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(+1.5rem, -50%);
+        height: 70%;
+        width: 0.2rem;
+        background-color: gray;
+        opacity: 0.3;
+      }
+    }
+  }
+}
+
+.cardImage {
+  position: relative;
+  align-self: flex-end;
+
+  &:global(.principal) {
+    align-self: initial;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-radius: 1rem;
+      height: 0;
+      width: 8%;
+      padding-bottom: 8%;
+      background-color: $primary-light;
+      box-shadow: 0.5rem 0.5rem 2.5rem $primary-light;
+      transform: translate(50%, -50%);
+      z-index: 2;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 1rem;
+      height: 0;
+      width: 8%;
+      padding-bottom: 8%;
+      background-color: $primary-base;
+      transform: translate(-75%, -50%);
+      z-index: -1;
+    }
+  }
+
+  img {
+    object-fit: cover;
+    aspect-ratio: 16/9;
+  }
+}
+
+.cardHeader {
+}
+
+.sucursalName {
+  margin: 10px 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  @include h3m();
+  &:global(.principal) {
+    @include h2m();
+  }
+}
+
+.cardBody {
+  /* div :first-child {
+      margin-top: 0.6rem;
+    } */
+}
+
+@mixin iconStyle {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.8rem;
+  svg {
+    flex-basis: 1.8rem;
+    color: green;
+    width: 2.5rem;
+    margin-right: 1rem;
+  }
+}
+
+.sucursalAddress {
+  @include iconStyle();
+}
+
+.sucursalSchedule {
+  @include iconStyle();
+}
+
+.sucursalPhoneBox {
+  @include iconStyle();
+}
+
+.infoWrapper {
+  display: inline-block;
+  vertical-align: top;
+  flex: 1;
+}
+
+.sucursalPhone {
+  text-decoration: none;
+  display: block;
+  margin: 11px 0;
+}
+
+.linkBox {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  text-align: right;
+  padding: 15px 30px;
+}
+
+.readMOre {
+  cursor: pointer;
+  color: $primary-base;
+  text-decoration: none;
+  &:after {
+    content: " ▶";
+  }
+}
