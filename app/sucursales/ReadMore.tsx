@@ -4,7 +4,13 @@ import React from "react";
 import styles from "./page.module.scss";
 import { sendEvent } from "@/lib/api";
 
-const ReadMore = ({ children }: { children: any }) => {
+const ReadMore = ({
+  children,
+  location,
+}: {
+  children: any;
+  location: string;
+}) => {
   return (
     <Link
       className={styles.readMore}

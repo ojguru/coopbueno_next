@@ -73,6 +73,7 @@ export default async function Page() {
           {sucursales?.map((item, index, items) => {
             const sucursal = item.attributes;
             const featuredMedia = sucursal?.imagen?.data?.attributes;
+            const location = sucursal?.ubicacion;
             const isPrincipal = index == 0;
 
             return (
@@ -137,7 +138,7 @@ export default async function Page() {
                   </div>
                 </div>
                 <div className={styles.linkBox}>
-                  <ReadMore>Ubicación</ReadMore>
+                  <ReadMore location={location}>Ubicación</ReadMore>
                 </div>
               </div>
             );
