@@ -1,45 +1,25 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { mq } from "@/components/grid";
+import React from "react";
 import { ComponentGeneralLista } from "@/gql/graphql";
+import styles from "./Lista.module.scss";
 
 interface ListaProps {
   lista: ComponentGeneralLista;
 }
 const Lista = ({ lista }: ListaProps) => {
   return (
-    <Section>
-      <Title>{lista.titulo}</Title>
-      <List>
+    <section className={styles.section}>
+      <h2 className={styles.title}>{lista.titulo}</h2>
+      <ul className={styles.list}>
         {lista.items.map((benefit, index) => {
-          return <Item key={index}>{benefit?.texto}</Item>;
+          return (
+            <li className={styles.item} key={index}>
+              {benefit?.texto}
+            </li>
+          );
         })}
-      </List>
-    </Section>
+      </ul>
+    </section>
   );
 };
 
 export default Lista;
-
-const Title = styled.h2`
-  text-transform: uppercase;
-  text-align: center;
-`;
-
-const Section = styled.section`
-  @include mq(lg) {
-    grid-column: 1 / span 2;
-  }
-`;
-
-const List = styled.ul`
-  display: grid;
-  gap: 1.5rem 3rem;
-  margin: 0;
-  padding: 0;
-  @include mq(lg) {
-    grid-template-columns: 1fr 1fr;
-  }
-`;
-
-const Item = styled.li``;
