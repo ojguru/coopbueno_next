@@ -50,8 +50,8 @@ export async function generateMetadata({
     variables: { ...queryVars, ...params },
   });
 
-  const sucursal: Sucursal = data.sucursals.data[0].attributes;
-  const image = sucursal.imagen.data?.attributes;
+  const sucursal: Sucursal = data.sucursals.data[0]?.attributes;
+  const image = sucursal?.imagen.data?.attributes;
 
   return {
     title: `Sucursal ${sucursal?.nombre} - ${SITE_NAME}`,
