@@ -15,36 +15,37 @@ const HomeNews = ({ noticias = [] }: HomeNewsProps) => {
         <h2 className={styles.sectionTitle}>Noticias</h2>
       </Link>
       <div className={styles.body}>
-        {
-          noticias.map((item,index)=>{
-            const post = item.attributes;
-            return (
-              <div className={styles.slide} key={index}>
-                <div className={styles.post}>
-                  <Link href={"/noticias/" + post.slug ?? ""} className={styles.link}>
-                    <div className={styles.mediaWrapper}>
-                      <div className={styles.imageContainer}>
-                        <Image
-                          src={getImageURL(post.imagen.data.attributes.url)}
-                          alt={post.titulo}
-                          width={1920}
-                          height={1080}
-                        />
-                      </div>
+        {noticias.map((item, index) => {
+          const post = item.attributes;
+          return (
+            <div className={styles.slide} key={index}>
+              <div className={styles.post}>
+                <Link
+                  href={"/noticias/" + (post.slug ?? "")}
+                  className={styles.link}
+                >
+                  <div className={styles.mediaWrapper}>
+                    <div className={styles.imageContainer}>
+                      <Image
+                        src={getImageURL(post.imagen.data.attributes.url)}
+                        alt={post.titulo}
+                        width={1920}
+                        height={1080}
+                      />
                     </div>
-                    <h3 className={styles.title}>{post.titulo}</h3>
-                    <div
-                      className={styles.excerpt}
-                      dangerouslySetInnerHTML={{
-                        __html: post.descripcion,
-                      }}
-                    />
-                  </Link>
-                </div>
+                  </div>
+                  <h3 className={styles.title}>{post.titulo}</h3>
+                  <div
+                    className={styles.excerpt}
+                    dangerouslySetInnerHTML={{
+                      __html: post.descripcion,
+                    }}
+                  />
+                </Link>
               </div>
-            )
-          })
-        }
+            </div>
+          );
+        })}
       </div>
     </section>
   ) : null;
