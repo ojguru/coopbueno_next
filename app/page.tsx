@@ -1,4 +1,3 @@
-
 import React from "react";
 
 import HomeCover from "@/templates/home/HomeCover";
@@ -8,16 +7,13 @@ import HomeSocio from "@/templates/home/HomeSocio";
 import HomePromo from "@/templates/home/HomePromo";
 import HomeSlider from "@/templates/home/HomeSlider";
 import HomeServicios from "@/templates/home/HomeServicios";
-import styles from "./page.module.scss"
+import styles from "./page.module.scss";
 
 import { Homepage, Enum_Servicio_Categoria } from "@/gql/graphql";
 
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { fetchAPI, getImageURL } from "@/lib/api";
-import {
-  CTAFragment,
-  ImageFragment,
-} from "@/fragments/GeneralSettings";
+import { CTAFragment, ImageFragment } from "@/fragments/GeneralSettings";
 
 const QUERY = `
   query DataHome {
@@ -120,6 +116,7 @@ export async function generateMetadata({ params }: { params: any }) {
   const { portada }: Homepage = data.homepage.data.attributes;
 
   return {
+    metadatabase: new URL(SITE_URL),
     title: `${portada.titular} - ${SITE_NAME}`,
     description: portada.copy,
     openGraph: {
@@ -164,4 +161,3 @@ export default async function Home() {
     </>
   );
 }
-
