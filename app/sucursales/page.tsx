@@ -10,7 +10,7 @@ import ReadMore from "./ReadMore";
 import Phone from "./Phone";
 
 const QUERY = `
-  query DataHome {
+  query SucursalesQuery {
     sucursals ( pagination: {pageSize: 100}, sort: ["orden:asc"]){
       data{
         attributes{
