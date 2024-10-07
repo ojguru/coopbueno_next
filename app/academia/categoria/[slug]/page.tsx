@@ -65,6 +65,7 @@ export async function generateMetadata({
   const categoria = data.category.data[0];
 
   return {
+    metadatabase: new URL(SITE_URL),
     title: `Categoría ${categoria?.attributes?.name} - Academia de Sueños`,
     description: categoria?.attributes?.description,
     openGraph: {

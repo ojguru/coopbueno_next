@@ -116,6 +116,7 @@ export async function generateMetadata({
   const facebookMetaImage = facebookMeta?.image?.data?.attributes;
 
   return {
+    metadatabase: new URL(SITE_URL),
     title: `${seo?.metaTitle || servicio?.nombre} - ${SITE_NAME}`,
     description: seo?.metaDescription || servicio?.portada?.copy,
     canonical: seo?.canonicalURL || `${SITE_URL}/${servicio?.slug}`,

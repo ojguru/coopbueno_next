@@ -8,6 +8,7 @@ import { fetchAPI } from "@/lib/api";
 import { notFound } from "next/navigation";
 import { CTAFragment } from "@/fragments/GeneralSettings";
 import styles from "./page.module.scss";
+import { SITE_URL } from "@/lib/constants";
 
 const QUERY = `
   query GraciasQuery($slug:String!) {
@@ -27,6 +28,7 @@ const QUERY = `
 const queryVars = {};
 
 export const metadata = {
+  metadatabase: new URL(SITE_URL),
   robots: {
     index: false,
     follow: false,

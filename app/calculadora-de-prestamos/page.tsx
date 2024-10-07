@@ -3,6 +3,7 @@ import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import Calculadora from "@/components/calculadora";
 
 export const metadata = {
+  metadatabase: new URL(SITE_URL),
   title: `Calculadora de préstamos - ${SITE_NAME}`,
   description: "Calcula tus préstamos y solicítalos con facilidad.",
   openGraph: {

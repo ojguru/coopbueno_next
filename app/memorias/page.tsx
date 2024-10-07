@@ -35,6 +35,7 @@ const QUERY = `
 const queryVars = {};
 
 export const metadata = {
+  metadatabase: new URL(SITE_URL),
   title: `Memorias anuales Coopbueno - ${SITE_NAME}`,
   description: "Se parte de nuestro crecimiento.",
   openGraph: {

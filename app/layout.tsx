@@ -86,6 +86,7 @@ const QUERY = `
 const queryVars = {};
 
 export const metadata = {
+  metadatabase: new URL(SITE_URL),
   title: "Coopbueno",
   description: SITE_DESCRIPTION,
   openGraph: {

@@ -39,6 +39,7 @@ export async function generateMetadata({ params }: { params: any }) {
   const sucursales: SucursalEntity[] = data.sucursals.data;
   const image = sucursales[0].attributes?.imagen.data?.attributes;
   return {
+    metadatabase: new URL(SITE_URL),
     title: `Sucursales - ${SITE_NAME}`,
     description: "Conoce nuestras sucursales.",
     openGraph: {

@@ -6,6 +6,7 @@ import Slides from "@/templates/about/about-slides";
 import image from "../../public/nosotros.jpg";
 
 export const metadata = {
+  metadatabase: new URL(SITE_URL),
   title: `Nosotros - ${SITE_NAME}`,
   description: "Conoce nuestra historia.",
   openGraph: {

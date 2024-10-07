@@ -28,6 +28,7 @@ const QUERY = `
 const queryVars = {};
 
 export const metadata = {
+  metadatabase: new URL(SITE_URL),
   title: `Tarifario de servicios - ${SITE_NAME}`,
   description: "Conoce las tarifas de nuestros servicios.",
   openGraph: {

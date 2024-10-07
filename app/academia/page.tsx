@@ -45,6 +45,7 @@ const QUERY = `
 const queryVars = {};
 
 export const metadata = {
+  metadatabase: new URL(SITE_URL),
   title: `Academia de sueños - ${SITE_NAME}`,
   description: "Conocimiento que te acerca a tus sueños.",
   openGraph: {

@@ -65,6 +65,7 @@ export async function generateMetadata({
   )[0];
 
   return {
+    metadatabase: new URL(SITE_URL),
     title: seo?.metaTitle || articulo?.titulo,
     description: seo?.metaDescription || articulo?.descripcion,
     openGraph: {

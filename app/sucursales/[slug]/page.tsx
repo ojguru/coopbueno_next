@@ -54,6 +54,7 @@ export async function generateMetadata({
   const image = sucursal?.imagen.data?.attributes;
 
   return {
+    metadatabase: new URL(SITE_URL),
     title: `Sucursal ${sucursal?.nombre} - ${SITE_NAME}`,
     description: `Sucursal Coopbueno ${sucursal?.nombre}`,
     openGraph: {

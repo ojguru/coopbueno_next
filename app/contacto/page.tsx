@@ -27,6 +27,7 @@ const QUERY = `
 const queryVars = {};
 
 export const metadata = {
+  metadatabase: new URL(SITE_URL),
   title: `Contacto - ${SITE_NAME}`,
   description:
     "Haz contacto con nosotros a través de los canales que tenesmos disponibles para ti.",

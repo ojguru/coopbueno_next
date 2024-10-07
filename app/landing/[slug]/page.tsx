@@ -74,6 +74,7 @@ export async function generateMetadata({
   const facebookMetaImage = facebookMeta?.image?.data?.attributes;
 
   return {
+    metadatabase: new URL(SITE_URL),
     title: `${seo?.metaTitle || page?.titular} - ${SITE_NAME}`,
     description: seo?.metaDescription || page?.copy || page?.titular,
     openGraph: {

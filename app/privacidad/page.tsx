@@ -5,6 +5,7 @@ import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import styles from "./page.module.scss";
 
 export const metadata = {
+  metadatabase: new URL(SITE_URL),
   title: `Política de privacidad Coopbueno Móvil - ${SITE_NAME}`,
   description: "Política de privacidad aplicación Coopbueno Móvil",
   openGraph: {

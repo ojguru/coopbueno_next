@@ -5,6 +5,7 @@ import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import styles from "./page.module.scss";
 
 export const metadata = {
+  metadatabase: new URL(SITE_URL),
   title: `Trabaja con nosotros - ${SITE_NAME}`,
   description: "Aplica para una de nuestras vacantes.",
   openGraph: {
