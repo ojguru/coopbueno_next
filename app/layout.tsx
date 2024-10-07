@@ -16,7 +16,7 @@ import { FacebookPixelEvents } from "@/components/pixelEvents";
 import { fetchAPI } from "@/lib/api";
 import {
   Enum_Servicio_Categoria,
-  MenusMenuEntity,
+  MenusMenuItemEntity,
   ServicioEntity,
 } from "@/gql/graphql";
 import { ImageFragment } from "@/fragments/GeneralSettings";
@@ -114,17 +114,15 @@ export default async function RootLayout({
   let footerItems: any = [];
   let headerItems: any = [];
 
-  const menuItems: MenusMenuEntity[] = data.menusMenuItems.data.map((item) => {
-    //No borrar variables sin utilizar. Se usa para GQTY
-    const url = item.attributes?.url;
-    const target = item.attributes?.target;
-    const title = item.attributes?.title;
-    if (item.attributes?.root_menu.data?.attributes?.slug === "header") {
-      headerItems.push(item);
-    } else {
-      footerItems.push(item);
+  const menuItems: MenusMenuItemEntity[] = data.menusMenuItems.data.map(
+    (item: MenusMenuItemEntity) => {
+      if (item.attributes?.root_menu.data?.attributes?.slug === "header") {
+        headerItems.push(item);
+      } else {
+        footerItems.push(item);
+      }
     }
-  });
+  );
 
   return (
     <html lang="en" className={`${montserrat.variable} ${lato.variable}`}>

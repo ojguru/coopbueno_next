@@ -62,12 +62,7 @@ const HomeSlider = ({ slides = [] }: HomeSliderProps) => {
                         __html: slide?.copy || "",
                       }}
                     />
-                    <Cta
-                      cta={slide?.cta}
-                      onClick={() => {
-                        window.fbq("track", "slideCTA");
-                      }}
-                    />
+                    <Cta cta={slide?.cta} fbqEvent="slideCTA" />
                   </div>
                 </div>
               </li>

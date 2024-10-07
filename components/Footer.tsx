@@ -147,7 +147,6 @@ const Footer = ({ menuItems = [] }: FooterProps) => {
               width="300"
               height="67.41"
               alt="Coopbueno Logo Footer"
-              objectFit="contain"
             />
           </div>
         </Link>

@@ -137,9 +137,11 @@ export default async function Page() {
                     </div>
                   </div>
                 </div>
-                <div className={styles.linkBox}>
-                  <ReadMore location={location}>Ubicación</ReadMore>
-                </div>
+                {location ? (
+                  <div className={styles.linkBox}>
+                    <ReadMore location={location}>Ubicación</ReadMore>
+                  </div>
+                ) : null}
               </div>
             );
           })}
