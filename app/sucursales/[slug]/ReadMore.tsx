@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import styles from "./page.module.scss";
 import { Sucursal } from "@/gql/graphql";
+import { sendEvent } from "@/lib/api";
 
 interface ReadMoreProps {
   sucursal: Sucursal;
@@ -15,7 +16,7 @@ const ReadMore = ({ sucursal, children }: ReadMoreProps) => {
       className={styles.readMore}
       href={sucursal.ubicacion ?? ""}
       onClick={() => {
-        window.fbq("track", "FindLocation");
+        sendEvent("FindLocation", true, {});
       }}
     >
       {children}
