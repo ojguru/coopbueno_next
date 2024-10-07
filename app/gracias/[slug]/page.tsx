@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const page = thankyou?.attributes;
 
-  return (
+  return page ? (
     <>
       <article className={styles.section}>
         <div className={styles.decoContainer}>
@@ -67,5 +67,5 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
       </article>
     </>
-  );
+  ) : null;
 }
