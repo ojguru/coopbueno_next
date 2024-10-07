@@ -1,0 +1,71 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.article {
+  display: grid;
+  min-height: 100vh;
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.mediaContainer {
+}
+
+.media {
+  display: grid;
+  font-size: 0;
+  @include mq(lg) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    z-index: -1;
+  }
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.infoContainer {
+  @include container();
+  margin-bottom: $space-thin;
+  margin-top: $space-thin;
+  margin-left: auto;
+  margin-right: auto;
+  @include mq(lg) {
+    //   max-width: ${maxWidth};
+    max-width: 75rem;
+    padding: 0 2rem;
+  }
+  @include mq(xl) {
+    padding: 0 4rem;
+  }
+}
+
+.postHeader {
+  background-color: #fff;
+  margin: 0;
+  padding: 2rem 0;
+  @include mq(md) {
+    padding-top: 2rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  @include mq(lg) {
+    text-align: left;
+  }
+}
+
+.content {
+}

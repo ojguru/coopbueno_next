@@ -1,0 +1,127 @@
+@import "@/styles/variables.module.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/grid.module.scss";
+@import "@/styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.section {
+  margin-bottom: $space-medium;
+  padding: 0;
+}
+
+.container {
+  @include container();
+}
+
+.sucursalCard {
+  box-shadow: 1rem 1rem 2.5rem rgba(0, 0, 0, 0.15);
+  border-radius: 3rem;
+  margin-top: -10%;
+  background-color: white;
+  position: relative;
+  padding: 1.5rem;
+  display: grid;
+  gap: 3rem;
+  @include mq(sm) {
+    padding: 5%;
+  }
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    height: 0;
+    width: 8%;
+    padding-bottom: 8%;
+    background-color: $primary-base;
+    transform: translate(50%, -50%);
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 1rem;
+    height: 0;
+    width: 8%;
+    padding-bottom: 6%;
+    background-color: $primary-light;
+    box-shadow: 0.5rem 0.5rem 1.5rem $primary-light;
+    transform: translate(-75%, -50%);
+  }
+}
+
+.content {
+}
+
+.cardImage {
+  width: 100%;
+  overflow: hidden;
+  clip-path: ellipse(75% 100% at 50% 0%);
+  @include mq(lg) {
+    height: 70vh;
+  }
+}
+
+.sucursalImage {
+  object-fit: cover;
+  object-position: center center;
+  height: 100%;
+}
+
+.cardHeader {
+}
+
+.sucursalName {
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+
+.cardBody {
+  div :first-child {
+    margin-top: 0.6rem;
+  }
+}
+
+.sucursalAddress,
+.sucursalSchedule,
+.sucursalPhoneBox {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.8rem;
+  svg {
+    flex-basis: 1.8rem;
+    color: green;
+    width: 2.5rem;
+    margin-right: 1rem;
+  }
+}
+
+.infoWrapper {
+  display: inline-block;
+  vertical-align: top;
+  flex: 1;
+}
+
+.sucursalPhone {
+  text-decoration: none;
+  display: block;
+  margin: 11px 0;
+}
+
+.linkBox {
+  margin-top: 4rem;
+}
+
+.readMore {
+  cursor: pointer;
+  color: $primary-base;
+  text-decoration: none;
+  &:after {
+    content: " ▶";
+  }
+}

@@ -1,0 +1,41 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+@import 'pure-react-carousel/dist/react-carousel.es.css';
+
+
+.section{
+  @include containerFluid();
+  padding: 0;
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+
+  .carousel__slider {
+    overflow: initial;
+  }
+}
+
+.tabs{
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.tab{
+  all: initial;
+  font-family: inherit;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
+  color: #555555;
+  background-color: $gray-lighter;
+  padding: 1.5rem 2.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  &[disabled] {
+    text-shadow: none;
+    color: $primary-dark;
+    background-color: #ffffff;
+    cursor: initial;
+  }
+}

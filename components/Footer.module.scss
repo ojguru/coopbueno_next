@@ -1,0 +1,195 @@
+@import "@/styles/variables.module.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/grid.module.scss";
+@import "@/styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.navContainer {
+  @include container();
+  @include mq(xl) {
+    max-width: 160rem;
+  }
+  display: grid;
+  gap: 3rem;
+  @include mq(md) {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  li {
+    border: initial !important;
+    &:hover {
+      & > div {
+        background-color: initial !important;
+      }
+    }
+    & > div {
+      background-color: initial !important;
+    }
+  }
+}
+
+.container {
+  @include container();
+  @include mq(xl) {
+    max-width: 160rem;
+  }
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 3rem;
+}
+
+.footer {
+  border-color: #dcd7ca;
+  border-style: solid;
+  border-width: 0;
+  padding: 3rem 0;
+  background-color: $primary-light;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding-top: 8rem;
+
+  @include mq(lg) {
+    font-size: 1.8rem;
+    padding: 4.3rem 0;
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.deco {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform-origin: 12% 12%;
+  transform: translate(-20%, 0) rotate(-35deg);
+  background-color: $primary-base;
+  box-shadow: 0 0 5rem $primary-base;
+  border-radius: 2.5%;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 5%;
+    transform: translate(0, -50%);
+    height: 0;
+    width: 3.5%;
+    background-color: $secondary-base;
+    padding-bottom: 3.5%;
+    border-radius: 50%;
+  }
+
+  &:after {
+    content: "";
+    width: 20%;
+    height: 0;
+    padding-bottom: 20%;
+    position: absolute;
+    top: 20%;
+    left: 38%;
+    transform-origin: 15% 15%;
+    transform: translate(0%, -60%);
+    background-color: $primary-light;
+    box-shadow: 0 0 5rem #00000010;
+    border-radius: 10%;
+    z-index: 0;
+  }
+}
+
+.logo {
+  margin: 2rem 0;
+  width: 100%;
+  max-width: 20rem;
+  @include mq(md) {
+    max-width: 35rem;
+  }
+}
+
+.certifications {
+  display: block;
+  @include mq(md) {
+    display: inline-block;
+  }
+  img {
+    width: 70px;
+  }
+}
+
+.certification {
+  max-width: 6rem;
+  @include mq(md) {
+    max-width: 8rem;
+  }
+}
+
+.contact {
+  margin-bottom: 4rem;
+  order: 2;
+  @include mq(md) {
+    order: initial;
+  }
+}
+
+.socialBox {
+}
+
+.socialIcon {
+  background-color: white;
+  padding: 0.7rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  color: $primary-base;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.contactBox {
+}
+
+.contactItem {
+  margin-bottom: 2rem;
+}
+
+.contactIcon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.contactName {
+  display: inline-block;
+  vertical-align: middle;
+  &:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 2rem;
+  }
+}
+
+.phoneBox {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.phoneNumber {
+  display: block;
+  margin: 11px 0;
+  &:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 2rem;
+  }
+}

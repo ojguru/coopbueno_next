@@ -1,0 +1,85 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+
+.section{
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    background-color: $green-lighter;
+    border-radius: 5rem;
+    opacity: 0.1;
+    transform: translate(-100%, -75%) rotate(15deg);
+    z-index: -1;
+    @include mq(md) {
+      padding-bottom: 40%;
+    }
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    padding-bottom: 20%;
+    background-color: $yellow-base;
+    border-radius: 50%;
+    transform: translate(50%, 0);
+    opacity: 0.3;
+    z-index: -1;
+    @include mq(md) {
+      width: 10%;
+      padding-bottom: 10%;
+    }
+  }
+}
+
+.container{
+  @include container();
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+  @include mq(lg) {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+.media{
+  max-width: 50rem;
+  margin: 0 auto;
+  @include mq(lg) {
+    margin: 0;
+  }
+}
+
+.content{}
+
+.title{
+  text-transform: uppercase;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 4rem;
+  @include h1m();
+  @include mq(md) {
+    text-align: left;
+  }
+}
+
+.description{}
+
+.linkBox{
+  text-align: center;
+  @include mq(md) {
+    text-align: left;
+  }
+}

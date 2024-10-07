@@ -1,0 +1,95 @@
+$primary-base: #308A40;
+$primary-light: #75C151;
+$primary-lighter: #75C151;
+$primary-dark: #299346;
+$primary-darker: #268E3B;
+
+$secondary-base: #FFE500;
+$secondary-light: #FFE500;
+$secondary-lighter: #FFE500;
+$secondary-dark: #FFE500;
+$secondary-darker: #FFE500;
+
+
+$gray-base: #8E8E8E;
+$gray-light: #D8D8D8;
+$gray-lighter: #F5F5F5;
+$gray-dark: #777673;
+$gray-darker: #484848;
+
+$green-base: #299346;
+$green-light: #75C151;
+$green-lighter: #75C151;
+$green-dark: #268E3B;
+$green-darker: #268E3B;
+
+$red-base: #CD0F07;
+
+$orange-base: #F68C20;
+
+$yellow-base: #FFE500;
+
+$shadow-base: rgba(0,0,0,0.15);
+$shadow-light: rgba(0,0,0,0.5);
+$shadow-dark: rgba(0,0,0,0.9);
+
+$text-base: #606060;
+$text-light: #6E7B72;
+
+$image-base: #F0F0F0;
+
+$academy: #00A89C;
+$headerBg: #ffffff;
+$footerBg: #319847;
+$twitter: #1DCAFF;
+$facebook: #3B5998;
+
+$header-base: transparent;
+$header-sticky: #FFFFFF;
+
+$navigation-base: #F5F5F5BB;
+$navigation-main-itemBg: #75C15133;
+$navigation-main-itemBgCurrent: #FFE50033;
+$navigation-main-itemBorder: #FFE500;
+
+$h1: $primary-base;
+$h2: $primary-base;
+$h3: $primary-base;
+$h4: $primary-base;
+$h5: $primary-base;
+$h6: $primary-base;
+
+$cta-base: #ffeb36;
+$cta-hover: #ffeb36;
+
+$header-base: transparent;
+$header-sticky: rgba(255 255 255 /0.95);
+
+:export {
+  primaryBase: $primary-base;
+  primaryLight: $primary-light;
+  primaryDark: $primary-dark;
+
+  secondaryBase: $secondary-base;
+  secondaryLight: $secondary-light;
+  secondaryDark: $secondary-dark;
+
+  grayBase: $gray-base;
+  grayLight: $gray-light;
+  grayDark: $gray-dark;
+
+  textBase: $text-base;
+
+  h1: $h1;
+  h2: $h2;
+  h3: $h3;
+  h4: $h4;
+  h5: $h5;
+  h6: $h6;
+
+  ctaBase: $cta-base;
+  ctaHover: $cta-hover;
+
+  headerBase: $header-base;
+  headerSticky: $header-sticky;
+}

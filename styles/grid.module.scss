@@ -1,0 +1,40 @@
+@import "./mixins.scss";
+
+$sm: 540px;
+$md: 720px;
+$lg: 960px;
+$xl: 1140px;
+$gap: 1.5rem;
+$line-height: 1.5;
+
+$space-thin: 4rem;
+$space-small: 8rem;
+$space-medium: 12rem;
+$space-large: 15rem;
+
+@mixin baseContainer {
+  width: 100%;
+  max-width: 90%;
+  position: relative;
+  margin: 0 auto;
+}
+
+@mixin container {
+  @include baseContainer();
+  @include mq(sm) {
+    max-width: $sm;
+  }
+  @include mq(md) {
+    max-width: $md;
+  }
+  @include mq(lg) {
+    max-width: $lg;
+  }
+  @include mq(xl) {
+    max-width: $xl;
+  }
+}
+
+@mixin containerFluid {
+  @include baseContainer();
+}

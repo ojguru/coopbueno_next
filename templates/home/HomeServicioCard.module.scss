@@ -1,0 +1,166 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.slide {
+  list-style: none;
+  :global(.carousel__slide-focus-ring) {
+    display: none !important;
+  }
+}
+
+.container {
+  @include container();
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.card {
+  width: 100%;
+  padding: 1rem;
+  max-width: 50%;
+  @include mq(sm) {
+    padding: 1.5rem;
+  }
+  @include mq(md) {
+    max-width: calc(100% / 3);
+  }
+
+  &:global(.active) {
+    max-width: 100%;
+  }
+}
+
+.serviceCard {
+  box-shadow: 0 1.5rem 2.5rem rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  padding-bottom: 0;
+  padding-top: 0;
+  border-radius: 1.5rem;
+  margin: 0 auto;
+  margin-top: 25%;
+  margin-bottom: 25%;
+  position: relative;
+  background-color: white;
+  cursor: pointer;
+  max-width: 35rem;
+  @include mq(sm) {
+    margin-bottom: 4rem;
+    margin-top: 7rem;
+  }
+  &:global(.active) {
+    padding-bottom: 4rem;
+    max-width: 60rem;
+  }
+}
+
+.cardImage {
+  position: relative;
+  margin: 0 auto;
+  transform: translate(0, -50%);
+  margin-bottom: 2rem;
+  width: 50%;
+  max-width: 12.5rem;
+}
+
+.media {
+  width: 100%;
+  border-radius: 50%;
+  padding: 20%;
+  overflow: hidden;
+  background-color: $gray-lighter;
+  position: relative;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  height: 0;
+}
+
+.cardContent {
+  position: relative;
+  margin-top: -25%;
+  @include mq(sm) {
+    margin-top: -5rem;
+  }
+  @include mq(lg) {
+    margin-top: -6rem;
+  }
+  &:global(.active) {
+    margin-top: -5rem;
+  }
+}
+
+.cardTitle {
+  margin: 0;
+  padding-bottom: 4rem;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 900;
+  color: $primary-base;
+  @include mq(sm) {
+    font-size: 1.4rem;
+    @include h3m();
+  }
+  &:global(.active) {
+  }
+}
+
+.cardServices {
+  display: none;
+  &:global(.active) {
+    padding: 0;
+    margin: 0;
+    display: initial;
+  }
+}
+
+.service {
+  list-style: none;
+  margin: 0;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 0 1rem #00000033;
+  border-radius: 1rem;
+  margin: 1rem;
+  font-weight: 600;
+  background-color: white;
+  transition: 0.25s all ease-in-out;
+  &:hover {
+    background-color: $primary-light;
+    color: white;
+  }
+}
+
+.cardCloseBtn {
+  display: none;
+  &:global(.active) {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0.25rem;
+    border-radius: 50%;
+    background-color: $gray-light;
+    color: $gray-dark;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    svg {
+      color: inherit;
+    }
+  }
+}
+
+.link {
+  text-decoration: none;
+}

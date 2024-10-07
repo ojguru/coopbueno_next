@@ -1,0 +1,110 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.section {
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+}
+
+.requisitosDeco {
+  @include container();
+  max-width: initial;
+  padding: 0;
+  position: relative;
+
+  section > div {
+    @include mq(md) {
+      display: grid;
+      grid-template-columns: 6fr 1fr;
+    }
+    ul {
+      @include mq(md) {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+}
+
+.planeta1 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 15%;
+  transform: translate(-25%, 50%);
+}
+
+.planeta2 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 5%;
+  transform: translate(-100%, -100%);
+}
+
+.moneda1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  transform: translate(40%, 0%);
+}
+
+.moneda2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  transform: translate(0%, 100%);
+}
+
+.moneda3 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10%;
+  transform: translate(25%, 350%);
+}
+
+.conversionDeco {
+  max-width: 70rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.planeta3 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 35%;
+  z-index: -2;
+  transform: translate(50%, -10%);
+}
+
+.sol {
+  position: absolute;
+  left: 0;
+  top: 10rem;
+  width: 25%;
+  transform: translate(-50%, 0%);
+}
+
+.navegacionDeco {
+  position: relative;
+}
+
+.space {
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+  width: 200%;
+  z-index: -1;
+  transform-origin: center center;
+  transform: translate(-55%, 50%) rotate(-65deg);
+  @include mq(md) {
+    width: 100%;
+    /* transform: translate(-60%, -50%); */
+  }
+}

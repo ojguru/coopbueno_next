@@ -1,0 +1,183 @@
+@import "@/styles/variables.module.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/grid.module.scss";
+@import "@/styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+@import "@/components/Cta.module.scss";
+
+.container {
+  @include container();
+  margin-top: $space-medium;
+  margin-bottom: $space-medium;
+}
+
+.section {
+}
+
+.calculator {
+  background-color: white;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+  border-radius: 2rem;
+  padding: 4rem 1.5rem;
+  display: grid;
+  gap: 3rem;
+  @include mq(sm) {
+    padding: 4rem 2rem;
+  }
+  @include mq(md) {
+    padding: 3rem;
+  }
+  @include mq(lg) {
+    padding: 4rem;
+  }
+}
+
+.form {
+  border-radius: 2rem;
+  background-color: white;
+  margin: 0;
+  display: grid;
+  gap: 3rem;
+  @include mq(lg) {
+    grid-template-columns: 1.5fr 1fr 1fr;
+  }
+}
+
+.buttomBox {
+  text-align: center;
+  width: 100%;
+}
+
+.button {
+  @include cta();
+  margin: 0 1.5rem;
+  margin-bottom: 2rem;
+  padding: 15px 45px;
+  background-color: #f0f7f2;
+  color: $primary-light;
+}
+
+.inputs {
+}
+
+.inputWrapper {
+  margin-bottom: 2rem;
+  p {
+    color: red;
+    font-weight: 600;
+  }
+}
+
+.input {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  border: none;
+  line-height: 1;
+  padding: 15px;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  background-color: #f5f5f5;
+  color: $primary-base;
+  &:focus {
+    outline: initial;
+    border-color: red;
+  }
+  @include mq(sm) {
+    font-size: 20px;
+  }
+  @include mq(lg) {
+    font-size: 20px;
+  }
+}
+
+.amortizationBox {
+  overflow: auto;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.amortization {
+  overflow: auto;
+}
+
+.submit {
+  @include cta();
+  margin: 0 auto;
+  margin-top: 2rem;
+  display: block;
+  padding: 15px 45px;
+}
+
+//   .errorMessage{
+//       color: ${colors.red.base};
+//   }
+
+.errorMessages {
+}
+
+.errorMsg {
+  color: red;
+}
+
+.note {
+  margin: 2rem 0;
+}
+
+.results {
+}
+
+.result {
+  margin-bottom: 2rem;
+}
+
+.resultTitle {
+  @include h4m();
+  color: #484848;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: left;
+  margin: 0;
+}
+
+.resultValue {
+  text-align: left;
+  margin: 0;
+  font-weight: 900;
+}
+
+.table {
+  margin: 0;
+  border: initial;
+  overflow: auto;
+  width: 100%;
+}
+
+.tBody {
+}
+
+.tHead {
+  font-weight: bold;
+}
+
+.tr {
+  &:nth-of-type(odd) {
+    background-color: #f5f5f5;
+  }
+}
+
+.th {
+  font-weight: bold;
+  vertical-align: top;
+  padding: 10px;
+  border: initial;
+  word-break: initial;
+}
+
+.td {
+  font-weight: normal;
+  vertical-align: top;
+  padding: 10px;
+  border: initial;
+  word-break: initial;
+}

@@ -1,0 +1,36 @@
+@import "@/styles/variables.module.scss";
+
+@mixin cta {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: $orange-base;
+  font-weight: 900;
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  border-radius: 2rem;
+  display: inline-block;
+  color: white;
+  outline: initial;
+  border: initial;
+  cursor: pointer;
+  text-shadow: 0.1rem 0.1rem 0.1rem transparent;
+  text-transform: uppercase;
+  transition: all 0.25s ease-in-out;
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  &:hover {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.cta {
+  @include cta();
+}

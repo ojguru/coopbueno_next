@@ -1,0 +1,109 @@
+@import "./grid.module.scss";
+@import "./mixins.scss";
+@import "./variables.module.scss";
+
+@mixin h1m {
+  color: $h1;
+  font-weight: 800;
+  font-size: 2.9rem;
+  line-height: 1.138888889;
+
+  @include mq(sm) {
+    font-size: 3.2rem;
+  }
+  @include mq(md) {
+    font-size: 3.4rem;
+  }
+  @include mq(lg) {
+    font-size: 3.6rem;
+  }
+  @include mq(xl) {
+    font-size: 4rem;
+  }
+}
+
+@mixin h2m {
+  color: $h2;
+  font-size: 2.1rem;
+  @include mq(sm) {
+    font-size: 2.4rem;
+  }
+  @include mq(md) {
+    font-size: 2.6rem;
+  }
+  @include mq(lg) {
+    font-size: 2.8rem;
+  }
+  @include mq(xl) {
+    font-size: 3.2rem;
+  }
+}
+
+@mixin h3m {
+  color: $h3;
+  font-size: 1.9rem;
+
+  @include mq(sm) {
+    font-size: 2rem;
+  }
+  @include mq(md) {
+    font-size: 2.2rem;
+  }
+  @include mq(lg) {
+    font-size: 2.4rem;
+  }
+  @include mq(xl) {
+    font-size: 2.8rem;
+  }
+}
+
+@mixin h4m {
+  color: $h4;
+  font-size: 1.8rem;
+  @include mq(sm) {
+    font-size: 1.8rem;
+  }
+  @include mq(md) {
+    font-size: 2rem;
+  }
+  @include mq(lg) {
+    font-size: 2rem;
+  }
+  @include mq(xl) {
+    font-size: 2.4rem;
+  }
+}
+
+@mixin h5m {
+  color: $h5;
+  font-size: 1.7rem;
+  @include mq(sm) {
+    font-size: 1.7rem;
+  }
+  @include mq(md) {
+    font-size: 1.8rem;
+  }
+  @include mq(lg) {
+    font-size: 1.8rem;
+  }
+  @include mq(xl) {
+    font-size: 2rem;
+  }
+}
+
+@mixin h6m {
+  color: $h6;
+  font-size: 1.6rem;
+  @include mq(sm) {
+    font-size: 1.6rem;
+  }
+  @include mq(md) {
+    font-size: 1.7rem;
+  }
+  @include mq(lg) {
+    font-size: 1.7rem;
+  }
+  @include mq(xl) {
+    font-size: 1.8rem;
+  }
+}

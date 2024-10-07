@@ -1,0 +1,27 @@
+@import "@/styles/variables.module.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/grid.module.scss";
+@import "@/styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.editorWrapper {
+    p {
+        margin: $gap 0;
+        line-height: $line-height;
+      }
+    
+      ul {
+        margin: $gap 0;
+        margin-left: 2rem;
+      }
+    
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 3.5rem 0 $gap 0;
+        line-height: $line-height;
+      } 
+}

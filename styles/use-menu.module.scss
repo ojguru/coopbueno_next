@@ -1,0 +1,173 @@
+@import "./variables.module.scss";
+@import "./grid.module.scss";
+@import "../components/cta.module.scss";
+
+.button {
+  width: 2rem;
+  height: 2rem;
+  min-height: 40px;
+  min-width: 40px;
+  display: grid;
+  cursor: pointer;
+  position: relative;
+  z-index: 20001;
+  border-radius: 50%;
+  background-color: white;
+  color: $primary-base;
+  svg {
+    width: 60%;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.wrapper {
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: fixed;
+  z-index: 20000;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: white;
+  visibility: hidden;
+  &:global(.active) {
+    visibility: visible;
+  }
+  &:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: $primary-base;
+    z-index: -2;
+    opacity: 0.25;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    padding: inherit;
+    max-width: inherit;
+    background-color: white;
+    z-index: -1;
+  }
+}
+
+.modalWrapper {
+  @include container;
+  margin: 5rem auto;
+  margin-bottom: initial;
+  /* min-height: 100%; */
+  flex: 1;
+  overflow: hidden;
+  background-color: white;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.modal {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  padding-top: 4rem;
+
+  min-height: 100vh;
+  margin: 0 auto;
+
+  opacity: 0;
+  right: -100%;
+
+  &:global(.active) {
+    opacity: 1;
+    right: 0;
+  }
+}
+
+.modalHeader {
+  position: relative;
+  text-align: left;
+  color: white;
+  font-weight: bold;
+  column-gap: 1rem;
+  padding: 1.5rem 0;
+  position: relative;
+  justify-items: right;
+  align-items: center;
+  justify-content: end;
+  flex-wrap: wrap;
+}
+
+.portalWriter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+  order: 2;
+  justify-content: end;
+  @include mq(sm) {
+    order: 0;
+    width: auto;
+  }
+}
+
+.portalItem {
+  @include cta();
+  position: relative;
+  background: $primary-base;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.5rem;
+  display: flex;
+  gap: 0.75rem;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.body {
+  z-index: initial;
+}
+
+.footer {
+  width: calc(100% + 4rem);
+  margin-left: -1.5rem;
+  /* background-color: $gray-ligth */
+  padding: 0.5rem;
+  /* margin-left: -1.5rem; */
+}
+
+.socialBox {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding-bottom: 8rem;
+}
+
+.socialIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+  background: $primary-base;
+  position: relative;
+  cursor: pointer;
+
+  svg {
+    width: 55%;
+    fill: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

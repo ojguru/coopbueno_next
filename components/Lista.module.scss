@@ -1,0 +1,30 @@
+@import "@/styles/variables.module.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/grid.module.scss";
+@import "@/styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.title {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+}
+
+.section {
+  @include mq(lg) {
+    grid-column: 1 / span 2;
+  }
+}
+
+.list {
+  display: grid;
+  gap: 1.5rem 3rem;
+  margin: 0;
+  padding: 0;
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.item {
+}

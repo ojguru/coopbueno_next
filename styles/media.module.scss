@@ -1,0 +1,16 @@
+.image {
+  position: relative;
+}
+
+.image img {
+  object-fit: cover;
+}
+
+%medio {
+  position: relative;
+  width: 100%;
+
+  & > img {
+    object-fit: cover;
+  }
+}

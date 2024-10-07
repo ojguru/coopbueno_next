@@ -1,0 +1,110 @@
+@import "../styles/variables.module.scss";
+@import "../styles/mixins.scss";
+@import "../styles/grid.module.scss";
+@import "../styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+@import "pure-react-carousel/dist/react-carousel.es.css";
+
+.section {
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30rem;
+    padding-bottom: 30rem;
+    background-color: $primary-base;
+    box-shadow: 0 1.5rem 5rem $primary-base;
+    border-radius: 5rem;
+    transform: translate(15%, 15%);
+    z-index: -1;
+    opacity: 0.7;
+    transform: translate(50%, -20%) rotate(30deg);
+  }
+}
+
+.container {
+  @include container();
+  margin-bottom: $space-medium;
+  margin-top: $space-medium;
+  display: grid;
+  flex-wrap: wrap;
+  gap: 3rem;
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin-bottom: 4rem;
+  width: 100%;
+  max-width: 100%;
+  @include mq(md) {
+    grid-column: 1 / span 2;
+  }
+}
+
+.sucursal {
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.15);
+}
+
+.name {
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.phoneBox {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.8rem;
+  margin: 0;
+  svg {
+    flex-basis: 1.8rem;
+    width: 2.5rem;
+    margin-right: 1rem;
+    padding: 1rem 0;
+  }
+}
+
+.phoneList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0rem 1rem;
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.phone {
+  text-decoration: none;
+  display: inline-block;
+  padding: 1rem 0;
+}
+
+.infoWrapper {
+  display: inline-block;
+  vertical-align: top;
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.schedule {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.8rem;
+  margin: 1rem auto;
+  svg {
+    flex-basis: 1.8rem;
+    width: 2.5rem;
+    margin-right: 1rem;
+    padding: 1rem 0;
+  }
+  margin: 0;
+}

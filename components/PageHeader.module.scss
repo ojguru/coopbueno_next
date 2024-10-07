@@ -1,0 +1,51 @@
+@import "@/styles/variables.module.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/grid.module.scss";
+@import "@/styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+@import "@/components/Cta.module.scss";
+
+.header {
+  margin-bottom: 4rem;
+}
+
+.title {
+  text-transform: uppercase;
+}
+
+.deco {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  padding-bottom: 50%;
+  border-radius: 5%;
+  background-color: rgba($primary-light, 0.15);
+  transform: translate(80%, -30%) rotate(-35deg);
+  z-index: -1;
+  &:before {
+    content: "";
+    position: absolute;
+    left: 8%;
+    top: 0;
+    width: 6%;
+    padding-bottom: 6%;
+    border-radius: 50%;
+    background-color: $secondary-base;
+    transform: translate(0, -50%);
+    z-index: -1;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    left: 15%;
+    top: 22%;
+    width: 100%;
+    padding-bottom: 100%;
+    border-radius: inherit;
+    background-color: $primary-light;
+    box-shadow: -0.5rem 0.5rem 2.5rem $primary-light;
+    z-index: -1;
+  }
+}

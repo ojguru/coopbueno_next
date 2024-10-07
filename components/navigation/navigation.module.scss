@@ -1,0 +1,36 @@
+@import "@/styles/variables.module.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/grid.module.scss";
+@import "@/styles/tipography.module.scss";
+@import "@/styles/general.module.scss";
+
+.menu {
+  margin: 0;
+}
+
+.container {
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 100%;
+
+  &:global(.split) {
+    @include mq(lg) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include mq(xl) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+.block {
+  z-index: initial;
+}
+
+.label {
+  // color: ${props.labelColor};
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+}
