@@ -121,7 +121,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
               width={1080}
               height={1080}
               priority
-              objectFit="contain"
             />
           </header>
           <div className={styles.formWrapper}>

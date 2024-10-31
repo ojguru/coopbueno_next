@@ -31,7 +31,6 @@ const Producto = ({ servicio }: ProductProps) => {
             alt="Logo Universo Coopbueno"
             width={1080}
             height={1080}
-            objectFit="contain"
           />
         </MediaContainer>
       </Container>

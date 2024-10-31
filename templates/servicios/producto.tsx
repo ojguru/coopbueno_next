@@ -28,7 +28,6 @@ const Producto = ({ servicio }: ProductProps) => {
             alt={imagen?.alternativeText || ""}
             width={1080}
             height={1080}
-            objectFit="contain"
           />
         </div>
       </div>

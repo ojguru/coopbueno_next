@@ -42,8 +42,6 @@ const Portada = ({ servicio }: PortadaProps) => {
                       alt={servicio.nombre}
                       width={1080}
                       height={1911.6}
-                      objectFit="cover"
-                      objectPosition="50% 0%"
                       priority
                     />
                   </div>

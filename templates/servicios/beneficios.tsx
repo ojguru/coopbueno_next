@@ -42,7 +42,6 @@ const Benefits = ({ servicio }: BeneficiosProps) => {
                     alt={name}
                     width={1080}
                     height={1080}
-                    objectFit="contain"
                   />
                 </div>
                 <div className={styles.body}>

@@ -28,9 +28,8 @@ const Producto = ({ servicio }: ProductProps) => {
           <Image
             src={libreta}
             alt="Libreta de Ahorro Infantil"
-            // width={1080}
-            // height={1080}
-            objectFit="contain"
+            width={1080}
+            height={1080}
           />
         </MediaContainer>
       </Container>
