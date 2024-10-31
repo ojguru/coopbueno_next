@@ -10,7 +10,12 @@ import { Lato, Montserrat } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Suspense } from "react";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/constants";
+import {
+  HUBSPOT_ID,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/constants";
 import Script from "next/script";
 import { FacebookPixelEvents } from "@/components/pixelEvents";
 import { fetchAPI } from "@/lib/api";
@@ -142,6 +147,13 @@ export default async function RootLayout({
           gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
+        <Script
+          id="hs-script-loader"
+          async
+          defer
+          src={`//js.hs-scripts.com/${HUBSPOT_ID}.js`}
+          type="text/javascript"
+        />
         <ThemeProvider>
           <Header servicios={servicios} menuItems={headerItems} />
           <main className={styles.main}>{children}</main>
