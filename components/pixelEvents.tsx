@@ -16,6 +16,14 @@ export const FacebookPixelEvents: React.FC = () => {
         ReactPixel.init(`${FACEBOOK_PIXEL_ID}`); //don't forget to change this
         ReactPixel.pageView();
       });
+
+    try {
+      window.eval(`
+          _hsq.push(["trackPageView"]);
+        `);
+    } catch (error) {
+      console.log(error);
+    }
   }, [pathname, searchParams]);
 
   return null;
